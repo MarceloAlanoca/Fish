@@ -1,13 +1,14 @@
 body{
-    background: gray, no-repeat;
+    background: gray;
+    margin: 0px;
 }
 .BarraPrincipal {
-    padding: 20px;
+    padding: 10px;
     background: rgb(59, 58, 58);
 }
 .BarraS {
     display: inline-flex;
-    margin: 10px;
+    margin: 5px;
 }
 a {
     text-decoration: none;
