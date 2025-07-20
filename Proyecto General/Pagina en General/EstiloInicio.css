@@ -9,8 +9,14 @@ body{
 .BarraS {
     display: inline-flex;
     margin: 5px;
+    margin-right: 200px;
 }
 a {
     text-decoration: none;
     color: white;
+}
+.BoxCentral{
+    background: rgb(70, 68, 68);
+    text-align: center;
+    margin: 20px 350px;
 }
