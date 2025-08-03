@@ -1,0 +1,1 @@
+Lo que agregue es la parte visual del formulario aun faltaria la parte de java y todo eso
