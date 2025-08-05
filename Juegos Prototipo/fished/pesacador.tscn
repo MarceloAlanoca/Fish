@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ldonluhuunw"]
+
+[ext_resource type="Script" uid="uid://cxqsokivkyum8" path="res://mov_d_barco.gd" id="1_rjwtr"]
+[ext_resource type="Texture2D" uid="uid://bdplmtbus7jow" path="res://icon.svg" id="2_aywj8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khgwa"]
+size = Vector2(127, 123)
+
+[node name="Personaje" type="Node2D"]
+
+[node name="Mov_D_Barco" type="CharacterBody2D" parent="."]
+script = ExtResource("1_rjwtr")
+move_speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Mov_D_Barco"]
+texture = ExtResource("2_aywj8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mov_D_Barco"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_khgwa")
