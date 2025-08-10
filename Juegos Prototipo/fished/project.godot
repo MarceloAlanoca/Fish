@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Fished"
-run/main_scene="uid://bcj4wnt7xvaqu"
+run/main_scene="uid://chw7uou2l07da"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
