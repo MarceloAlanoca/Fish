@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="EstiloInicio.css">
+    <link rel="icon" href="../../Image/Icono.ico" type="Image/x-icon">
+</head>
+<body>
+    <nav class="BarraPrincipal">
+        <ul>
+            <li class="BarraS">
+                <a href="">1</a>
+            </li>
+            <li class="BarraS">
+                <a href="Inicio.html">Inicio</a>
+            </li>
+            <li class="BarraS">
+                <input type="text" placeholder="Busca el juego que quieres jugar">
+            </li>
+            <li class="BarraS">
+                <a href="">Perfil</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="BoxCentral">
+        <h1>Que quieres Jugar?</h1>
+        <ul>
+            <li class="Box1">
+                <a href="../Juegos/#">juego</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
