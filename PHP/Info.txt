@@ -1,0 +1,1 @@
+Esta carpeta sirve para las cosas de de php como los registros y ect.

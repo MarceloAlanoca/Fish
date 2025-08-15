@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://thydr8tnfljb"]
+
+[ext_resource type="Script" uid="uid://cr3uejc3xyfv" path="res://Scripts/Move_P.gd" id="1_8t23h"]
+[ext_resource type="Texture2D" uid="uid://cpq1m1gwr5pya" path="res://Assets/Barcos/unnamed.png" id="2_8t23h"]
+[ext_resource type="Texture2D" uid="uid://e0i54ef1mtke" path="res://Assets/Barcos/pixil-frame-0 (2) (1).png" id="3_14jen"]
+[ext_resource type="Script" uid="uid://b68afieo4q7uh" path="res://caña_de_pesca.gd" id="3_b8grr"]
+[ext_resource type="Texture2D" uid="uid://begyywuhm6rp" path="res://Assets/Barcos/pixil-frame-0 (3).png" id="4_b8grr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14jen"]
+size = Vector2(155.5, 48.5)
+
+[node name="Pescador" type="CharacterBody2D"]
+script = ExtResource("1_8t23h")
+
+[node name="Caña de pesca" type="Node2D" parent="."]
+position = Vector2(16, -1)
+scale = Vector2(2.16, 1.64)
+script = ExtResource("3_b8grr")
+
+[node name="Anzuelo" type="Sprite2D" parent="Caña de pesca"]
+position = Vector2(46.7593, -14.6341)
+scale = Vector2(0.0119335, 0.0314342)
+texture = ExtResource("4_b8grr")
+
+[node name="Camera2D" type="Camera2D" parent="Caña de pesca/Anzuelo"]
+position = Vector2(-7, 1.99994)
+zoom = Vector2(0.75, 0.75)
+
+[node name="caña de pescar" type="Sprite2D" parent="Caña de pesca"]
+position = Vector2(37.5, -30.4878)
+scale = Vector2(0.05, 0.066)
+texture = ExtResource("3_14jen")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-31, 0)
+shape = SubResource("RectangleShape2D_14jen")
+disabled = true
+
+[node name="Barco" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2.16, 1.64)
+texture = ExtResource("2_8t23h")
+
+[node name="Camera2D" type="Camera2D" parent="Barco"]
