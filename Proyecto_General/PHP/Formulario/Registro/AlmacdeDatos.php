@@ -1,5 +1,5 @@
 <?php
-include('Conexion.php'); // archivo en la misma carpeta
+include('Conexion.php'); 
 
 $usuario = $_POST['nombre'];
 $email = $_POST['email'];
