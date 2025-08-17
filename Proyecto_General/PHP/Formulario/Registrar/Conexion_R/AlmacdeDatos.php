@@ -21,12 +21,11 @@ if ($r > 0) {
 $insertar = mysqli_query($conexion, "INSERT INTO clientes (Usuario, Email, Contraseña, Rol)
 VALUES('$usuario','$email','$pass','cliente')");
 
-
 if ($insertar){
     echo '
         <script>
             alert("Registro exitoso");
-            location.href = "../Formulario.html";
+            location.href = "../Formulario.php";
         </script>
     ';
 }
