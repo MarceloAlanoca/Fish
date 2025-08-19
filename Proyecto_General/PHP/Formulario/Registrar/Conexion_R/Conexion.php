@@ -9,5 +9,5 @@ $conexion = mysqli_connect($servidor, $usuario, $clave, $BaseDeDatos);
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
-echo'john pork';
+
 ?>
