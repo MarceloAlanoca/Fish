@@ -13,14 +13,10 @@ if($r > 0 ){
     $_SESSION['cliente'] = $Usuario;
     header("location:../Login.php");
 }else{
-    echo'
-    
-    <script 
-    alert("El correi o la contraseña son invalidos");
-    location.href = "../Login.php";
-    </script>
-
-    ';
+    echo '<script>';
+    echo 'alert("El usuario o la contraseña son inválidos");';
+    echo 'window.location.href = "../Login.php";';
+    echo '</script>'; 
 }
 
 mysqli_free_result($Resultado);
