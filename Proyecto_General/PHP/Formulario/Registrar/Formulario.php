@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="Formulario.css">
 </head>
 <body>
-    <form action="Registro/AlmacdeDatos.php" method="post" id="form">
+    <form action="Conexion_R/AlmacdeDatos.php" method="post" id="form">
         <h1>Registrate</h1>
         <div class="form">
             

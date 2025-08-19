@@ -2,15 +2,15 @@
 
 include('Connect.php');
 
-$usuario = $_POST['nombre'];
-$pass = $_POST['password'];
+$Usuario = $_POST['nombre'];
+$Pass = $_POST['password'];
 
-$Resultado = mysqli_query($conexion, "SELECT * FROM cliente WHERE Usuario = $usuario and Contraseña = $pass");
+$Resultado = mysqli_query($conexion, "SELECT * FROM cliente WHERE Usuario = '$Usuario' and Contraseña = '$Pass'");
 $r = mysqli_num_rows($Resultado);
 
 if($r > 0 ){
     session_start();
-    $_SESSION['cliente'] = $usuario;
+    $_SESSION['cliente'] = $Usuario;
     header("location:../Login.php");
 }else{
     echo'

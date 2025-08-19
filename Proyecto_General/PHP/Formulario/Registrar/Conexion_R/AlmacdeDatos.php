@@ -5,7 +5,7 @@ $usuario = $_POST['nombre'];
 $email = $_POST['email'];
 $pass = $_POST['password'];
 
-$verificacion = mysqli_query($conexion, "SELECT * FROM clientes WHERE Usuario = '$usuario'");
+$verificacion = mysqli_query($conexion, "SELECT * FROM cliente WHERE Usuario = '$usuario'");
 $r = mysqli_num_rows($verificacion);
 
 if ($r > 0) {
@@ -18,7 +18,7 @@ if ($r > 0) {
     exit;
 }
 
-$insertar = mysqli_query($conexion, "INSERT INTO clientes (Usuario, Email, Contraseña, Rol)
+$insertar = mysqli_query($conexion, "INSERT INTO cliente (Usuario, Email, Contraseña, Rol)
 VALUES('$usuario','$email','$pass','cliente')");
 
 if ($insertar){
