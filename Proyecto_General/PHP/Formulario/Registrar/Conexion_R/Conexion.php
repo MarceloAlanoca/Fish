@@ -5,8 +5,7 @@
     $bs_nombre = "usuarios_fs";
 
     try{
-        $conn = mysqli_connect($bs_servidor, $bs_usuario, $bs_pass,
-        $bs_nombre);
+        $conn = mysqli_connect($bs_servidor, $bs_usuario, $bs_pass,$bs_nombre);
     }
 
     catch(mysqli_sql_exception){
