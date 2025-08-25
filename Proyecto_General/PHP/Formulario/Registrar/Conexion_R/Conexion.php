@@ -1,13 +1,15 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$clave = "";
-$BaseDeDatos = "cliente";
+    $bs_servidor = "localhost";
+    $bs_usuario = "root";
+    $bs_clave = "";
+    $bs_nombre = "usuarios_fs";
 
-$conexion = mysqli_connect($servidor, $usuario, $clave, $BaseDeDatos);
+    try{
+        $conn = mysqli_connect($bs_servidor, $bs_usuario, $bs_pass,
+        $bs_nombre);
+    }
 
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
-}
-
+    catch(mysqli_sql_exception){
+            echo "Actualmente la base de datos esta apagada o hay datos faltantes";
+    }
 ?>

@@ -1,4 +1,4 @@
-document.getElementById("form").addEventListener("submit", function(e) {
+/*document.getElementById("form").addEventListener("submit", function(e) {
     e.preventDefault(); // esto evita recargar la pagina
 
     // da los valores de cada input
@@ -34,4 +34,4 @@ window.addEventListener("load", function() {
 
         console.log("Datos cargados desde localStorage:", info);
     }
-});
+});*/
