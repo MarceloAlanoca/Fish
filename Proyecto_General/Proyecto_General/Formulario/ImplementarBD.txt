@@ -1,0 +1,3 @@
+CREATE TABLE `usuarios_fs`.`usuarios` (`ID` INT NOT NULL AUTO_INCREMENT , `nombre` VARCHAR(25) NOT NULL , `apellido` VARCHAR(25) NOT NULL , `fecha_reg` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `email` INT NOT NULL , `contraseña` CHAR(255) NOT NULL , PRIMARY KEY (`ID`), UNIQUE (`nombre`)) ENGINE = InnoDB;
+
+//Ejecuta este código en tu phpmyadmin para tener una base de datos local de prueba
