@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="Registro.css">
+    <link rel="stylesheet" href="../CSS/Registro.css">
     <link rel="icon" type="image/png" href="/Imagenes/IconWeb.jpg">
 </head>
 <body>
-    <form action="Registro.php" method="post" id="form">
+    <form action="../PHP/Registro.php" method="post" id="form">
         <h1>Registro</h1>
         <div class="form">
             

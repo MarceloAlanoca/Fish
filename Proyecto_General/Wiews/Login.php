@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="Conexion_L/Buscar_L.php" method="post" id="form">
+    <form action="../PHP/Buscar_L.php" method="post" id="form">
         <div class="form">
             <div class="Grupo">
                 <input type="text" name="nombre">
