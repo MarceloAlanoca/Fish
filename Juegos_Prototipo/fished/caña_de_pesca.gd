@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var fuerza_lanzamiento = 1000
-@export var gravedad = 1500
+@export var gravedad = 1600
 @export var velocidad_recoger = 900
 @export var distancia_maxima = 150
 
@@ -14,7 +14,7 @@ var velocidad_anzuelo = Vector2.ZERO
 var posicion_inicial = Vector2.ZERO
 
 func _ready():
-	anzuelo = $Anzuelo
+	anzuelo = $Anzuelo_R/Anzuelo
 	posicion_inicial = anzuelo.position
 
 func _input(event):

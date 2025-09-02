@@ -4,7 +4,7 @@ html, body {
     padding: 0;
 }
 body{
-    background-image: url(../Imagenes/FondoHome.jpg);
+    background-image: url(/Proyecto_General/Imagenes/fondo2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
