@@ -17,11 +17,6 @@
                 <label for="nombre">Nombre</label>
             </div>
 
-                <div class="Grupo">
-                <input type="text" name="apellido" id="apellido" required><span class="barra"></span>
-                <label for="apellido">Apellido</label>
-            </div>
-
             <div class="Grupo">
                 <input type="email" name="email" id="email" required><span class="barra"></span>
                 <label for="email">Correo electrónico</label>

@@ -1,18 +1,25 @@
 body{
-    background: gray;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 650px;
-    background-image: url(/Imagenes/fondo2.jpg);
-    background-size: cover;
+    min-height: 100vh;
+    background-image: url(../Imagenes/Fondo.png);
     background-repeat: no-repeat;
-    background-position: center;
+    animation: gradientBG 15s ease infinite;
+    overflow: hidden;
+    background-size: 110% 100%;
 }
+
+@keyframes gradientBG {
+    0% {background-position: 0%, 50%}
+    50% {background-position: 100%, 50%}
+    100% {background-position: 0%, 50%}
+}
+
 h1{
     text-align: center;
     font-size: 220%;
-    background-image: url(/Imagenes/degradeN.jpg);
+    background-image: url(../Imagenes/degradeN.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -20,12 +27,13 @@ h1{
     color: transparent;
 }
 form{
-    background: white;
+    background: transparent;
+    background: rgb(255, 255, 255, 0.8);
     padding: 40px 0;
     box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     border-style: solid;
-    border-color: black;
+    border-color: rgb(216, 129, 16);
 }
 
 
@@ -70,7 +78,7 @@ input:focus ~ label,
 input:valid ~ label{
     top: -14px;
     font-size: 12px;
-    color: blueviolet;
+    color: rgb(214, 132, 38);
 }
 
 .barra{

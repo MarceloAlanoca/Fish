@@ -2,7 +2,7 @@ html, body {
     height: 100%;
 }
 body{
-    background-image: url(/Proyecto_General/Imagenes/FondoC.png);
+    background-image: url(../Imagenes/FondoC.png);
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
@@ -51,6 +51,7 @@ a{
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
+    color: white;
 }
 
 .nombrev{
@@ -63,10 +64,17 @@ a{
     border-radius: 50%;
     border: 3px solid black;
     object-fit: cover;
+    color: whi;
 }
 
 .integrante:hover {
     transform: scale(1.1);
+    background:  var(--color);
+    color: #000;
+    box-shadow: 0 0 5px var(--color),
+                    0 0 50px var(--color),
+                        0 0 75px var(--color),
+                    0 0 100px var(--color);
 }
 
 .modal {

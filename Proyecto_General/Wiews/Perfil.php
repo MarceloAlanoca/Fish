@@ -7,5 +7,7 @@
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
 </head>
 <body>
+    <div class="box"></div>
+    <div class="box"></div>
 </body>
 </html>

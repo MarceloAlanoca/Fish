@@ -4,7 +4,7 @@ html, body {
     padding: 0;
 }
 body{
-    background-image: url(../Imagenes/fondo.jpg);
+    background-image: url(/Proyecto_General/Imagenes/fondo2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -68,36 +68,24 @@ a:hover {
     transform: scale(1.05);
 }
 
-
-.Ad1{
-    background-color: coral;
-    margin: 5%;
-    height: 67%;
-    width: 15%;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
-}
-
-.Ad2{
-    background-color: coral;
-    margin: 5%;
-    height: 67%;
-    width: 15%;
-    margin-left: 80%;
-    margin-top: -38.5%;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
-}
-
-.Seleccion{
-    background-color: coral;
-    margin: 5%;
-    height: 67%;
-    width: 40%;
-    margin-left: 30%;
-    margin-top: -38%;
+.boxes {
     display: flex;
-    color: black;
-    font-size: 240%;
+    justify-content: space-between; 
+    align-items: flex-start;        
+    margin: 40px auto;              
+    padding: 0 5%;                  
+    gap: 100px;
+}
+
+.Ad1, .Ad2, .Seleccion {
+    background-color: coral;
+    height: 700px;    
+    flex: 1;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+}
+
+.Seleccion {
+    flex: 3;
 }
 
 

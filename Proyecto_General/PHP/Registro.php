@@ -1,5 +1,5 @@
 <?php
-include('Conexion.php'); 
+include('../PHP/ConexionPHP/Connect.php'); 
 
 $usuario = $_POST['nombre'];
 $email = $_POST['email'];
