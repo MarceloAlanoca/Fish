@@ -4,7 +4,7 @@ html, body {
     padding: 0;
 }
 body{
-    background-image: url(/Proyecto_General/Imagenes/fondo2.jpg);
+    background-image: url(../Imagenes/fondo.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -17,7 +17,7 @@ header {
     background-color: coral;
     padding: 0 40px;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
-    background-image: url(/Proyecto_General/Imagenes/DegradaN.png);
+    background-image: url(../Imagenes/DegradaN.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
