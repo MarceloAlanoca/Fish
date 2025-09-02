@@ -109,3 +109,151 @@ button{
     border-color: black;
     border-radius: 20px;
 }
+/* body {
+  margin: 0;
+  padding: 0;
+  background: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+}
+
+form {
+  background: white;
+  padding: 40px 0;
+  box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.form {
+  width: 100%;
+  margin: auto;
+}
+
+form .Grupo {
+  position: relative;
+  margin: 45px;
+}
+
+.Grupo {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+input {
+  background: none;
+  color: rgb(140, 133, 133);
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--colorTextos);
+}
+
+input:focus {
+  outline: none;
+  color: #5e5d5d;
+}
+
+label {
+  color: var(--colorTextos);
+  font-size: 16px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  transition: 0.3s ease-in-out all;
+  pointer-events: none;
+}
+
+input:focus~label,
+input:valid~label {
+  top: -14px;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+}
+
+.Grupo {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.barra {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #8f8f8f;
+}
+
+.barra::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(to right, rgb(78, 155, 255), rgb(18, 80, 161));
+  transition: width 0.3s ease;
+}
+
+input:focus~.barra::before {
+  width: 100%;
+}
+
+.show-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.show-container span {
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  user-select: none;
+  cursor: pointer;
+}
+
+button {
+  background: #5e5d5d;
+  border: none;
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.password-container label {
+  margin-right: 10px;
+}
+
+span {
+  top: px;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+}
+*/
