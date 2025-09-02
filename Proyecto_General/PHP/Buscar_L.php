@@ -1,6 +1,6 @@
 <?php 
 
-include('Connect.php');
+include('../PHP/ConexionPHP/Connect.php');
 
 $usuario = $_POST['nombre'];
 $pass = $_POST['password'];
