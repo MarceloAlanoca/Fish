@@ -38,11 +38,11 @@ texture = ExtResource("2_1l0tm")
 [node name="Pescados" type="Node" parent="."]
 
 [node name="salmon" parent="Pescados" instance=ExtResource("3_wrm1d")]
-position = Vector2(382, 56)
+position = Vector2(287, 74)
 scale = Vector2(3.3462, 2.59736)
 
 [node name="atun" type="CharacterBody2D" parent="Pescados"]
-position = Vector2(572, 255)
+position = Vector2(288, 287)
 scale = Vector2(3.42643, 4.12259)
 script = ExtResource("4_wowpa")
 
@@ -55,7 +55,7 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pescados/atun"]
 position = Vector2(2.14838, -4.13177)
 shape = SubResource("RectangleShape2D_wowpa")
-disabled = true
+one_way_collision_margin = 0.0
 
 [node name="Orca" type="CharacterBody2D" parent="Pescados"]
 position = Vector2(985, 645)
@@ -65,7 +65,6 @@ script = ExtResource("6_1l0tm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pescados/Orca"]
 position = Vector2(10.8033, -18.2082)
 shape = SubResource("RectangleShape2D_h4fw4")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Pescados/Orca"]
 position = Vector2(4.30334, -21.7083)
