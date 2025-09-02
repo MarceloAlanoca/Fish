@@ -11,7 +11,7 @@
     <header>
         <img src="../Imagenes/IconoFS.png" alt="" class="logo">
         <h1>FishStack</h1>
-        <a href="../Wiews/Home.html" class="back">Volver</a>
+        <a href="Home.php" class="back">Volver</a>
     </header>
 
     <!-- Primera fila -->
@@ -50,7 +50,7 @@
         </div>
 
         <div class="integrante" onclick="mostrarModal('modal7')">
-            <img src="/Proyecto_General/Imagenes/PLACEHOLDER.png" alt="Cristian">
+            <img src="../Imagenes/PLACEHOLDER.png" alt="Cristian">
             <p class="nombrev">Cristian</p>
         </div>
     </div>
