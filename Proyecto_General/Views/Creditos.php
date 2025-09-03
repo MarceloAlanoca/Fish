@@ -119,7 +119,7 @@
     
     <!-- Música de fondo ;) -->
     <audio autoplay loop>
-        <source src="Nightlight.mp3" type="audio/mpeg">
+        <source src="../Songs/Nightlight.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
     </audio>
 

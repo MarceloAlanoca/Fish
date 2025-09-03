@@ -1,0 +1,58 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    background-color: coral;
+    padding: 0 40px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+    background-image: url(../Imagenes/DegradaN.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.left-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.center-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.center-logo h1 {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.logo {
+    height: 100px;
+}
+
+.right-links {
+    display: flex;
+    gap: 20px;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 15px;
+    background-color: rgba(107, 103, 103, 0.7);
+    border: 1px solid black;
+    border-radius: 12%;
+    text-align: center;
+    display: inline-block;
+}
+
+
+a:hover {
+    background-color: rgba(255,255,255,0.8);
+    transform: scale(1.05);
+}

@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="../CSS/Home.css">
-    <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
+    <link rel="stylesheet" href="../CSS/Header.css">
+    <title>Document</title>
 </head>
-</head>
-
-    <header>
+<body>
+        <header>
         <div class="left-buttons">
             <a href="">Página principal</a>
             <a href="">Cerrar sesión</a>
@@ -27,24 +24,5 @@
             <a href="Perfil.php">Perfil</a>
         </nav>
     </header>
-
-    <body>  
-
-        <div class="boxes">
-
-            <div class="Ad1">
-            <img src="" alt="">
-            </div>
-
-            <div class="Seleccion">
-                <p class="Tienda">TIENDA</p>
-            </div>
-
-            <div class="Ad2">
-            <img src="" alt="">
-            </div>   
-        </div>
-
-    </body>
-
+</body>
 </html>
