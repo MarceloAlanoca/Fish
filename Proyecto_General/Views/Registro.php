@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/Imagenes/IconWeb.jpg">
 </head>
 <body>
-    <form action="../PHP/Registro.php" method="post" id="form">
+    <form action="../PHP/Register.php" method="post" id="form">
         <h1>Registro</h1>
         <div class="form">
 
@@ -21,7 +21,7 @@
 
 
             <div class="Grupo">
-                <input type="text" name="nombre" id="nombre" required>
+                <input type="text" name="name" id="name" required>
                 <span class="barra"></span>
                 <label for="nombre">Nombre de visualizacion</label>
             </div>

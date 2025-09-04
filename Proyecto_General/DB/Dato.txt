@@ -1,0 +1,2 @@
+Este modelo de base de datos espera actualizacion a medida
+con la progrmacion del Juego
