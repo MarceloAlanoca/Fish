@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url(../Imagenes/Fondo.png);
+  background-image: url(Fondo.png);
   background-repeat: no-repeat;
   animation: gradientBG 15s ease infinite;
   overflow: hidden;
@@ -30,7 +30,7 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-clip: text;
-  color: transparent;
+  color: black;
 }
 form {
   background: transparent;
@@ -39,7 +39,7 @@ form {
   box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   border-style: solid;
-  border-color: rgb(216, 129, 16);
+  border-color: rgb(#096099);
 }
 
 form .Grupo {
@@ -82,7 +82,7 @@ input:focus ~ label,
 input:valid ~ label {
   top: -14px;
   font-size: 12px;
-  color: rgb(214, 132, 38);
+  color: rgb(39, 126, 207);
 }
 
 .barra {
@@ -99,7 +99,7 @@ input:valid ~ label {
   width: 0%;
   bottom: 0;
   position: absolute;
-  background: linear-gradient(to right, red, blueviolet);
+  background: linear-gradient(to right, #1283ce, #055488);
   transition: 0.3s ease with;
   left: 0;
 }
@@ -136,6 +136,6 @@ button {
   display: inline-block;
   width: 20px;
   height: 10px;
-  background-color: gray;
+  background-color: rgb(105, 103, 103);
   border-radius: 50%;
 }
