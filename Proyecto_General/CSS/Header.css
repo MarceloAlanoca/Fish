@@ -1,12 +1,17 @@
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url(../Views/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 150px;
-    background-color: coral;
+    background-color: #3BB273;
     padding: 0 40px;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
-    background-image: url(../Imagenes/DegradaN.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -23,15 +28,17 @@ header {
     align-items: center;
     gap: 15px;
     text-align: center;
+    text-decoration: none;
 }
 
 .center-logo h1 {
-    margin: 0;
-    font-family: sans-serif;
+  font-family: 'Pixelify Sans';
+  font-size: 68px;
+  color: #12293B;
 }
 
 .logo {
-    height: 100px;
+    height: 130px;
 }
 
 .right-links {
@@ -39,20 +46,21 @@ header {
     gap: 20px;
 }
 
-
-a {
+.Link {
     text-decoration: none;
-    color: black;
-    padding: 8px 15px;
-    background-color: rgba(107, 103, 103, 0.7);
-    border: 1px solid black;
-    border-radius: 12%;
-    text-align: center;
-    display: inline-block;
+    background-color: #FF6B35;   
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
 }
 
 
-a:hover {
-    background-color: rgba(255,255,255,0.8);
+.Link:hover {
+    background-color: rgba(237, 66, 9,0.8);
     transform: scale(1.05);
 }

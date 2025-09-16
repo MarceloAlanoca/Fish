@@ -8,12 +8,7 @@
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
 </head>
 <body>
-    <header>
-        <img src="../Imagenes/IconoFS.png" alt="" class="logo">
-        <h1>FishStack</h1>
-        <a href="Home.php" class="back">Volver</a>
-    </header>
-
+    <?php  include ("header.php");  ?>
     <!-- Primera fila -->
     <div class="creditos-container">
         <div class="integrante" onclick="mostrarModal('modal1')">
@@ -117,7 +112,6 @@
         </div>
     </div>
     
-    <!-- Música de fondo ;) -->
     <audio autoplay loop>
         <source src="../Songs/Nightlight.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
