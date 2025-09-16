@@ -22,6 +22,7 @@
 
 
         <nav class="right-links">
+            <a class="Link" href="Shop.php">Tienda</a>
             <a class="Link" href="Credits.php">Créditos</a>
             <a class="Link" href="">Juego</a>
             <a class="Link" href="Profile.php">Perfil</a>
