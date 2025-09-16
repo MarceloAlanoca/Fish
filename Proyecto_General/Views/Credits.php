@@ -118,5 +118,7 @@
     </audio>
 
     <script src="../JS/Credits.js"></script>
+
+    <?php include ("Footer.php")?>
 </body>
 </html>

@@ -1,0 +1,26 @@
+
+footer{
+    margin: 0;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+.Aling {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.BoxC{
+    text-align: center;
+    margin: 20px;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+h2, p{
+    font-size: 15px;
+}
