@@ -9,19 +9,22 @@
 <body>
         <header>
         <div class="left-buttons">
-            <a href="">Página principal</a>
-            <a href="">Cerrar sesión</a>
+            <a class="Link" href="../Views/PrincipalPage.php">Página principal</a>
+            <a class="Link" href="../Views/PrincipalPage.php">Cerrar sesión</a>
         </div>
 
         <div class="center-logo">
-            <img src="../Imagenes/IconoFS.png" alt="" class="logo">
-            <h1>FishStack</h1>
+            <a href="Home.php" class="center-logo">
+                <img src="../Imagenes/IconoFS.png" alt="Logo FishStack" class="logo">
+                <h1>FishStack</h1>
+            </a>
         </div>
 
+
         <nav class="right-links">
-            <a href="Creditos.php">Créditos</a>
-            <a href="">Juego</a>
-            <a href="Perfil.php">Perfil</a>
+            <a class="Link" href="Credits.php">Créditos</a>
+            <a class="Link" href="">Juego</a>
+            <a class="Link" href="Profile.php">Perfil</a>
         </nav>
     </header>
 </body>

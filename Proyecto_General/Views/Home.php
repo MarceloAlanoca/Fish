@@ -7,41 +7,41 @@
     <title>Home</title>
     <link rel="stylesheet" href="../CSS/Home.css">
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
+    <script src="../JS/Home.js" defer></script>
+    </head>
 </head>
-</head>
-
-    <header>
-        <div class="left-buttons">
-            <a href="">Página principal</a>
-            <a href="">Cerrar sesión</a>
-        </div>
-
-        <div class="center-logo">
-            <img src="../Imagenes/IconoFS.png" alt="" class="logo">
-            <h1>FishStack</h1>
-        </div>
-
-        <nav class="right-links">
-            <a href="Creditos.php">Créditos</a>
-            <a href="">Juego</a>
-            <a href="Perfil.php">Perfil</a>
-        </nav>
-    </header>
-
     <body>  
-
+    <?php  include ("header.php");  ?>
         <div class="boxes">
 
             <div class="Ad1">
-            <img src="" alt="">
+            <img class="decay" src="../Imagenes/Ads/SusAd.png" alt="">
             </div>
 
             <div class="Seleccion">
-                <p class="Tienda">TIENDA</p>
+                    <button id="btnTienda">Tienda</button>
+                    <button id="btnRegistros">Registros</button>
+                
+
+                <div id="modalTienda" class="modal">
+                    <div class="modal-content">
+                        <span class="close" data-close="modalTienda">&times;</span>
+                        <h2>Tienda</h2>
+                        <p>Aquí va el contenido de la Tienda...</p>
+                    </div>
+                </div>
+
+                <div id="modalRegistros" class="modal">
+                    <div class="modal-content">
+                        <span class="close" data-close="modalRegistros">&times;</span>
+                        <h2>Registros</h2>
+                        <p>Aquí va el contenido de los registros...</p>
+                    </div>
+                </div>
             </div>
 
             <div class="Ad2">
-            <img src="" alt="">
+            <img class="decay" src="../Imagenes/Ads/CGR_Corp.png" alt="">
             </div>   
         </div>
 

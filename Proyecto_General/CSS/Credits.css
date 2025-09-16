@@ -7,30 +7,6 @@ body{
     background-repeat: repeat;
     background-position: center;
 }
-header{
-    display: flex;
-    height: 150px;
-    background-color: coral;
-    padding: 25px;
-    box-shadow: 0 0 220px 0 rgba(0, 0, 100, 5);
-    align-items: center;
-
-}
-h1{
-    font-family: sans-serif;
-    margin: 0;
-    margin-left: 5%;
-}
-.logo{
-    height: 150px;
-    margin-left: 35%;
-}
-
-a{
-    text-decoration: none;
-    color: black;
-}
-
 .back{
     background-color: rgb(107, 103, 103, 70%);
     border-style: solid;

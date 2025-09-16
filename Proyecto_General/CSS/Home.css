@@ -9,64 +9,6 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 150px;
-    background-color: coral;
-    padding: 0 40px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
-    background-image: url(../Imagenes/DegradaN.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.left-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.center-logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-align: center;
-}
-
-.center-logo h1 {
-    margin: 0;
-    font-family: sans-serif;
-}
-
-.logo {
-    height: 100px;
-}
-
-.right-links {
-    display: flex;
-    gap: 20px;
-}
-
-
-a {
-    text-decoration: none;
-    color: black;
-    padding: 8px 15px;
-    background-color: rgba(107, 103, 103, 0.7);
-    border: 1px solid black;
-    border-radius: 12%;
-    text-align: center;
-    display: inline-block;
-}
-
-
-a:hover {
-    background-color: rgba(255,255,255,0.8);
-    transform: scale(1.05);
-}
 
 .boxes {
     display: flex;
@@ -78,19 +20,69 @@ a:hover {
 }
 
 .Ad1, .Ad2, .Seleccion {
-    background-color: coral;
+    background-color: #3BB273;
     height: 700px;    
     flex: 1;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
 }
 
 .Seleccion {
-    flex: 3;
+  display: flex;
+  flex: 3;
+  justify-content: center;  
+  align-items: center;      
+  flex-direction: column;   
+  gap: 20px; 
 }
 
+.Seleccion button {
+  background-color: #FF6B35;   
+  color: white;
+  border: none;
+  padding: 36px 72px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.Seleccion button:hover {
+  background-color: #e55a25; 
+  transform: scale(1.05);      
+}
+
+.decay{
+  margin: 5%;
+  width: 90%;
+  height: 95%;
+}
 
 .logs{
     background-color: rgb(10, 77, 68);
     width: 40%;
     height: 40%;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 50%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
 }

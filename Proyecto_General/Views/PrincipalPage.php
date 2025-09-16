@@ -16,7 +16,7 @@
         <div class="credito">By DevPlay studio</div>
     <div class="botones">
       <a href="Login.php" class="boton-inicio">Iniciar sesión</a>
-      <a href="Registro.php" class="boton-registro">Registrarse</a>
+      <a href="Register.php" class="boton-registro">Registrarse</a>
     </div>
   </div>
   <script>

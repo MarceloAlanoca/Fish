@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
 </head>
 <body>
-    <form action="../PHP/Login.php" method="post" id="form">
+    <form action="../Includes/Login.php" method="post" id="form">
         <div class="form">
             <div class="Grupo">
                 <input type="text" name="user" id="user">
