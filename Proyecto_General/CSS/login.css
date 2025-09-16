@@ -1,0 +1,141 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url(Fondo.png);
+  background-repeat: no-repeat;
+  animation: gradientBG 15s ease infinite;
+  overflow: hidden;
+  background-size: 110% 100%;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0%, 50%;
+  }
+  50% {
+    background-position: 100%, 50%;
+  }
+  100% {
+    background-position: 0%, 50%;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: 220%;
+  background-image: url(../Imagenes/degradeN.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: text;
+  color: black;
+}
+form {
+  background: transparent;
+  background: rgb(255, 255, 255, 0.8);
+  padding: 40px 0;
+  box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  border-style: solid;
+  border-color: rgb(#096099);
+}
+
+form .Grupo {
+  position: relative;
+  margin: 45px;
+}
+
+.Grupo {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+input {
+  background: none;
+  color: rgb(140, 133, 133);
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--colorTextos);
+}
+
+input:focus {
+  outline: none;
+  color: #5e5d5d;
+}
+
+label {
+  color: var(--colorTextos);
+  font-size: 16px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  transition: 0.3s ease-in-out all;
+  pointer-events: none;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  top: -14px;
+  font-size: 12px;
+  color: rgb(39, 126, 207);
+}
+
+.barra {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #8f8f8f;
+}
+
+.barra::before {
+  content: "";
+  height: 2px;
+  width: 0%;
+  bottom: 0;
+  position: absolute;
+  background: linear-gradient(to right, #1283ce, #055488);
+  transition: 0.3s ease with;
+  left: 0;
+}
+
+input:focus ~ .barra::before {
+  width: 100%;
+}
+
+button {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: #5e5d5d;
+  border: none;
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: black;
+  border-radius: 20px;
+}
+
+.show-container {
+  display: inline;
+}
+
+.ShowPass {
+  text-align: center;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  background-color: rgb(105, 103, 103);
+  border-radius: 50%;
+}
