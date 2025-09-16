@@ -1,5 +1,6 @@
 body{
-    background-image: url(../Imagenes/FondoProfile.png);
+    margin: 0;
+    background-image: url(../Imagenes/Arco.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -14,8 +15,13 @@ body{
     padding: 17.5% 0;
     margin-top: 2.5%;
     box-shadow: 0 0 56px 0 rgba(255, 255, 255, 0.8);
+    margin: 5%;
 }
 
 .Profile{
     background-color: rgb(86, 217, 232, 70%);
+    border: solid;
+    margin: 20px;
+    padding-top: 300px;
+    padding-left: -20px;
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../PHP/ConexionPHP/Connect.php');
+include('../Includes/ConexionPHP/Connect.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -23,8 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["usuario"] = $row["Usuario"];
                 $_SESSION["email"] = $row["Email"];
 
-                header("Location: ../Views/Home.php");
-                exit;
+                echo "<script>
+                alert('Inicio de sesion exitoso ;)');
+                window.location.href = '../Views/Home.php';
+                </script>";
+            exit;
             } else {
                 echo "<script>alert('Contraseña incorrecta'); window.history.back();</script>";
             }

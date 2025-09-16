@@ -22,9 +22,9 @@
 
 
         <nav class="right-links">
-            <a class="Link" href="Creditos.php">Créditos</a>
+            <a class="Link" href="Credits.php">Créditos</a>
             <a class="Link" href="">Juego</a>
-            <a class="Link" href="Perfil.php">Perfil</a>
+            <a class="Link" href="Profile.php">Perfil</a>
         </nav>
     </header>
 </body>

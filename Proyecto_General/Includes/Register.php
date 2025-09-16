@@ -1,5 +1,5 @@
 <?php
-include('../PHP/ConexionPHP/Connect.php'); 
+include('../Includes/ConexionPHP/Connect.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -27,15 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     VALUES ('$user', '$name', '$hash', '$email')";
 
             if (mysqli_query($conexion, $sql)) {
-                
-                header("Location: ../Views/Home.php");
-                exit;
-                echo " <script>
-                    alert('Registro exitoso');
-                    </script>";
-            } else {
-                echo "<script>alert('Error al registrar usuario');</script>";
-            }
+    echo "<script>
+            alert('Registro exitoso');
+            window.location.href = '../Views/Home.php';
+            </script>";
+    exit;
+} else {
+    echo "Error al registrar usuario: " . mysqli_error($conexion);
+}
+
         }
     }
 }

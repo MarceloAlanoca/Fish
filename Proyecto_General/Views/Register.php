@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/Imagenes/IconWeb.jpg">
 </head>
 <body>
-    <form action="../PHP/Register.php" method="post" id="form">
+    <form action="../Includes/Register.php" method="post" id="form">
         <h1>Registro</h1>
         <div class="form">
 
@@ -67,3 +67,6 @@
     <script src="../JS/registro.js" defer></script>
 </body>
 </html>
+
+<?php
+?>
