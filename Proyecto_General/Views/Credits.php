@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="../CSS/Creditos.css">
+    <link rel="stylesheet" href="../CSS/Credits.css">
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
 </head>
 <body>
@@ -117,6 +117,6 @@
         Tu navegador no soporta el audio.
     </audio>
 
-    <script src="Creditos.js"></script>
+    <script src="../JS/Credits.js"></script>
 </body>
 </html>

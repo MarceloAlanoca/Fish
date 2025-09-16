@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="../CSS/Registro.css">
+    <link rel="stylesheet" href="../CSS/Register.css">
     <link rel="icon" type="image/png" href="/Imagenes/IconWeb.jpg">
 </head>
 <body>
@@ -64,7 +64,7 @@
     </form>
 
 
-    <script src="../JS/registro.js" defer></script>
+    <script src="../JS/Register.js" defer></script>
 </body>
 </html>
 
