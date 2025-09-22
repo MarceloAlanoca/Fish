@@ -17,7 +17,7 @@
                 <p>
                     Tu objetivo es pescar con tu caña los diferentes peces que existen en este maritimo, podras enfrentarte a estos mares lo descubriremos
                 </p>
-                
+                <iframe src="mijuego/index.html" width="800" height="600" frameborder="0"></iframe>
             </div>
         </div>
     </Div>
