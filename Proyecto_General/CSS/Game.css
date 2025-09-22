@@ -1,0 +1,23 @@
+body{
+    background-image: url(../Imagenes/Arco.png);
+    margin: 0;
+    background: no-repeat;
+}
+
+.Game{
+    align-content: center;
+    text-align: center;
+    background: rgba(25, 58, 165, 0.712);
+    margin:auto 450px;
+}
+.Gameinfo{
+    background: white;
+    margin:auto 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.TextGame{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

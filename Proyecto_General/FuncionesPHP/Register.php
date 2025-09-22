@@ -1,5 +1,5 @@
 <?php
-include('../Includes/ConexionPHP/Connect.php'); 
+include("../Includes/Connect.php"); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
