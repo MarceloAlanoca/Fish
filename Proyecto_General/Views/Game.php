@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php include ("Header.php")?>
-    <Div class="Game">
+    <div class="Game">
         <div class="Gameinfo">
             <div class="TextGame">
                 <h1>Hola Bienvenido</h1>
@@ -17,10 +17,10 @@
                 <p>
                     Tu objetivo es pescar con tu caña los diferentes peces que existen en este maritimo, podras enfrentarte a estos mares lo descubriremos
                 </p>
-                <iframe src="mijuego/index.html" width="800" height="600" frameborder="0"></iframe>
+                <iframe src="../Imagenes/Fondo.png" width="500" height="400" frameborder="0"></iframe>
             </div>
         </div>
-    </Div>
+    </div>
     <?php include ("Footer.php")?>
 </body>
 </html>

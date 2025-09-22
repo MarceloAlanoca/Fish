@@ -1,7 +1,8 @@
 body{
-    background-image: url(../Imagenes/Arco.png);
-    margin: 0;
-    background: no-repeat;
+    background-image: url(/Proyecto_General/Imagenes/FondoHome.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .Game{
