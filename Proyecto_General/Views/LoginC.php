@@ -31,6 +31,6 @@
             <button type="submit"class="Enviar">Enviar</button>
         </div>
     </form>
-    <script src="login.js" defer></script>
+    <script src="../JS/login.js" defer></script>
 </body>
 </html>

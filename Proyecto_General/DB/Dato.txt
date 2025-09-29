@@ -1,2 +1,5 @@
 Este modelo de base de datos espera actualizacion a medida
 con la progrmacion del Juego
+
+Update 1.1 : 
+agragar una tabla donde registre la compra de la tienda 
