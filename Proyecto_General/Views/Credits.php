@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Creditos</title>
     <link rel="stylesheet" href="../CSS/Credits.css">
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
 </head>
@@ -47,6 +47,10 @@
         <div class="integrante" onclick="mostrarModal('modal7')">
             <img src="../Imagenes/PLACEHOLDER.png" alt="Cristian">
             <p class="nombrev">Cristian</p>
+        </div>
+        <div class="integrante" onclick="mostrarModal('modal7')">
+            <img src="../Imagenes/PLACEHOLDER.png" alt="Cristian">
+            <p class="nombrev">John</p>
         </div>
     </div>
 
@@ -112,6 +116,14 @@
         </div>
     </div>
     
+    <div class="caja">
+    <p>
+    Como equipo estamos tomando este proyecto en modo de aprendizaje y diverision,
+    haciendo cosas que nos gustan y aprendiendo diferentes cosa a base de la progresion
+    de nuestras obra
+    </p>
+    <p class="r">Atte : Todo el equipo de FishStack</p>
+    </div>
     <audio autoplay loop>
         <source src="../Songs/Nightlight.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.

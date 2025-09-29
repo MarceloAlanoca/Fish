@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'Pixelify Sans';
-  src: url(../Views/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Pixelify Sans';
+    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 header {
     display: flex;
@@ -33,9 +33,9 @@ header {
 }
 
 .center-logo h1 {
-  font-family: 'Pixelify Sans';
-  font-size: 68px;
-  color: #12293B;
+    font-family: 'Pixelify Sans';
+    font-size: 68px;
+    color: #12293B;
 }
 
 .logo {
