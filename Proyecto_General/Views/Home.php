@@ -16,9 +16,9 @@
 
             <div class="Ad1">
             <a href="https://www.innersloth.com/games/among-us/" target="_blank"><img class="decay" src="../Imagenes/Ads/SusAd.png" alt="" id="Ad1"></a>
-            <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad2"></a>
+            <!-- <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad2"></a>
             <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad3"></a>
-            <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad4"></a>
+            <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad4"></a> --->
             </div>
 
             <div class="Seleccion">
@@ -36,9 +36,9 @@
 
             <div class="Ad2">
             <a href="https://www.corpgovrisk.com/" target="_blank"><img class="decay" src="../Imagenes/Ads/CGR_Corp.png" alt="" id="Ad5"></a>
-            <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad6"></a>
+            <!-- <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad6"></a>
             <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad7"></a>
-            <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad8"></a>
+            <a href="" target="_blank"><img src="../Imagenes/PLACEHOLDER.png" alt="" class="decay" id="Ad8"></a> --->
             </div>   
         </div>
 

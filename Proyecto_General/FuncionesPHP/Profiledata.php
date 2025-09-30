@@ -1,15 +1,15 @@
 <?php
     session_start();
-    include('../Includes/ConexionPHP/Connect.php');
+    include('../Includes/Connect.php');
     if (!isset($_SESSION["id_usuario"])) {
         echo "<script> alert('Inicio de sesion requerido para entrar aqui'); </script>";
-        header("Location: login.php");
+        header("Location: Login.php");
         exit();
     }
 
     $id_usuario = $_SESSION["id_usuario"];
 
-    $sql = "SELECT Nombre, Genero, Telefono, Edad, Usuario, FechadeReg, Email 
+    $sql = "SELECT Nombre, Genero, Telefono, Edad, Usuario, FechadeReg, Email, Foto 
             FROM usuarios 
             WHERE ID = ?";
 

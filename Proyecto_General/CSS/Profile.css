@@ -14,7 +14,7 @@ body{
 }
 p, span{
     font-family:'Pixelify Sans';
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 button{
@@ -78,6 +78,9 @@ button:hover{
 .ButtonB, .ButtonC {
     margin-left: auto;
 }
+.ButtonC{
+    margin-right: 40px;
+}
 
 .info p, .Impinfo p {
     margin: 0;
@@ -101,6 +104,12 @@ button:hover{
     margin-left: 20%;
 }
 
+.inputrow{
+    font-family:'Pixelify Sans';
+    font-size: large;
+    background-color: #fffff0;
+    margin: 5px;
+}
 .AD {
     background-color: rgb(168, 162, 162);
     width: 20%;

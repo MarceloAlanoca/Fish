@@ -19,20 +19,21 @@
             <div class="content1">
 
             <div class="ProfileImg">
-                <img class="ImagenP" src="../Imagenes/PLACEHOLDER.png" alt="">
+            <img class="ImagenP" src="" alt="Foto de perfil">
                 <p>Foto de pefil</p> 
-                <button>Cambiar Imagen</button>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <button id="btnCambiarImagen">Cambiar Imagen</button>
             </div>
 
             <div class="info">
-                <div><p>Nombre :</p><span id="nombre"></span></div>
-                <div><p>Genero :</p><span id="genero"></span></div>
-                <div><p>Telefono :</p><span id="telefono"></span></div>
-                <div><p>Edad :</p><span id="edad"></span></div>
+                <div><p>Nombre :</p><span id="nombre"></span><input class="inputrow" type="text" id="editNombre" style="display:none;"></div>
+                <div><p>Telefono :</p><span id="telefono"></span><input class="inputrow" type="text" id="editTelefono" style="display:none;"></div>
+                <div><p>Edad :</p><span id="edad"></span><input class="inputrow" type="number" id="editEdad" style="display:none;"></div>
+                <div><p>Genero :</p><span id="genero"></span><input class="inputrow" type="text" id="editGenero" style="display:none;"></div>
             </div>
 
             <button class="ButtonB" id="ChangeInfo">Cambiar Datos?</button>
-
+            <button class="ButtonB" id="SaveInfo" style="display:none;">Guardar Cambios</button>
             </div>
 
             <div class="content2">
@@ -43,6 +44,14 @@
                     <div><p>contraseña : *******</p></div>
                 </div>
             <button class="ButtonC" id="ChangePass">Cambiar contraseña?</button>
+
+                <div id="passwordForm" style="display:none; margin-top:10px;">
+                    <input class="inputrow" type="password" id="oldPass" placeholder="Contraseña actual"><br>
+                    <input class="inputrow" type="password" id="newPass" placeholder="Nueva contraseña"><br>
+                    <input class="inputrow" type="password" id="confirmPass" placeholder="Confirmar nueva contraseña"><br>
+                    <button id="SavePass">Guardar</button>
+                    
+                </div>
             </div> 
 
         </div>
@@ -52,7 +61,5 @@
             </div>
 
     </div>
-
-    <?php include ("Footer.php")?>
 </body>
 </html>

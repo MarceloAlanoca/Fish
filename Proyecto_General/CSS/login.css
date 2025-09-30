@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url(../Imagenes/Fondo.png);
+  background-image: url(../Imagenes/BackgroundLogin.png);
   background-repeat: no-repeat;
   animation: gradientBG 15s ease infinite;
   overflow: hidden;
@@ -25,12 +25,12 @@ body {
 h1 {
   text-align: center;
   font-size: 220%;
-  background-image: url(../Imagenes/degradeN.jpg);
+  background-image: url(../Imagenes/Degrades/Blue.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-clip: text;
-  color: black;
+  color: transparent;
 }
 form {
   background: transparent;
@@ -39,7 +39,7 @@ form {
   box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   border-style: solid;
-  border-color: rgb(#096099);
+  border-color: rgb(9, 96, 153);
 }
 
 form .Grupo {

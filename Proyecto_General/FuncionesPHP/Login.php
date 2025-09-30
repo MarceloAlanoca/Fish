@@ -3,7 +3,7 @@ session_start();
 include("../Includes/Connect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
+    $user = filter_input(INPUT_POST, "userEmail", FILTER_SANITIZE_SPECIAL_CHARS);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
     if (empty($user) || empty($password)) {
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             if (password_verify($password, $row["Contraseña"])) {
-                // Guardar sesión
+
                 $_SESSION["id_usuario"] = $row["ID"]; // 
                 $_SESSION["usuario"] = $row["Usuario"];
                 $_SESSION["email"] = $row["Email"];
