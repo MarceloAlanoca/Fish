@@ -27,10 +27,39 @@
                 <p>11 5555-5555</p>
                 <p>11 6666-6666</p>
             </div>
+
+             <div class="BoxC">
+                <h2>Donde encontrarnos</h2>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>                
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <br>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
+                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+            </div>
+            
             <div class="BoxC">
                 <h2>Quieres saber mas de nosostros?</h2>
                 <a href="Credits.php">Creditos</a>
             </div>
+           
             <br>
             
         </div>

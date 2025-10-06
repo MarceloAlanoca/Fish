@@ -15,6 +15,8 @@ footer{
     text-align: center;
     margin: 20px;
     text-align: center;
+    padding: 20px;
+    
 }
 
 a{
@@ -23,4 +25,10 @@ a{
 }
 h2, p{
     font-size: 15px;
+}
+
+.ImgFooter{
+    height: 18px;
+    width: 17px;
+    margin-right: 10px;
 }
