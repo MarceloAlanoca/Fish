@@ -16,7 +16,7 @@
             <div class="Grupo">
                 <input type="text" name="userEmail" id="userEmail" required>
                 <span class="barra"></span>
-                <label for="userEmail">Usuario o Email</label>
+                <label for="userEmail">Usuario</label>
             </div>
 
             <div class="Grupo">
