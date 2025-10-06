@@ -45,25 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
       img: "../Imagenes/Ads/FortniteAd.png"
     }
   ];
-
-  // Obtener todos los <a> de anuncios dentro de .boxes
   const slots = document.querySelectorAll(".boxes a");
 
-  // Copiamos los anuncios para no repetir
+
   let disponibles = [...anuncios];
 
   slots.forEach(slot => {
-    if (disponibles.length === 0) disponibles = [...anuncios]; // reiniciar si se acaban
+    if (disponibles.length === 0) disponibles = [...anuncios];
 
     // Selección aleatoria
     const index = Math.floor(Math.random() * disponibles.length);
     const anuncio = disponibles[index];
 
-    // Asignar valores al <a> y a su <img>
+
     slot.href = anuncio.url;
     slot.querySelector("img").src = anuncio.img;
-
-    // Quitar anuncio usado para no repetir en otro slot
+    
     disponibles.splice(index, 1);
   });
 });

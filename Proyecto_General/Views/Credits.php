@@ -22,7 +22,7 @@
         </div>
 
         <div class="integrante" onclick="mostrarModal('modal3')">
-            <img src="../Imagenes/PLACEHOLDER.png" alt="Marcelo">
+            <img src="../Imagenes/Iconos/Marcelo.jpg" alt="Marcelo">
             <p class="nombrev">Marcelo</p>
         </div>
 
@@ -41,15 +41,10 @@
 
         <div class="integrante" onclick="mostrarModal('modal6')">
             <img src="../Imagenes/Iconos/Navarro.jpg" alt="Navarro">
-            <p class="nombrev">Navarro</p>
-        </div>
-
-        <div class="integrante" onclick="mostrarModal('modal7')">
-            <img src="../Imagenes/PLACEHOLDER.png" alt="Cristian">
-            <p class="nombrev">Cristian</p>
+            <p class="nombrev">Lautaro</p>
         </div>
         <div class="integrante" onclick="mostrarModal('modal7')">
-            <img src="../Imagenes/PLACEHOLDER.png" alt="Cristian">
+            <img src="../Imagenes/Iconos/John.jpg" alt="Cristian">
             <p class="nombrev">John</p>
         </div>
     </div>
@@ -103,19 +98,11 @@
     <div id="modal6" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cerrarModal('modal6')">&times;</span>
-            <h2>Navarro</h2>
+            <h2>Lautaro</h2>
             <p>Bla bla bla</p>
         </div>
     </div>
 
-    <div id="modal7" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarModal('modal7')">&times;</span>
-            <h2>Cristian</h2>
-            <p>Bla bla bla</p>
-        </div>
-    </div>
-    
     <div class="caja">
     <p>
     Como equipo estamos tomando este proyecto en modo de aprendizaje y diverision,

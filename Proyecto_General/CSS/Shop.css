@@ -1,0 +1,102 @@
+body{
+  min-height: 100vh;
+  background-image: url(../Imagenes/BackgroundShop.png);
+  background-repeat: no-repeat;
+  background-size: 110% 100%;
+  margin: 0;
+}
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.Seleccion{
+    background-color: #6E7B8B;
+    border: solid;
+    border-radius: 5%;
+    width: 50%;
+    margin: 5%;
+    padding: 1%;
+    font-family: 'Pixelify Sans';
+    font-size: 200%;
+}
+
+.Entrada{
+    font-family: 'Pixelify Sans';
+    text-align: center;
+}
+
+.Passbox{
+    background-color: #F5F5F5;
+    border: solid;
+    margin: 5%;
+    padding: 50px;
+    display: flexbox;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.ButtonPur{
+    text-decoration: none;
+    background-color: #FF6B35;   
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 0 16px 0 rgba(245, 219, 113, 0.8);
+}
+
+.ButtonPur:hover{
+    background-color: rgba(237, 66, 9,0.8);
+    transform: scale(1.05);
+}
+
+.Pass{
+    display: block;
+}
+
+.Pass img{
+    filter: drop-shadow(1px 1px 20px rgb(255, 251, 4));
+}
+.PassTitle1{
+    font-size: 200%;
+    background-image: url(../Imagenes/Degrades/Orange.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(1px 1px 20px rgb(255, 107, 53));
+}
+
+.PassTitle2{
+    font-size: 200%;
+    background-image: url(../Imagenes/Degrades/Red.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(1px 1px 27px rgb(245, 34, 0));
+}
+
+.PassTitle3{
+    font-size: 200%;
+    background-image: url(../Imagenes/Degrades/Platino.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(1px 1px 55px rgb(71, 70, 70));
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    fill: white;
+    letter-spacing: 6px;
+}

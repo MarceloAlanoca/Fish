@@ -57,28 +57,6 @@ body{
   width: 90%;
   height: 95%;
 }
-
-.Shop{
-  text-decoration: none;
-  position: relative;
-  padding: 18px 50px;
-  font-size: 22px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 50px;
-  overflow: hidden;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, orange,red);
-  box-shadow: 0 0 20px rgba(79, 172, 254, 0.8) 0 0 40px rgba(0, 242, 254, 0.6);
-  transition: transfrom 0.2 ease;
-}
-
-.Shop:hover{
-  transform: scale(1.1);
-}
 .logs{
     background-color: rgb(10, 77, 68);
     width: 40%;
