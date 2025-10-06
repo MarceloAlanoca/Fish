@@ -1,0 +1,80 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    background-color: #738CA6;
+    padding: 0 40px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+body{
+    margin: 0;
+    background-color: #041D37;
+}
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.left img{
+    height: 100px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.center h1 {
+    font-family: 'Pixelify Sans';
+    font-size: 68px;
+    color: #12293B;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
+}
+
+.AP{
+    font-family: 'Pixelify Sans';
+    color: rgb(18, 41, 59, 50%);
+}
+
+.logo {
+    height: 100px;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
+}
+
+.right{
+    display: flex;
+    gap: 20px;
+}
+
+.Link {
+    text-decoration: none;
+    background-color: #FF6B35;   
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+}
+
+
+.Link:hover {
+    background-color: rgba(237, 66, 9,0.8);
+    transform: scale(1.05);
+}

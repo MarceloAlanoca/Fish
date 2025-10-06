@@ -13,7 +13,7 @@ body{
 .boxes {
     display: flex;
     justify-content: space-between; 
-    align-items: flex-start;        
+    align-items: flex;        
     margin: 40px auto;              
     padding: 0 5%;                  
     gap: 100px;
@@ -21,7 +21,7 @@ body{
 
 .Ad1, .Ad2, .Seleccion {
     background-color: #3BB273;
-    height: 700px;    
+    height: 700px;
     flex: 1;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
 }
@@ -32,7 +32,8 @@ body{
   justify-content: center;  
   align-items: center;      
   flex-direction: column;   
-  gap: 20px; 
+  gap: 20px;
+  order: 2;
 }
 
 .Seleccion button {
