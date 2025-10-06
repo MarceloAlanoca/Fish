@@ -27,32 +27,63 @@
                 <p class="Letra">11 5555-5555</p>
                 <p class="Letra">11 6666-6666</p>
             </div>
-
              <div class="BoxC">
-                <h2>Donde encontrarnos</h2>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <h2 class="Letra">Donde encontrarnos</h2>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>                
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>                
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Intagram
+                </a>
                 <br>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter"></a>
-                <a href=""><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Intagram" class="ImgFooter"></a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
+                </a>
+                <a href="" class="Letra">
+                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
+                </a>
             </div>
             
             <div class="BoxC">
@@ -65,7 +96,7 @@
         </div>
         <div class="Autor">
                 <p class="Letra">
-                    Los derechos de autor estan registrados por DevPlays Studio y otra persona o entidad que quiera robar propiedad intelectuar que nos quiera usurpar se vera en poblemas
+                    Los derechos de autor estan registrados por DevPlays Studio y otra persona o entidad que quiera robar propiedad intelectuar que nos quiera usurpar se vera en problemas
                 </p>
             </div>
     </footer>
