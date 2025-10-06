@@ -22,7 +22,6 @@
             </div>
 
             <div class="Seleccion">
-                    <a href="Shop.php" class="Shop"><span class="shine">Tienda</span></a>
                     <button id="btnRegistros">Registros</button>
                 
                 <div id="modalRegistros" class="modal">

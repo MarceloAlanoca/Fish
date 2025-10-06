@@ -1,0 +1,31 @@
+body{
+  min-height: 100vh;
+  background-image: url(../Imagenes/BackgroundShop.png);
+  background-repeat: no-repeat;
+  background-size: 110% 100%;
+}
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.Seleccion{
+    background-color: #6E7B8B;
+    border: solid;
+    border-radius: 5%;
+    width: 50%;
+    margin: 5%;
+    padding: 1%;
+    font-family: 'Pixelify Sans';
+    font-size: x-large;
+    text-align: center;
+}
+
+.Passbox{
+    background-color: #F5F5F5;
+    border: solid;
+    margin: 5%;
+    padding: 50px;
+}
