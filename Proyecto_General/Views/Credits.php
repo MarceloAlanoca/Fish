@@ -41,7 +41,7 @@
 
         <div class="integrante" onclick="mostrarModal('modal6')">
             <img src="../Imagenes/Iconos/Navarro.jpg" alt="Navarro">
-            <p class="nombrev">Navarro</p>
+            <p class="nombrev">Lautaro</p>
         </div>
         <div class="integrante" onclick="mostrarModal('modal7')">
             <img src="../Imagenes/Iconos/John.jpg" alt="Cristian">
@@ -98,7 +98,7 @@
     <div id="modal6" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cerrarModal('modal6')">&times;</span>
-            <h2>Navarro</h2>
+            <h2>Lautaro</h2>
             <p>Bla bla bla</p>
         </div>
     </div>
