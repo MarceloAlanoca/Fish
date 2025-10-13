@@ -91,18 +91,18 @@ body {
                 transform: scale(1.2);      
 }
 
-/* --- IMAGEN --- */
+
 .presentacion-img {
         width: 50%;
-        height: 45vh;              /* ocupa casi la mitad de la pantalla */
+        height: 45vh;          
         object-fit: cover;
 }
 
-/* --- CONTENIDO --- */
+
 .modal-body {
         flex: 1;
         padding: 20px 40px;
-    overflow-y: auto;          /* scroll interno si el texto es largo */
+    overflow-y: auto;          
 }
 
 .modal-text {
@@ -111,7 +111,7 @@ body {
         margin-bottom: 24px;
 }
 
-/* --- COMENTARIOS --- */
+
 .comments {
     border-top: 1px solid #ddd;
     padding-top: 16px;
