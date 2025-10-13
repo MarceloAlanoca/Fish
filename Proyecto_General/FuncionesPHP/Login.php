@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Faltan datos en el formulario'); window.history.back();</script>";
     } else {
 
-        $sql = "SELECT * FROM usuarios WHERE Usuario = '$user' OR Email = '$user' LIMIT 1";
+        $sql = "SELECT * FROM usuarios WHERE Usuario = '$user' LIMIT 1";
         $result = mysqli_query($conexion, $sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["email"] = $row["Email"];
 
                 echo "<script>
-                alert('Inicio de sesion exitoso ;)');
                 window.location.href = '../Views/Home.php';
                 </script>";
             exit;

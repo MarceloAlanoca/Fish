@@ -17,7 +17,7 @@
         </div>
 
         <div class="integrante" onclick="mostrarModal('modal2')">
-            <img src="../Imagenes/PLACEHOLDER.png" alt="Pedro">
+            <img src="../Imagenes/Iconos/Pedro.jpg" alt="Pedro">
             <p class="nombrev">Pedro</p>
         </div>
 

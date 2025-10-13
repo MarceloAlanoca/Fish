@@ -15,7 +15,8 @@ footer{
     text-align: center;
     margin: 20px;
     text-align: center;
-    padding: 20px;
+    
+
     
 }
 
@@ -25,10 +26,10 @@ a{
 }
 .Letra{
     font-size: 15px;
+    text-decoration: none;
 }
 
 .ImgFooter{
     height: 18px;
-    width: 17px;
-    margin-right: 10px;
+    width: 18px;
 }

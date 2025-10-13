@@ -14,16 +14,16 @@
 
 
             <div class="Grupo">
-                <input type="text" name="username" id="username" required>
+                <input type="text" name="name" id="name" required>
                 <span class="barra"></span>
-                <label for="username">Usuario</label>
+                <label for="name">Nombre</label>
             </div>
 
 
             <div class="Grupo">
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="username" id="username" required>
                 <span class="barra"></span>
-                <label for="nombre">Nombre de visualizacion</label>
+                <label for="username">Nombre de visualizacion</label>
             </div>
 
 
