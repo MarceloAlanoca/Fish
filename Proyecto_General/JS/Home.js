@@ -1,34 +1,4 @@
-
-// --- SISTEMA DE MODALES ---
 document.addEventListener("DOMContentLoaded", () => {
-  const btnTienda = document.getElementById("btnTienda");
-  const btnRegistros = document.getElementById("btnRegistros");
-
-  if (btnTienda) {
-    btnTienda.onclick = () => {
-      document.getElementById("modalTienda").style.display = "block";
-    };
-  }
-
-  if (btnRegistros) {
-    btnRegistros.onclick = () => {
-      document.getElementById("modalRegistros").style.display = "block";
-    };
-  }
-
-  document.querySelectorAll(".close").forEach(btn => {
-    btn.onclick = () => {
-      document.getElementById(btn.dataset.close).style.display = "none";
-    };
-  });
-
-  window.onclick = (e) => {
-    if (e.target.classList.contains("modal")) {
-      e.target.style.display = "none";
-    }
-  };
-
-  // --- SISTEMA DE ANUNCIOS ALEATORIOS ---
   const boxes = document.querySelector(".boxes");
   if (!boxes) return;
 
@@ -40,29 +10,43 @@ document.addEventListener("DOMContentLoaded", () => {
     { url: "https://www.epicgames.com/fortnite/", img: "../Imagenes/PLACEHOLDER.png" }
   ];
 
-  const slots = boxes.querySelectorAll(".Ad1 a, .Ad2 a");
-  let disponibles = [...anuncios];
-
-  slots.forEach(slot => {
-    if (disponibles.length === 0) disponibles = [...anuncios];
-    const index = Math.floor(Math.random() * disponibles.length);
-    const anuncio = disponibles[index];
-    slot.href = anuncio.url;
-    slot.querySelector("img").src = anuncio.img;
-  });
-
 
   const adBlocks = Array.from(boxes.querySelectorAll(".Ad1, .Ad2"));
   const seleccion = boxes.querySelector(".Seleccion");
 
+  // --- ASIGNAR ANUNCIOS ALEATORIOS ---
+  let disponibles = [...anuncios];
+  adBlocks.forEach(block => {
+    const link = block.querySelector("a");
+    const img = block.querySelector("img");
+    if (disponibles.length === 0) disponibles = [...anuncios];
+    const index = Math.floor(Math.random() * disponibles.length);
+    const anuncio = disponibles.splice(index, 1)[0]; // elimina para no repetir
+    link.href = anuncio.url;
+    img.src = anuncio.img;
+  });
 
-  for (let i = adBlocks.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [adBlocks[i], adBlocks[j]] = [adBlocks[j], adBlocks[i]];
-  }
 
+  const orden = [adBlocks[0], seleccion, adBlocks[1]];
 
   boxes.innerHTML = "";
-  adBlocks.forEach(ad => boxes.appendChild(ad));
-  if (seleccion) boxes.appendChild(seleccion);
+  orden.forEach(el => boxes.appendChild(el));
+
+  //Modal
+  const openModal = document.querySelector("#btnRegistros");
+  const modal = document.querySelector("#modalRegistros");
+  const closeModal = document.querySelector(".modal-close");
+
+  openModal.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.add("modal-show");
+  });
+
+  closeModal.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.remove("modal-show");
+  });
 });
+
+
+

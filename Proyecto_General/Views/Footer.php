@@ -27,7 +27,7 @@
                 <p class="Letra">11 5555-5555</p>
                 <p class="Letra">11 6666-6666</p>
             </div>
-             <div class="BoxC">
+            <div class="BoxC">
                 <h2 class="Letra">Donde encontrarnos</h2>
                 <a href="" class="Letra">
                     <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
