@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentUpdateId = null;
 
-
   async function loadUpdatesFromServer() {
     try {
       const res = await fetch("../FuncionesPHP/Logs/getUpdates.php");
@@ -28,12 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      updates.forEach(update => {
+      updates.forEach((update) => {
         const div = document.createElement("div");
         div.className = "registro";
         div.dataset.id = update.Id_Update;
         div.dataset.titulo = update.Titulo;
-        div.dataset.fecha = new Date(update.Fecha_Publicacion).toLocaleDateString();
+        div.dataset.fecha = new Date(
+          update.Fecha_Publicacion
+        ).toLocaleDateString();
         div.dataset.img = update.Imagen;
         div.dataset.detalle = update.Texto_Detallado;
 
@@ -51,12 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   async function openModal(update) {
     currentUpdateId = update.Id_Update;
 
     modalTitle.textContent = update.Titulo;
-    modalDate.textContent = new Date(update.Fecha_Publicacion).toLocaleDateString();
+    modalDate.textContent = new Date(
+      update.Fecha_Publicacion
+    ).toLocaleDateString();
     modalImage.src = update.Imagen || "https://placehold.co/1200x600/png";
     modalImage.alt = update.Titulo;
     modalDetail.textContent = update.Texto_Detallado;
@@ -72,7 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadComments(idUpdate) {
     commentsList.innerHTML = "<p>Cargando comentarios...</p>";
     try {
-      const res = await fetch(`../FuncionesPHP/Logs/getComments.php?id_update=${encodeURIComponent(idUpdate)}`);
+      const res = await fetch(
+        `../FuncionesPHP/Logs/getComments.php?id_update=${encodeURIComponent(
+          idUpdate
+        )}`
+      );
       if (!res.ok) throw new Error("Error al obtener comentarios");
       const comments = await res.json();
 
@@ -81,12 +87,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      commentsList.innerHTML = comments.map(c => `
+      commentsList.innerHTML = comments
+        .map(
+          (c) => `
         <div class="comment">
-          <small>${new Date(c.Fecha).toLocaleString()} — <b>${escapeHtml(c.Usuario)}</b></small>
+          <small>${new Date(c.Fecha).toLocaleString()} — <b>${escapeHtml(
+            c.Usuario
+          )}</b></small>
           <p>${escapeHtml(c.Comentario)}</p>
         </div>
-      `).join("");
+      `
+        )
+        .join("");
     } catch (err) {
       console.error(err);
       commentsList.innerHTML = "<p>Error al cargar los comentarios.</p>";
@@ -106,9 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
     addCommentBtn.textContent = "Enviando...";
 
     try {
-      const res = await fetch("../FuncionesPHP/Logs/addComment.php", {
+      const res = await fetch("../FuncionesPHP/Logs/addComments.php", {
         method: "POST",
-        body: formData
+        body: formData,
       });
 
       const data = await res.json();
@@ -128,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ✅ Cerrar modal
   function closeModal() {
     modalOverlay.classList.remove("open");
     modalOverlay.setAttribute("aria-hidden", "true");
@@ -137,13 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   closeBtn.addEventListener("click", closeModal);
-  modalOverlay.addEventListener("click", e => {
+  modalOverlay.addEventListener("click", (e) => {
     if (e.target === modalOverlay) closeModal();
   });
-  document.addEventListener("keydown", e => {
+  document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
-
 
   function escapeHtml(str) {
     if (!str) return "";
@@ -154,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
   }
-
 
   loadUpdatesFromServer();
 });
