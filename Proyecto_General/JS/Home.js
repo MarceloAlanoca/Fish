@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { url: "https://www.corpgovrisk.com/", img: "../Imagenes/Ads/CGR_Corp.png" },
     { url: "https://store.steampowered.com/app/1562430/DREDGE/", img: "../Imagenes/PLACEHOLDER.png" },
     { url: "https://www.minecraft.net/", img: "../Imagenes/PLACEHOLDER.png" },
-    { url: "https://www.epicgames.com/fortnite/", img: "../Imagenes/PLACEHOLDER.png" }
+    { url: "https://chisap.com/shop/panchos", img: "../Imagenes/Ads/Panchito.png" }
   ];
 
 
