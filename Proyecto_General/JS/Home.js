@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const anuncios = [
     { url: "https://www.innersloth.com/games/among-us/", img: "../Imagenes/Ads/SusAd.png" },
     { url: "https://www.corpgovrisk.com/", img: "../Imagenes/Ads/CGR_Corp.png" },
-    { url: "https://store.steampowered.com/app/1562430/DREDGE/", img: "../Imagenes/PLACEHOLDER.png" },
-    { url: "https://www.minecraft.net/", img: "../Imagenes/PLACEHOLDER.png" },
-    { url: "https://chisap.com/shop/panchos", img: "../Imagenes/Ads/Panchito.png" }
+    { url: "https://www.lebronjames.com/", img: "../Imagenes/Ads/Lebron.png" },
+    { url: "https://papulandiamx.wordpress.com/", img: "../Imagenes/Ads/Picnic.png" },
+    { url: "https://chisap.com/shop/panchos", img: "../Imagenes/Ads/Panchito.png" },
+    { url: "https://bluebullpartners.com/es/", img: "../Imagenes/Ads/isla.png" }
   ];
 
 
