@@ -11,50 +11,50 @@
 <body>
     <?php  include ("header.php");  ?>
     <div class="Seleccion">
-        
-        <p class="Entrada">
-            Bienvenido a la seccion de la Tienda, aqui encontraras los diferentes
-            pases disponibles que hay para el juego. Estos brindan mejoras comesticas o
-            afectando el nivel de juego
-        </p>
+    <p class="Welcome">
+      Bienvenido a la Tienda de FishTack, aquí encontrarás diferentes
+      tipos de objetos y pases disponibles que hay.Los cuales te ayudaran a lo largo del juego para
+      que sea mas facil.
+    </p>
+  </div>
+  <section class="catalogo">
+    <h2>Artículos disponibles</h2>
+    <div class="catalogo-container">
+      <div class="item">
+        <img src="../Imagenes/CanaDorada.jpg" alt="Caña Dorada">
+        <div class="item-info">
+          <h3>Caña Dorada</h3>
+          <p>Pesca con estilo y gana 25% más de monedas por venta.</p>
+          <button class="ButtonPur">Comprar</button>
+        </div>
+      </div>
 
-        <div class="Passbox">
-            <div class="Pass">
-            <img class="LogoPass" src="../Imagenes/PLACEHOLDER.png" alt="">
-            <span class="PassTitle1">Pase de inicio</span>
-            </div>
-            
-                <div class="Descripcion">
-                    <p>Con este pase tendras diferentes beneficios en el juego temprano, y objetos exclusivos del mismo
-                    es el prime pase de todo FishStack sientete orgulloso por apoyar el juego de esta manera </p>
-                    <p>- Caña Dorada (Cualquier pez que pesque brinda un 25% mas de su valor de venta)</p>
-                    <p>- Amuleto del vendedor (La velocidad de pique de la caña aumenta un 35% mas de lo normal)</p>
-                    <p>- 20.000 Doblones</p>
-                    <p>- Skin alterna "Premium George" del protagonista</p>
-                </div>
-            <button class="ButtonPur">Comprar</button>
+      <div class="item">
+        <img src="../Imagenes/SkinGeorge.jpg" alt="Skin Premium George">
+        <div class="item-info">
+          <h3>Skin Premium George</h3>
+          <p>Una versión especial del protagonista, disponible solo en la tienda.</p>
+          <button class="ButtonPur">Comprar</button>
         </div>
-        
-        <div class="Passbox">
-            <div class="Pass">
-                <img class="LogoPass" src="../Imagenes/PLACEHOLDER.png" alt="">
-                <span class="PassTitle2">Pase del coleccionista</span>
-            </div>
-            <div class="Descripcion">
-            <p>Un pase perfecto para la gente que le guste tener muchas skines </p>
-            </div>
-        </div>
+      </div>
 
-        <div class="Passbox">
-            <div class="Pass">
-                <img class="LogoPass" src="../Imagenes/PLACEHOLDER.png" alt="">
-                <span class="PassTitle3">Pase PRIME</span>
-            </div>
-            <div class="Descripcion">
-            <p></p>
-            </div>
+      <div class="item">
+        <img src="../Imagenes/Amuleto.jpg" alt="Amuleto del vendedor">
+        <div class="item-info">
+          <h3>Amuleto del vendedor</h3>
+          <p>Aumenta la velocidad de pique un 35% y mejora tus ventas.</p>
+          <button class="ButtonPur">Comprar</button>
         </div>
-    </div>
+      </div>
+
+      <div class="item">
+        <img src="../Imagenes/Doblones.jpg" alt="Paquete de doblones">
+        <div class="item-info">
+          <h3>Paquete de doblones</h3>
+          <p>20.000 doblones para invertir en mejoras y objetos raros.</p>
+          <button class="ButtonPur">Comprar</button>
+        </div>
+  </section>
     <?php include("Footer.php") ?>
 </body>
 </html>

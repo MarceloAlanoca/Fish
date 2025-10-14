@@ -1,70 +1,61 @@
-body{
-  min-height: 100vh;
-  background-image: url(../Imagenes/BackgroundShop.png);
-  background-repeat: no-repeat;
-  background-size: 110% 100%;
-  margin: 0;
-}
-@font-face {
-    font-family: 'Pixelify Sans';
-    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
-    font-weight: normal;
-    font-style: normal;
+body {
+    min-height: 100vh;
+    background-image: url(BackgroundShop.png);
+    background-repeat: no-repeat;
+    background-size: 110% 100%;
+    margin: 0;
 }
 
-.Seleccion{
+.Seleccion {
     background-color: #6E7B8B;
     border: solid;
-    border-radius: 5%;
-    width: 50%;
-    margin: 5%;
+    border-radius: 20%;
+    width: 80%;
+    margin: 8% auto;
     padding: 1%;
-    font-family: 'Pixelify Sans';
-    font-size: 200%;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 150%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    flex-direction: column;
 }
 
-.Entrada{
+.Welcome {
     font-family: 'Pixelify Sans';
     text-align: center;
+    color: #fff;
 }
 
-.Passbox{
-    background-color: #F5F5F5;
-    border: solid;
-    margin: 5%;
-    padding: 50px;
-    display: flexbox;
-    justify-content: center;
-    align-items: stretch;
-}
-
-.ButtonPur{
+.ButtonPur {
     text-decoration: none;
-    background-color: #FF6B35;   
+    background-color: #FF6B35;
     color: white;
     border: none;
-    padding: 12px 28px;
-    border-radius: 10px;
+    padding: 12px 22px;
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 10px;
     font-weight: bold;
     transition: transform 0.2s, background 0.3s;
-    box-shadow: 0 0 16px 0 rgba(245, 219, 113, 0.8);
+    box-shadow: 0 0 16px 0 rgba(246, 210, 29, 0.894);
 }
 
-.ButtonPur:hover{
-    background-color: rgba(237, 66, 9,0.8);
-    transform: scale(1.05);
+.ButtonPur:hover {
+    background-color: rgba(193, 58, 13, 0.8);
+    transform: scale(0.10);
 }
 
-.Pass{
+.Pass {
     display: block;
 }
 
-.Pass img{
-    filter: drop-shadow(1px 1px 20px rgb(255, 251, 4));
+.Pass img {
+    filter: drop-shadow(1px 1px 20px rgb(235, 209, 17));
 }
-.PassTitle1{
+
+.PassTitle1 {
     font-size: 200%;
     background-image: url(../Imagenes/Degrades/Orange.png);
     background-size: cover;
@@ -75,7 +66,7 @@ body{
     filter: drop-shadow(1px 1px 20px rgb(255, 107, 53));
 }
 
-.PassTitle2{
+.PassTitle2 {
     font-size: 200%;
     background-image: url(../Imagenes/Degrades/Red.jpg);
     background-size: cover;
@@ -86,7 +77,7 @@ body{
     filter: drop-shadow(1px 1px 27px rgb(245, 34, 0));
 }
 
-.PassTitle3{
+.PassTitle3 {
     font-size: 200%;
     background-image: url(../Imagenes/Degrades/Platino.jpg);
     background-size: cover;
@@ -99,4 +90,81 @@ body{
     -webkit-text-stroke-color: black;
     fill: white;
     letter-spacing: 6px;
+}
+
+.catalogo {
+    width: 85%;
+    margin: 60px auto;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.catalogo h2 {
+    text-align: center;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: #FF6B35;
+}
+
+.catalogo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 20px;
+}
+
+.catalogo-container::-webkit-scrollbar {
+    width: 15px;
+}
+
+.catalogo-container::-webkit-scrollbar-thumb {
+    background: #FF6B35;
+    border-radius: 10px;
+}
+
+.catalogo-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    background: #6E7B8B;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.item:hover {
+    transform: scale(1.10);
+}
+
+.item img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-right: 4px solid #fff;
+}
+
+.item-info {
+    padding: 1px;
+    color: #fff;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.item-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.5em;
+    margin-top: 25px;
+}
+
+.item-info p {
+    font-size: 1.1em;
 }
