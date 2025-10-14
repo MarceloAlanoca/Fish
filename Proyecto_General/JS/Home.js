@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     modal.classList.remove("modal-show");
   });
+
+  
 });
 
 

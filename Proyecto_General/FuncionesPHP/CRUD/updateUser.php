@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!empty($password)) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $query = "UPDATE usuarios
-                  SET Nombre='$nombre', Usuario='$usuario', Email='$email', rol='$rol', Contraseña='$hash'
+                  SET Nombre='$nombre', Usuario='$usuario', Email='$email', rol='$rol', Password='$hash'
                   WHERE ID=$id";
     } else {
         $query = "UPDATE usuarios

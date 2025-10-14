@@ -9,21 +9,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $newPass = $_POST["newPass"];
 
     // Traer contraseña actual de la DB
-    $sql = "SELECT Contraseña FROM usuarios WHERE ID = ?";
+    $sql = "SELECT Password FROM usuarios WHERE ID = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $id_usuario);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        $hash = $row["Contraseña"];
+        $hash = $row["Password"];
 
         // Verificar la contraseña actual
         if (password_verify($oldPass, $hash)) {
             // Crear hash nuevo
             $newHash = password_hash($newPass, PASSWORD_DEFAULT);
 
-            $sqlUpdate = "UPDATE usuarios SET Contraseña = ? WHERE ID = ?";
+            $sqlUpdate = "UPDATE usuarios SET Password = ? WHERE ID = ?";
             $stmtUpdate = $conexion->prepare($sqlUpdate);
             $stmtUpdate->bind_param("si", $newHash, $id_usuario);
 

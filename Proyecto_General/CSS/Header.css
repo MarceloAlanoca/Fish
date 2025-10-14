@@ -53,6 +53,7 @@ header {
     color: white;
     border: none;
     padding: 12px 28px;
+    margin-top: 20px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
@@ -64,4 +65,103 @@ header {
 .Link:hover {
     background-color: rgba(237, 66, 9,0.8);
     transform: scale(1.05);
+}
+
+.card {
+    position: relative; /* 👈 Añadir esto */
+    text-decoration: none;
+    background-color: #565A66;   
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+    z-index: 1; /* Asegura que esté encima de los pseudo-elementos */
+    overflow: hidden; /* Previene que los bordes brillantes se salgan */
+}
+
+
+.card:hover {
+    background-color: rgba(121, 128, 145,0.8);
+    transform: scale(1.05);
+}
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card::after,
+.card::before {
+    content: '';
+    position: absolute;
+    height: calc(100% + 6px); /* borde externo */
+    width: calc(100% + 6px);
+    background-image: conic-gradient(from var(--angle),#98938D, #6B6761, #C8C3BC, #98938D);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border-radius: 12px;
+    animation: spin 3s linear infinite;
+}
+
+.card::before{
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+@keyframes spin{
+  from{
+    --angle: 0deg;
+  }
+  to{
+    --angle: 360deg;
+  }
+}
+
+/* ---- PERFIL HEADER ---- */
+.ProfileLink {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.ProfileDisplay {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.ProfileDisplay:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ImgProfile {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.NombreProfile {
+  font-family: 'Pixelify Sans';
+  color: black;
+  font-size: 33px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin: 0;
 }
