@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO usuarios (Usuario, Nombre, Contraseña, Email)
+            $sql = "INSERT INTO usuarios (Usuario, Nombre, Password, Email)
                     VALUES ('$user', '$name', '$hash', '$email')";
 
             if (mysqli_query($conexion, $sql)) {

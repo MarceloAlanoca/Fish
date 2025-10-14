@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('../Includes/Connect.php');
+    include('../../Includes/Connect.php');
     if (!isset($_SESSION["id_usuario"])) {
         echo "<script> alert('Inicio de sesion requerido para entrar aqui'); </script>";
         header("Location: Login.php");

@@ -1,35 +1,39 @@
-header{
+/* ======== HEADER ======== */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 150px;
     background-color: #738CA6;
     padding: 0 40px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 1.2);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-body{
+
+body {
     margin: 0;
     background-color: #041D37;
+    font-family: 'Pixelify Sans', sans-serif;
 }
+
 @font-face {
     font-family: 'Pixelify Sans';
     src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
+/* ======== HEADER SECTIONS ======== */
 .left {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
-.left img{
+.left img {
     height: 100px;
 }
-
 .center {
     display: flex;
     align-items: center;
@@ -37,32 +41,25 @@ body{
     text-align: center;
     text-decoration: none;
 }
-
 .center h1 {
     font-family: 'Pixelify Sans';
     font-size: 68px;
     color: #12293B;
     filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
-
-.AP{
-    font-family: 'Pixelify Sans';
-    color: rgb(18, 41, 59, 50%);
-}
-
 .logo {
     height: 100px;
     filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
-
-.right{
+.right {
     display: flex;
     gap: 20px;
 }
 
+/* ======== BOTONES ======== */
 .Link {
     text-decoration: none;
-    background-color: #FF6B35;   
+    background-color: #FF6B35;
     color: white;
     border: none;
     padding: 12px 28px;
@@ -72,17 +69,15 @@ body{
     font-weight: bold;
     transition: transform 0.2s, background 0.3s;
 }
-
-
 .Link:hover {
-    background-color: rgba(237, 66, 9,0.8);
+    background-color: rgba(237, 66, 9, 0.8);
     transform: scale(1.05);
 }
 
-/* SIDEBAR */
+/* ======== SIDEBAR ======== */
 .sidebar {
     position: fixed;
-    top: 150px; /* debajo del header */
+    top: 150px;
     left: 0;
     width: 230px;
     height: calc(100% - 150px);
@@ -93,57 +88,181 @@ body{
     transition: transform 0.3s ease;
     z-index: 100;
 }
-
 .sidebar.closed {
     transform: translateX(-100%);
 }
-
 .sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .sidebar li {
     margin: 10px 0;
 }
-
 .sidebar a {
     display: block;
     padding: 14px 20px;
     text-decoration: none;
     color: #fff;
-    font-family: 'Pixelify Sans';
     font-size: 18px;
     transition: background 0.3s;
 }
-
 .sidebar a:hover,
 .sidebar .active a {
     background-color: #FF6B35;
 }
 
-/* CONTENIDO PRINCIPAL */
+/* ======== MAIN CONTENT ======== */
 main {
     margin-left: 20px;
     padding: 20px;
     color: white;
-    font-family: 'Pixelify Sans';
     transition: margin-left 0.3s ease;
 }
-
-/* Ajuste visual cuando el sidebar está abierto */
 .sidebar:not(.closed) ~ main {
     margin-left: 250px;
 }
 
-/* Ícono del botón */
+/* ======== BOTÓN SIDEBAR ======== */
 .Side {
     cursor: pointer;
     transition: transform 0.3s ease;
     height: 80px;
 }
-
 .Side:hover {
     transform: scale(1.1);
+}
+
+/* ======== TABLA CRUD ======== */
+.crud-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.crud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.crud-header h2 {
+    font-size: 32px;
+    color: #FF6B35;
+}
+
+.crud-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #0A2E4A;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #00000080;
+}
+
+.crud-tabla th, .crud-tabla td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #133B5C;
+}
+
+.crud-tabla th {
+    background-color: #FF6B35;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.crud-btn {
+    border: none;
+    padding: 8px 12px;
+    margin: 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+.crud-btn:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+.crud-btn.crear { background-color: #28a745; color: white; }
+.crud-btn.editar { background-color: #ffc107; color: black; }
+.crud-btn.borrar { background-color: #dc3545; color: white; }
+
+/* ======== MODAL ======== */
+.modal.hidden { display: none; }
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: #0A2E4A;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 420px;
+    box-shadow: 0 0 12px #00000080;
+    animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h3 {
+    text-align: center;
+    color: #FF6B35;
+    margin-bottom: 15px;
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #133B5C;
+    color: white;
+}
+
+.modal-content input:focus, 
+.modal-content select:focus {
+    outline: 2px solid #FF6B35;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.modal-buttons button {
+    background-color: #FF6B35;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.modal-buttons button:hover {
+    background-color: #e05c2d;
+    transform: scale(1.05);
 }

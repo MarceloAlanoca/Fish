@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("../FuncionesPHP/Profiledata.php")
+    fetch("../FuncionesPHP/Profile/Profiledata.php")
         .then(res => {
             if (!res.ok) throw new Error("Error al obtener los datos");
             return res.json();
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData();
         formData.append("imagen", file);
 
-        fetch("../FuncionesPHP/ChangeImg.php", {
+        fetch("../FuncionesPHP/Profile/ChangeImg.php", {
             method: "POST",
             body: formData
         })
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.append("Telefono", document.getElementById("editTelefono").value);
         data.append("Edad", document.getElementById("editEdad").value);
 
-        fetch("../FuncionesPHP/ChangeInfo.php", {
+        fetch("../FuncionesPHP/Profile/ChangeInfo.php", {
             method: "POST",
             body: data
         })
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.append("oldPass", oldPass);
         data.append("newPass", newPass);
 
-        fetch("../FuncionesPHP/ChangePass.php", {
+        fetch("../FuncionesPHP/Profile/ChangePass.php", {
             method: "POST",
             body: data
         })
