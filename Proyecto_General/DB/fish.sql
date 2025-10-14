@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2025 a las 15:55:42
+-- Tiempo de generación: 14-10-2025 a las 03:33:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -113,7 +113,7 @@ CREATE TABLE `updates` (
 --
 
 INSERT INTO `updates` (`Id_Update`, `Titulo`, `Tipo`, `Imagen`, `Descripcion_Corta`, `Texto_Detallado`, `Fecha_Publicacion`, `Autor_Id`) VALUES
-(1, 'Parche 1.0 — Inicio de Aventura', 'Parche', '../Imagenes/Iconos/Thiago.jpg', 'Se lanza la primera versión del juego con el sistema de pesca básico.', 'En esta versión inicial se introduce el sistema de pesca principal, con peces comunes y animaciones de captura. También se agregaron sonidos ambientales y el menú principal del juego.', '2025-09-15 00:00:00', NULL);
+(2, 'Parche 0.0.5 — Primeros pasos', 'Parche', '../Imagenes/Thumbnails/FirstPatch.png', 'Aqui empezo FishStack.', 'En FishStack seguimos trabajando con dedicación para ofrecer la mejor experiencia posible a nuestra comunidad de jugadores. En esta actualización queremos compartir con ustedes cómo estamos puliendo nuestra página web y optimizando cada detalle para que navegar, descubrir novedades y participar en nuestra comunidad sea más intuitivo y divertido.\r\n\r\nOptimización del Rendimiento:\r\nHemos realizado mejoras significativas en la carga de la página, reduciendo tiempos de espera y asegurándonos de que todo funcione de manera fluida incluso en dispositivos con menor rendimiento. La optimización del código y la estructura de los archivos nos permite ofrecer una experiencia más estable y agradable para todos los usuarios.\r\n\r\nDiseño Más Intuitivo:\r\nEstamos refinando el diseño visual de la web, con un enfoque en la claridad y la facilidad de navegación. Se han ajustado los menús, barras de navegación y botones para que los jugadores puedan acceder rápidamente a las secciones más importantes: actualizaciones del juego, su perfil, la tienda de ítems y la galería de logros. Los colores, tipografías y elementos gráficos se han armonizado para mantener el estilo pixel-art característico de FishStack.\r\n\r\nSistema de Actualizaciones Mejorado:\r\nAhora cada parche y actualización del juego cuenta con su propia sección detallada en la web. Los jugadores pueden leer toda la información relevante sobre los cambios, mejoras y correcciones de errores, acompañada de imágenes de presentación de cada parche. Estamos incorporando además un sistema para que los usuarios puedan dejar comentarios y sugerencias directamente en cada actualización, fomentando una comunicación más cercana entre el equipo de desarrollo y la comunidad.\r\n\r\nInteractividad y Contenido Dinámico:\r\nEstamos trabajando para que la página web se sienta viva y en constante movimiento, integrando elementos dinámicos como banners, anuncios de eventos y secciones interactivas donde se muestran logros, estadísticas de pesca y ranking de jugadores. Esto permite que la experiencia online refleje la diversión y el espíritu de exploración del juego FishStack.\r\n\r\nPreparación para Futuras Funcionalidades:\r\nEsta actualización también sienta las bases para nuevas funciones que pronto llegarán a la web: perfiles más completos, integración con redes sociales, mejoras en el sistema de comentarios y más contenido exclusivo para los jugadores. Cada cambio está pensado para que nuestra comunidad tenga un lugar seguro, atractivo y entretenido donde interactuar mientras disfrutan del juego.\r\n\r\nEn resumen, estamos afinando cada detalle para que FishStack no solo sea un juego de pixel y pesca emocionante, sino también una experiencia completa y atractiva en línea. ¡Gracias por acompañarnos en esta aventura y por ayudarnos a construir la mejor comunidad posible!', '2025-10-13 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE `usuarios` (
   `ID` int(11) NOT NULL,
   `Nombre` varchar(25) NOT NULL,
   `Usuario` varchar(25) NOT NULL,
-  `Contraseña` char(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Doblones` int(11) NOT NULL,
   `FechadeReg` datetime NOT NULL DEFAULT current_timestamp(),
@@ -141,8 +141,8 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID`, `Nombre`, `Usuario`, `Contraseña`, `Email`, `Doblones`, `FechadeReg`, `Edad`, `Genero`, `Telefono`, `foto`, `rol`, `carnet`) VALUES
-(1, 'Thiago Loaiza', 'Creeper', '$2y$10$MhLOQZHgDiv.y7N.i9xZl.PiN5pRbSOlEFUa307gjP/uC4LP1k/0i', 'thiagolosizat123@gmail.com', 0, '2025-10-13 10:42:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'AFEDCS'),
+INSERT INTO `usuarios` (`ID`, `Nombre`, `Usuario`, `Password`, `Email`, `Doblones`, `FechadeReg`, `Edad`, `Genero`, `Telefono`, `foto`, `rol`, `carnet`) VALUES
+(1, 'Thiago Loaiza', 'Creeper', '$2y$10$fhxnVn9Q/wEmlFPn01WReeIh.qIKEjbYbcdCIyj743r9rV.6Ev1oa', 'thiagolosizat123@gmail.com', 0, '2025-10-13 10:42:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'AFEDCS'),
 (2, 'Marcos', 'Firefox', '$2y$10$HRtxjP6NU0AbUL.YsvkjDO9lD1w.thOFXMAkS0oE8ivTaOQXJtY3i', 'elfalopade2024@gmail.com', 0, '2025-10-13 10:44:58', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'QWERTY'),
 (3, 'p3dql', 'p3dql', '$2y$10$tlKij9S1UOhK0N3DOLj8BOt87/aOQ/dAiVyEeaT.P.4qrwIVz.wyi', 'pedroleone.hall@gmail.com', 0, '2025-10-13 10:45:37', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'ZXCVBN'),
 (4, 'Kanshane', 'KanshaneSPONT', '$2y$10$7kk89dJ2R47xbmDOrZBgYeGrOseplBRmEQ281UCYuT/lO0V5.Xu1G', 'john.heber.huallpa.cisneros09@gmail.com', 0, '2025-10-13 10:46:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'PLMOKN'),
@@ -212,7 +212,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `Id_Comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_Comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -242,13 +242,13 @@ ALTER TABLE `peces`
 -- AUTO_INCREMENT de la tabla `updates`
 --
 ALTER TABLE `updates`
-  MODIFY `Id_Update` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id_Update` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
