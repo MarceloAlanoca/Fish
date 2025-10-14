@@ -14,8 +14,8 @@
     <div class="name">Fish Stack</div>
         <div class="credito">By DevPlay studio</div>
     <div class="botones">
-      <a href="Login.html" class="boton-inicio">Iniciar sesión</a>
-      <a href="prueba.html" class="boton-registro">Registrarse</a>
+      <a href="Login.php" class="boton-inicio">Iniciar sesión</a>
+      <a href="Register.php" class="boton-registro">Registrarse</a>
     </div>
   </div>
   <script>
