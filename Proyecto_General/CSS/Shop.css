@@ -168,3 +168,24 @@ body {
 .item-info p {
     font-size: 1.1em;
 }
+.rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  transition: color 0.2s;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+}
