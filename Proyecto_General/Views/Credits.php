@@ -31,7 +31,7 @@
         </div>
 
         <div class="integrante">
-             <img src="../Imagenes/Iconos/Pedro.jpg" alt="Pedro">
+            <img src="../Imagenes/Iconos/Pedro.jpg" alt="Pedro">
             <p class="nombrev">Pedro</p>
 
             <div class="mini-modal">
