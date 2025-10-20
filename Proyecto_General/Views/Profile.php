@@ -9,6 +9,7 @@
     <script src="../JS/Profile.js" defer></script>
 </head>
 <body>
+    <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
     <?php  include ("header.php");  ?>
     <div class="box">
 

@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="../CSS/Home.css">
     </head>
 </head>
-    <body>  
+    <body>
+        <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
         <?php  include ("header.php");  ?>
     
             <div class="boxes">

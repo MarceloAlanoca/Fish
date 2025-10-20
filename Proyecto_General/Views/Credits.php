@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
     <?php include("header.php");  ?>
     <!-- Primera fila -->
     <div class="creditos-container">
@@ -20,7 +21,7 @@
             <div class="mini-modal">
                 <h3>Thiago</h3>
                 <p>Colider - Backend</p>
-                <p>Ayuda a la creacion de las diferentes secciones disponibles en la pagina
+                <p>Ayudo a la creacion de las diferentes secciones disponibles en la pagina
                     web, programando tanto Backend como FrontEnd. Ayudó a la documentacion y creacion
                     del Trello mejorando la cordinacion del equipo en FishStack, administrado cada sector para
                     mejorar el flujo de trabajo.
@@ -70,7 +71,11 @@
             <div class="mini-modal">
                 <h3>Alejandra</h3>
                 <p>FrontEnd</p>
-                <p>lorem</p>
+                <p>La encargada de dar la primera impresion con la seccion de la pagina principal de FishStack
+                    permitiendo invitar de manera amigable a todos los usuarios nuevos de nuestra pagina. Tambien
+                    fue la responsable de crear la llamativa seccion de la tienda junto a su interfaz intuitiva, aunque 
+                    no se comunicaba mucho con sus compañeros de trabajo demostro tener la esperanza en el proyecto y su equipo 
+                </p>
             </div> 
         </div>
     </div>
@@ -85,7 +90,11 @@
             <div class="mini-modal">
                 <h3>Gael</h3>
                 <p>Designer - Tester</p>
-                <p>lorem</p>
+                <p>Un gran aportador en la seccion de diseños de peces, decoraciones marinas, fondos, etc 
+                    del videojuego FishStack, tambien se lo conoce como el quien daba mucha moral a su compañeros
+                    y apoyandolos de cualquier forma que pudiera. Sin el, el videojuego tendra diseños demasiados simples 
+                    y el equipo no tendria ese Carisma especial que el provee.
+                </p>
             </div> 
         </div>
 
@@ -96,7 +105,12 @@
             <div class="mini-modal">
                 <h3>Lautaro</h3>
                 <p>Designer</p>
-                <p>lorem</p>
+                <p>El Colaborador y socio mas apoyado por parte del equipo, hizo varios diseño como 
+                    peces, cañas, cebos y multiple cosas mas requeridas para el juego, tambien aporto con la 
+                    creacion de los diferente fondos que hay en la pagina web de FishStack. en las reuniones importantes 
+                    el actuaba como un Soporte al Scrum Master asegurando que nuestra imagen quedara bien para el publico.
+                    Tambien se lo reconocia por su amabilidad y compañerismo con sus compañeros del proyecto.
+                </p>
             </div> 
         </div>
 
@@ -106,8 +120,12 @@
 
             <div class="mini-modal">
                 <h3>John</h3>
-                <p>FrontEnd - Designer</p>
-                <p>lorem</p>
+                <p>Designer - Composer - FrontEnd</p>
+                <p>Uno que dio un gran aporte a FishStack en sus difentes aspectos, ayudo con 
+                    creacion de dibujos del juego como la pagina web, armo las pistas sonoras originales de FishStack
+                    creo la presentacion en github para aquellos que quisieran apoyar o le interesaran FishStack.
+                    Un comodin que decidio colaborar y dar fuerzas a FishStack.
+                </p>
             </div> 
         </div>
     </div>

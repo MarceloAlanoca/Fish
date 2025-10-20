@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../CSS/CRUD.css">
 </head>
 <body>
+    <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
     <header>
         <div class="left">
             <!-- Botón del menú -->

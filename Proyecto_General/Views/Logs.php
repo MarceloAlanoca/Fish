@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
     <main id="updatesContainer">
         <!-- JS cargará aquí las updates -->
     </main>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../CSS/Game.css">
 </head>
 <body>
+    <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
     <?php include ("Header.php")?>
     <div class="Game">
         <div class="Gameinfo">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2025 a las 03:33:01
+-- Tiempo de generación: 20-10-2025 a las 03:02:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -132,7 +132,7 @@ CREATE TABLE `usuarios` (
   `Edad` int(11) DEFAULT NULL,
   `Genero` varchar(20) DEFAULT NULL,
   `Telefono` varchar(20) DEFAULT NULL,
-  `foto` varchar(255) NOT NULL DEFAULT '..ImagenesIconosProfileDefault.png',
+  `foto` varchar(255) NOT NULL DEFAULT '../Imagenes/Iconos/ProfileDefault.png',
   `rol` varchar(20) NOT NULL DEFAULT 'cliente',
   `carnet` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabla para los usuarios registrados en FishStack';
@@ -142,7 +142,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID`, `Nombre`, `Usuario`, `Password`, `Email`, `Doblones`, `FechadeReg`, `Edad`, `Genero`, `Telefono`, `foto`, `rol`, `carnet`) VALUES
-(1, 'Thiago Loaiza', 'Creeper', '$2y$10$fhxnVn9Q/wEmlFPn01WReeIh.qIKEjbYbcdCIyj743r9rV.6Ev1oa', 'thiagolosizat123@gmail.com', 0, '2025-10-13 10:42:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'AFEDCS'),
+(1, 'Thiago Loaiza', 'Creeper', '$2y$10$lEOWYLHjthkTcfkaXtFi6u8cAYHJi9rm4ilUx2ZYAsFboXnAg8cuC', 'thiagolosizat123@gmail.com', 0, '2025-10-13 10:42:48', NULL, NULL, NULL, '../Imagenes/Usuarios/1_Captura de pantalla 2025-08-01 185124.png', 'ADMINISTRADOR', 'AFEDCS'),
 (2, 'Marcos', 'Firefox', '$2y$10$HRtxjP6NU0AbUL.YsvkjDO9lD1w.thOFXMAkS0oE8ivTaOQXJtY3i', 'elfalopade2024@gmail.com', 0, '2025-10-13 10:44:58', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'QWERTY'),
 (3, 'p3dql', 'p3dql', '$2y$10$tlKij9S1UOhK0N3DOLj8BOt87/aOQ/dAiVyEeaT.P.4qrwIVz.wyi', 'pedroleone.hall@gmail.com', 0, '2025-10-13 10:45:37', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'ZXCVBN'),
 (4, 'Kanshane', 'KanshaneSPONT', '$2y$10$7kk89dJ2R47xbmDOrZBgYeGrOseplBRmEQ281UCYuT/lO0V5.Xu1G', 'john.heber.huallpa.cisneros09@gmail.com', 0, '2025-10-13 10:46:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'PLMOKN'),
@@ -248,7 +248,7 @@ ALTER TABLE `updates`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

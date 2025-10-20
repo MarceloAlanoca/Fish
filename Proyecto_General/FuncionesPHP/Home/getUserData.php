@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario'])) {
 
 $usuario = $_SESSION['usuario'];
 
-$query = "SELECT Nombre, foto FROM usuarios WHERE Usuario = '$usuario'";
+$query = "SELECT Nombre, foto, rol FROM usuarios WHERE Usuario = '$usuario'";
 $result = mysqli_query($conexion, $query);
 
 if ($result && mysqli_num_rows($result) > 0) {
