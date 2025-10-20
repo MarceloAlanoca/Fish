@@ -266,3 +266,86 @@ main {
     background-color: #e05c2d;
     transform: scale(1.05);
 }
+
+/* ======== MODAL CARNET ======== */
+.carnet-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    font-family: 'Pixelify Sans', sans-serif;
+    animation: fadeIn 0.3s ease;
+}
+
+.carnet-content {
+    background-color: #0A2E4A;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 420px;
+    box-shadow: 0 0 15px #00000080;
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+}
+
+.carnet-content h2 {
+    color: #FF6B35;
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.carnet-content p {
+    margin-bottom: 20px;
+    color: #cfd8e3;
+    font-size: 20px;
+}
+
+.carnet-content input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #133B5C;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.carnet-content input:focus {
+    outline: 2px solid #FF6B35;
+}
+
+.carnet-content .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carnet-content button {
+    background-color: #FF6B35;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.carnet-content button:hover {
+    background-color: #e05c2d;
+    transform: scale(1.05);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

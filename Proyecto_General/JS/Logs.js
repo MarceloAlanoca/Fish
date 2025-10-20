@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.dataset.fecha = new Date(
           update.Fecha_Publicacion
         ).toLocaleDateString();
-        div.dataset.img = update.Imagen;
+        div.dataset.img = update.Imagen; //Problemas con src
         div.dataset.detalle = update.Texto_Detallado;
 
         div.innerHTML = `
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalDate.textContent = new Date(
       update.Fecha_Publicacion
     ).toLocaleDateString();
-    modalImage.src = update.Imagen || "https://placehold.co/1200x600/png";
+    modalImage.src = update.Imagen;
     modalImage.alt = update.Titulo;
     modalDetail.textContent = update.Texto_Detallado;
 

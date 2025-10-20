@@ -30,7 +30,7 @@
         <ul>
             <li class="active"><a href="#" data-section="usuarios">👤 Usuarios</a></li>
             <li><a href="#" data-section="pases">🎟️ Pases</a></li>
-            <li><a href="#" data-section="registros">📋 Registros</a></li>
+            <li><a href="#" data-section="updates">📋 Registros</a></li>
         </ul>
     </nav>
 
@@ -39,5 +39,20 @@
         <h2>Bienvenido al Panel de Administración</h2>
         <p>Selecciona una sección en el menú lateral.</p>
     </main>
+
+        <!-- MODAL DE CARNET -->
+    <div id="carnetModal" class="carnet-modal">
+        <div class="carnet-content">
+            <h2>Verificación de Administrador</h2>
+            <p>Bienvenido Dev de FishStack, 
+                ingresa tu carnet de Administrador correspondiente para acceder al panel:</p>
+            <input type="password" id="carnetInput" placeholder="Carnet de administrador">
+            <div class="modal-buttons">
+            <button id="confirmCarnet">Confirmar</button>
+            <button id="cancelCarnet">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include("../../Includes/Connect.php");
+include("../../../Includes/Connect.php");
 
 header("Content-Type: application/json; charset=utf-8");
 
@@ -14,12 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!empty($password)) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $query = "UPDATE usuarios
-                  SET Nombre='$nombre', Usuario='$usuario', Email='$email', rol='$rol', Password='$hash'
-                  WHERE ID=$id";
+                    SET Nombre='$nombre', Usuario='$usuario', Email='$email', rol='$rol', Password='$hash'
+                    WHERE ID=$id";
     } else {
         $query = "UPDATE usuarios
-                  SET Nombre='$nombre', Usuario='$usuario', Email='$email', rol='$rol'
-                  WHERE ID=$id";
+                    SET Nombre='$nombre', Usuario='$usuario', Email='$email', rol='$rol'
+                    WHERE ID=$id";
     }
 
     if (mysqli_query($conexion, $query)) {
@@ -28,4 +28,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo json_encode(["success" => false, "message" => "Error al actualizar usuario"]);
     }
 }
-?>

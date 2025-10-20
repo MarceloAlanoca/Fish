@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json; charset=utf-8");
-include("../../Includes/Connect.php");
+include("../../../Includes/Connect.php");
 
 try {
     // Recibir datos del formulario
