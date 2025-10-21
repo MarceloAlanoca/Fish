@@ -4,7 +4,7 @@
 
 const imagen = document.querySelector('.imagen');
 
-// Sensibilidad del efecto
+// efecto 3d
 const intensidad = 45;
 
 imagen.addEventListener('mousemove', (e) => {
@@ -26,3 +26,4 @@ imagen.addEventListener('mouseleave', () => {
   imagen.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
   imagen.classList.remove('hover');
 });
+

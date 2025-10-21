@@ -56,11 +56,12 @@ body{
   font-size: 3em;
   font-weight: bold;
   transition: transform 0.2s, background 0.3s;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .Seleccion button:hover {
   background-color: #e55a25; 
-  transform: scale(1.05);      
+  transform: scale(1.05);
 }
 
 .decay{

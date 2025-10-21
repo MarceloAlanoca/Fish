@@ -1,7 +1,10 @@
 body {
   font-family: system-ui, Arial, sans-serif;
   margin: 20px;
-  background-image: url(../Imagenes/BackgroundLogs.jpg);
+  background-image: url(../Imagenes/BackgroundLogs.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   color: #111;
 }
 

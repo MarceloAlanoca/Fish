@@ -2,7 +2,7 @@
 session_start();
 
 
-$paginas_libres = ['Login.php', 'Register.php', 'PageInitial.php'];
+$paginas_libres = ['Login.php', 'Register.php', 'PrincipalPage.php'];
 
 
 $pagina_actual = basename($_SERVER['PHP_SELF']);
