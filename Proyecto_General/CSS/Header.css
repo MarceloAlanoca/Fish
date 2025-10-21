@@ -36,10 +36,12 @@ header {
     font-family: 'Pixelify Sans';
     font-size: 68px;
     color: #12293B;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .logo {
     height: 130px;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .right-links {

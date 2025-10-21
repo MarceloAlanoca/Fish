@@ -8,6 +8,7 @@
 </head>
 <body>
     <footer>
+    <div class="content">
         <div  class="Aling">
             <div class="BoxC">
                 <h2 class="Letra">Quienes somos?</h2>
@@ -99,6 +100,7 @@
                     otra persona o entidad que quiera robar propiedad intelectuar que nos quiera usurpar se vera en problemas
                 </p>
             </div>
+    </div>
     </footer>
 </body>
 </html>
