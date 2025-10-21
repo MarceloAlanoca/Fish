@@ -14,8 +14,15 @@ try {
 
     $updates = [];
     while ($row = $result->fetch_assoc()) {
-        $updates[] = $row;
-    }
+    // Normaliza la ruta quitando los ./ o ../ iniciales
+    $row['Imagen'] = preg_replace('/^(\.\/|\.\.\/)+/', '', $row['Imagen']);
+    // Devuelve la ruta absoluta desde el proyecto principal
+    $row['Imagen'] = '../' . $row['Imagen'];
+
+    $updates[] = $row;
+}
+
+
 
     echo json_encode($updates, JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {

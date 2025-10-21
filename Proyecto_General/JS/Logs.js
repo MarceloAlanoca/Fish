@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.dataset.fecha = new Date(
           update.Fecha_Publicacion
         ).toLocaleDateString();
-        div.dataset.img = update.Imagen; //Problemas con src
+        div.dataset.img = update.Imagen;
         div.dataset.detalle = update.Texto_Detallado;
 
         div.innerHTML = `

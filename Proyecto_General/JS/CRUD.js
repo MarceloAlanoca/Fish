@@ -47,10 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
 
       case "pases":
-        content.innerHTML = `
-          <h2>Gestión de Pases</h2>
-          <p>Controla los pases activos y vencidos.</p>
-        `;
+        cargarSeccionPases();
         break;
 
       case "updates":
@@ -286,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ======================================================================
   // ======================================================================
-  // === SECCIÓN Y CRUD DE UPDATES (PRÓXIMO BLOQUE) =======================
+  // === SECCIÓN Y CRUD DE UPDATES =======================
   // ======================================================================
   // ======================================================================
 
@@ -560,6 +557,227 @@ function inicializarCRUDUpdates() {
         alert("Error de conexión con el servidor.");
       });
   });
+
+
+  // ======================================================================
+// ======================================================================
+// === SECCIÓN Y CRUD DE PASES ==========================================
+// ======================================================================
+// ======================================================================
+
+function cargarSeccionPases() {
+  content.innerHTML = `
+    <h2>Gestión de Pases</h2>
+    <button class="crud-btn crear" id="btnCrearPase">Crear Pase</button>
+
+    <table class="crud-tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Precio</th>
+          <th>Fecha Creación</th>
+          <th>Foto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="pasesTableBody">
+        <tr><td colspan="7">Cargando pases...</td></tr>
+      </tbody>
+    </table>
+
+    <!-- MODAL PASES -->
+    <div class="modal hidden" id="pasesModal">
+      <div class="modal-content">
+        <h3 id="pasesModalTitle">Crear Pase</h3>
+        <form id="pasesForm" enctype="multipart/form-data">
+          <input type="text" name="Nombre" placeholder="Nombre del pase" required>
+
+          <select name="Tipo" required>
+            <option value="">Seleccionar tipo</option>
+            <option value="COSMETICO">Cosmético</option>
+            <option value="PROGRESO">Progreso</option>
+            <option value="EVENTO">Evento</option>
+          </select>
+
+          <input type="number" name="Precio" step="0.01" placeholder="Precio" required>
+
+          <div class="imagen-container">
+            <input type="file" name="Foto" id="inputFoto" accept="image/*">
+            <img id="previewFoto" src="" alt="Vista previa" style="width:100%;border-radius:10px;margin-top:5px;display:none;">
+          </div>
+
+          <div class="modal-buttons">
+            <button type="submit" class="crud-btn crear">Guardar</button>
+            <button type="button" id="btnCancelarPase" class="crud-btn borrar">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+
+  inicializarCRUDPases();
+}
+
+function inicializarCRUDPases() {
+  const tablaBody = document.getElementById("pasesTableBody");
+  const modal = document.getElementById("pasesModal");
+  const form = document.getElementById("pasesForm");
+  const btnCrear = document.getElementById("btnCrearPase");
+  const btnCancelar = document.getElementById("btnCancelarPase");
+  const modalTitle = document.getElementById("pasesModalTitle");
+  const inputFoto = document.getElementById("inputFoto");
+  const previewFoto = document.getElementById("previewFoto");
+
+  let editando = false;
+  let idEditando = null;
+
+  inputFoto.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        previewFoto.src = reader.result;
+        previewFoto.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Cargar pases
+  async function loadPases() {
+    try {
+      const res = await fetch("../FuncionesPHP/CRUD/Passes/obtainPases.php");
+      const json = await res.json();
+
+      tablaBody.innerHTML = "";
+
+      if (!json.success || !Array.isArray(json.data) || json.data.length === 0) {
+        tablaBody.innerHTML = "<tr><td colspan='7'>No hay pases registrados.</td></tr>";
+        return;
+      }
+
+      json.data.forEach(p => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${p.ID}</td>
+          <td>${p.Nombre}</td>
+          <td>${p.Tipo}</td>
+          <td>${p.Precio}</td>
+          <td>${p.Fecha_creacion}</td>
+          <td><img src="../Imagenes/Passes/${p.Foto}" alt="${p.Nombre}" style="width:60px;border-radius:8px;"></td>
+          <td>
+            <button class="crud-btn editar" data-id="${p.ID}">Editar</button>
+            <button class="crud-btn borrar" data-id="${p.ID}">Eliminar</button>
+          </td>
+        `;
+        tablaBody.appendChild(tr);
+      });
+
+      tablaBody.querySelectorAll(".editar").forEach(btn => btn.addEventListener("click", () => editarPase(btn.dataset.id)));
+      tablaBody.querySelectorAll(".borrar").forEach(btn => btn.addEventListener("click", () => eliminarPase(btn.dataset.id)));
+
+    } catch (err) {
+      console.error("Error cargando pases:", err);
+      tablaBody.innerHTML = "<tr><td colspan='7'>Error al cargar pases.</td></tr>";
+    }
+  }
+
+  loadPases();
+
+  // Crear nuevo
+  btnCrear.addEventListener("click", () => {
+    editando = false;
+    idEditando = null;
+    form.reset();
+    modalTitle.textContent = "Crear Pase";
+    previewFoto.style.display = "none";
+    modal.classList.remove("hidden");
+  });
+
+  // Cancelar
+  btnCancelar.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  // Guardar o editar
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+
+    let url = "";
+    if (editando) {
+      fd.append("ID", idEditando);
+      url = "../FuncionesPHP/CRUD/Passes/updatePase.php";
+    } else {
+      url = "../FuncionesPHP/CRUD/Passes/createPase.php";
+    }
+
+    try {
+      const res = await fetch(url, { method: "POST", body: fd });
+      const json = await res.json();
+
+      alert(json.message);
+      if (json.success) {
+        modal.classList.add("hidden");
+        loadPases();
+      }
+    } catch (err) {
+      console.error("Error al guardar pase:", err);
+      alert("Error de conexión.");
+    }
+  });
+
+  // Editar pase
+  async function editarPase(id) {
+    try {
+      const fd = new FormData();
+      fd.append("ID", id);
+      const res = await fetch("../FuncionesPHP/CRUD/Passes/obtainPase.php", { method: "POST", body: fd });
+      const json = await res.json();
+
+      if (!json.success) return alert(json.message);
+
+      const p = json.data;
+      editando = true;
+      idEditando = id;
+      modalTitle.textContent = "Editar Pase";
+      form.Nombre.value = p.Nombre;
+      form.Precio.value = p.Precio;
+      form.Tipo.value = p.Tipo;
+
+      if (p.Foto) {
+        previewFoto.src = `../Imagenes/Pases/${p.Foto}`;
+        previewFoto.style.display = "block";
+      } else {
+        previewFoto.style.display = "none";
+      }
+
+      modal.classList.remove("hidden");
+    } catch (err) {
+      console.error("Error al editar pase:", err);
+    }
+  }
+
+  // Eliminar pase
+  async function eliminarPase(id) {
+    if (!confirm("¿Seguro que deseas eliminar este pase?")) return;
+    try {
+      const fd = new FormData();
+      fd.append("ID", id);
+      const res = await fetch("../FuncionesPHP/CRUD/Passes/deletePase.php", { method: "POST", body: fd });
+      const json = await res.json();
+
+      alert(json.message);
+      if (json.success) loadPases();
+    } catch (err) {
+      console.error("Error eliminando pase:", err);
+    }
+  }
+}
+
+
 
   // Bloquear clic fuera del modal
   window.addEventListener("click", (e) => {
