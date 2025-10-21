@@ -90,13 +90,13 @@
                 <h2 class="Letra">Quieres saber mas de nosostros?</h2>
                 <a href="Credits.php">Creditos</a>
             </div>
-           
             <br>
             
         </div>
         <div class="Autor">
                 <p class="Letra">
-                    Los derechos de autor estan registrados por DevPlays Studio y otra persona o entidad que quiera robar propiedad intelectuar que nos quiera usurpar se vera en problemas
+                    Los derechos de autor estan registrados por DevPlays Studio y
+                    otra persona o entidad que quiera robar propiedad intelectuar que nos quiera usurpar se vera en problemas
                 </p>
             </div>
     </footer>
