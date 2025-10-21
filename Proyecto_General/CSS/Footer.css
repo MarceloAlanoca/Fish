@@ -5,6 +5,15 @@ footer{
     color: white;
     padding: 5px;
     text-align: center;
+    background-image: url(../Imagenes/BackgroundFooter.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+}
+
+.content{
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .Aling {
     display: flex;
@@ -15,9 +24,6 @@ footer{
     text-align: center;
     margin: 20px;
     text-align: center;
-    
-
-    
 }
 
 a{
