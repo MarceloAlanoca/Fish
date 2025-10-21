@@ -110,3 +110,78 @@ body {
   opacity: 1;
   margin-top: 10px;
 }
+@media (max-width: 600px) {
+  .name {
+    font-size: 2.5rem;
+  }
+
+  .saludo {
+    font-size: 1.8rem;
+    margin-top: 8px;
+  }
+
+  .credito {
+    font-size: 0.9rem;
+  }
+
+  .botones {
+    gap: 20px;
+  }
+
+  .boton-inicio,
+  .boton-registro {
+    padding: 10px 30px;
+    font-size: 16px;
+  }
+
+  .imagen {
+    width: 100vw;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .name {
+    font-size: 3rem;
+  }
+
+  .saludo {
+    font-size: 2rem;
+  }
+
+  .botones {
+    gap: 25px;
+  }
+
+  .imagen {
+    width: 40vw;
+    max-width: 300px;
+  }
+
+  .boton-inicio,
+  .boton-registro {
+    padding: 14px 60px;
+    font-size: 22px;
+  }
+}
+.acceso-dev {
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.final .acceso-dev {
+  opacity: 1;
+}
+
+.acceso-dev a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.acceso-dev a:hover {
+  color: #3bb273;
+}
