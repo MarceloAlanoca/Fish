@@ -23,6 +23,7 @@ body {
   width: 350px;
   opacity: 1;
   transition: all 1s ease;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 8));
 }
 
 .name {
@@ -33,6 +34,7 @@ body {
   color: white;
   position: relative;
   z-index: 2;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .saludo {
@@ -40,12 +42,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 12px;
-  font-size: 2.5rem;
+  margin-top: 2px;
+  font-size: 1.5rem;
   font-weight: bold;
   opacity: 0;
   transition: all 1s ease;
   margin-bottom: 2px;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 8));
 }
 
 .credito {
@@ -56,6 +59,7 @@ body {
   color: white;
   position: relative;
   z-index: 2;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .botones {
@@ -79,6 +83,7 @@ body {
   border-radius: 20px;
   font-size: 25px;
   transition: background 0.3s ease;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .boton-inicio:hover,
@@ -184,4 +189,22 @@ body {
 
 .acceso-dev a:hover {
   color: #3bb273;
+}
+
+.contenedor {
+  text-align: center;
+  position: relative;
+  perspective: 1000px; /* Permite efecto 3D real */
+}
+
+.imagen {
+  width: 350px;
+  transition: transform 0.2s ease, filter 0.3s ease;
+  transform-style: preserve-3d;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 8));
+}
+
+.imagen.hover {
+  filter: drop-shadow(5px 5px 30px rgba(12, 12, 12, 0.8))
+          drop-shadow(-5px -5px 20px rgba(0, 0, 0, 0.5));
 }

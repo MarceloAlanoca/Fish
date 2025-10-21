@@ -52,6 +52,6 @@ El proyecto busca ofrecer una experiencia divertida y envolvente para los aficio
 En caso de encontrar algún error visual o interno (en el código de la página) se le agradeceria que se nos comunique por el siguiente correo o número de telefono.
 ### Contactos:
 - **Correo: devplaysupport@gmail.com**
-- ** Número: 54 9 11 3079-2530**
+- **Número: 54 9 11 3213-5231**
 
 ---

@@ -14,15 +14,18 @@
   
   <div class="contenedor" id="animacion">
     <img src="../Imagenes/Logo.png" alt="Logo" class="imagen">
-    <div class="saludo">¡Bienvenido!</div>
+    <div class="saludo">¡Bienvenido a sitio web de FishStack, empieza ahora tu aventura
+      pescando en el vasto mundo de FishStack y descubriendo las grandes maravillas del mar 
+
+    </div>
     <div class="name">Fish Stack</div>
         <div class="credito">By DevPlay studio</div>
     <div class="botones">
       <a href="Login.php" class="boton-inicio" id="button">Iniciar sesión</a>
       <a href="Register.php" class="boton-registro" id="button">Registrarse</a>
     </div>
-    <div class="acceso-dev">
-      <a href="Team-access.php">Acceso del equipo FishTack</a>
+    <div class="content">
+      
     </div>
   </div>
 </body>
