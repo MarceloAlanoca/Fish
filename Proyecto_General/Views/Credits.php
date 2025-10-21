@@ -7,6 +7,7 @@
     <title>Creditos</title>
     <link rel="stylesheet" href="../CSS/Credits.css">
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
+        <script src="../JS/Credits.js" defer></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
     <!-- Primera fila -->
     <div class="creditos-container">
         <div class="integrante">
-            <img src="../Imagenes/Iconos/Thiago.jpg" alt="Thiago">
+            <img src="../Imagenes/Iconos/Thiago.jpg" alt="Thiago" class="imagen">
             <p class="nombrev">Thiago</p>
 
             <div class="mini-modal">
@@ -32,7 +33,7 @@
         </div>
 
         <div class="integrante">
-            <img src="../Imagenes/Iconos/Pedro.jpg" alt="Pedro">
+            <img src="../Imagenes/Iconos/Pedro.jpg" alt="Pedro" class="imagen">
             <p class="nombrev">Pedro</p>
 
             <div class="mini-modal">
@@ -48,7 +49,7 @@
         </div>
         
         <div class="integrante">
-            <img src="../Imagenes/Iconos/Marcelo.jpg" alt="Marcelo">
+            <img src="../Imagenes/Iconos/Marcelo.jpg" alt="Marcelo" class="imagen">
             <p class="nombrev">Marcelo</p>
 
             <div class="mini-modal">
@@ -65,7 +66,7 @@
         </div>
 
         <div class="integrante">
-            <img src="../Imagenes/Iconos/Alejandra.jpg" alt="Alejandra">
+            <img src="../Imagenes/Iconos/Alejandra.jpg" alt="Alejandra" class="imagen">
             <p class="nombrev">Alejandra</p>
 
             <div class="mini-modal">
@@ -84,7 +85,7 @@
     <div class="creditos-container">
 
         <div class="integrante">
-            <img src="../Imagenes/Iconos/Gael.jpg" alt="Gael">
+            <img src="../Imagenes/Iconos/Gael.jpg" alt="Gael" class="imagen">
             <p class="nombrev">Gael</p>
 
             <div class="mini-modal">
@@ -99,7 +100,7 @@
         </div>
 
         <div class="integrante">
-            <img src="../Imagenes/Iconos/Navarro.jpg" alt="Navarro">
+            <img src="../Imagenes/Iconos/Navarro.jpg" alt="Navarro" class="imagen">
             <p class="nombrev">Lautaro</p>
 
             <div class="mini-modal">
@@ -115,7 +116,7 @@
         </div>
 
         <div class="integrante">
-            <img src="../Imagenes/Iconos/John.jpg" alt="Cristian">
+            <img src="../Imagenes/Iconos/John.jpg" alt="Cristian" class="imagen">
             <p class="nombrev">John</p>
 
             <div class="mini-modal">
@@ -144,9 +145,6 @@
         <source src="../Songs/Nightlight.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
     </audio>
-
-    <script src="../JS/Credits.js"></script>
-
     <?php include("Footer.php") ?>
 </body>
 
