@@ -18,6 +18,9 @@
       <a href="Login.php" class="boton-inicio">Iniciar sesión</a>
       <a href="Register.php" class="boton-registro">Registrarse</a>
     </div>
+    <div class="acceso-dev">
+      <a href="Team-access.php"Acceso del equipo FishTack></a>
+    </div>
   </div>
   <script>
     setTimeout(() => {
