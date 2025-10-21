@@ -22,7 +22,7 @@
       <a href="Register.php" class="boton-registro" id="button">Registrarse</a>
     </div>
     <div class="acceso-dev">
-      <a href="Team-access.php"Acceso del equipo FishTack></a>
+      <a href="Team-access.php">Acceso del equipo FishTack</a>
     </div>
   </div>
 </body>
