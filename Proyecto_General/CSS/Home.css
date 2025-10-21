@@ -21,6 +21,7 @@ body{
 
 .Ad1, .Ad2, .Seleccion {
     background-color: #3BB273;
+    background-image: url(../Imagenes/Degrades/Negro.jpg);
     height: 700px;
     flex: 1;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
@@ -32,6 +33,7 @@ body{
   order: 3;
 }
 .Seleccion {
+  background-image: url(../Imagenes/BackgroundSelection.png);
   display: flex;
   flex: 3;
   justify-content: center;  
@@ -39,6 +41,8 @@ body{
   flex-direction: column;   
   gap: 20px;
   order: 2;
+  border: solid;
+  border-color: #3A4045;
 }
 
 .Seleccion button {
@@ -87,7 +91,7 @@ body{
 }
 
 .modal-container {
-  background: #fff;
+  background-image: url(../Imagenes/Degrades/Negro.jpg);
   width: 90vw;
   height: 90vh;
   border-radius: 12px;
@@ -104,6 +108,7 @@ body{
   text-align: center;
   font-size: 3rem;
   letter-spacing: 3px;
+  color: white;
   margin: 0;
 }
 
@@ -112,7 +117,7 @@ body{
   width: 100%;
   border: none;
   border-radius: 8px;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 5px rgba(234, 232, 232, 0.566);
 }
 
 .modal-close {

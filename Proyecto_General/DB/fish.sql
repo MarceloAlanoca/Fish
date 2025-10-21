@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2025 a las 03:02:52
+-- Tiempo de generación: 21-10-2025 a las 03:57:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -73,8 +73,16 @@ CREATE TABLE `pases` (
   `Nombre` varchar(100) NOT NULL,
   `Precio` decimal(10,2) NOT NULL,
   `Tipo` varchar(50) NOT NULL,
-  `Fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
+  `Fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Foto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pases`
+--
+
+INSERT INTO `pases` (`ID`, `Nombre`, `Precio`, `Tipo`, `Fecha_creacion`, `Foto`) VALUES
+(1, 'PASE DE PLATINO', 15000.00, 'PROGRESO', '2025-10-21 01:39:53', '68f6e46908103_68f6e4048e9ae_PlatinoPass.png');
 
 -- --------------------------------------------------------
 
@@ -113,7 +121,8 @@ CREATE TABLE `updates` (
 --
 
 INSERT INTO `updates` (`Id_Update`, `Titulo`, `Tipo`, `Imagen`, `Descripcion_Corta`, `Texto_Detallado`, `Fecha_Publicacion`, `Autor_Id`) VALUES
-(2, 'Parche 0.0.5 — Primeros pasos', 'Parche', '../Imagenes/Thumbnails/FirstPatch.png', 'Aqui empezo FishStack.', 'En FishStack seguimos trabajando con dedicación para ofrecer la mejor experiencia posible a nuestra comunidad de jugadores. En esta actualización queremos compartir con ustedes cómo estamos puliendo nuestra página web y optimizando cada detalle para que navegar, descubrir novedades y participar en nuestra comunidad sea más intuitivo y divertido.\r\n\r\nOptimización del Rendimiento:\r\nHemos realizado mejoras significativas en la carga de la página, reduciendo tiempos de espera y asegurándonos de que todo funcione de manera fluida incluso en dispositivos con menor rendimiento. La optimización del código y la estructura de los archivos nos permite ofrecer una experiencia más estable y agradable para todos los usuarios.\r\n\r\nDiseño Más Intuitivo:\r\nEstamos refinando el diseño visual de la web, con un enfoque en la claridad y la facilidad de navegación. Se han ajustado los menús, barras de navegación y botones para que los jugadores puedan acceder rápidamente a las secciones más importantes: actualizaciones del juego, su perfil, la tienda de ítems y la galería de logros. Los colores, tipografías y elementos gráficos se han armonizado para mantener el estilo pixel-art característico de FishStack.\r\n\r\nSistema de Actualizaciones Mejorado:\r\nAhora cada parche y actualización del juego cuenta con su propia sección detallada en la web. Los jugadores pueden leer toda la información relevante sobre los cambios, mejoras y correcciones de errores, acompañada de imágenes de presentación de cada parche. Estamos incorporando además un sistema para que los usuarios puedan dejar comentarios y sugerencias directamente en cada actualización, fomentando una comunicación más cercana entre el equipo de desarrollo y la comunidad.\r\n\r\nInteractividad y Contenido Dinámico:\r\nEstamos trabajando para que la página web se sienta viva y en constante movimiento, integrando elementos dinámicos como banners, anuncios de eventos y secciones interactivas donde se muestran logros, estadísticas de pesca y ranking de jugadores. Esto permite que la experiencia online refleje la diversión y el espíritu de exploración del juego FishStack.\r\n\r\nPreparación para Futuras Funcionalidades:\r\nEsta actualización también sienta las bases para nuevas funciones que pronto llegarán a la web: perfiles más completos, integración con redes sociales, mejoras en el sistema de comentarios y más contenido exclusivo para los jugadores. Cada cambio está pensado para que nuestra comunidad tenga un lugar seguro, atractivo y entretenido donde interactuar mientras disfrutan del juego.\r\n\r\nEn resumen, estamos afinando cada detalle para que FishStack no solo sea un juego de pixel y pesca emocionante, sino también una experiencia completa y atractiva en línea. ¡Gracias por acompañarnos en esta aventura y por ayudarnos a construir la mejor comunidad posible!', '2025-10-13 00:00:00', NULL);
+(2, 'Parche 0.0.5 — Primeros pasos', 'Parche', '../Imagenes/Thumbnails/FirstPatch.png', 'Aqui empezo FishStack.', 'En FishStack seguimos trabajando con dedicación para ofrecer la mejor experiencia posible a nuestra comunidad de jugadores. En esta actualización queremos compartir con ustedes cómo estamos puliendo nuestra página web y optimizando cada detalle para que navegar, descubrir novedades y participar en nuestra comunidad sea más intuitivo y divertido.\r\n\r\nOptimización del Rendimiento:\r\nHemos realizado mejoras significativas en la carga de la página, reduciendo tiempos de espera y asegurándonos de que todo funcione de manera fluida incluso en dispositivos con menor rendimiento. La optimización del código y la estructura de los archivos nos permite ofrecer una experiencia más estable y agradable para todos los usuarios.\r\n\r\nDiseño Más Intuitivo:\r\nEstamos refinando el diseño visual de la web, con un enfoque en la claridad y la facilidad de navegación. Se han ajustado los menús, barras de navegación y botones para que los jugadores puedan acceder rápidamente a las secciones más importantes: actualizaciones del juego, su perfil, la tienda de ítems y la galería de logros. Los colores, tipografías y elementos gráficos se han armonizado para mantener el estilo pixel-art característico de FishStack.\r\n\r\nSistema de Actualizaciones Mejorado:\r\nAhora cada parche y actualización del juego cuenta con su propia sección detallada en la web. Los jugadores pueden leer toda la información relevante sobre los cambios, mejoras y correcciones de errores, acompañada de imágenes de presentación de cada parche. Estamos incorporando además un sistema para que los usuarios puedan dejar comentarios y sugerencias directamente en cada actualización, fomentando una comunicación más cercana entre el equipo de desarrollo y la comunidad.\r\n\r\nInteractividad y Contenido Dinámico:\r\nEstamos trabajando para que la página web se sienta viva y en constante movimiento, integrando elementos dinámicos como banners, anuncios de eventos y secciones interactivas donde se muestran logros, estadísticas de pesca y ranking de jugadores. Esto permite que la experiencia online refleje la diversión y el espíritu de exploración del juego FishStack.\r\n\r\nPreparación para Futuras Funcionalidades:\r\nEsta actualización también sienta las bases para nuevas funciones que pronto llegarán a la web: perfiles más completos, integración con redes sociales, mejoras en el sistema de comentarios y más contenido exclusivo para los jugadores. Cada cambio está pensado para que nuestra comunidad tenga un lugar seguro, atractivo y entretenido donde interactuar mientras disfrutan del juego.\r\n\r\nEn resumen, estamos afinando cada detalle para que FishStack no solo sea un juego de pixel y pesca emocionante, sino también una experiencia completa y atractiva en línea. ¡Gracias por acompañarnos en esta aventura y por ayudarnos a construir la mejor comunidad posible!', '2025-10-13 00:00:00', 1),
+(4, 'Parche 0.0.25 — Avanzando en cosas', 'Parche', './Imagenes/Thumbnails/update_68f5bb31526b7_Captura de pantalla 2025-08-10 214348.png', 'Algunos cambios no relevantes', 'aaadadadadadad', '2025-10-20 06:31:45', 1);
 
 -- --------------------------------------------------------
 
@@ -230,7 +239,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT de la tabla `pases`
 --
 ALTER TABLE `pases`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `peces`
@@ -242,13 +251,13 @@ ALTER TABLE `peces`
 -- AUTO_INCREMENT de la tabla `updates`
 --
 ALTER TABLE `updates`
-  MODIFY `Id_Update` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_Update` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
