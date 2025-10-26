@@ -1,29 +1,126 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-body{
-    background-image: url(../Imagenes/FondoHome.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.Game{
-    align-content: center;
-    text-align: center;
-    background: rgba(25, 58, 165, 0.712);
-    margin:auto 450px;
-}
-.Gameinfo{
-    background: white;
-    margin:auto 100px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+body {
+  background-image: url(../Imagenes/FondoHome.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.TextGame{
-    margin-top: 20px;
-    margin-bottom: 20px;
+/* Contenedor general */
+.Game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: url("../Imagenes/Fondo.png") no-repeat center center;
+  background-size: cover;
+  padding: 40px;
+}
+
+/* Cuadro con la info */
+.Gameinfo {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 950px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+.TextGame h1 {
+  color: #2c5d87;
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+
+.TextGame h2 {
+  color: #33475b;
+  margin-top: 10px;
+}
+
+.TextGame p {
+  font-size: 1.1em;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Marco del juego */
+.GameFrame {
+  position: relative;
+  display: inline-block;
+  border: 3px solid #222;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  margin-top: 30px;
+}
+
+/* El iframe del juego */
+.GameFrame iframe {
+  display: block;
+  border: none;
+}
+
+/* Barra negra inferior */
+.GameBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0a0a0a;
+  color: #ccc;
+  height: 50px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-top: 2px solid #222;
+}
+
+/* Centro: logo + título */
+.GameBarCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.logobar {
+  width: 32px;
+  height: 32px;
+}
+
+.game-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* Botones de la derecha */
+.GameBarRight {
+  display: flex;
+  gap: 10px;
+}
+
+.bar-btn {
+  background: none;
+  color: #ccc;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.bar-btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.bar-btn:active {
+  transform: scale(0.95);
 }

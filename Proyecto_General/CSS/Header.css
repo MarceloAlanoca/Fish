@@ -10,11 +10,9 @@ header {
     align-items: center;
     height: 150px;
     background-color: #3BB273;
+    background-image: url(../Imagenes/BackgroundHeader.png);
     padding: 0 40px;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .left-buttons {

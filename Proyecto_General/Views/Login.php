@@ -28,9 +28,8 @@
                     <span class="ShowPass">Mostrar Contraseña</span>
                 </div>
             </div>
-
-            
             <button type="submit"class="Enviar">Enviar</button>
+            <a href="ForgotPassword.php" class="forgot">¿Olvidaste tu contraseña?</a>
         </div>
     </form>
     <script src="../JS/login.js" defer></script>

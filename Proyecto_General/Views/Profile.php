@@ -21,7 +21,7 @@
 
             <div class="ProfileImg">
             <img class="ImagenP" src="" alt="Foto de perfil">
-                <p>Foto de pefil</p> 
+                <p class="FP">Foto de pefil</p> 
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
                 <button id="btnCambiarImagen">Cambiar Imagen</button>
             </div>
@@ -51,16 +51,18 @@
                     <input class="inputrow" type="password" id="newPass" placeholder="Nueva contraseña"><br>
                     <input class="inputrow" type="password" id="confirmPass" placeholder="Confirmar nueva contraseña"><br>
                     <button id="SavePass">Guardar</button>
-                    
                 </div>
             </div> 
 
         </div>
 
-            <div class="AD"> 
-            <img src="../Imagenes/Ads/SusAd.png" alt="">
-            </div>
+        <div class="AD">
+            <a href="" target="_blank">
+                <img class="decay" src="" alt="Anuncio" id="AdProfile">
+            </a>
+        </div>
 
     </div>
+    <?php include("Footer.php"); ?>
 </body>
 </html>
