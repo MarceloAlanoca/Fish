@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="left-buttons">
-            <a class="Link" href="../../Views/PrincipalPage.php">Página principal</a>
+            <a class="Link" href="../../PrincipalPage.php">Página principal</a>
             <button class="Link logout-btn">Cerrar sesión</button>
         </div>
 
