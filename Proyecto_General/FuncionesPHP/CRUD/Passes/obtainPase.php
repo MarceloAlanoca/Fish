@@ -8,7 +8,7 @@ if (!isset($_POST['ID'])) {
 }
 
 $id = intval($_POST['ID']);
-$query = "SELECT * FROM pases WHERE ID = $id LIMIT 1";
+$query = "SELECT ID, Nombre, Tipo, Precio, Foto, texto_descripcion FROM pases WHERE ID = $id LIMIT 1";
 $result = $conexion->query($query);
 
 if ($result && $result->num_rows > 0) {

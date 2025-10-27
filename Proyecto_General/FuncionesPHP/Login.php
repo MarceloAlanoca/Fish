@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["id_usuario"] = $row["ID"];
                 $_SESSION["usuario"] = $row["Usuario"];
                 $_SESSION["email"] = $row["Email"];
+                $_SESSION["rol"] = $row["rol"];
 
                 echo "<script>
                 window.location.href = '../Views/Home.php';

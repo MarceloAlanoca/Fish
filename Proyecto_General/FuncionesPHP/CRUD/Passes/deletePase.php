@@ -8,13 +8,12 @@ if (!$id) {
     exit;
 }
 
-// Eliminar imagen del servidor
+// Eliminar imagen
 $imgQuery = $conexion->query("SELECT Foto FROM pases WHERE ID = $id");
 if ($imgQuery && $imgQuery->num_rows > 0) {
     $row = $imgQuery->fetch_assoc();
-    if ($row['Foto'] && file_exists("../../../Imagenes/Pases/" . $row['Foto'])) {
-        unlink("../../../Imagenes/Passes/" . $row['Foto']);
-    }
+    $ruta = "../../../Imagenes/Passes/" . $row['Foto'];
+    if ($row['Foto'] && file_exists($ruta)) unlink($ruta);
 }
 
 $ok = $conexion->query("DELETE FROM pases WHERE ID = $id");

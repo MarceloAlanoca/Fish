@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url(../Imagenes/BackgroundLogin.png);
+  background-image: url(../Imagenes/BackgroundChangePass.png);
   background-repeat: no-repeat;
   animation: gradientBG 15s ease infinite;
   overflow: hidden;
@@ -35,7 +35,7 @@ h1 {
 form {
   background: transparent;
   background: rgb(255, 255, 255, 0.8);
-  padding: 40px 0;
+  padding: 60px 60px;
   box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   border-style: solid;
@@ -143,7 +143,7 @@ button {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,12 +156,18 @@ button {
   border-radius: 10px;
   width: 350px;
   text-align: center;
-  animation: show .3s ease;
+  animation: show 0.3s ease;
 }
 
 @keyframes show {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 #closeModal {
@@ -184,28 +190,17 @@ button {
   cursor: pointer;
 }
 
-#closeModalPassUpdated {
-  background: #0077ff;
-  color: white;
-  border: none;
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-
 .forgot {
   display: block;
   text-align: center;
   margin-top: 10px;
-  font-weight: bold;        /* NEGRITA */
-  text-decoration: none;    /* SIN SUBRAYADO */
-  color: #1e1e1e;           /* Negro/gris oscuro */
+  font-weight: bold; /* NEGRITA */
+  text-decoration: none; /* SIN SUBRAYADO */
+  color: #1e1e1e; /* Negro/gris oscuro */
   transition: 0.2s ease;
 }
 
 .forgot:hover {
-  color: #0077ff;           /* Cambia a celeste al pasar el mouse */
+  color: #0077ff; /* Cambia a celeste al pasar el mouse */
   cursor: pointer;
 }

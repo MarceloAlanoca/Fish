@@ -139,3 +139,43 @@ button {
   background-color: gray;
   border-radius: 50%;
 }
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: -340px;
+  width: 300px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  box-shadow: -5px 0 12px rgba(0,0,0,0.4);
+  padding: 30px;
+  transition: 0.4s ease;
+  border-left: 3px solid rgb(216, 129, 16);
+  overflow-y: auto;
+}
+
+.panel.open {
+  right: 0;
+}
+
+.OpcBtn {
+  background: rgb(216, 129, 16);
+  border: none;
+  width: 80%;
+  margin: 10px auto;
+  color: white;
+  height: 40px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.CerrarOpc {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}

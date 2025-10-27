@@ -5,8 +5,9 @@ include('../../../Includes/Connect.php');
 $nombre = $_POST['Nombre'] ?? '';
 $tipo = $_POST['Tipo'] ?? '';
 $precio = $_POST['Precio'] ?? '';
+$texto = $_POST['texto_descripcion'] ?? '';
 
-if (empty($nombre) || empty($tipo) || empty($precio)) {
+if (empty($nombre) || empty($tipo) || empty($precio) || empty($texto)) {
     echo json_encode(["success" => false, "message" => "Todos los campos son obligatorios."]);
     exit;
 }
@@ -21,8 +22,9 @@ if (isset($_FILES['Foto']) && $_FILES['Foto']['error'] === 0) {
     move_uploaded_file($_FILES['Foto']['tmp_name'], $carpeta . $fotoNombre);
 }
 
-$query = $conexion->prepare("INSERT INTO pases (Nombre, Tipo, Precio, Foto) VALUES (?, ?, ?, ?)");
-$query->bind_param("ssds", $nombre, $tipo, $precio, $fotoNombre);
+// Query con texto_descripcion incluido
+$query = $conexion->prepare("INSERT INTO pases (Nombre, Tipo, Precio, Foto, texto_descripcion) VALUES (?, ?, ?, ?, ?)");
+$query->bind_param("ssdss", $nombre, $tipo, $precio, $fotoNombre, $texto); 
 $ok = $query->execute();
 
 echo json_encode([

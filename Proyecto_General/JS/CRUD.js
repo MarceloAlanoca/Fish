@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // ============================================================
   // === CONFIGURACIÓN BASE ===
   // ============================================================
@@ -8,8 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".sidebar a");
   const content = document.getElementById("content");
 
-
-
   // ============================================================
   // === ABRIR / CERRAR SIDEBAR ===
   // ============================================================
@@ -17,16 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.toggle("closed");
   });
 
-
-
   // ============================================================
   // === CAMBIO DE SECCIONES DEL PANEL ===
   // ============================================================
-  links.forEach(link => {
+  links.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
 
-      links.forEach(l => l.parentElement.classList.remove("active"));
+      links.forEach((l) => l.parentElement.classList.remove("active"));
       link.parentElement.classList.add("active");
 
       const section = link.dataset.section;
@@ -34,14 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
-
   // ============================================================
   // === FUNCIÓN PRINCIPAL DE SECCIONES ===
   // ============================================================
   function mostrarSeccion(section) {
     switch (section) {
-
       case "usuarios":
         cargarSeccionUsuarios();
         break;
@@ -64,9 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth < 800) sidebar.classList.add("closed");
   }
 
-
-
-
   // ======================================================================
   // ======================================================================
   // === SECCIÓN Y CRUD DE USUARIOS =======================================
@@ -75,50 +64,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function cargarSeccionUsuarios() {
     content.innerHTML = `
-      <h2>Gestión de Usuarios</h2>
-      <button class="crud-btn crear" id="btnCrear">Crear Usuario</button>
-      <table class="crud-tabla">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Usuario</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="userTableBody">
-          <tr><td colspan="6">Cargando usuarios...</td></tr>
-        </tbody>
-      </table>
+    <h2>Gestión de Usuarios</h2>
+    <button class="crud-btn crear" id="btnCrear">Crear Usuario</button>
+    <table class="crud-tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody">
+        <tr><td colspan="6">Cargando usuarios...</td></tr>
+      </tbody>
+    </table>
 
-      <!-- MODAL -->
-      <div class="modal hidden" id="userModal">
-        <div class="modal-content">
-          <h3 id="modalTitle">Crear Usuario</h3>
-          <form id="userForm">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="text" name="usuario" placeholder="Usuario" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contraseña (solo si cambia)">
-            <select name="rol">
-              <option value="cliente">Cliente</option>
-              <option value="ADMINISTRADOR">Administrador</option>
-            </select>
-            <div class="modal-buttons">
-              <button type="submit" class="crud-btn crear">Guardar</button>
-              <button type="button" id="btnCancelar" class="crud-btn borrar">Cancelar</button>
-            </div>
-          </form>
-        </div>
+    <!-- MODAL -->
+    <div class="modal hidden" id="userModal">
+      <div class="modal-content">
+        <h3 id="modalTitle">Crear Usuario</h3>
+        <form id="userForm">
+          <input type="text" name="nombre" placeholder="Nombre" required>
+          <input type="text" name="usuario" placeholder="Usuario" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Contraseña (solo si cambia)">
+          <select name="rol">
+            <option value="cliente">Cliente</option>
+            <option value="ADMINISTRADOR">Administrador</option>
+          </select>
+          <div class="modal-buttons">
+            <button type="submit" class="crud-btn crear">Guardar</button>
+            <button type="button" id="btnCancelar" class="crud-btn borrar">Cancelar</button>
+          </div>
+        </form>
       </div>
-    `;
+    </div>
+  `;
 
     inicializarCRUDUsuarios();
   }
-
-
 
   // --------------------------------------------------------------
   // --- CRUD USUARIOS: OPERACIONES PRINCIPALES -------------------
@@ -134,13 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentAction = null;
     let currentUserId = null;
 
-
-
     // --- Cargar usuarios ---
     async function loadUsers() {
       try {
         const res = await fetch("../FuncionesPHP/CRUD/Users/obtainUsers.php");
-        const data = await res.json();
+        const json = await res.json();
+
+        const data = json.data;
+        const currentUserRole = json.currentUserRole;
 
         userTableBody.innerHTML = "";
 
@@ -149,19 +137,30 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        data.forEach(user => {
+        data.forEach((user) => {
           const tr = document.createElement("tr");
+
           tr.innerHTML = `
-            <td>${user.ID}</td>
-            <td>${user.Nombre}</td>
-            <td>${user.Usuario}</td>
-            <td>${user.Email}</td>
-            <td>${user.rol}</td>
-            <td>
-              <button class="crud-btn editar" data-id="${user.ID}">Actualizar</button>
-              <button class="crud-btn borrar" data-id="${user.ID}">Borrar</button>
-            </td>
-          `;
+          <td>${user.ID}</td>
+          <td>${user.Nombre}</td>
+          <td>${user.Usuario}</td>
+          <td>${user.Email}</td>
+          <td>${user.rol}</td>
+          <td>
+            <button class="crud-btn editar" data-id="${
+              user.ID
+            }">Actualizar</button>
+
+            ${
+              user.rol.toLowerCase() === "administrador" &&
+              currentUserRole.toLowerCase() === "administrador"
+                ? `<button class="crud-btn borrar" disabled style="opacity:0.5; cursor:not-allowed; background:#888;">No permitido</button>`
+                : `<button class="crud-btn borrar" data-id="${user.ID}">Borrar</button>`
+            }
+
+          </td>
+        `;
+
           userTableBody.appendChild(tr);
         });
       } catch (error) {
@@ -172,8 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadUsers();
 
-
-
     // --- Crear usuario ---
     btnCrear.addEventListener("click", () => {
       currentAction = "crear";
@@ -183,16 +180,12 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.classList.remove("hidden");
     });
 
-
-
     // --- Cerrar modal ---
     btnCancelar.addEventListener("click", () => {
       modal.classList.add("hidden");
     });
 
-
-
-    // --- Editar / Borrar ---
+    // --- Acción en botones Editar / Borrar ---
     userTableBody.addEventListener("click", (e) => {
       if (e.target.classList.contains("editar")) {
         currentAction = "editar";
@@ -206,12 +199,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-
-
     // --- Cargar datos al editar ---
     async function openEditModal(id) {
       try {
-        const res = await fetch(`../FuncionesPHP/CRUD/Users/obtainUser.php?id=${id}`);
+        const res = await fetch(
+          `../FuncionesPHP/CRUD/Users/obtainUser.php?id=${id}`
+        );
         const data = await res.json();
 
         if (data && data.ID) {
@@ -228,9 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-
-
-    // --- Enviar formulario ---
+    // --- Guardar cambios o crear usuario ---
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
@@ -257,8 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-
-
     // --- Eliminar usuario ---
     async function deleteUser(id) {
       if (!confirm("¿Seguro que deseas eliminar este usuario?")) return;
@@ -266,7 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const res = await fetch("../FuncionesPHP/CRUD/Users/deleteUser.php", {
           method: "POST",
-          body: new URLSearchParams({ ID: id })
+          body: new URLSearchParams({ ID: id }),
         });
 
         const result = await res.json();
@@ -278,17 +267,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
-
-
   // ======================================================================
   // ======================================================================
   // === SECCIÓN Y CRUD DE UPDATES =======================
   // ======================================================================
   // ======================================================================
 
-function cargarSeccionUpdates() {
-  content.innerHTML = `
+  function cargarSeccionUpdates() {
+    content.innerHTML = `
     <h2>Gestión de Updates</h2>
     <button class="crud-btn crear" id="btnCrearUpdate">Crear Update</button>
 
@@ -340,50 +326,56 @@ function cargarSeccionUpdates() {
 
   `;
 
-  inicializarCRUDUpdates();
-}
+    inicializarCRUDUpdates();
+  }
 
-function inicializarCRUDUpdates() {
-  const tablaBody = document.getElementById("updateTableBody");
-  const modal = document.getElementById("updateModal");
-  const form = document.getElementById("updateForm");
-  const btnCrear = document.getElementById("btnCrearUpdate");
-  const btnCancelar = document.getElementById("btnCancelarUpdate");
-  const modalTitle = document.getElementById("updateModalTitle");
-  const inputImagen = document.getElementById("inputImagen");
-  const previewImagen = document.getElementById("previewImagen");
+  function inicializarCRUDUpdates() {
+    const tablaBody = document.getElementById("updateTableBody");
+    const modal = document.getElementById("updateModal");
+    const form = document.getElementById("updateForm");
+    const btnCrear = document.getElementById("btnCrearUpdate");
+    const btnCancelar = document.getElementById("btnCancelarUpdate");
+    const modalTitle = document.getElementById("updateModalTitle");
+    const inputImagen = document.getElementById("inputImagen");
+    const previewImagen = document.getElementById("previewImagen");
 
-  inputImagen.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        previewImagen.src = reader.result;
-        previewImagen.style.display = "block";
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-
-  let editando = false;
-  let idEditando = null;
-
-  // Cargar updates
-  async function loadUpdates() {
-    try {
-      const res = await fetch("../FuncionesPHP/CRUD/Updates/obtainUpdates.php");
-      const json = await res.json();
-      tablaBody.innerHTML = "";
-
-      if (!json.success || !Array.isArray(json.data) || json.data.length === 0) {
-        tablaBody.innerHTML = "<tr><td colspan='7'>No hay updates registradas.</td></tr>";
-        return;
+    inputImagen.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          previewImagen.src = reader.result;
+          previewImagen.style.display = "block";
+        };
+        reader.readAsDataURL(file);
       }
+    });
 
-      json.data.forEach(u => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
+    let editando = false;
+    let idEditando = null;
+
+    // Cargar updates
+    async function loadUpdates() {
+      try {
+        const res = await fetch(
+          "../FuncionesPHP/CRUD/Updates/obtainUpdates.php"
+        );
+        const json = await res.json();
+        tablaBody.innerHTML = "";
+
+        if (
+          !json.success ||
+          !Array.isArray(json.data) ||
+          json.data.length === 0
+        ) {
+          tablaBody.innerHTML =
+            "<tr><td colspan='7'>No hay updates registradas.</td></tr>";
+          return;
+        }
+
+        json.data.forEach((u) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
           <td>${u.Id_Update}</td>
           <td>${u.Titulo}</td>
           <td>${u.Tipo}</td>
@@ -395,127 +387,136 @@ function inicializarCRUDUpdates() {
             <button class="crud-btn borrar" data-id="${u.Id_Update}">Eliminar</button>
           </td>
         `;
-        tablaBody.appendChild(tr);
-      });
+          tablaBody.appendChild(tr);
+        });
 
-      // Delegación: editar / borrar
-      tablaBody.querySelectorAll(".crud-btn.editar").forEach(b => b.addEventListener("click", () => editarUpdate(b.dataset.id)));
-      tablaBody.querySelectorAll(".crud-btn.borrar").forEach(b => b.addEventListener("click", () => eliminarUpdate(b.dataset.id)));
-
-    } catch (err) {
-      console.error("Error cargando updates:", err);
-      tablaBody.innerHTML = "<tr><td colspan='7'>Error al cargar updates.</td></tr>";
-    }
-  }
-
-  loadUpdates();
-
-  // Mostrar modal crear
-  btnCrear.addEventListener("click", () => {
-    editando = false;
-    idEditando = null;
-    form.reset();
-    modalTitle.textContent = "Crear Update";
-    modal.classList.remove("hidden");
-  });
-
-  // Cancelar modal
-  btnCancelar.addEventListener("click", () => {
-    modal.classList.add("hidden");
-    form.reset();
-  });
-
-  // Enviar formulario (crear o actualizar)
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const fd = new FormData(form);
-
-    let url = "";
-    if (editando) {
-      fd.append("Id_Update", idEditando);
-      url = "../FuncionesPHP/CRUD/Updates/updateUpdate.php";
-    } else {
-      url = "../FuncionesPHP/CRUD/Updates/createUpdate.php";
+        // Delegación: editar / borrar
+        tablaBody
+          .querySelectorAll(".crud-btn.editar")
+          .forEach((b) =>
+            b.addEventListener("click", () => editarUpdate(b.dataset.id))
+          );
+        tablaBody
+          .querySelectorAll(".crud-btn.borrar")
+          .forEach((b) =>
+            b.addEventListener("click", () => eliminarUpdate(b.dataset.id))
+          );
+      } catch (err) {
+        console.error("Error cargando updates:", err);
+        tablaBody.innerHTML =
+          "<tr><td colspan='7'>Error al cargar updates.</td></tr>";
+      }
     }
 
-    try {
-      const res = await fetch(url, { method: "POST", body: fd });
-      const json = await res.json();
+    loadUpdates();
 
-      alert(json.message);
-      if (json.success) {
-        modal.classList.add("hidden");
-        loadUpdates();
-      }
-    } catch (err) {
-      console.error("Error al enviar formulario:", err);
-      alert("Error de conexión.");
-    }
-  });
-
-  // Editar: obtener datos y mostrar modal con campos llenos
-  async function editarUpdate(id) {
-    try {
-      const fd = new FormData();
-      fd.append("ID", id);
-
-      const res = await fetch("../FuncionesPHP/CRUD/Updates/obtainUpdate.php", { method: "POST", body: fd });
-      const json = await res.json();
-
-      if (!json.success) {
-        alert(json.message || "No se encontró la update.");
-        return;
-      }
-
-      const data = json.data;
-      editando = true;
-      idEditando = id;
-      modalTitle.textContent = "Editar Update";
-
-      // Rellenar formulario
-      form.Titulo.value = data.Titulo || "";
-      form.Tipo.value = data.Tipo || "";
-      form.Descripcion_Corta.value = data.Descripcion_Corta || "";
-      form.Texto_Detallado.value = data.Texto_Detallado || "";
-
-      // Mostrar la imagen actual (si existe)
-      if (data.Imagen) {
-        previewImagen.src = `../Imagenes/Thumbnails${data.Imagen}`;
-        previewImagen.style.display = "block";
-      } else {
-        previewImagen.style.display = "none";
-      }
-
-
+    // Mostrar modal crear
+    btnCrear.addEventListener("click", () => {
+      editando = false;
+      idEditando = null;
+      form.reset();
+      modalTitle.textContent = "Crear Update";
       modal.classList.remove("hidden");
-    } catch (err) {
-      console.error("Error al obtener update:", err);
-      alert("Error al obtener datos de la update.");
+    });
+
+    // Cancelar modal
+    btnCancelar.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      form.reset();
+    });
+
+    // Enviar formulario (crear o actualizar)
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+
+      let url = "";
+      if (editando) {
+        fd.append("Id_Update", idEditando);
+        url = "../FuncionesPHP/CRUD/Updates/updateUpdate.php";
+      } else {
+        url = "../FuncionesPHP/CRUD/Updates/createUpdate.php";
+      }
+
+      try {
+        const res = await fetch(url, { method: "POST", body: fd });
+        const json = await res.json();
+
+        alert(json.message);
+        if (json.success) {
+          modal.classList.add("hidden");
+          loadUpdates();
+        }
+      } catch (err) {
+        console.error("Error al enviar formulario:", err);
+        alert("Error de conexión.");
+      }
+    });
+
+    // Editar: obtener datos y mostrar modal con campos llenos
+    async function editarUpdate(id) {
+      try {
+        const fd = new FormData();
+        fd.append("ID", id);
+
+        const res = await fetch(
+          "../FuncionesPHP/CRUD/Updates/obtainUpdate.php",
+          { method: "POST", body: fd }
+        );
+        const json = await res.json();
+
+        if (!json.success) {
+          alert(json.message || "No se encontró la update.");
+          return;
+        }
+
+        const data = json.data;
+        editando = true;
+        idEditando = id;
+        modalTitle.textContent = "Editar Update";
+
+        // Rellenar formulario
+        form.Titulo.value = data.Titulo || "";
+        form.Tipo.value = data.Tipo || "";
+        form.Descripcion_Corta.value = data.Descripcion_Corta || "";
+        form.Texto_Detallado.value = data.Texto_Detallado || "";
+
+        // Mostrar la imagen actual (si existe)
+        if (data.Imagen) {
+          previewImagen.src = `../Imagenes/Thumbnails${data.Imagen}`;
+          previewImagen.style.display = "block";
+        } else {
+          previewImagen.style.display = "none";
+        }
+
+        modal.classList.remove("hidden");
+      } catch (err) {
+        console.error("Error al obtener update:", err);
+        alert("Error al obtener datos de la update.");
+      }
+    }
+
+    // Eliminar
+    async function eliminarUpdate(id) {
+      if (!confirm("¿Seguro que deseas eliminar esta update?")) return;
+
+      try {
+        const fd = new FormData();
+        fd.append("Id_Update", id);
+
+        const res = await fetch(
+          "../FuncionesPHP/CRUD/Updates/deleteUpdate.php",
+          { method: "POST", body: fd }
+        );
+        const json = await res.json();
+        alert(json.message);
+        if (json.success) loadUpdates();
+      } catch (err) {
+        console.error("Error al eliminar update:", err);
+        alert("Error de conexión.");
+      }
     }
   }
-
-  // Eliminar
-  async function eliminarUpdate(id) {
-    if (!confirm("¿Seguro que deseas eliminar esta update?")) return;
-
-    try {
-      const fd = new FormData();
-      fd.append("Id_Update", id);
-
-      const res = await fetch("../FuncionesPHP/CRUD/Updates/deleteUpdate.php", { method: "POST", body: fd });
-      const json = await res.json();
-      alert(json.message);
-      if (json.success) loadUpdates();
-    } catch (err) {
-      console.error("Error al eliminar update:", err);
-      alert("Error de conexión.");
-    }
-  }
-}
-
-
-
-
 
   //MODAL DE VERIFICACIÓN DE CARNET
 
@@ -541,10 +542,10 @@ function inicializarCRUDUpdates() {
     fetch("../FuncionesPHP/CRUD/VerifyCarnet.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: "carnet=" + encodeURIComponent(carnet)
+      body: "carnet=" + encodeURIComponent(carnet),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.success) {
           modal.style.display = "none";
         } else {
@@ -552,21 +553,20 @@ function inicializarCRUDUpdates() {
           input.value = "";
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Error al verificar carnet:", err);
         alert("Error de conexión con el servidor.");
       });
   });
 
-
   // ======================================================================
-// ======================================================================
-// === SECCIÓN Y CRUD DE PASES ==========================================
-// ======================================================================
-// ======================================================================
+  // ======================================================================
+  // === SECCIÓN Y CRUD DE PASES ==========================================
+  // ======================================================================
+  // ======================================================================
 
-function cargarSeccionPases() {
-  content.innerHTML = `
+  function cargarSeccionPases() {
+    content.innerHTML = `
     <h2>Gestión de Pases</h2>
     <button class="crud-btn crear" id="btnCrearPase">Crear Pase</button>
 
@@ -579,11 +579,12 @@ function cargarSeccionPases() {
           <th>Precio</th>
           <th>Fecha Creación</th>
           <th>Foto</th>
+          <th>Descripción</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody id="pasesTableBody">
-        <tr><td colspan="7">Cargando pases...</td></tr>
+        <tr><td colspan="8">Cargando pases...</td></tr>
       </tbody>
     </table>
 
@@ -592,6 +593,7 @@ function cargarSeccionPases() {
       <div class="modal-content">
         <h3 id="pasesModalTitle">Crear Pase</h3>
         <form id="pasesForm" enctype="multipart/form-data">
+
           <input type="text" name="Nombre" placeholder="Nombre del pase" required>
 
           <select name="Tipo" required>
@@ -602,6 +604,8 @@ function cargarSeccionPases() {
           </select>
 
           <input type="number" name="Precio" step="0.01" placeholder="Precio" required>
+
+          <textarea name="texto_descripcion" placeholder="Descripción del pase" required style="height:120px;resize:none;"></textarea>
 
           <div class="imagen-container">
             <input type="file" name="Foto" id="inputFoto" accept="image/*">
@@ -617,167 +621,186 @@ function cargarSeccionPases() {
     </div>
   `;
 
-  inicializarCRUDPases();
-}
+    inicializarCRUDPases();
+  }
 
-function inicializarCRUDPases() {
-  const tablaBody = document.getElementById("pasesTableBody");
-  const modal = document.getElementById("pasesModal");
-  const form = document.getElementById("pasesForm");
-  const btnCrear = document.getElementById("btnCrearPase");
-  const btnCancelar = document.getElementById("btnCancelarPase");
-  const modalTitle = document.getElementById("pasesModalTitle");
-  const inputFoto = document.getElementById("inputFoto");
-  const previewFoto = document.getElementById("previewFoto");
+  function inicializarCRUDPases() {
+    const tablaBody = document.getElementById("pasesTableBody");
+    const modal = document.getElementById("pasesModal");
+    const form = document.getElementById("pasesForm");
+    const btnCrear = document.getElementById("btnCrearPase");
+    const btnCancelar = document.getElementById("btnCancelarPase");
+    const modalTitle = document.getElementById("pasesModalTitle");
+    const inputFoto = document.getElementById("inputFoto");
+    const previewFoto = document.getElementById("previewFoto");
 
-  let editando = false;
-  let idEditando = null;
+    let editando = false;
+    let idEditando = null;
 
-  inputFoto.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        previewFoto.src = reader.result;
-        previewFoto.style.display = "block";
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // Cargar pases
-  async function loadPases() {
-    try {
-      const res = await fetch("../FuncionesPHP/CRUD/Passes/obtainPases.php");
-      const json = await res.json();
-
-      tablaBody.innerHTML = "";
-
-      if (!json.success || !Array.isArray(json.data) || json.data.length === 0) {
-        tablaBody.innerHTML = "<tr><td colspan='7'>No hay pases registrados.</td></tr>";
-        return;
+    inputFoto.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          previewFoto.src = reader.result;
+          previewFoto.style.display = "block";
+        };
+        reader.readAsDataURL(file);
       }
+    });
 
-      json.data.forEach(p => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
+    // Cargar pases
+    async function loadPases() {
+      try {
+        const res = await fetch("../FuncionesPHP/CRUD/Passes/obtainPases.php");
+        const json = await res.json();
+
+        tablaBody.innerHTML = "";
+
+        if (
+          !json.success ||
+          !Array.isArray(json.data) ||
+          json.data.length === 0
+        ) {
+          tablaBody.innerHTML =
+            "<tr><td colspan='8'>No hay pases registrados.</td></tr>";
+          return;
+        }
+
+        json.data.forEach((p) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
           <td>${p.ID}</td>
           <td>${p.Nombre}</td>
           <td>${p.Tipo}</td>
           <td>${p.Precio}</td>
           <td>${p.Fecha_creacion}</td>
-          <td><img src="../Imagenes/Passes/${p.Foto}" alt="${p.Nombre}" style="width:60px;border-radius:8px;"></td>
+          <td><img src="../Imagenes/Passes/${p.Foto}" style="width:60px;border-radius:8px;"></td>
+          <td>${p.texto_descripcion}</td>
           <td>
             <button class="crud-btn editar" data-id="${p.ID}">Editar</button>
             <button class="crud-btn borrar" data-id="${p.ID}">Eliminar</button>
           </td>
         `;
-        tablaBody.appendChild(tr);
-      });
+          tablaBody.appendChild(tr);
+        });
 
-      tablaBody.querySelectorAll(".editar").forEach(btn => btn.addEventListener("click", () => editarPase(btn.dataset.id)));
-      tablaBody.querySelectorAll(".borrar").forEach(btn => btn.addEventListener("click", () => eliminarPase(btn.dataset.id)));
-
-    } catch (err) {
-      console.error("Error cargando pases:", err);
-      tablaBody.innerHTML = "<tr><td colspan='7'>Error al cargar pases.</td></tr>";
-    }
-  }
-
-  loadPases();
-
-  // Crear nuevo
-  btnCrear.addEventListener("click", () => {
-    editando = false;
-    idEditando = null;
-    form.reset();
-    modalTitle.textContent = "Crear Pase";
-    previewFoto.style.display = "none";
-    modal.classList.remove("hidden");
-  });
-
-  // Cancelar
-  btnCancelar.addEventListener("click", () => {
-    modal.classList.add("hidden");
-  });
-
-  // Guardar o editar
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const fd = new FormData(form);
-
-    let url = "";
-    if (editando) {
-      fd.append("ID", idEditando);
-      url = "../FuncionesPHP/CRUD/Passes/updatePase.php";
-    } else {
-      url = "../FuncionesPHP/CRUD/Passes/createPase.php";
-    }
-
-    try {
-      const res = await fetch(url, { method: "POST", body: fd });
-      const json = await res.json();
-
-      alert(json.message);
-      if (json.success) {
-        modal.classList.add("hidden");
-        loadPases();
+        tablaBody
+          .querySelectorAll(".editar")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => editarPase(btn.dataset.id))
+          );
+        tablaBody
+          .querySelectorAll(".borrar")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => eliminarPase(btn.dataset.id))
+          );
+      } catch (err) {
+        console.error("Error cargando pases:", err);
+        tablaBody.innerHTML =
+          "<tr><td colspan='8'>Error al cargar pases.</td></tr>";
       }
-    } catch (err) {
-      console.error("Error al guardar pase:", err);
-      alert("Error de conexión.");
     }
-  });
 
-  // Editar pase
-  async function editarPase(id) {
-    try {
-      const fd = new FormData();
-      fd.append("ID", id);
-      const res = await fetch("../FuncionesPHP/CRUD/Passes/obtainPase.php", { method: "POST", body: fd });
-      const json = await res.json();
+    loadPases();
 
-      if (!json.success) return alert(json.message);
-
-      const p = json.data;
-      editando = true;
-      idEditando = id;
-      modalTitle.textContent = "Editar Pase";
-      form.Nombre.value = p.Nombre;
-      form.Precio.value = p.Precio;
-      form.Tipo.value = p.Tipo;
-
-      if (p.Foto) {
-        previewFoto.src = `../Imagenes/Pases/${p.Foto}`;
-        previewFoto.style.display = "block";
-      } else {
-        previewFoto.style.display = "none";
-      }
-
+    // Crear nuevo
+    btnCrear.addEventListener("click", () => {
+      editando = false;
+      idEditando = null;
+      form.reset();
+      modalTitle.textContent = "Crear Pase";
+      previewFoto.style.display = "none";
       modal.classList.remove("hidden");
-    } catch (err) {
-      console.error("Error al editar pase:", err);
+    });
+
+    // Cancelar modal
+    btnCancelar.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    // Guardar / Editar Pase
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+
+      let url = editando
+        ? "../FuncionesPHP/CRUD/Passes/updatePase.php"
+        : "../FuncionesPHP/CRUD/Passes/createPase.php";
+
+      if (editando) fd.append("ID", idEditando);
+
+      try {
+        const res = await fetch(url, { method: "POST", body: fd });
+        const json = await res.json();
+
+        alert(json.message);
+        if (json.success) {
+          modal.classList.add("hidden");
+          loadPases();
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Error de conexión.");
+      }
+    });
+
+    // Editar pase
+    async function editarPase(id) {
+      try {
+        const fd = new FormData();
+        fd.append("ID", id);
+        const res = await fetch("../FuncionesPHP/CRUD/Passes/obtainPase.php", {
+          method: "POST",
+          body: fd,
+        });
+        const json = await res.json();
+
+        if (!json.success) return alert(json.message);
+
+        const p = json.data;
+        editando = true;
+        idEditando = id;
+        modalTitle.textContent = "Editar Pase";
+
+        form.Nombre.value = p.Nombre;
+        form.Precio.value = p.Precio;
+        form.Tipo.value = p.Tipo;
+        form.texto_descripcion.value = p.texto_descripcion;
+
+        if (p.Foto) {
+          previewFoto.src = `../Imagenes/Passes/${p.Foto}`;
+          previewFoto.style.display = "block";
+        } else {
+          previewFoto.style.display = "none";
+        }
+
+        modal.classList.remove("hidden");
+      } catch (err) {
+        console.error("Error al editar pase:", err);
+      }
+    }
+
+    // Eliminar pase
+    async function eliminarPase(id) {
+      if (!confirm("¿Seguro que deseas eliminar este pase?")) return;
+      try {
+        const fd = new FormData();
+        fd.append("ID", id);
+
+        const res = await fetch("../FuncionesPHP/CRUD/Passes/deletePase.php", {
+          method: "POST",
+          body: fd,
+        });
+        const json = await res.json();
+
+        alert(json.message);
+        if (json.success) loadPases();
+      } catch (err) {
+        console.error("Error eliminando pase:", err);
+      }
     }
   }
-
-  // Eliminar pase
-  async function eliminarPase(id) {
-    if (!confirm("¿Seguro que deseas eliminar este pase?")) return;
-    try {
-      const fd = new FormData();
-      fd.append("ID", id);
-      const res = await fetch("../FuncionesPHP/CRUD/Passes/deletePase.php", { method: "POST", body: fd });
-      const json = await res.json();
-
-      alert(json.message);
-      if (json.success) loadPases();
-    } catch (err) {
-      console.error("Error eliminando pase:", err);
-    }
-  }
-}
-
-
 
   // Bloquear clic fuera del modal
   window.addEventListener("click", (e) => {

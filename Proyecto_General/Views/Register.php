@@ -1,96 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="../CSS/Register.css">
-    <link rel="icon" type="image/png" href="/Imagenes/IconWeb.jpg">
+    <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
 </head>
+
 <body>
+
     <form action="../FuncionesPHP/Register.php" method="post" id="form">
         <h1>Registro</h1>
         <div class="form">
 
-            <<div class="Grupo">
-                <input type="text" name="name" id="name" required>
+            <div class="Grupo">
+                <input type="text" name="name" required>
                 <span class="barra"></span>
-                <label for="name">Nombre</label>
+                <label>Nombre</label>
             </div>
-
 
             <div class="Grupo">
-                <input type="text" name="username" id="username" required>
+                <input type="text" name="username" required>
                 <span class="barra"></span>
-                <label for="username">Nombre de visualizacion</label>
+                <label>Nombre de visualización</label>
             </div>
-
 
             <div class="Grupo">
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" required>
                 <span class="barra"></span>
-                <label for="email">Correo electrónico</label>
+                <label>Correo electrónico</label>
             </div>
-
 
             <div class="Grupo">
                 <input type="password" name="password" id="password" required>
                 <span class="barra"></span>
-                <label for="password">Contraseña</label>
+                <label>Contraseña</label>
                 <div class="show-container">
                     <input type="checkbox" id="showPassword" class="checkbox">
                     <span class="ShowPass">Mostrar Contraseña</span>
                 </div>
             </div>
 
-
             <div class="Grupo">
                 <input type="password" name="passwordConfirm" id="passwordConfirm" required>
                 <span class="barra"></span>
-                <label for="passwordConfirm">Confirmar Contraseña</label>
-                <div class="show-container">
-                    <input type="checkbox" id="showPasswordConfirm" class="checkbox">
-                    <span class="ShowPass">Mostrar Contraseña</span>
-                </div>
+                <label>Confirmar Contraseña</label>
             </div>
 
-            <div id="mensaje" style="color: rgb(226, 0, 0); margin-top: 10px;"></div>
-
-            <button type="submit" id="subir" name="subir" class="Enviar">Enviar</button>
+            <button type="button" id="togglePanel" class="OpcBtn">Datos opcionales +</button>
+            <button type="submit" class="Enviar">Registrar</button>
         </div>
-    </form>
+        <div id="optionalPanel" class="panel">
+        <h2>Datos opcionales</h2>
 
-    <form action="../FuncionesPHP/Register.php" method="post" id="form">
-        <h1>Datos opcionales</h1>
-        <div class="form">
-            <div class="Grupo">
-                <input type="text" name="name" id="name" required>
-                <span class="barra"></span>
-                <label for="name">Edad</label>
-            </div>
-
-            <div class="Grupo">
-                <input type="text" name="username" id="username" required>
-                <span class="barra"></span>
-                <label for="username">Genero</label>
-            </div>
-
-            <div class="Grupo">
-                <input type="email" name="email" id="email" required>
-                <span class="barra"></span>
-                <label for="email">Telefono</label>
-            </div>
-
-            <div id="mensaje" style="color: rgb(226, 0, 0); margin-top: 10px;"></div>
-
-            <button type="submit" id="subir" name="subir" class="Enviar">Enviar</button>
+        <div class="Grupo">
+            <input type="number" name="edad" min="1" max="100">
+            <span class="barra"></span>
+            <label>Edad</label>
         </div>
+
+        <div class="Grupo">
+            <select name="genero">
+                <option value="" selected disabled>Seleccione una opción</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <span class="barra"></span>
+            <label style="top:-14px; font-size:12px;">Género</label>
+        </div>
+
+
+        <div class="Grupo">
+            <input type="text" name="telefono">
+            <span class="barra"></span>
+            <label>Teléfono</label>
+        </div>
+
+        <button id="closePanel" class="CerrarOpc">Cerrar</button>
+    </div>
     </form>
-
-
-    <script src="../JS/Register.js" defer></script>
+    <script src="../JS/Register.js"></script>
 </body>
-</html>
 
-<?php
-?>
+</html>

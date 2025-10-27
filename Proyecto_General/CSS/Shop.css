@@ -1,191 +1,138 @@
+/* === GENERAL === */
 body {
-    min-height: 100vh;
-    background-image: url(../Imagenes/BackgroundShop.png);
-    background-repeat: no-repeat;
-    background-size: 110% 100%;
     margin: 0;
+    min-height: 100vh;
+    background: #f4f6fa;
+    font-family: "Poppins", sans-serif;
+    color: #333;
+    background-image: url(../Imagenes/BackgroundShop.png);
+        background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
+/* === CONTENEDOR DE INTRO === */
 .Seleccion {
-    background-color: #6E7B8B;
-    border: solid;
-    border-radius: 20%;
-    width: 80%;
-    margin: 8% auto;
-    padding: 1%;
-    font-family: 'Pixelify Sans', sans-serif;
-    font-size: 150%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
-    flex-direction: column;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 35px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 .Welcome {
-    font-family: 'Pixelify Sans';
-    text-align: center;
-    color: #fff;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0;
 }
 
-.ButtonPur {
-    text-decoration: none;
-    background-color: #FF6B35;
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 25px;
+/* === FILTROS === */
+.Filtros {
+    max-width: 900px;
+    margin: 0 auto 25px auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.Filtros select {
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    outline: none;
+    background: #fff;
     cursor: pointer;
-    font-size: 10px;
-    font-weight: bold;
-    transition: transform 0.2s, background 0.3s;
-    box-shadow: 0 0 16px 0 rgba(246, 210, 29, 0.894);
+    transition: border-color 0.2s ease;
 }
 
-.ButtonPur:hover {
-    background-color: rgba(193, 58, 13, 0.8);
-    transform: scale(0.10);
+.Filtros select:focus {
+    border-color: #ff6b35;
 }
 
-.Pass {
-    display: block;
-}
-
-.Pass img {
-    filter: drop-shadow(1px 1px 20px rgb(235, 209, 17));
-}
-
-.PassTitle1 {
-    font-size: 200%;
-    background-image: url(../Imagenes/Degrades/Orange.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(1px 1px 20px rgb(255, 107, 53));
-}
-
-.PassTitle2 {
-    font-size: 200%;
-    background-image: url(../Imagenes/Degrades/Red.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(1px 1px 27px rgb(245, 34, 0));
-}
-
-.PassTitle3 {
-    font-size: 200%;
-    background-image: url(../Imagenes/Degrades/Platino.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(1px 1px 55px rgb(71, 70, 70));
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-    fill: white;
-    letter-spacing: 6px;
-}
-
+/* === SECCIÓN CATÁLOGO === */
 .catalogo {
-    width: 85%;
-    margin: 60px auto;
-    background: rgba(255, 255, 255, 0.85);
+    max-width: 900px;
+    margin: 0 auto 50px auto;
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
 }
 
 .catalogo h2 {
     text-align: center;
-    font-family: 'Pixelify Sans', sans-serif;
-    font-size: 2.5em;
-    margin-bottom: 50px;
-    color: #FF6B35;
+    margin-bottom: 25px;
+    color: #ff6b35;
+    font-size: 28px;
+    font-weight: 600;
 }
 
+/* === LISTA DE ITEMS === */
 .catalogo-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-height: 600px;
-    overflow-y: auto;
-    padding-right: 20px;
-}
-
-.catalogo-container::-webkit-scrollbar {
-    width: 15px;
-}
-
-.catalogo-container::-webkit-scrollbar-thumb {
-    background: #FF6B35;
-    border-radius: 10px;
-}
-
-.catalogo-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
+    gap: 18px;
 }
 
 .item {
     display: flex;
-    align-items: center;
-    background: #6E7B8B;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .item:hover {
-    transform: scale(1.10);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
+/* === IMAGEN === */
 .item img {
-    width: 200px;
-    height: 150px;
+    width: 170px;
+    height: 140px;
     object-fit: cover;
-    border-right: 4px solid #fff;
+    border-right: 1px solid #ddd;
 }
 
+/* === INFO === */
 .item-info {
-    padding: 1px;
-    color: #fff;
-    font-family: 'Pixelify Sans', sans-serif;
+    padding: 15px 18px;
 }
 
 .item-info h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.5em;
-    margin-top: 25px;
+    font-size: 20px;
+    margin: 0 0 6px 0;
+    font-weight: 600;
+    color: #2a2a2a;
 }
 
 .item-info p {
-    font-size: 1.1em;
-}
-.rating {
-  direction: rtl;
-  display: inline-flex;
-  font-size: 24px;
-  color: #ccc;
-  cursor: pointer;
+    font-size: 15px;
+    margin: 6px 0;
+    color: #555;
 }
 
-.rating input {
-  display: none;
+/* === BOTÓN === */
+.ButtonPur {
+    display: inline-block;
+    margin-top: 10px;
+    background: #ff6b35;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.25s ease;
 }
 
-.rating label {
-  transition: color 0.2s;
-}
-
-.rating input:checked ~ label,
-.rating label:hover,
-.rating label:hover ~ label {
-  color: gold;
+.ButtonPur:hover {
+    background: #d65326;
+    transform: translateY(-2px);
 }

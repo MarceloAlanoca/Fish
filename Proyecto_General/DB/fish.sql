@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2025 a las 03:57:39
+-- Tiempo de generación: 27-10-2025 a las 03:13:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -34,6 +34,13 @@ CREATE TABLE `comentarios` (
   `Comentario` text NOT NULL,
   `Fecha` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`Id_Comentario`, `Id_Update`, `Id_Usuario`, `Comentario`, `Fecha`) VALUES
+(2, 4, 1, 'Fa mejor nadota', '2025-10-20 22:59:49');
 
 -- --------------------------------------------------------
 
@@ -74,15 +81,17 @@ CREATE TABLE `pases` (
   `Precio` decimal(10,2) NOT NULL,
   `Tipo` varchar(50) NOT NULL,
   `Fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Foto` varchar(255) DEFAULT NULL
+  `Foto` varchar(255) DEFAULT NULL,
+  `texto_descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pases`
 --
 
-INSERT INTO `pases` (`ID`, `Nombre`, `Precio`, `Tipo`, `Fecha_creacion`, `Foto`) VALUES
-(1, 'PASE DE PLATINO', 15000.00, 'PROGRESO', '2025-10-21 01:39:53', '68f6e46908103_68f6e4048e9ae_PlatinoPass.png');
+INSERT INTO `pases` (`ID`, `Nombre`, `Precio`, `Tipo`, `Fecha_creacion`, `Foto`, `texto_descripcion`) VALUES
+(1, 'PASE DE PLATINO', 15000.00, 'PROGRESO', '2025-10-21 01:39:53', '68f6e46908103_68f6e4048e9ae_PlatinoPass.png', 'ASAS'),
+(2, 'PASE DE BIENVENIDA', 10000.00, 'PROGRESO', '2025-10-27 00:54:26', '68fec2c2a16fd_WelcomePass.png', 'qqw');
 
 -- --------------------------------------------------------
 
@@ -143,21 +152,23 @@ CREATE TABLE `usuarios` (
   `Telefono` varchar(20) DEFAULT NULL,
   `foto` varchar(255) NOT NULL DEFAULT '../Imagenes/Iconos/ProfileDefault.png',
   `rol` varchar(20) NOT NULL DEFAULT 'cliente',
-  `carnet` varchar(6) DEFAULT NULL
+  `carnet` varchar(6) DEFAULT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_expire` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabla para los usuarios registrados en FishStack';
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID`, `Nombre`, `Usuario`, `Password`, `Email`, `Doblones`, `FechadeReg`, `Edad`, `Genero`, `Telefono`, `foto`, `rol`, `carnet`) VALUES
-(1, 'Thiago Loaiza', 'Creeper', '$2y$10$lEOWYLHjthkTcfkaXtFi6u8cAYHJi9rm4ilUx2ZYAsFboXnAg8cuC', 'thiagolosizat123@gmail.com', 0, '2025-10-13 10:42:48', NULL, NULL, NULL, '../Imagenes/Usuarios/1_Captura de pantalla 2025-08-01 185124.png', 'ADMINISTRADOR', 'AFEDCS'),
-(2, 'Marcos', 'Firefox', '$2y$10$HRtxjP6NU0AbUL.YsvkjDO9lD1w.thOFXMAkS0oE8ivTaOQXJtY3i', 'elfalopade2024@gmail.com', 0, '2025-10-13 10:44:58', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'QWERTY'),
-(3, 'p3dql', 'p3dql', '$2y$10$tlKij9S1UOhK0N3DOLj8BOt87/aOQ/dAiVyEeaT.P.4qrwIVz.wyi', 'pedroleone.hall@gmail.com', 0, '2025-10-13 10:45:37', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'ZXCVBN'),
-(4, 'Kanshane', 'KanshaneSPONT', '$2y$10$7kk89dJ2R47xbmDOrZBgYeGrOseplBRmEQ281UCYuT/lO0V5.Xu1G', 'john.heber.huallpa.cisneros09@gmail.com', 0, '2025-10-13 10:46:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'PLMOKN'),
-(5, 'mocoatomico', 'lautarolg', '$2y$10$iOgIwnxvBaBbW1Pe9GKDi.QHSvwbbuPLFi.RV1vxciO7k63/6EWU2', 'lautaronavarro1818@gmail.com', 0, '2025-10-13 10:47:16', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'HGFDSA'),
-(6, 'alejandrach', 'alejandra ', '$2y$10$MGnTk8lVr0Ij8gs2DnZBg.2o5KtvAFb5wm5B/fTNY/DtL43W6Bv7e', 'alejandrachavezu9@gmail.com', 0, '2025-10-13 10:48:00', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'NBVCXZ'),
-(7, 'leather', 'gaelggv', '$2y$10$lOLDD18C5tePR1.PagbrtuySbw/IN8C0uWRBDrOCHpVkmwqmGq3gm', 'gaelestrada1979@gmail.com', 0, '2025-10-13 10:48:25', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'LKJHGF');
+INSERT INTO `usuarios` (`ID`, `Nombre`, `Usuario`, `Password`, `Email`, `Doblones`, `FechadeReg`, `Edad`, `Genero`, `Telefono`, `foto`, `rol`, `carnet`, `reset_token`, `reset_expire`) VALUES
+(1, 'Thiago Loaiza', 'Creeper', '$2y$10$3eRSyQUVikuKw3iEPrnzx.exQWlCcNHEslEOZDl9MaeE/OfmvBRvm', 'thiagolosizat123@gmail.com', 0, '2025-10-13 10:42:48', 16, 'Hombre', '12312312', '../Imagenes/Usuarios/1_Captura de pantalla 2025-08-01 185124.png', 'ADMINISTRADOR', 'AFEDCS', NULL, NULL),
+(2, 'Marcos', 'Firefox', '$2y$10$HRtxjP6NU0AbUL.YsvkjDO9lD1w.thOFXMAkS0oE8ivTaOQXJtY3i', 'elfalopade2024@gmail.com', 0, '2025-10-13 10:44:58', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'QWERTY', 'c28e2955b40dfcd864663ddf956eff63ac26a9d2b9c2c17fe2fe5b984c6c8d07', '2025-10-27 01:15:34'),
+(3, 'p3dql', 'p3dql', '$2y$10$tlKij9S1UOhK0N3DOLj8BOt87/aOQ/dAiVyEeaT.P.4qrwIVz.wyi', 'pedroleone.hall@gmail.com', 0, '2025-10-13 10:45:37', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'ZXCVBN', NULL, NULL),
+(4, 'Kanshane', 'KanshaneSPONT', '$2y$10$7kk89dJ2R47xbmDOrZBgYeGrOseplBRmEQ281UCYuT/lO0V5.Xu1G', 'john.heber.huallpa.cisneros09@gmail.com', 0, '2025-10-13 10:46:48', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'PLMOKN', NULL, NULL),
+(5, 'mocoatomico', 'lautarolg', '$2y$10$iOgIwnxvBaBbW1Pe9GKDi.QHSvwbbuPLFi.RV1vxciO7k63/6EWU2', 'lautaronavarro1818@gmail.com', 0, '2025-10-13 10:47:16', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'HGFDSA', NULL, NULL),
+(6, 'alejandrach', 'alejandra ', '$2y$10$MGnTk8lVr0Ij8gs2DnZBg.2o5KtvAFb5wm5B/fTNY/DtL43W6Bv7e', 'alejandrachavezu9@gmail.com', 0, '2025-10-13 10:48:00', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'NBVCXZ', NULL, NULL),
+(7, 'leather', 'gaelggv', '$2y$10$lOLDD18C5tePR1.PagbrtuySbw/IN8C0uWRBDrOCHpVkmwqmGq3gm', 'gaelestrada1979@gmail.com', 0, '2025-10-13 10:48:25', NULL, NULL, NULL, '..ImagenesIconosProfileDefault.png', 'ADMINISTRADOR', 'LKJHGF', 'd70cf6199b0b3e60cbcf9d2ec916d14e4a3e02d4d531d4004bb97f55e4c55927', '2025-10-27 01:20:52');
 
 --
 -- Índices para tablas volcadas
@@ -221,7 +232,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `Id_Comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id_Comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -239,7 +250,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT de la tabla `pases`
 --
 ALTER TABLE `pases`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `peces`
@@ -257,7 +268,7 @@ ALTER TABLE `updates`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
