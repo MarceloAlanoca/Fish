@@ -27,9 +27,9 @@
                 <div class="GameFrame">
                     <iframe 
                         id="gameFrame"
-                        src="../../Juegos_Prototipo/fished/Fished.html" 
-                        width="800" 
-                        height="600" 
+                        src="../../Juegos_Prototipo/Fished.html" 
+                        width="1200" 
+                        height="800" 
                         frameborder="0" 
                         allowfullscreen>
                     </iframe>

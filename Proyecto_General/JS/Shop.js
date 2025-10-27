@@ -21,10 +21,19 @@ function mostrarPases(lista) {
             <img src="../Imagenes/Passes/${pase.Foto}" alt="${pase.Nombre}">
             <div class="item-info">
                 <h3>${pase.Nombre}</h3>
-                <p>${pase.texto_descripcion}</p>
-                <p><strong>Tipo: </strong>${pase.Tipo}</p>
-                <p><strong>Precio: </strong>${pase.Precio} Pesos</p>
+                <p><strong>Tipo: </strong><strong  class="${pase.Tipo}">${pase.Tipo}</strong></p>
+                <p><strong>Precio: </strong><strong  class="Price">${pase.Precio}$</strong> Pesos</p>
                 <button class="ButtonPur">Comprar</button>
+            </div>
+
+            <div id="bigModal" class="modal-overlay" aria-hidden="true">
+                <div class="modal-body">
+                    <button class="Back"></strong>Volver</p></button>
+                    <img src="../Imagenes/Passes/${pase.Foto}" alt="${pase.Nombre}">
+                    <h3>${pase.Nombre}</h3>
+                    <p>${pase.texto_descripcion}<p/>
+                    <button class="ButtonConfirmPur"></strong>${pase.Precio} Pesos</p></button>
+                </div>
             </div>
         `;
 
@@ -32,17 +41,17 @@ function mostrarPases(lista) {
     });
 }
 
-/* === FUNCIÓN CENTRAL DE FILTRADO + ORDENADO === */
+
 function actualizarVista() {
     let resultado = [...pases];
 
-    // 1) FILTRO POR TIPO
+
     const tipoElegido = filtroTipo.value.toLowerCase();
     if (tipoElegido !== "") {
         resultado = resultado.filter(p => p.Tipo.toLowerCase() === tipoElegido);
     }
 
-    // 2) ORDEN POR PRECIO
+
     const ordenElegido = filtroPrecio.value;
     if (ordenElegido === "asc") {
         resultado.sort((a, b) => Number(a.Precio) - Number(b.Precio));
@@ -53,8 +62,24 @@ function actualizarVista() {
     mostrarPases(resultado);
 }
 
-/* === EVENTOS DE SELECT === */
+
 filtroTipo.addEventListener("change", actualizarVista);
 filtroPrecio.addEventListener("change", actualizarVista);
 
+
 cargarPases();
+
+    /*Modal*/
+  const openModal = document.querySelector(".ButtonPur");
+  const modal = document.querySelector(".modal-overlay.open");
+  const closeModal = document.querySelector(".modal-overlay.close");
+
+  openModal.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.add(".modal-overlay.open");
+  });
+
+  closeModal.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.remove("modal-overlay");
+  });

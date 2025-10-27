@@ -15,22 +15,23 @@
 
 <div class="Seleccion">
   <p class="Welcome">
-    Bienvenido a la Tienda de FishStack, aquí encontrarás diferentes pases.
+    Bienvenido a la Tienda de FishStack, aquí encontrarás diferentes pases que podras adquirir y se veran reflejados
+    en el juego junto a ser permanentes en la cuenta.
   </p>
 </div>
 
 <div class="Filtros">
-  <select id="filtroTipo">
-    <option value="">Todos los tipos</option>
-    <option value="Progreso">Progreso</option>
-    <option value="Cosmetico">Cosmetico</option>
-    <option value="Evento">Evento</option>
+  <select id="filtroTipo" class="opcion">
+    <option value="" class="opcion">Todos los tipos</option>
+    <option value="Progreso" class="opcion">Progreso</option>
+    <option value="Cosmetico" class="opcion">Cosmetico</option>
+    <option value="Evento" class="opcion">Evento</option>
   </select>
 
-  <select id="filtroPrecio">
-    <option value="">Sin ordenar precio</option>
-    <option value="asc">Menor a mayor</option>
-    <option value="desc">Mayor a menor</option>
+  <select id="filtroPrecio" class="opcion">
+    <option value="" class="opcion">Sin ordenar precio</option>
+    <option value="asc" class="opcion">Menor a mayor</option>
+    <option value="desc" class="opcion">Mayor a menor</option>
   </select>
 </div>
 

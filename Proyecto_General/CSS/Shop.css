@@ -1,4 +1,10 @@
-/* === GENERAL === */
+
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     margin: 0;
     min-height: 100vh;
@@ -6,12 +12,12 @@ body {
     font-family: "Poppins", sans-serif;
     color: #333;
     background-image: url(../Imagenes/BackgroundShop.png);
-        background-size: cover;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* === CONTENEDOR DE INTRO === */
+
 .Seleccion {
     max-width: 900px;
     margin: 40px auto;
@@ -23,12 +29,13 @@ body {
 }
 
 .Welcome {
-    font-size: 18px;
+    font-size: 28px;
     line-height: 1.5;
     margin: 0;
+    font-family: 'Pixelify Sans';
 }
 
-/* === FILTROS === */
+
 .Filtros {
     max-width: 900px;
     margin: 0 auto 25px auto;
@@ -52,7 +59,11 @@ body {
     border-color: #ff6b35;
 }
 
-/* === SECCIÓN CATÁLOGO === */
+.opcion{
+    font-family: 'Pixelify Sans';
+    font-size: 1.2em;
+}
+
 .catalogo {
     max-width: 900px;
     margin: 0 auto 50px auto;
@@ -68,9 +79,12 @@ body {
     color: #ff6b35;
     font-size: 28px;
     font-weight: 600;
+    font-family: 'Pixelify Sans';
+    letter-spacing: 2px;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
-/* === LISTA DE ITEMS === */
+
 .catalogo-container {
     display: flex;
     flex-direction: column;
@@ -88,36 +102,79 @@ body {
 
 .item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 6.5em 2.5em rgba(228, 112, 4, 0.22);
 }
 
-/* === IMAGEN === */
+
 .item img {
+    margin-top: 4%;
     width: 170px;
     height: 140px;
     object-fit: cover;
-    border-right: 1px solid #ddd;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 0.5));
 }
 
-/* === INFO === */
+
 .item-info {
     padding: 15px 18px;
+    font-family: 'Pixelify Sans';
 }
 
 .item-info h3 {
-    font-size: 20px;
+    font-size: 2.5em;
     margin: 0 0 6px 0;
     font-weight: 600;
     color: #2a2a2a;
+    filter: drop-shadow(1px 1px 20px rgb(0, 0, 1));
 }
 
 .item-info p {
-    font-size: 15px;
-    margin: 6px 0;
+    font-size: 25px;
+    margin: 15px 0;
     color: #555;
 }
 
-/* === BOTÓN === */
+.Price{
+    color: rgb(40, 214, 40);
+    letter-spacing: 1.5px;
+}
+
+.PROGRESO{
+    background-color: rgb(73, 234, 255);
+    border: solid, black;
+    color: rgb(238, 231, 231);
+    padding: 0.2em;
+    font-size: 1.5em;
+    letter-spacing: 1.5px;
+    border-radius: 5%;
+      -webkit-text-stroke-width: 0.5px; /* Define el grosor del trazo (ej. 1px) */
+      -webkit-text-stroke-color: black; /* Define el color del trazo (ej. negro) */
+}
+
+.EVENTO{
+    background-color: red;
+    border: solid, black;
+    color: rgb(238, 231, 231);
+    padding: 0.2em;
+    font-size: 1.5em;
+    letter-spacing: 1.5px;
+    border-radius: 5%;
+      -webkit-text-stroke-width: 0.5px; /* Define el grosor del trazo (ej. 1px) */
+      -webkit-text-stroke-color: black; /* Define el color del trazo (ej. negro) */
+}
+
+.COSMETICO{
+    background-color: rgb(191, 94, 255);
+    border: solid, black;
+    color: rgb(238, 231, 231);
+    padding: 0.2em;
+    font-size: 1.5em;
+    letter-spacing: 1.5px;
+    border-radius: 5%;
+      -webkit-text-stroke-width: 0.5px; /* Define el grosor del trazo (ej. 1px) */
+      -webkit-text-stroke-color: black; /* Define el color del trazo (ej. negro) */
+}
+
 .ButtonPur {
     display: inline-block;
     margin-top: 10px;
@@ -135,4 +192,46 @@ body {
 .ButtonPur:hover {
     background: #d65326;
     transform: translateY(-2px);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 0;
+}
+
+.modal-body {
+  background: #fff;
+  border-radius: 12px;
+  width: 95vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  position: relative;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+.modal-overlay.close {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -31,7 +31,7 @@ if (isset($_POST['email'])) {
             $mail->SMTPAuth = true;
 
             $mail->Username = 'fishstack.soporte@gmail.com';
-            $mail->Password = 'ipva apeb aqdt szzt';
+            $mail->Password = '';//agregar nuevo
 
 
             $mail->SMTPSecure = 'tls';

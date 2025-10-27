@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Registros</title>
+    <title>Actualizaciones</title>
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
     <link rel="stylesheet" href="../CSS/Logs.css">
     <script src="../JS/Logs.js" defer></script>

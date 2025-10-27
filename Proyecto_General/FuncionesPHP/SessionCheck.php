@@ -28,7 +28,10 @@ if (!in_array($pagina_actual, $paginas_libres) && !isset($_SESSION["id_usuario"]
                 margin: 0;
                 font-family: "Poppins", sans-serif;
                 background-color: rgba(0, 0, 0, 0.85);
-                background-image: url(../Imagenes/RestrictedZone.jpg);
+                background-image: url(../ProyectoGeneral/Imagenes/RestrictedZone.png);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
                 color: white;
                 height: 100vh;
                 display: flex;

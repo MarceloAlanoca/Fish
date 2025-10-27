@@ -33,7 +33,7 @@
 
             <section class="modal" id="modalRegistros">
                 <div class="modal-container">
-                    <h2 class="modal-title">Registros de FishStack</h2>
+                    <h2 class="modal-title">Actualizaciones de FishStack</h2>
     <!-- IFRAME para mostrar el contenido de otra sección o página -->
                 <iframe
                     src="Logs.php"
