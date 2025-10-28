@@ -3,13 +3,33 @@ const filtroTipo = document.getElementById("filtroTipo");
 const filtroPrecio = document.getElementById("filtroPrecio");
 
 let pases = [];
+let pasesComprados = [];
 
+// =====================================================
+// === CARGAR PASES DESDE LA BASE DE DATOS =============
+// =====================================================
 async function cargarPases() {
     const response = await fetch("../FuncionesPHP/Shop/getPases.php");
     pases = await response.json();
-    actualizarVista(); // Mostrar al inicio
+    await cargarComprasUsuario(); // Espera a tener los comprados
+    actualizarVista();
 }
 
+// =====================================================
+// === CARGAR COMPRAS DEL USUARIO ======================
+// =====================================================
+async function cargarComprasUsuario() {
+    try {
+        const res = await fetch("../FuncionesPHP/Shop/getPurchases.php");
+        pasesComprados = await res.json();
+    } catch (error) {
+        console.error("Error al cargar compras del usuario:", error);
+    }
+}
+
+// =====================================================
+// === MOSTRAR LOS PASES EN PANTALLA ===================
+// =====================================================
 function mostrarPases(lista) {
     catalogo.innerHTML = "";
 
@@ -17,27 +37,28 @@ function mostrarPases(lista) {
         const item = document.createElement("div");
         item.classList.add("item");
 
+        const comprado = pasesComprados.includes(Number(pase.ID));
+
         item.innerHTML = `
-            <img src="../Imagenes/Passes/${pase.Foto}" alt="${pase.Nombre}">
+            <img src="../Imagenes/Passes/${pase.Foto}">
             <div class="item-info">
                 <h3>${pase.Nombre}</h3>
-                <p><strong>Tipo: </strong><strong  class="${pase.Tipo}">${pase.Tipo}</strong></p>
-                <p><strong>Precio: </strong><strong  class="Price">${pase.Precio}$</strong> Pesos</p>
-                <button class="ButtonPur">Comprar</button>
-            </div>
-
-            <div id="bigModal" class="modal-overlay" aria-hidden="true">
-                <div class="modal-body">
-                    <button class="Back"></strong>Volver</p></button>
-                    <img src="../Imagenes/Passes/${pase.Foto}" alt="${pase.Nombre}">
-                    <h3>${pase.Nombre}</h3>
-                    <p>${pase.texto_descripcion}<p/>
-                    <button class="ButtonConfirmPur"></strong>${pase.Precio} Pesos</p></button>
-                </div>
+                <p><strong>Tipo: </strong><span class="${pase.Tipo}">${pase.Tipo}</span></p>
+                <p><strong>Precio: </strong><span class="Price">${pase.Precio}$</span> Pesos</p>
+                <button class="ButtonPur" data-id="${pase.ID}" ${comprado ? "disabled" : ""}>
+                    ${comprado ? "Ya comprado" : "Ver"}
+                </button>
             </div>
         `;
 
         catalogo.appendChild(item);
+
+        const boton = item.querySelector(".ButtonPur");
+        if (!comprado) {
+            boton.addEventListener("click", () => abrirModal(pase));
+        } else {
+            boton.classList.add("disabled");
+        }
     });
 }
 
@@ -45,12 +66,10 @@ function mostrarPases(lista) {
 function actualizarVista() {
     let resultado = [...pases];
 
-
     const tipoElegido = filtroTipo.value.toLowerCase();
     if (tipoElegido !== "") {
         resultado = resultado.filter(p => p.Tipo.toLowerCase() === tipoElegido);
     }
-
 
     const ordenElegido = filtroPrecio.value;
     if (ordenElegido === "asc") {
@@ -62,6 +81,24 @@ function actualizarVista() {
     mostrarPases(resultado);
 }
 
+const modal = document.getElementById("modalCompra");
+const cerrarModalBtn = document.getElementById("cerrarModal");
+const btnComprar = document.getElementById("btnComprar");
+let paseActual = null;
+
+function abrirModal(pase) {
+    paseActual = pase;
+    document.getElementById("modalImagen").src = `../Imagenes/Passes/${pase.Foto}`;
+    document.getElementById("modalTitulo").textContent = pase.Nombre;
+    document.getElementById("modalTipo").textContent = pase.Tipo;
+    document.getElementById("modalDescripcion").textContent = pase.texto_descripcion;
+    btnComprar.textContent = `Comprar por ${pase.Precio} pesos`;
+    modal.classList.add("open");
+}
+
+cerrarModalBtn.addEventListener("click", () => {
+    modal.classList.remove("open");
+});
 
 filtroTipo.addEventListener("change", actualizarVista);
 filtroPrecio.addEventListener("change", actualizarVista);
@@ -69,17 +106,15 @@ filtroPrecio.addEventListener("change", actualizarVista);
 
 cargarPases();
 
-    /*Modal*/
-  const openModal = document.querySelector(".ButtonPur");
-  const modal = document.querySelector(".modal-overlay.open");
-  const closeModal = document.querySelector(".modal-overlay.close");
+btnComprar.addEventListener("click", () => {
+    if (!paseActual) return;
 
-  openModal.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.classList.add(".modal-overlay.open");
-  });
+    // Redirigir directamente al ConfirmPay simulando pago aprobado
+    const params = new URLSearchParams({
+        payment_id: "SIM-" + Date.now(),      // id simulado
+        status: "approved",                   // estado simulado
+        external_reference: paseActual.ID     // id del pase
+    });
 
-  closeModal.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.classList.remove("modal-overlay");
-  });
+    window.location.href = "../FuncionesPHP/Shop/ConfirmPay.php?" + params.toString();
+});

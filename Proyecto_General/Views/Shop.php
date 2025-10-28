@@ -40,6 +40,26 @@
   <div class="catalogo-container" id="catalogo"></div>
 </section>
 
+<!-- MODAL GLOBAL -->
+<div id="modalCompra" class="modal-overlay">
+  <div class="modal-body">
+    <button id="cerrarModal" class="Back">Volver</button>
+
+    <div class="modal-content">
+        <img id="modalImagen" src="" alt="Imagen Pase">
+
+        <div class="modal-info">
+            <h3 id="modalTitulo"></h3>
+            <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+            <p id="modalDescripcion"></p>
+
+            <button id="btnComprar" class="ButtonConfirmPur"></button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
 <?php include("Footer.php"); ?>
 </body>
 </html>

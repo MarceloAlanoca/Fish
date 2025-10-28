@@ -9,7 +9,6 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
 
 // Si no tiene sesión y no está en páginas libres
 if (!in_array($pagina_actual, $paginas_libres) && !isset($_SESSION["id_usuario"])) {
-    // Limpiamos el buffer de salida por si se imprimió algo antes
     ob_clean();
 
     // Mostramos un modal en pantalla
@@ -82,7 +81,7 @@ if (!in_array($pagina_actual, $paginas_libres) && !isset($_SESSION["id_usuario"]
 
         <script>
             function redirigir() {
-                window.location.href = "../Views/PrincipalPage.php";
+                window.location.href = "../../PrincipalPage.php";
             }
 
             setTimeout(redirigir, 10000);
