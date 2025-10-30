@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://pky31ympd2oo"]
+
+[ext_resource type="Script" uid="uid://bvqqbiw3e88cw" path="res://Scripts/Script Buton/lib_o_cap.gd" id="1_113rl"]
+
+[node name="LibOCap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_113rl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 4.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Capturar" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Capturar"
+
+[node name="Liberar" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Liberar"
+
+[connection signal="pressed" from="VBoxContainer/Capturar" to="." method="_on_capturar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Liberar" to="." method="_on_liberar_pressed"]

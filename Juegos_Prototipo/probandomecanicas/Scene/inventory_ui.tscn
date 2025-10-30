@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddpxuqxbolx3p"]
+
+[ext_resource type="PackedScene" uid="uid://cms5keq37wsam" path="res://Scene/slot.tscn" id="1_derys"]
+[ext_resource type="Script" uid="uid://ctte1tlmwfcqn" path="res://Scripts/Scrip_Inventory/inventory_ui.gd" id="1_gl4jn"]
+[ext_resource type="Texture2D" uid="uid://d04wmm8o6qiv2" path="res://Assets/Inventario/pixilart-drawing (2).png" id="1_l6noj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l6noj"]
+texture = ExtResource("1_l6noj")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gl4jn")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_l6noj")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+columns = 5
+
+[node name="Slot" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Slot2" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot3" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot4" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot5" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot6" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot7" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot8" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot9" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot10" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot11" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot12" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot13" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot14" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot15" parent="PanelContainer/GridContainer" instance=ExtResource("1_derys")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
