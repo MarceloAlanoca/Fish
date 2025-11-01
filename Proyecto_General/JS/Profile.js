@@ -78,10 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnCambiarDatos && modalDatos) {
     btnCambiarDatos.addEventListener("click", () => {
       modalDatos.classList.add("active");
-      document.getElementById("editNombre").value = document.getElementById("nombre").textContent;
-      document.getElementById("editTelefono").value = document.getElementById("telefono").textContent;
-      document.getElementById("editEdad").value = document.getElementById("edad").textContent;
-      document.getElementById("editGenero").value = document.getElementById("genero").textContent;
+      document.getElementById("editNombre").value =
+        document.getElementById("nombre").textContent;
+      document.getElementById("editTelefono").value =
+        document.getElementById("telefono").textContent;
+      document.getElementById("editEdad").value =
+        document.getElementById("edad").textContent;
+      document.getElementById("editGenero").value =
+        document.getElementById("genero").textContent;
     });
   }
 
@@ -96,10 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const cerrarModalPass = document.getElementById("cerrarModalPass");
 
   if (cerrarModalDatos) {
-    cerrarModalDatos.addEventListener("click", () => modalDatos.classList.remove("active"));
+    cerrarModalDatos.addEventListener("click", () =>
+      modalDatos.classList.remove("active")
+    );
   }
   if (cerrarModalPass) {
-    cerrarModalPass.addEventListener("click", () => modalPass.classList.remove("active"));
+    cerrarModalPass.addEventListener("click", () =>
+      modalPass.classList.remove("active")
+    );
   }
 
   // ============================================================
@@ -113,10 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       fetch("../FuncionesPHP/Profile/ChangeInfo.php", {
         method: "POST",
-        body: data
+        body: data,
       })
-        .then(res => res.json())
-        .then(result => {
+        .then((res) => res.json())
+        .then((result) => {
           console.log("Respuesta del servidor:", result);
 
           if (result.success) {
@@ -130,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Error: " + result.error);
           }
         })
-        .catch(err => console.error("Error al actualizar datos:", err));
+        .catch((err) => console.error("Error al actualizar datos:", err));
     });
   }
 
@@ -157,10 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       fetch("../FuncionesPHP/Profile/ChangePass.php", {
         method: "POST",
-        body: data
+        body: data,
       })
-        .then(res => res.json())
-        .then(result => {
+        .then((res) => res.json())
+        .then((result) => {
           console.log("Respuesta del servidor:", result);
 
           if (result.success) {
@@ -171,30 +179,118 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Error: " + result.error);
           }
         })
-        .catch(err => console.error("Error al actualizar contraseña:", err));
+        .catch((err) => console.error("Error al actualizar contraseña:", err));
     });
   }
 
   // ============================================================
-  // === SISTEMA DE ANUNCIOS ALEATORIOS =========================
+  // === SISTEMA DE ANUNCIOS ALEATORIOS===
   // ============================================================
-  const adContainer = document.querySelector(".AD");
-  if (adContainer) {
+
+  // Selecciona todos los contenedores con la clase "AD"
+  const adContainers = document.querySelectorAll(".AD");
+
+  if (adContainers.length > 0) {
     const anuncios = [
-      { url: "https://www.innersloth.com/games/among-us/", img: "../Imagenes/Ads/SusAd.png" },
-      { url: "https://www.corpgovrisk.com/", img: "../Imagenes/Ads/CGR_Corp.png" },
-      { url: "https://www.lebronjames.com/", img: "../Imagenes/Ads/Lebron.png" },
-      { url: "https://papulandiamx.wordpress.com/", img: "../Imagenes/Ads/Picnic.png" },
-      { url: "https://chisap.com/shop/panchos", img: "../Imagenes/Ads/Panchito.png" },
-      { url: "https://bluebullpartners.com/es/", img: "../Imagenes/Ads/isla.png" },
+      {
+        url: "https://www.innersloth.com/games/among-us/",
+        img: "../Imagenes/Ads/SusAd.png",
+      },
+      {
+        url: "https://www.corpgovrisk.com/",
+        img: "../Imagenes/Ads/CGR_Corp.png",
+      },
+      {
+        url: "https://www.lebronjames.com/",
+        img: "../Imagenes/Ads/Lebron.png",
+      },
+      {
+        url: "https://papulandiamx.wordpress.com/",
+        img: "../Imagenes/Ads/Picnic.png",
+      },
+      {
+        url: "https://chisap.com/shop/panchos",
+        img: "../Imagenes/Ads/Panchito.png",
+      },
+      {
+        url: "https://bluebullpartners.com/es/",
+        img: "../Imagenes/Ads/isla.png",
+      },
     ];
 
-    const randomIndex = Math.floor(Math.random() * anuncios.length);
-    const anuncio = anuncios[randomIndex];
-    const link = adContainer.querySelector("a");
-    const img = adContainer.querySelector("img");
+    adContainers.forEach((adContainer) => {
+      const randomIndex = Math.floor(Math.random() * anuncios.length);
+      const anuncio = anuncios[randomIndex];
 
-    link.href = anuncio.url;
-    img.src = anuncio.img;
+      const link = adContainer.querySelector("a");
+      const img = adContainer.querySelector("img");
+
+      if (link && img) {
+        link.href = anuncio.url;
+        img.src = anuncio.img;
+        img.alt = "Publicidad aleatoria";
+      }
+    });
   }
+
+  // ============================================================
+  // === MOSTRAR PASES Y COMENTARIOS DEL USUARIO ================
+  // ============================================================
+  fetch("../FuncionesPHP/Profile/GetUserExtra.php")
+    .then((res) => res.json())
+    .then((data) => {
+      const passesContainer = document.getElementById("userPasses");
+      const commentsContainer = document.getElementById("userComments");
+
+      // --- PASES ---
+      if (data.pases && data.pases.length > 0) {
+        data.pases.forEach((pase) => {
+          const div = document.createElement("div");
+          div.classList.add("item");
+          div.innerHTML = `
+              <div class="item-img">
+                <img src="../Imagenes/Passes/${
+                  pase.Foto || "DefaultPass.png"
+                }" alt="${pase.PaseNombre}">
+              </div>
+            <div class="item-info">
+              <p><strong>${pase.PaseNombre}</strong></p>
+              <p>$ ${pase.Precio} Pesos</p>
+              <p>📅 ${pase.Fecha_compra}</p>
+            </div>
+          `;
+          passesContainer.appendChild(div);
+        });
+      } else {
+        passesContainer.innerHTML =
+          "<p class='empty'>No tienes pases comprados.</p>";
+      }
+
+      // --- COMENTARIOS ---
+      if (data.comentarios && data.comentarios.length > 0) {
+        data.comentarios.forEach((com) => {
+          const div = document.createElement("div");
+          div.classList.add("item");
+          div.innerHTML = `
+            <div class="item-img">
+              <img src="${
+                com.Imagen.replace(/^\.\//, "../") ||
+                "../Imagenes/Thumbnails/DefaultUpdate.png"
+              }" alt="${com.UpdateTitulo}">
+            </div>
+
+            <div class="item-info">
+              <p><strong>${com.UpdateTitulo}</strong></p>
+              <p>💬" ${com.Comentario} "</p>
+              <p>📅 ${com.Fecha}</p>
+            </div>
+          `;
+          commentsContainer.appendChild(div);
+        });
+      } else {
+        commentsContainer.innerHTML =
+          "<p class='empty'>No hiciste comentarios todavía.</p>";
+      }
+    })
+    .catch((err) => console.error("Error cargando extras:", err));
 });

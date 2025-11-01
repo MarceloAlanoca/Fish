@@ -1,152 +1,86 @@
 @font-face {
-    font-family: 'Pixelify Sans';
-    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Pixelify Sans';
+  src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
 }
+
+/* === BASE === */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 150px;
-    background-color: #3BB273;
-    background-image: url(../Imagenes/BackgroundHeader.png);
-    padding: 0 40px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  height: 150px;
+  padding: 0 40px;
+  background-image: url(../Imagenes/BackgroundHeader.png);
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center;
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(27, 164, 205, 0.6);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 1.2);
 }
 
+
+/* === IZQUIERDA === */
 .left-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.center-logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-align: center;
-    text-decoration: none;
-    margin-right: -15%;
+/* === CENTRO === */
+.center-logo .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
 }
 
 .center-logo h1 {
-    font-family: 'Pixelify Sans';
-    font-size: 68px;
-    color: #12293B;
-    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
+  font-family: 'Pixelify Sans';
+  font-size: 68px;
+  color: #0b0b0b;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
 .logo {
-    height: 130px;
-    filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
+  height: 130px;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 4));
 }
 
+/* === DERECHA === */
 .right-links {
-    display: flex;
-    gap: 20px;
-}
-
-.Link {
-    text-decoration: none;
-    background-color: #FF6B35;   
-    color: white;
-    border: none;
-    padding: 12px 28px;
-    margin-top: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: transform 0.2s, background 0.3s;
-}
-
-
-.Link:hover {
-    background-color: rgba(237, 66, 9,0.8);
-    transform: scale(1.05);
-}
-
-.card {
-    position: relative; /* 👈 Añadir esto */
-    text-decoration: none;
-    background-color: #565A66;   
-    color: white;
-    border: none;
-    margin-top: 20px;
-    padding: 12px 28px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: transform 0.2s, background 0.3s;
-    z-index: 1; /* Asegura que esté encima de los pseudo-elementos */
-    overflow: hidden; /* Previene que los bordes brillantes se salgan */
-}
-
-
-.card:hover {
-    background-color: rgba(121, 128, 145,0.8);
-    transform: scale(1.05);
-}
-
-@property --angle{
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.card::after,
-.card::before {
-    content: '';
-    position: absolute;
-    height: calc(100% + 6px); /* borde externo */
-    width: calc(100% + 6px);
-    background-image: conic-gradient(from var(--angle),#98938D, #6B6761, #C8C3BC, #98938D);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    border-radius: 12px;
-    animation: spin 3s linear infinite;
-}
-
-.card::before{
-  filter: blur(1.5rem);
-  opacity: 0.5;
-}
-@keyframes spin{
-  from{
-    --angle: 0deg;
-  }
-  to{
-    --angle: 360deg;
-  }
-}
-
-/* ---- PERFIL HEADER ---- */
-.ProfileLink {
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 20px;
+  transition: transform 0.3s ease;
 }
 
+.Link, .card {
+  text-decoration: none;
+  background-color: #FF6B35;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.Link:hover, .card:hover {
+  background-color: rgba(237, 66, 9, 0.8);
+  transform: scale(1.05);
+}
+
+/* === PERFIL === */
 .ProfileDisplay {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
-
-.ProfileDisplay:hover {
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .ImgProfile {
@@ -160,22 +94,50 @@ header {
 .NombreProfile {
   font-family: 'Pixelify Sans';
   color: black;
-  font-size: 33px;
+  font-size: 48px;
+  letter-spacing: 2px;
   font-weight: bold;
-  letter-spacing: 3px;
-  margin: 0;
 }
 
-/* ===== Modal de Cerrar Sesión ===== */
+.ProfileLink,
+.ProfileLink p,
+.ProfileDisplay p,
+.NombreProfile {
+  text-decoration: none !important;
+  border: none;
+  outline: none;
+}
+
+/* === BOTÓN HAMBURGUESA === */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #12293B;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* === MODAL LOGOUT === */
 .logout-modal {
   display: none;
   position: fixed;
   z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
 }
@@ -188,39 +150,141 @@ header {
   text-align: center;
   width: 350px;
   font-family: 'Pixelify Sans';
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
-.logout-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
+/* === RESPONSIVE === */
+@media (max-width: 1100px) {
+  .center-logo h1 {
+    font-size: 50px;
+  }
+
+  .left-buttons {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .right-links {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgba(7, 186, 231, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 20px 0;
+    transform: translateY(-200%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .right-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .Link, .card {
+    width: 80%;
+    text-align: center;
+    margin: 5px auto;
+  }
+
+  .ProfileDisplay {
+    flex-direction: column;
+  }
 }
 
-.logout-buttons .confirm {
-  background-color: #e74c3c;
-  border: none;
-  padding: 10px 20px;
+@media (max-width: 700px) {
+  .center-logo h1 {
+    display: none;
+  }
+
+  .logo {
+    height: 100px;
+  }
+
+  header {
+    padding: 0 20px;
+    height: 120px;
+  }
+}
+
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* === BOTÓN ADMIN (EFECTO PLATINO GIRATORIO) === */
+.card {
+  position: relative;
+  text-decoration: none;
+  background-color: #565A66;   
   color: white;
+  border: none;
+  padding: 12px 28px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: hidden;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1;
 }
 
-.logout-buttons .confirm:hover {
-  background-color: #c0392b;
+/* Animación del borde metálico */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
-.logout-buttons .cancel {
-  background-color: #7f8c8d;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  height: calc(100% + 6px);
+  width: calc(100% + 6px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: conic-gradient(from var(--angle),
+    #d9d6d0,
+    #98938D,
+    #C8C3BC,
+    #f4f4f4,
+    #98938D,
+    #d9d6d0);
+  border-radius: 12px;
+  z-index: -1;
+  animation: spinPlatinum 4s linear infinite;
 }
 
-.logout-buttons .cancel:hover {
-  background-color: #95a5a6;
+.card::before {
+  filter: blur(1.2rem);
+  opacity: 0.6;
+}
+
+@keyframes spinPlatinum {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+/* Hover */
+.card:hover {
+  transform: scale(1.05);
+  background-color: rgba(121, 128, 145, 0.85);
+  color: #ffffff;
 }

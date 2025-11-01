@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../CSS/Profile.css">
     <script src="../JS/Profile.js" defer></script>
 </head>
+
 <body>
     <?php include("../FuncionesPHP/SessionCheck.php"); ?>
     <?php include("header.php");  ?>
@@ -22,19 +24,35 @@
                     <button id="btnCambiarImagen">Cambiar Imagen</button>
                 </div>
                 <div class="info">
-                    <div><p>Nombre :</p><span id="nombre"></span></div>
-                    <div><p>Teléfono :</p><span id="telefono"></span></div>
-                    <div><p>Edad :</p><span id="edad"></span></div>
-                    <div><p>Género :</p><span id="genero"></span></div>
+                    <div>
+                        <p>Nombre :</p><span id="nombre"></span>
+                    </div>
+                    <div>
+                        <p>Teléfono :</p><span id="telefono"></span>
+                    </div>
+                    <div>
+                        <p>Edad :</p><span id="edad"></span>
+                    </div>
+                    <div>
+                        <p>Género :</p><span id="genero"></span>
+                    </div>
                 </div>
                 <button class="ButtonB" id="ChangeInfo">Cambiar Datos?</button>
             </div>
             <div class="content2">
                 <div class="Impinfo">
-                    <div><p>Usuario :</p><span id="usuario"></span></div>
-                    <div><p>Fecha de registro :</p><span id="fecha"></span></div>
-                    <div><p>Correo :</p><span id="email"></span></div>
-                    <div><p>Contraseña : *******</p></div>
+                    <div>
+                        <p>Usuario :</p><span id="usuario"></span>
+                    </div>
+                    <div>
+                        <p>Fecha de registro :</p><span id="fecha"></span>
+                    </div>
+                    <div>
+                        <p>Correo :</p><span id="email"></span>
+                    </div>
+                    <div>
+                        <p>Contraseña : *******</p>
+                    </div>
                 </div>
                 <button class="ButtonC" id="ChangePass">Cambiar contraseña?</button>
             </div>
@@ -44,6 +62,25 @@
             <a href="" target="_blank"><img class="decay" src="" alt="Anuncio" id="AdProfile"></a>
         </div>
     </div>
+
+    <div class="box">
+        <div class="UserData">
+            <div class="column">
+                <h2>Pases adquiridos</h2>
+                <div id="userPasses" class="scrollable"></div>
+            </div>
+
+            <div class="column">
+                <h2>Comentarios realizados</h2>
+                <div id="userComments" class="scrollable"></div>
+            </div>
+        </div>
+
+        <div class="AD">
+            <a href="" target="_blank"><img class="decay" src="" alt="Anuncio" id="AdProfile2"></a>
+        </div>
+    </div>
+
 
     <div id="modalDatos" class="modal-overlay">
         <div class="modal">
@@ -90,4 +127,5 @@
 
     <?php include("Footer.php"); ?>
 </body>
+
 </html>

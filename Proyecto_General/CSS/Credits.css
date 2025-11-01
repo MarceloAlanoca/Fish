@@ -1,126 +1,200 @@
 @font-face {
-    font-family: 'Pixelify Sans';
-    src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Pixelify Sans";
+  src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-body{
-    background-image: url(../Imagenes/FondoC.png);
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: center;
+
+body {
+  background-image: url(../Imagenes/FondoC.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  animation: moverFondoVertical 15s ease-in-out infinite alternate;
 }
-.back{
-    background-color: rgb(107, 103, 103, 70%);
-    border-style: solid;
-    border-color: black;
-    border-radius: 25%;
-    padding: 2%;
-    margin-left: -50%;
+
+@keyframes moverFondoVertical {
+  0% {
+    background-position: center 78%;
+  }
+  50% {
+    background-position: center 12%;
+  }
+  100% {
+    background-position: center 28%;
+  }
+}
+
+.back {
+  background-color: rgb(107, 103, 103, 70%);
+  border-style: solid;
+  border-color: black;
+  border-radius: 25%;
+  padding: 2%;
+  margin-left: -50%;
 }
 
 .creditos-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
 }
 
 .integrante {
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: white;
 }
 
-.nombrev{
-    color: white;
+.nombrev {
+  color: white;
 }
 
 .integrante img {
-    width: 300px;
-    height: 350px;
-    border-radius: 25%;
-    border: 3px solid black;
-    object-fit: cover;
-    color: white;
+  width: 300px;
+  height: 350px;
+  border-radius: 25%;
+  border: 3px solid black;
+  object-fit: cover;
+  color: white;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
-    background-color: white;
-    color: black;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    text-align: center;
+  background-color: white;
+  color: black;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
 }
 
 .close {
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-.caja{
-    background-color: rgb(25, 61, 74, 80%);
-    border: solid;
-    margin: 5%;
-    padding: 20px;
+/* 🌟 Estilo especial para la caja inspiradora */
+.caja {
+  position: relative;
+  background: linear-gradient(180deg, rgba(0, 63, 92, 0.9), rgba(14, 112, 131, 0.9));
+  border: 3px solid #AEECEF;
+  border-radius: 20px;
+  margin: 5%;
+  padding: 40px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  animation: brilloMarino 6s ease-in-out infinite alternate;
 }
 
-.caja p{
-    font-family: 'Pixelify Sans';
-    text-align: center;
-    font-size: xx-large;
-    color: #A9C2CF;
+/* ✨ Movimiento de brillo sutil */
+@keyframes brilloMarino {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transform: translateY(0px);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.6);
+    transform: translateY(-3px);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transform: translateY(0px);
+  }
 }
+
+/* 🌊 Partículas luminosas simulando burbujas */
+.caja::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 2%, transparent 3%);
+  background-size: 60px 60px;
+  animation: burbujas 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes burbujas {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-430px);
+  }
+}
+
+.caja p {
+  position: relative;
+  z-index: 1;
+  font-family: 'Pixelify Sans';
+  text-align: center;
+  font-size: xx-large;
+  color: #E4F9FF;
+  line-height: 1.6;
+}
+
+.caja .r {
+  color: #AEECEF;
+  margin-top: 20px;
+  font-style: italic;
+  font-size: x-large;
+}
+
 
 .mini-modal {
-    position: absolute;
-    top: 210%;
-    left: 50%;
-    transform: translate(-50%, -120%);
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-    width: 550px;
-    text-align: center;
-    font-family: 'Pixelify Sans';
-    font-size: x-large;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 5;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  position: absolute;
+  top: 210%;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: 550px;
+  text-align: center;
+  font-family: "Pixelify Sans";
+  font-size: x-large;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .integrante {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .integrante:hover .mini-modal {
-    opacity: 1;
-    transform: translate(-50%, -140%);
-    pointer-events: auto;
+  opacity: 1;
+  transform: translate(-50%, -140%);
+  pointer-events: auto;
 }
 
 .imagen {
@@ -132,5 +206,105 @@ body{
 
 .imagen.hover {
   filter: drop-shadow(5px 5px 30px rgba(12, 12, 12, 0.8))
-          drop-shadow(-5px -5px 20px rgba(0, 0, 0, 0.5));
+    drop-shadow(-5px -5px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* ==============================
+   📱 RESPONSIVE DESIGN
+================================= */
+
+/* 🔹 Celulares (pantallas menores a 600px) */
+@media (max-width: 600px) {
+  .creditos-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+  }
+
+  .integrante img {
+    width: 200px;
+    height: 230px;
+  }
+
+  .nombrev {
+    font-size: 20px;
+  }
+
+  .mini-modal {
+    width: 90%;
+    font-size: medium;
+    padding: 15px;
+    top: 180%;
+    transform: translate(-50%, -100%);
+  }
+
+  .integrante:hover .mini-modal {
+    transform: translate(-50%, -120%);
+  }
+
+  .caja {
+    margin: 10% 5%;
+    padding: 25px;
+  }
+
+  .caja p {
+    font-size: large;
+  }
+}
+
+/* 🔹 Tablets / Laptops pequeñas (601px a 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .creditos-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .integrante {
+    width: 40%;
+  }
+
+  .integrante img {
+    width: 250px;
+    height: 300px;
+  }
+
+  .mini-modal {
+    width: 80%;
+    font-size: large;
+    top: 190%;
+  }
+
+  .caja {
+    margin: 5% 8%;
+    padding: 35px;
+  }
+}
+
+/* 🔹 Pantallas grandes (1025px en adelante) */
+@media (min-width: 1025px) {
+  .creditos-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .integrante {
+    width: auto;
+  }
+
+  .integrante img {
+    width: 300px;
+    height: 350px;
+  }
+
+  .mini-modal {
+    width: 550px;
+  }
+
+  .caja {
+    width: 85%;
+    margin: 5% auto;
+  }
 }

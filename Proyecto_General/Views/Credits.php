@@ -7,11 +7,11 @@
     <title>Creditos</title>
     <link rel="stylesheet" href="../CSS/Credits.css">
     <link rel="icon" type="image/png" href="../Imagenes/IconWeb.jpg">
-        <script src="../JS/Credits.js" defer></script>
+    <script src="../JS/Credits.js" defer></script>
 </head>
 
 <body>
-    <?php include("../FuncionesPHP/SessionCheck.php"); ?> 
+    <?php include("../FuncionesPHP/SessionCheck.php"); ?>
     <?php include("header.php");  ?>
     <!-- Primera fila -->
     <div class="creditos-container">
@@ -27,7 +27,7 @@
                     del Trello mejorando la cordinacion del equipo en FishStack, administrado cada sector para
                     mejorar el flujo de trabajo.
                     Apoyaba a sus compañeros de trabajo al preguntar su opinion y expresar sus aspectos,
-                    mejorando y viendose como un integrante fiel a FishStack 
+                    mejorando y viendose como un integrante fiel a FishStack
                 </p>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 </p>
             </div>
         </div>
-        
+
         <div class="integrante">
             <img src="../Imagenes/Iconos/Marcelo.jpg" alt="Marcelo" class="imagen">
             <p class="nombrev">Marcelo</p>
@@ -60,9 +60,9 @@
                     Un pilar fundamental al momento de trabajar en la creacion del juego y programar gdscript
                     contando con el mayor conocimiento del equipo sobre Godot.
                     Apoyo en la creacion de diferentes sectores en la pagina mayormente en los que necesitaban
-                    ayuda o correcion de errores. 
+                    ayuda o correcion de errores.
                 </p>
-            </div> 
+            </div>
         </div>
 
         <div class="integrante">
@@ -74,10 +74,10 @@
                 <p>FrontEnd</p>
                 <p>La encargada de dar la primera impresion con la seccion de la pagina principal de FishStack
                     permitiendo invitar de manera amigable a todos los usuarios nuevos de nuestra pagina. Tambien
-                    fue la responsable de crear la llamativa seccion de la tienda junto a su interfaz intuitiva, aunque 
-                    no se comunicaba mucho con sus compañeros de trabajo demostro tener la esperanza en el proyecto y su equipo 
+                    fue la responsable de crear la llamativa seccion de la tienda junto a su interfaz intuitiva, aunque
+                    no se comunicaba mucho con sus compañeros de trabajo demostro tener la esperanza en el proyecto y su equipo
                 </p>
-            </div> 
+            </div>
         </div>
     </div>
 
@@ -91,12 +91,12 @@
             <div class="mini-modal">
                 <h3>Gael</h3>
                 <p>Designer - Tester</p>
-                <p>Un gran aportador en la seccion de diseños de peces, decoraciones marinas, fondos, etc 
+                <p>Un gran aportador en la seccion de diseños de peces, decoraciones marinas, fondos, etc
                     del videojuego FishStack, tambien se lo conoce como el quien daba mucha moral a su compañeros
-                    y apoyandolos de cualquier forma que pudiera. Sin el, el videojuego tendra diseños demasiados simples 
+                    y apoyandolos de cualquier forma que pudiera. Sin el, el videojuego tendra diseños demasiados simples
                     y el equipo no tendria ese Carisma especial que el provee.
                 </p>
-            </div> 
+            </div>
         </div>
 
         <div class="integrante">
@@ -106,13 +106,13 @@
             <div class="mini-modal">
                 <h3>Lautaro</h3>
                 <p>Designer</p>
-                <p>El Colaborador y socio mas apoyado por parte del equipo, hizo varios diseño como 
-                    peces, cañas, cebos y multiple cosas mas requeridas para el juego, tambien aporto con la 
-                    creacion de los diferente fondos que hay en la pagina web de FishStack. en las reuniones importantes 
+                <p>El Colaborador y socio mas apoyado por parte del equipo, hizo varios diseño como
+                    peces, cañas, cebos y multiple cosas mas requeridas para el juego, tambien aporto con la
+                    creacion de los diferente fondos que hay en la pagina web de FishStack. en las reuniones importantes
                     el actuaba como un Soporte al Scrum Master asegurando que nuestra imagen quedara bien para el publico.
                     Tambien se lo reconocia por su amabilidad y compañerismo con sus compañeros del proyecto.
                 </p>
-            </div> 
+            </div>
         </div>
 
         <div class="integrante">
@@ -122,12 +122,12 @@
             <div class="mini-modal">
                 <h3>John</h3>
                 <p>Designer - Composer - FrontEnd</p>
-                <p>Uno que dio un gran aporte a FishStack en sus difentes aspectos, ayudo con 
+                <p>Uno que dio un gran aporte a FishStack en sus difentes aspectos, ayudo con
                     creacion de dibujos del juego como la pagina web, armo las pistas sonoras originales de FishStack
                     creo la presentacion en github para aquellos que quisieran apoyar o le interesaran FishStack.
                     Un comodin que decidio colaborar y dar fuerzas a FishStack.
                 </p>
-            </div> 
+            </div>
         </div>
     </div>
 
@@ -135,12 +135,13 @@
 
     <div class="caja">
         <p>
-            Como equipo estamos tomando este proyecto en modo de aprendizaje y diverision,
-            haciendo cosas que nos gustan y aprendiendo diferentes cosa a base de la progresion
-            de nuestras obra
+            “Cada línea de código, cada trazo y cada idea fueron impulsadas por la misma corriente:
+            la pasión por crear algo que nos represente. FishStack no solo es un proyecto,
+            es el reflejo de un equipo que aprendió a navegar juntos, superar mareas y pescar sueños.”
         </p>
-        <p class="r">Atte : Todo el equipo de FishStack</p>
+        <p class="r">— El equipo de FishStack💙</p>
     </div>
+
     <audio autoplay loop>
         <source src="../Songs/Nightlight.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.

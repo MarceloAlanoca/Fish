@@ -1,110 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Footer</title>
     <link rel="stylesheet" href="../CSS/Footer.css">
 </head>
+
 <body>
     <footer>
-    <div class="content">
-        <div  class="Aling">
-            <div class="BoxC">
-                <h2 class="Letra">Quienes somos?</h2>
-                <p class="Letra">Marcelo Alanoca</p>
-                <p class="Letra">Thiago Loaiza</p>
-                <p class="Letra">Alejandra Chavez</p>
-                <p class="Letra">Gael Estrada</p>
-                <p class="Letra">Lautaro Navarro</p>
-                <p class="Letra">Pedro Leone</p>
+        <div class="footer-container">
+            <div class="footer-box">
+                <h2>¿Quiénes somos?</h2>
+                <ul>
+                    <li>Marcelo Alanoca</li>
+                    <li>Thiago Loaiza</li>
+                    <li>Alejandra Chavez</li>
+                    <li>Gael Estrada</li>
+                    <li>Lautaro Navarro</li>
+                    <li>Pedro Leone</li>
+                </ul>
             </div>
-            <div class="BoxC">
-                <h2 class="Letra">Contactos</h2>
-                <p class="Letra">11 1111-1111</p>
-                <p class="Letra">11 2222-2222</p>
-                <p class="Letra">11 3333-3333</p>
-                <p class="Letra">11 4444-4444</p>
-                <p class="Letra">11 5555-5555</p>
-                <p class="Letra">11 6666-6666</p>
+
+            <div class="footer-box">
+                <h2>Contactos</h2>
+                <ul>
+                    <li>📞 11 1111-1111</li>
+                    <li>📞 11 2222-2222</li>
+                    <li>📞 11 3333-3333</li>
+                    <li>📞 11 4444-4444</li>
+                    <li>📞 11 3333-3333</li>
+                    <li>📞 11 4444-4444</li>
+                </ul>
             </div>
-            <div class="BoxC">
-                <h2 class="Letra">Donde encontrarnos</h2>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>                
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Intagram
-                </a>
-                <br>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord" class="ImgFooter">Discord
-                </a>
-                <a href="" class="Letra">
-                    <img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram" class="ImgFooter">Instagram
-                </a>
+
+            <div class="footer-box">
+                <h2>Redes sociales</h2>
+                <div class="social-links">
+                    <a href="#"><img src="../Imagenes/IconosPresentacion/IconDiscord.png" alt="Discord"> Discord</a>
+                    <a href="#"><img src="../Imagenes/IconosPresentacion/IconInstagram.jpg" alt="Instagram"> Instagram</a>
+                    <a href="#"><img src="../Imagenes/IconosPresentacion/IconTwitter.png" alt="Twitter"> Twitter</a>
+                    <a href="#"><img src="../Imagenes/IconosPresentacion/IconYoutube.png" alt="Twitter"> Youtube</a>
+                </div>
             </div>
-            
-            <div class="BoxC">
-                <h2 class="Letra">Quieres saber mas de nosostros?</h2>
-                <a href="Credits.php">Creditos</a>
-                <h2 class="Letra">Tienes alguna consulta o problema?</h2>
-                <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">fishstack.soporte@gmail.com</a>
-                <h2 class="Letra">Quieres ver las actualizacion directamente?</h2>
-                <a href="Logs.php">Actualizaciones</a>
+
+            <div class="footer-box">
+                <h2>Más información</h2>
+                <p>Quieres saber mas de nosotros?</p>
+                <a href="Credits.php">Créditos</a>
+                <p>Quieres ver las actus directamente?</p>
+                <a href="Logs.php">🧭 Actualizaciones</a>
+                <p>Tienes alguna consulta sobre FishStack</p>
+                <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">✉️ fishstack.soporte@gmail.com</a>
             </div>
-            <br>
-            
         </div>
-        <div class="Autor">
-                <p class="Derechos">
-                    Los derechos de autor estan registrados por DevPlays Studio y
-                    otra persona o entidad que quiera robar propiedad intelectuar que nos quiera usurpar se vera en problemas
-                </p>
-            </div>
-    </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 FishStack — DevPlays Studio. Todos los derechos reservados.</p>
+        </div>
     </footer>
+
 </body>
+
 </html>

@@ -17,13 +17,13 @@
         </div>
 
         <div class="center-logo">
-            <a href="Home.php" class="center-logo">
+            <a href="Home.php" class="logo-container">
                 <img src="../Imagenes/IconoFS.png" alt="Logo FishStack" class="logo">
                 <h1>FishStack</h1>
             </a>
         </div>
 
-        <nav class="right-links">
+        <nav class="right-links" id="navMenu">
             <a class="card admin-btn" href="CRUD.php">ADMIN</a>
             <a class="Link" href="Shop.php">Tienda</a>
             <a class="Link" href="Credits.php">Créditos</a>
@@ -35,9 +35,16 @@
                 </div>
             </a>
         </nav>
+
+        <!-- Botón Hamburguesa -->
+        <div class="menu-toggle" id="menuToggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </header>
 
-    <!-- Modal de confirmación -->
+    <!-- Modal de cierre de sesión -->
     <div id="logoutModal" class="logout-modal">
         <div class="logout-content">
             <h3>¿Seguro que quieres cerrar tu sesión actual?</h3>

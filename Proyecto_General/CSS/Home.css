@@ -1,57 +1,112 @@
+/* =================================================== */
+/* 🔷 BASE GENERAL */
+/* =================================================== */
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
+}
+
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body{
-    background-image: url(../Imagenes/FondoHome.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* ✅ evita scroll horizontal */
 }
 
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: movimientoOlas 40s ease-in-out infinite alternate;
+  transition: background-image 1s ease-in-out;
+  min-height: 100vh;
+}
+
+/* Animación fondo marino */
+@keyframes movimientoOlas {
+  0% { background-position: 50% 50%; }
+  50% { background-position: 12% 38%; }
+  100% { background-position: 48% 52%; }
+}
+
+/* =================================================== */
+/* 🔷 ESTRUCTURA PRINCIPAL */
+/* =================================================== */
 .boxes {
-    display: flex;
-    justify-content: space-between; 
-    align-items: flex;        
-    margin: 40px auto;              
-    padding: 0 5%;                  
-    gap: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 40px auto;
+  padding: 0 5%;
+  gap: 60px;
+  max-width: 1600px;
+  flex-wrap: wrap;
 }
 
+/* =================================================== */
+/* 🔷 ANUNCIOS */
+/* =================================================== */
 .Ad1, .Ad2, .Seleccion {
-    background-color: #3BB273;
-    background-image: url(../Imagenes/Degrades/Negro.jpg);
-    height: 700px;
-    flex: 1;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 1.2);
+  background-color: #3BB273;
+  background-image: url(../Imagenes/Degrades/Negro.jpg);
+  border: solid #3A4045;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 1.2);
+  border-radius: 10px;
+  overflow: hidden;
 }
-.Ad1{
-  order: 1;
-}
-.Ad2{
-  order: 3;
-}
-.Seleccion {
-  background-image: url(../Imagenes/BackgroundSelection.png);
+
+.Ad1, .Ad2 {
+  flex: 1 1 300px;
   display: flex;
-  flex: 3;
-  justify-content: center;  
-  align-items: center;      
-  flex-direction: column;   
-  gap: 20px;
-  order: 2;
-  border: solid;
-  border-color: #3A4045;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  height: 480px;
+}
+
+.decay {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.decay:hover {
+  transform: scale(1.03);
+}
+
+/* =================================================== */
+/* 🔷 SELECCIÓN */
+/* =================================================== */
+.Seleccion {
+  flex: 2.5;
+  background-image: url(../Imagenes/BackgroundSelection.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  border-radius: 12px;
+}
+
+.Part1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
 .Seleccion button {
   font-family: 'Pixelify Sans';
-  background-color: #FF6B35;   
+  background-color: #FF6B35;
   color: black;
   border: none;
-  padding: 36px 72px;
-  border-radius: 10px;
+  padding: 45px 85px;
+  border-radius: 14px;
   cursor: pointer;
   font-size: 3em;
   font-weight: bold;
@@ -60,22 +115,58 @@ body{
 }
 
 .Seleccion button:hover {
-  background-color: #e55a25; 
+  background-color: #e55a25;
   transform: scale(1.05);
 }
 
-.decay{
-  margin: 5%;
-  width: 90%;
-  height: 95%;
+/* =================================================== */
+/* 🔷 MENSAJE Y PEZ */
+/* =================================================== */
+.Part2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
 }
 
+.mensaje-horario {
+  font-family: 'Pixelify Sans';
+  font-size: 2.4em;
+  color: black;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  animation: aparecer 1.5s ease-in-out;
+}
+
+#pezAnimado {
+  width: 200px;
+  height: auto;
+  position: relative;
+  animation: nadar 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+}
+
+/* Movimiento pez */
+@keyframes nadar {
+  0% { transform: translateX(-80%) scaleX(1); }
+  50% { transform: translateX(80%) scaleX(1); }
+  51% { transform: translateX(80%) scaleX(-1); }
+  100% { transform: translateX(-80%) scaleX(-1); }
+}
+
+/* Animación texto */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =================================================== */
+/* 🔷 MODAL */
+/* =================================================== */
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-color: rgba(17, 17, 17, 0.8);
   display: flex;
   justify-content: center;
@@ -108,7 +199,6 @@ body{
   font-family: 'Pixelify Sans';
   text-align: center;
   font-size: 3rem;
-  letter-spacing: 3px;
   color: white;
   margin: 0;
 }
@@ -136,73 +226,222 @@ body{
   background: white;
   color: black;
 }
-@media (max-width: 1024px) {
-  .boxes {
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 40px;
-  }
 
-  .Ad1,
-  .Ad2 {
-    width: 20%;
-    height: 300px;
-    flex: 0 0 auto;
-  }
+/* =================================================== */
+/* 🔷 RESPONSIVE (Mobile First limpio) */
+/* =================================================== */
 
-  .Seleccion {
-    flex: 2 1 300px;
-    height: 400px;
-  }
-
-  .Seleccion button {
-    padding: 24px 48px;
-    font-size: 2em;
-  }
-}
-@media (max-width: 600px) {
-  body {
-    background-position: center;
-    background-attachment: fixed;
-  }
-
+/* Celulares pequeños */
+@media (max-width: 480px) {
   .boxes {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 0 2%;
   }
 
   .Ad1 {
- display: none;    
+    display: none;
   }
 
   .Seleccion {
+    width: 95%;
+    padding: 25px;
+  }
+
+  .Seleccion button {
     width: 90%;
-    height: 300px;
-    order: 2;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    font-size: 1.6em;
+    padding: 24px 48px;
+  }
+
+  .mensaje-horario {
+    font-size: 1.4em;
+  }
+
+  #pezAnimado {
+    width: 110px;
   }
 
   .Ad2 {
     width: 90%;
     height: 200px;
-    order: 3;      
   }
+}
+
+/* Celulares grandes / tablets verticales */
+@media (min-width: 481px) and (max-width: 900px) {
+  .boxes {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .Ad1 { display: none; }
+
   .Seleccion {
     width: 90%;
-    height: 300px;
-    order: 2;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    padding: 35px;
   }
 
   .Seleccion button {
-    font-size: 1.5em;
-    padding: 16px 32px;
+    font-size: 2.2em;
+    padding: 30px 60px;
+  }
+
+  .mensaje-horario {
+    font-size: 1.8em;
+  }
+
+  #pezAnimado {
+    width: 140px;
+  }
+
+  .Ad2 {
+    width: 90%;
+    height: 220px;
+  }
+}
+
+/* 💻 Laptops medianas (901px a 1399px) */
+@media (min-width: 901px) and (max-width: 1399px) {
+  .boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch; /* 🔹 Misma altura para todos */
+    gap: 40px;
+    padding: 0 5%;
+  }
+
+  .Ad1, .Ad2, .Seleccion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .Ad1, .Ad2 {
+    flex: 0.7; /* 🔹 Más angostas */
+    min-width: 200px;
+    background-color: #3BB273;
+    background-image: url(../Imagenes/Degrades/Negro.jpg);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 1.2);
+    border: solid #3A4045;
+    overflow: hidden;
+  }
+
+  /* 🐟 Imagen dentro del anuncio */
+  .Ad1 img, .Ad2 img, .decay {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* 🔹 Se deforma para cubrir todo */
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .decay:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+
+  .Seleccion {
+    flex: 3.2; /* 🔹 Más ancha que los anuncios */
+    background-image: url(../Imagenes/BackgroundSelection.png);
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    gap: 45px;
+    padding: 40px 20px;
+    border: solid #3A4045;
+  }
+
+  .Seleccion button {
+    font-size: 2.8em;
+    padding: 42px 80px;
+  }
+
+  #pezAnimado {
+    width: 180px;
+  }
+
+  .mensaje-horario {
+    font-size: 2.3em;
+  }
+}
+
+/* 🖥️ Pantallas grandes (1400px o más) */
+@media (min-width: 1400px) {
+  .boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 60px;
+    padding: 0 6%;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+
+  .Ad1, .Ad2, .Seleccion {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+  }
+
+  .Ad1, .Ad2 {
+    flex: 0.6;
+    min-width: 250px;
+    background-color: #3BB273;
+    background-image: url(../Imagenes/Degrades/Negro.jpg);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 1.2);
+    border: solid #3A4045;
+    overflow: hidden;
+  }
+
+  /* 🐠 Imagen estirada completamente */
+  .Ad1 img, .Ad2 img, .decay {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* 🔹 Deforma pero llena todo el espacio */
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    align-items: stretch;
+  }
+
+  .decay:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+
+  .Seleccion {
+    flex: 3.6;
+    background-image: url(../Imagenes/BackgroundSelection.png);
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px 30px;
+    border: solid #3A4045;
+  }
+
+  .Seleccion button {
+    font-size: 3em;
+    padding: 45px 90px;
+  }
+
+  #pezAnimado {
+    width: 200px;
+  }
+
+  .mensaje-horario {
+    font-size: 2.5em;
   }
 }

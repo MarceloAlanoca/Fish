@@ -1,15 +1,18 @@
 <?php
 session_start();
-include("../../Includes/Connect.php"); // sube dos carpetas desde /Home/
+include("../../Includes/Connect.php");
 
-if (!isset($_SESSION['usuario'])) {
+// Verificar que la sesión esté activa
+if (!isset($_SESSION['usuario']) || !isset($_SESSION['id_usuario'])) {
     echo json_encode(["error" => "No hay sesión activa"]);
     exit;
 }
 
 $usuario = $_SESSION['usuario'];
+$id = intval($_SESSION['id_usuario']);
 
-$query = "SELECT Nombre, foto, rol FROM usuarios WHERE Usuario = '$usuario'";
+// Buscar datos del usuario por ID (más seguro que por nombre)
+$query = "SELECT Nombre, foto, rol FROM usuarios WHERE ID = $id";
 $result = mysqli_query($conexion, $query);
 
 if ($result && mysqli_num_rows($result) > 0) {

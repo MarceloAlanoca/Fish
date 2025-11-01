@@ -1,226 +1,414 @@
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        margin: 0;
-        padding: 0;
-        background-image: url(../Imagenes/Arco.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-position: top;
-    }
-    @font-face {
-        font-family: 'Pixelify Sans';
-        src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
-    p, span{
-        font-family:'Pixelify Sans';
-        font-size: xx-large;
-    }
+html {
+  height: auto;
+  min-height: 100%;
+}
 
-    .FP{
-        opacity: 0.25;
-    }
-    button{
-        text-decoration: none;
-        background-color: #FF6B35;   
-        color: white;
-        border: solid,black;
-        padding: 32px 28px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: transform 0.2s, background 0.3s;
-    }
-    button:hover{
-        background-color: rgba(237, 66, 9,0.8);
-        transform: scale(1.05);
-    }
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url(../Imagenes/Arco.png);
+  background-size: cover;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-attachment: scroll;
+  animation: moverOlas 30s linear infinite;
+}
 
-    .box{
-        background-color: rgba(85, 91, 120, 0.5);
-        border: solid;
-        margin: 5%;
-        padding: 40px;
-        box-shadow: 0 0 56px 0 rgba(255, 255, 255, 0.8);
-        display: flex;      
-        justify-content: center;
-        align-items: stretch;
-        gap: 30px;     
-    }
+/* 🌊 Fondo animado */
+@keyframes moverOlas {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 0; }
+}
 
-    .Profile{
-        background-color: rgb(59, 178, 115, 90%);
-        border: solid;
-        border-radius: 5%;
-        margin: 10px;   
-        padding: 70px;
-        width: 65%;
-        float: none;
-    }
-    .ProfileImg p{
-        margin-left: 20%;
-        
-    }
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url(../CSS/Fonts/Jersey_10/Jersey10-Regular.ttf) format("truetype");
+}
 
-    .ProfileImg img {
-        width: 220px;
-        height: auto;
-        border-radius: 50%;
-        object-fit: cover;
-        border: solid;
-    }
-    .ProfileImg{
-        padding-right: 20%;
-    }
-    .content1, .content2 {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
+.Profile p, span {
+  font-family: "Pixelify Sans";
+  font-size: xx-large;
+}
 
-    .ButtonB, .ButtonC {
-        margin-left: auto;
-    }
-    .ButtonC{
-        margin-right: 40px;
-    }
+.FP { opacity: 0.25; }
 
-    .info p, .Impinfo p {
-        margin: 0;
-        line-height: 1.2; 
-        display: inline-block;
-        margin-right: 10px;
-    }
+button {
+  text-decoration: none;
+  background-color: #ff6b35;
+  color: white;
+  border: solid, black;
+  padding: 28px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.3s;
+}
 
-    .info, .Impinfo {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
+button:hover {
+  background-color: rgba(237, 66, 9, 0.8);
+  transform: scale(1.05);
+}
 
-    .info div, .Impinfo div {
-        display: flex;
-        gap: 10px;
-    }
-    .Impinfo{
-        margin-top: 5%;
-        margin-left: 20%;
-        background-color: #738CA6AA;
-        padding: 2%;
-        border-radius: 5.5%;
-        border: solid;
-    }
+/* =================================================== */
+/* 🔷 BOX GENERAL */
+/* =================================================== */
+.box {
+  background-color: rgba(85, 91, 120, 0.5);
+  border: solid;
+  margin: 5%;
+  padding: 40px;
+  box-shadow: 0 0 56px rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  transition: all 0.4s ease;
+}
 
-    .info{
-        #12293B;
-        background-color:#12293BAA;
-        padding: 2%;
-        border-radius: 5.5%;
-        border: solid;
-    }
+/* =================================================== */
+/* 💧 PROFILE: CELESTE + BURBUJAS + FLOTACIÓN */
+/* =================================================== */
+.Profile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 25px;
+  border: 2px solid #0b3b4a;
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(180deg, rgba(132, 215, 243, 0.9) 0%, rgba(49, 160, 192, 0.9) 100%);
+  animation: flotar 5s ease-in-out infinite;
+  width: 65%;
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
 
-    .inputrow{
-        font-family:'Pixelify Sans';
-        font-size: large;
-        background-color: #fffff0;
-        margin: 5px;
-    }
-    .AD {
-        background-color: rgb(168, 162, 162);
-        width: 20%;
-        border: solid;
-    }
+.Profile::before, .Profile::after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 40%, transparent 70%);
+  border-radius: 50%;
+  animation: burbujas 18s linear infinite;
+  opacity: 0.8;
+  z-index: 0;
+}
 
-    .AD img {
-        width: 100%;
-        height: 100%;
-    }
-    .ImagenP{
-        border-radius: 100px 100px;
-    }
+.Profile::before { width: 100px; height: 100px; left: 20%; animation-delay: 0s; }
+.Profile::after  { width: 140px; height: 140px; left: 70%; animation-delay: 5s; }
 
-    /* === MODALES === */
-    .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
+@keyframes burbujas {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-800px) scale(1.2); opacity: 0; }
+}
+
+@keyframes flotar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.Profile > * { position: relative; z-index: 2; }
+
+/* =================================================== */
+/* 🧍 CONTENIDO PERFIL */
+/* =================================================== */
+.ProfileImg {
+  text-align: center;
+}
+
+.ProfileImg img {
+  width: 220px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  border: solid;
+}
+
+.content1,
+.content2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ButtonB, .ButtonC { margin-left: auto; }
+.ButtonC { margin-right: 40px; }
+
+.info div,
+.Impinfo div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.info div p,
+.Impinfo div p {
+  display: inline-block;
+  margin: 0 8px 0 0;
+  line-height: 1.6;
+}
+
+.Impinfo, .info {
+  background-color: rgba(115, 140, 166, 0.6);
+  border: solid;
+  padding: 20px;
+}
+
+/* =================================================== */
+/* 📺 ANUNCIO */
+/* =================================================== */
+.AD {
+  background-color: #000000b0;
+  width: 25%;
+  border: solid;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AD img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =================================================== */
+/* 📜 USERDATA */
+/* =================================================== */
+.UserData {
+  position: relative;
+  overflow: hidden;
+  border-radius: 25px;
+  border: 2px solid #0b3b4a;
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(180deg, rgba(132, 215, 243, 0.9) 0%, rgba(49, 160, 192, 0.9) 100%);
+  animation: flotar 5s ease-in-out infinite;
+  width: 75%;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.column h2 {
+  font-family: "Pixelify Sans";
+  text-align: center;
+  background-color: #ff6b35;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  border: solid black;
+}
+
+.scrollable {
+  background-color: rgba(18, 41, 59, 0.6);
+  border-radius: 10px;
+  border: solid;
+  padding: 20px;
+  height: 400px;
+  overflow-y: auto;
+  color: white;
+}
+
+/* 🔹 Cada item */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: solid 2px #3a4045;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  color: #fff;
+  font-family: "Pixelify Sans";
+}
+
+.item-img {
+  flex: 0 0 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: solid 2px black;
+  background-color: #222;
+}
+
+.item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-info p { margin: 0; line-height: 1.4; }
+
+.empty {
+  text-align: center;
+  opacity: 0.8;
+  color: #eee;
+}
+
+/* =================================================== */
+/* 🧩 MODALES (RESTAURADOS) */
+/* =================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  font-family: "Pixelify Sans";
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  border: 3px solid #ff6b35;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal h2 { margin-top: 0; color: #ff6b35; }
+
+.modal label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.modal input, .modal select {
+  width: 90%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: "Pixelify Sans";
+  background-color: #fff;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-buttons button {
+  background: #ff6b35;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.modal-buttons button:hover {
+  background: rgba(237, 66, 9, 0.8);
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* =================================================== */
+/* 📱 RESPONSIVE INTERNO */
+/* =================================================== */
+
+/* Tablets */
+@media (max-width: 1000px) {
+  .box {
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    }
+  }
 
-    .modal-overlay.active {
-    display: flex;
-    }
-
-    .modal {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    width: 400px;
-    max-width: 90%;
-    text-align: center;
-    font-family: 'Pixelify Sans';
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    border: 3px solid #FF6B35;
-    animation: fadeIn 0.25s ease; /* Pequeña animación opcional */
-    }
-
-    .modal h2 {
-    margin-top: 0;
-    color: #FF6B35;
-    }
-
-    .modal label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    }
-
-    .modal input,
-    .modal select {
+  .Profile, .UserData {
     width: 90%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    font-family: 'Pixelify Sans';
-    background-color: #fff;
-    }
+    padding: 40px 25px;
+  }
 
-    .modal-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    }
+  .ProfileImg img { width: 160px; }
 
-    .modal-buttons button {
-    background: #FF6B35;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    }
+  .Profile .content1, .Profile .content2 {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .modal-buttons button:hover {
-    background: rgba(237, 66, 9, 0.8);
-    transform: scale(1.05);
-    }
+  .info, .Impinfo {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
 
-    /* Animación de aparición */
-    @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-    }
+  .ButtonB, .ButtonC {
+    margin: 10px auto;
+  }
+
+  .UserData {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .AD {
+    width: 70%;
+    height: auto;
+    order: 3;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .Profile, .UserData {
+    width: 95%;
+    padding: 25px;
+  }
+
+  .Profile p, span {
+    font-size: large;
+  }
+
+  .ProfileImg img { width: 130px; }
+
+  .AD {
+    width: 80%;
+    height: 150px;
+    border-radius: 10px;
+  }
+
+  .scrollable {
+    height: 250px;
+  }
+}
