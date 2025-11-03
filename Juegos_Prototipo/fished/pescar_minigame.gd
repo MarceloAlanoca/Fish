@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 signal minijuego_finalizado(resultado_exitoso: bool)
 @onready var fondo_barra = $Control/FondoBarra

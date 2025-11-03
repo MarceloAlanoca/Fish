@@ -1,57 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1xvinc7ybh2g"]
+[gd_scene load_steps=5 format=3 uid="uid://d1xvinc7ybh2g"]
 
 [ext_resource type="Script" uid="uid://tdytfmt4y4lk" path="res://pescar_minigame.gd" id="1_dty0n"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_snmqf"]
-size = Vector2(800, 40)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o3lth"]
-size = Vector2(80, 40)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jaeow"]
-size = Vector2(160, 40)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_drxxn"]
-size = Vector2(800, 20)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8g60o"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w870f"]
+[ext_resource type="Texture2D" uid="uid://onwmo3oh04yl" path="res://Assets/Minijuego/Negro.jpg" id="2_jaeow"]
+[ext_resource type="Texture2D" uid="uid://qbdi74d2walc" path="res://Assets/Minijuego/Blanco.jpg" id="3_drxxn"]
+[ext_resource type="Texture2D" uid="uid://dbh4rd3gnwkid" path="res://Assets/Minijuego/Azul.jpg" id="4_8g60o"]
 
 [node name="PescarMinigame" type="CanvasLayer"]
-script = ExtResource("1_dty0n")
+offset = Vector2(200, 250)
+transform = Transform2D(1, 0, 0, 1, 200, 250)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_dty0n")
+velocidad_pez = 400.0
 
 [node name="FondoBarra" type="TextureRect" parent="Control"]
 layout_mode = 0
 offset_right = 800.0
 offset_bottom = 40.0
-texture = SubResource("PlaceholderTexture2D_snmqf")
-
-[node name="ZonaPez" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_right = 80.0
-offset_bottom = 40.0
-texture = SubResource("PlaceholderTexture2D_o3lth")
+scale = Vector2(0.995462, 1)
+texture = ExtResource("2_jaeow")
+expand_mode = 1
 
 [node name="ZonaJugador" type="TextureRect" parent="Control"]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 40.0
-texture = SubResource("PlaceholderTexture2D_jaeow")
+texture = ExtResource("3_drxxn")
+expand_mode = 1
 
-[node name="ProgresoBarra" type="TextureProgressBar" parent="."]
-offset_left = 2.0
-offset_top = 87.0
-offset_right = 802.0
-offset_bottom = 127.0
-texture_under = SubResource("PlaceholderTexture2D_drxxn")
-texture_over = SubResource("PlaceholderTexture2D_8g60o")
-texture_progress = SubResource("PlaceholderTexture2D_w870f")
+[node name="ZonaPez" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 40.0
+texture = ExtResource("4_8g60o")
+expand_mode = 1
 
-[node name="Timer" type="Timer" parent="ProgresoBarra"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -1.0
+offset_top = 66.0
+offset_right = 799.0
+offset_bottom = 106.0
+scale = Vector2(0.997539, 0.800084)
+value = 20.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="ProgressBar"]
+wait_time = 61.253
