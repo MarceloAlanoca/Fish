@@ -4,11 +4,11 @@ extends Area2D
 # Escenas de los peces (cargadas directamente)
 # ------------------------------
 var fish_scenes: Array = [
-	load("res://Scene/atun.tscn"),       # índice 0
-	load("res://Scene/salmon.tscn"),     # índice 1
-	load("res://Scene/Barracuda.tscn"),  # índice 2
-	load("res://Scene/PezPayaso.tscn"),  # índice 3
-	load("res://Scene/LenguadoP.tscn")   # índice 4
+	load("res://Scene/Peces/atun.tscn"),       # índice 0
+	load("res://Scene/Peces/salmon.tscn"),     # índice 1
+	load("res://Scene/Peces/Barracuda.tscn"),  # índice 2
+	load("res://Scene/Peces/PezPayaso.tscn"),  # índice 3
+	load("res://Scene/Peces/LenguadoP.tscn")   # índice 4
 ]
 
 # ------------------------------

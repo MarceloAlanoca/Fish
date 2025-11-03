@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfqx2k5g23va6"]
+[gd_scene load_steps=3 format=3 uid="uid://bfqx2k5g23va6"]
 
 [ext_resource type="Script" uid="uid://dqjln4124r77r" path="res://Scripts/InterfazUsuario/interfaz_usuario.gd" id="1_j5tya"]
+[ext_resource type="Texture2D" uid="uid://cxek80nekfh44" path="res://Assets/peso.png" id="2_pt6l3"]
 
 [node name="InterfazUsuario" type="Control"]
 layout_mode = 3
@@ -47,6 +48,18 @@ offset_right = 1151.0
 offset_bottom = 646.0
 text = "Lanzar
 "
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_right = 1031.0
+offset_bottom = 23.0
+scale = Vector2(4.12, 3.68)
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+position = Vector2(-11.8932, 44.5652)
+scale = Vector2(0.912621, 0.815217)
+texture = ExtResource("2_pt6l3")
 
 [connection signal="pressed" from="Indice" to="." method="_on_indice_pressed"]
 [connection signal="pressed" from="Tienda" to="." method="_on_tienda_pressed"]

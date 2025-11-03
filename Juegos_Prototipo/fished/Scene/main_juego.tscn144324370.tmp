@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://tdciqdl46hah"]
+[gd_scene load_steps=28 format=3 uid="uid://tdciqdl46hah"]
 
 [ext_resource type="Script" uid="uid://b0j3irx7ewbf" path="res://main_juego.gd" id="1_d6ytk"]
 [ext_resource type="PackedScene" uid="uid://4jjq52b8upil" path="res://Scene/pescador.tscn" id="1_s1cr2"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/atun.tscn" id="5_sxn4p"]
 [ext_resource type="Texture2D" uid="uid://dcuvqone2hdp7" path="res://Assets/pixilart-drawing.png" id="6_a0wg1"]
 [ext_resource type="Texture2D" uid="uid://b6lek2xcudume" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (6).png" id="7_a0wg1"]
-[ext_resource type="Texture2D" uid="uid://rwf16guerkuw" path="res://Assets/DecoracionFono/muelle.png" id="7_elcoi"]
 [ext_resource type="Texture2D" uid="uid://comsgswdpprb1" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (7).png" id="8_lw2op"]
 [ext_resource type="Texture2D" uid="uid://bgqpe6uiercjq" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (8).png" id="9_d6ytk"]
 [ext_resource type="Texture2D" uid="uid://b52qetjdy54mt" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (9).png" id="10_b7s1v"]
@@ -23,7 +22,6 @@
 [ext_resource type="Script" uid="uid://cqvyharch8f0c" path="res://Scripts/Spawner/spawner_pez_lv_1.gd" id="18_hw3rg"]
 [ext_resource type="PackedScene" uid="uid://bfqx2k5g23va6" path="res://Scene/interfaz_usuario.tscn" id="18_lyyrs"]
 [ext_resource type="PackedScene" uid="uid://pky31ympd2oo" path="res://Scene/lib_o_cap.tscn" id="19_usf8m"]
-[ext_resource type="PackedScene" uid="uid://cegi78pt5bk3f" path="res://Scene/inventory_test.tscn" id="22_5sp2o"]
 [ext_resource type="Script" uid="uid://b8nev4b7a3165" path="res://Scripts/Spawner/spawner_pez_lv_2.gd" id="23_8vtdy"]
 [ext_resource type="Script" uid="uid://jvaymwqmi5tm" path="res://Scripts/MainJuego/CameraFollow.gd" id="24_vpslh"]
 
@@ -31,7 +29,7 @@
 size = Vector2(29.0205, 183.532)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyyrs"]
-size = Vector2(2893, 733)
+size = Vector2(2891, 430)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpslh"]
 size = Vector2(2931, 479)
@@ -53,8 +51,7 @@ shape = SubResource("RectangleShape2D_5sp2o")
 [node name="Pescador" parent="." instance=ExtResource("1_s1cr2")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-360, -15)
-scale = Vector2(1.58455, 2.06755)
+position = Vector2(-434, 269)
 
 [node name="TipoDeCaptura" type="Node2D" parent="Pescador"]
 
@@ -95,11 +92,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(159.35, 89.8568)
 color = Color(0.349675, 0.666896, 1, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-142, 0)
-scale = Vector2(9.23466, 9.15013)
-texture = ExtResource("7_elcoi")
 
 [node name="Corales" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
 
@@ -172,7 +164,6 @@ vframes = 2
 frame = 1
 
 [node name="Madera" type="Node2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
-visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco/Madera"]
 position = Vector2(-210, 406)
@@ -237,18 +228,12 @@ offset_bottom = -86.0
 [node name="LibOCap" parent="CanvasLayer" instance=ExtResource("19_usf8m")]
 visible = false
 
-[node name="InventoryTest" parent="CanvasLayer" instance=ExtResource("22_5sp2o")]
-offset_left = 1340.0
-offset_top = 45.0
-offset_right = 1340.0
-offset_bottom = 45.0
-
 [node name="SpawnerPezLv1" type="Area2D" parent="."]
 position = Vector2(-864, 486)
 script = ExtResource("18_hw3rg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezLv1"]
-position = Vector2(1748.5, -22.5)
+position = Vector2(1749.5, 129)
 shape = SubResource("RectangleShape2D_lyyrs")
 disabled = true
 

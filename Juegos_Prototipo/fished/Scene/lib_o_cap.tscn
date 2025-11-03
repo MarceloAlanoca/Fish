@@ -28,7 +28,7 @@ grow_vertical = 2
 [node name="Capturar" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-text = "Capturar"
+text = "Vender"
 
 [node name="Liberar" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)

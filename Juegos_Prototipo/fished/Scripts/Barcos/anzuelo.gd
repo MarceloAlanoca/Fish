@@ -1,5 +1,8 @@
 extends Area2D
 
+# ==============================
+# CONFIGURACIÓN
+# ==============================
 @export var velocidad_recoger := 300
 @export var fuerza_lanzamiento := 1000
 @export var gravedad := 1600
@@ -8,31 +11,39 @@ extends Area2D
 enum Estado { INACTIVO, LANZADO, RECOGIENDO }
 var estado := Estado.INACTIVO
 
+# ==============================
+# VARIABLES
+# ==============================
 var velocidad_anzuelo := Vector2.ZERO
 var posicion_inicial := Vector2.ZERO
 var pez_atrapado: Node = null
 
-# --- Referencias ---
+# ==============================
+# REFERENCIAS
+# ==============================
 @onready var collision_shape := $CollisionShape2D
 @onready var sprite := $Sprite2D
 @onready var ui := get_tree().current_scene.get_node_or_null("CanvasLayer")
 @onready var libocap := ui.get_node_or_null("LibOCap") if ui else null
-@onready var inventory_ui = get_node("/root/MainJuego/CanvasLayer/InventoryUI")
 
-# --- Datos externos ---
+# ==============================
+# DATOS EXTERNOS
+# ==============================
 var Box = load("res://Scripts/FishBox.gd")
 var Box_Cap = Box.new()
 
-# ------------------------
-# Inicialización
-# ------------------------
-func _ready():
+# ==============================
+# READY
+# ==============================
+func _ready() -> void:
+	add_to_group("anzuelo")
 	posicion_inicial = position
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	print("🎣 Anzuelo listo en posición:", posicion_inicial)
 
-# ------------------------
-# Colisión con peces
-# ------------------------
+# ==============================
+# COLISIÓN CON PECES
+# ==============================
 func _on_body_entered(body):
 	if body.is_in_group("peces") and pez_atrapado == null:
 		var probabilidad := obtener_probabilidad_captura(body.name)
@@ -42,13 +53,13 @@ func _on_body_entered(body):
 				body.detener_movimiento()
 			_transformar_a_bola(pez_atrapado)
 			collision_shape.disabled = true
-			print("🎣 ¡Captura exitosa!: ", body.name)
+			print("🎯 ¡Pez atrapado!: ", body.name)
 		else:
 			print("💨 El pez escapó:", body.name)
 
-# ------------------------
-# Input
-# ------------------------
+# ==============================
+# INPUT
+# ==============================
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		match estado:
@@ -57,16 +68,16 @@ func _input(event):
 			Estado.LANZADO:
 				_empezar_recoger()
 
-# ------------------------
-# Lanzar y recoger
-# ------------------------
+# ==============================
+# LANZAR Y RECOGER
+# ==============================
 func _lanzar():
 	if estado != Estado.INACTIVO:
 		return
 	estado = Estado.LANZADO
-	velocidad_anzuelo = Vector2(fuerza_lanzamiento, -fuerza_lanzamiento * 0.5)
+	var angulo = deg_to_rad(-45)
+	velocidad_anzuelo = Vector2(cos(angulo), sin(angulo)) * fuerza_lanzamiento
 	print("🏹 Lanzando anzuelo...")
-	inventory_ui.visible = false
 
 func _empezar_recoger():
 	if estado != Estado.LANZADO:
@@ -74,9 +85,9 @@ func _empezar_recoger():
 	estado = Estado.RECOGIENDO
 	print("↩️ Recogiendo anzuelo...")
 
-# ------------------------
-# Movimiento físico
-# ------------------------
+# ==============================
+# MOVIMIENTO
+# ==============================
 func _physics_process(delta):
 	match estado:
 		Estado.LANZADO:
@@ -102,30 +113,29 @@ func _mover_recoger(delta):
 		velocidad_anzuelo = Vector2.ZERO
 		estado = Estado.INACTIVO
 		collision_shape.disabled = false
-
 		if pez_atrapado:
 			_mostrar_lib_ocap()
 
-# ------------------------
-# Mostrar el panel LibOCap
-# ------------------------
+# ==============================
+# MOSTRAR PANEL UI
+# ==============================
 func _mostrar_lib_ocap():
 	if libocap:
 		libocap.mostrar_panel(pez_atrapado)
-		print("🐟 LibOCap visible")
+		print("📋 Panel LibOCap mostrado")
 	else:
-		push_error("⚠️ No se encontró el nodo 'LibOCap' (CanvasLayer o nombre distinto)")
+		push_error("⚠️ No se encontró el nodo 'LibOCap'. Verifica la ruta en el CanvasLayer.")
 
-# ------------------------
-# Mantener el pez pegado al anzuelo
-# ------------------------
+# ==============================
+# PEZ PEGADO AL ANZUELO
+# ==============================
 func _actualizar_pez():
 	if pez_atrapado:
 		pez_atrapado.global_position = global_position
 
-# ------------------------
-# Probabilidad de captura
-# ------------------------
+# ==============================
+# PROBABILIDAD DE CAPTURA
+# ==============================
 func obtener_probabilidad_captura(nombre_pez: String) -> float:
 	var clave = ""
 	if "Atun" in nombre_pez:
@@ -134,26 +144,33 @@ func obtener_probabilidad_captura(nombre_pez: String) -> float:
 		clave = "CapSalmon"
 	elif "Orca" in nombre_pez:
 		clave = "CapOrca"
-	if "Barracuda" in nombre_pez:
+	elif "Barracuda" in nombre_pez:
 		clave = "CapBarracuda"
-	elif "LenguadoP" in nombre_pez:
+	elif "Lenguado" in nombre_pez:
 		clave = "CapLenguado"
 	elif "Payaso" in nombre_pez:
 		clave = "CapPayaso"
-	if "Ballena" in nombre_pez:
+	elif "Ballena" in nombre_pez:
 		clave = "CapBallena"
+	
 	if Box_Cap.Porcentaje_Captura.has(clave):
 		return Box_Cap.Porcentaje_Captura[clave]
-	return 0.5
+	else:
+		push_warning("⚠️ Clave no encontrada para: " + nombre_pez)
+		return 0.5
 
-# ------------------------
-# Transformar pez a bola
-# ------------------------
+# ==============================
+# TRANSFORMAR PEZ EN BOLA
+# ==============================
 func _transformar_a_bola(pez: Node):
 	if pez == null:
 		return
 	if pez is CharacterBody2D:
 		pez.velocity = Vector2.ZERO
+
+	var shape = pez.get_node_or_null("CollisionShape2D")
+	if shape:
+		shape.disabled = true
 
 	for c in pez.get_children():
 		if c is Sprite2D or c is AnimatedSprite2D:
@@ -170,3 +187,18 @@ func _transformar_a_bola(pez: Node):
 	bola.modulate = Color(1, 1, 1, 0)
 	tween.tween_property(bola, "modulate:a", 1, 0.2)
 	print("✨ Pez transformado en bola de captura")
+
+# ==============================
+# LIBERAR / GUARDAR PEZ
+# ==============================
+func liberar_pez():
+	if pez_atrapado:
+		print("🐠 Liberando pez:", pez_atrapado.name)
+		pez_atrapado.queue_free()
+		pez_atrapado = null
+
+func guardar_pez():
+	if pez_atrapado:
+		print("🎁 Guardando pez:", pez_atrapado.name)
+		pez_atrapado.queue_free()
+		pez_atrapado = null

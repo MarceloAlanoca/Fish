@@ -11,11 +11,14 @@
 radius = 25.1875
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykenn"]
+size = Vector2(215, 53)
 
 [node name="Pescador" type="CharacterBody2D"]
 script = ExtResource("1_qmwlb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
 scale = Vector2(-2.39961, 1.84737)
 texture = ExtResource("1_pj0q3")
 flip_h = true
@@ -27,21 +30,22 @@ script = ExtResource("3_brvid")
 distancia_maxima = 5000
 
 [node name="Caña" type="Sprite2D" parent="CañaPesca"]
+light_mask = 2
+visibility_layer = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_ykenn")
 
 [node name="Anzuelo" type="Area2D" parent="CañaPesca/Caña"]
 position = Vector2(167.174, 77.4687)
 scale = Vector2(0.539348, 0.747349)
-collision_layer = 2
-collision_mask = 4
+collision_mask = 2
 script = ExtResource("5_ykenn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CañaPesca/Caña/Anzuelo"]
 light_mask = 2
 visibility_layer = 4
 position = Vector2(6.10352e-05, 0)
-scale = Vector2(5.4001, 5.4)
+scale = Vector2(9.556, 6.3187)
 shape = SubResource("CircleShape2D_ykenn")
 
 [node name="Anzuelo" type="Sprite2D" parent="CañaPesca/Caña/Anzuelo"]
@@ -49,7 +53,6 @@ position = Vector2(6.10352e-05, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_0d0lj")
 
-[node name="Camera2D" type="Camera2D" parent="CañaPesca/Caña/Anzuelo"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6.5, 0.5)
 shape = SubResource("RectangleShape2D_ykenn")
