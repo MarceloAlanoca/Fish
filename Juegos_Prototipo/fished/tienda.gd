@@ -14,9 +14,9 @@ extends Control
 # ================================
 # SONIDOS
 # ================================
-@export var sonido_bienvenida: AudioStream = preload("res://Assets/SFX/Welcome.mp3")
-@export var sonido_compra: AudioStream = preload("res://Assets/SFX/Cachin.mp3")
-@export var sonido_despedida: AudioStream = preload("res://Assets/SFX/Goodbye.mp3")
+@export var sonido_bienvenida: AudioStream = preload("res://Assets/SFX/Welcome.ogg")
+@export var sonido_compra: AudioStream = preload("res://Assets/SFX/Cachin.ogg")
+@export var sonido_despedida: AudioStream = preload("res://Assets/SFX/Goodbye.ogg")
 @export var musica_fondo: AudioStream = preload("res://Assets/Musicas/Cuphead OST - Porkrind's Shop [Music].mp3")
 
 # ================================
