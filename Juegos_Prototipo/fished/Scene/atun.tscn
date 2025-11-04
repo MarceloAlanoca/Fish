@@ -7,7 +7,7 @@
 size = Vector2(56, 29)
 
 [node name="Atun" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 6
 script = ExtResource("1_hakb5")
 
 [node name="AtunSprite2D" type="Sprite2D" parent="."]

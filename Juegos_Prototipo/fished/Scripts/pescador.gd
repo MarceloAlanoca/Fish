@@ -1,17 +1,28 @@
 extends CharacterBody2D
 
 @onready var inventory_ui = get_node("/root/MainJuego/CanvasLayer/InventoryUI")
-@onready var caña = get_node("/root/MainJuego/CañaPesca")  # Ajustá si tu ruta es distinta
+@onready var caña = $"CañaPesca"  # hijo directo del Pescador
+
 
 @export var velocidad: float = 300
+@export var multiplicador_velocidad_pesca: float = 0.05  # 0 = bloqueo total, 0.1-0.3 = ralentizado
+
 var puede_moverse := true
 var is_facing_right := true
 var pescando := false
 
 func _ready():
-	if caña:
+	_conectar_caña()
+	Global.aplicar_efectos_pescador(self)
+
+func _conectar_caña():
+	if not caña or not is_instance_valid(caña):
+		caña = get_node_or_null("CañaPesca")
+	if caña and not caña.is_connected("pesca_iniciada", Callable(self, "_on_pesca_iniciada")):
 		caña.connect("pesca_iniciada", Callable(self, "_on_pesca_iniciada"))
 		caña.connect("pesca_terminada", Callable(self, "_on_pesca_terminada"))
+		print("✅ Señales de pesca conectadas correctamente.")
+
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_left"):
@@ -30,7 +41,11 @@ func _process(delta):
 	if Input.is_action_pressed("Move_A"):
 		dir.x -= 1
 
-	velocity = dir.normalized() * velocidad
+	var speed := velocidad
+	if pescando:
+		speed *= multiplicador_velocidad_pesca
+
+	velocity = dir.normalized() * speed
 	move_and_slide()
 	_flip_sprite(dir.x)
 
@@ -41,12 +56,17 @@ func _flip_sprite(x):
 	elif x > 0:
 		sprite.flip_h = true
 
+# ==========================================
+# EVENTOS DE PESCA
+# ==========================================
 func _on_pesca_iniciada():
 	pescando = true
-	puede_moverse = false
-	print("🚫 Movimiento bloqueado por pesca")
+	if multiplicador_velocidad_pesca <= 0.0:
+		puede_moverse = false
+	print("🚫 Movimiento ralentizado/bloqueado por pesca")
 
 func _on_pesca_terminada():
 	pescando = false
 	puede_moverse = true
-	print("✅ Movimiento restaurado")
+	multiplicador_velocidad_pesca = 1.0  # 🔁 Restaurar al valor originald
+	print("✅ Movimiento restaurado después de la pesca")

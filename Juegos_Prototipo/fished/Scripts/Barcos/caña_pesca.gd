@@ -20,17 +20,31 @@ signal pesca_terminada
 var lanzado := false
 var recogiendo := false
 var en_uso := false
+var minijuego_activo := false
 var pez_atrapado: CharacterBody2D = null
 
 var anzuelo: Area2D
 var velocidad_anzuelo := Vector2.ZERO
 var posicion_inicial := Vector2.ZERO
-var Tirar: Button = null
 
 # ==============================
 # REFERENCIAS
 # ==============================
 @onready var camara = get_node_or_null("/root/MainJuego/Camera2D")
+@onready var pescador = get_node_or_null("/root/MainJuego/Pescador")
+
+# ==============================
+# CONTROL DE INPUT (tecla "Action")
+# ==============================
+func disable_action(action_name: String = "Action"):
+	InputMap.action_erase_event(action_name, InputEventKey.new())
+	print("⛔ Acción '%s' deshabilitada temporalmente" % action_name)
+
+func enable_action(action_name: String = "Action", key_code: int = KEY_SPACE):
+	var event := InputEventKey.new()
+	event.physical_keycode = key_code
+	InputMap.action_add_event(action_name, event)
+	print("✅ Acción '%s' reactivada" % action_name)
 
 # ==============================
 # READY
@@ -38,55 +52,28 @@ var Tirar: Button = null
 func _ready():
 	anzuelo = $"Caña/Anzuelo"
 	posicion_inicial = anzuelo.position
-
-	# Conectar señal del anzuelo
-	if anzuelo.has_signal("pez_atrapado_signal"):
-		anzuelo.connect("pez_atrapado_signal", Callable(self, "_on_anzuelo_pez_atrapado"))
-
-	# Buscar y conectar botón “Lanzar”
-	_buscar_boton_tirar()
+	print("🎣 Caña lista, control con tecla 'Action' (Espacio)")
 
 # ==============================
-# BUSCAR BOTÓN "LANZAR"
+# INPUT GENERAL
 # ==============================
-func _buscar_boton_tirar():
-	print("🔍 Buscando botón 'Lanzar'...")
-	var posibles_rutas = [
-		"/root/MainJuego/CanvasLayer/Lanzar",
-		"/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar",
-		"/root/MainJuego/CanvasLayer/UI/Lanzar"
-	]
-
-	for ruta in posibles_rutas:
-		if has_node(ruta):
-			Tirar = get_node(ruta)
-			print("✅ Botón encontrado en:", ruta)
-			Tirar.connect("pressed", Callable(self, "_on_tirar_pressed"))
-			Tirar.focus_mode = Control.FOCUS_NONE  # Evita capturar el foco
-			return
-
-	print("⚠️ No se encontró ningún botón 'Lanzar' en las rutas conocidas.")
-
-# ==============================
-# BOTÓN PRESIONADO
-# ==============================
-func _on_tirar_pressed():
-	_manejar_tiro()
+func _input(event):
+	if event.is_action_pressed("Action"):
+		_manejar_tiro()
 
 # ==============================
 # LÓGICA DE LANZAR / RECOGER
 # ==============================
 func _manejar_tiro():
+	# 🔒 Bloquear acción si el minijuego está activo
+	if minijuego_activo:
+		print("⏸️ No puedes lanzar ni recoger durante el minijuego.")
+		return
+
 	if not en_uso:
 		lanzar_anzuelo()
-		_actualizar_boton_texto("Recoger 🎣")
 	elif lanzado and not recogiendo:
 		empezar_recoger()
-		_actualizar_boton_texto("Lanzar 🐟")
-
-func _actualizar_boton_texto(texto: String):
-	if Tirar:
-		Tirar.text = texto
 
 # ==============================
 # LANZAR Y RECOGER
@@ -99,6 +86,10 @@ func lanzar_anzuelo():
 	en_uso = true
 	emit_signal("pesca_iniciada")
 
+	# 🔹 Notificar al pescador
+	if pescador and pescador.has_method("_on_pesca_iniciada"):
+		pescador._on_pesca_iniciada()
+
 	if camara and "objeto_seguir" in camara:
 		camara.objeto_seguir = anzuelo
 
@@ -106,7 +97,9 @@ func lanzar_anzuelo():
 	print("🏹 Lanzando anzuelo...")
 
 func empezar_recoger():
+	
 	if not lanzado or recogiendo:
+		print("🔎 empezar_recoger() lanzado =", lanzado, " recogiendo =", recogiendo)
 		return
 	recogiendo = true
 	print("↩️ Recogiendo anzuelo...")
@@ -148,25 +141,57 @@ func _finalizar_pesca():
 	recogiendo = false
 	en_uso = false
 	emit_signal("pesca_terminada")
+
 	print("✅ Pesca terminada")
 
-	_actualizar_boton_texto("Lanzar 🎯")
-
+	# ✅ Volver a seguir al pescador con la cámara
 	if camara and "objeto_seguir" in camara:
-		var pescador = get_node_or_null("/root/MainJuego/Pescador")
-		if pescador:
-			camara.objeto_seguir = pescador
+		var pescador_node = get_node_or_null("/root/MainJuego/Pescador")
+		if pescador_node:
+			camara.objeto_seguir = pescador_node
 
-	# Mostrar panel si hay pez
-	if pez_atrapado:
-		var ui = get_tree().get_root().get_node_or_null("Pesca/CanvasLayer")
-		if ui and ui.has_method("mostrar_decision"):
-			ui.mostrar_decision(pez_atrapado)
+	# ✅ Rehabilitar colisión del anzuelo
+	if anzuelo and anzuelo.has_node("CollisionShape2D"):
+		anzuelo.get_node("CollisionShape2D").disabled = false
+
+	# ✅ Mostrar el panel LibOCap si hay pez capturado
+	if anzuelo and anzuelo.pez_atrapado:
+		var libocap = get_tree().root.get_node_or_null("MainJuego/CanvasLayer/LibOCap")
+		if libocap and libocap.has_method("mostrar_panel"):
+			libocap.mostrar_panel(anzuelo.pez_atrapado)
+			print("📖 Panel LibOCap mostrado automáticamente al recoger el pez.")
+		else:
+			push_warning("⚠️ No se encontró LibOCap o no tiene mostrar_panel().")
+
+	# ✅ Limpiar referencia al pez en la caña (ya gestionado por LibOCap)
+	pez_atrapado = null
+	emit_signal("pesca_terminada")
+
+	# respaldo explícito
+	if pescador and pescador.has_method("_on_pesca_terminada"):
+		pescador._on_pesca_terminada()
+
+
+
+# ==============================
+# RESULTADO DEL MINIJUEGO
+# ==============================
+func _on_minijuego_finalizado(resultado: bool):
+	print("🎮 Resultado del minijuego:", resultado)
+	minijuego_activo = false
+	enable_action()
+
+	# Forzamos que la caña empiece a recoger
+	lanzado = true
+	recogiendo = false
+
+	if not resultado:
+		print("❌ Perdió el minijuego: la caña volverá vacía.")
 		pez_atrapado = null
 
-# ==============================
-# SEÑAL DEL ANZUELO
-# ==============================
-func _on_anzuelo_pez_atrapado(pez):
-	pez_atrapado = pez
-	print("🎣 ¡Pez atrapado!: ", pez.name)
+	# 🔁 Forzar recogida y asegurarse de restaurar movimiento al final
+	empezar_recoger()
+
+	# 🔔 Asegurar que el pescador recupere velocidad aunque algo falle
+	if pescador and pescador.has_method("_on_pesca_terminada"):
+		pescador._on_pesca_terminada()

@@ -1,72 +1,137 @@
 extends Control
+signal finalizado(resultado: bool)
 
-signal minijuego_finalizado(resultado_exitoso: bool)
-
-@onready var fondo_barra = $FondoBarra
-@onready var zona_pez = $ZonaPez
+# === NODOS ===
 @onready var zona_jugador = $ZonaJugador
-@onready var barra_progreso = $"../ProgressBar"
+@onready var zona_pez = $ZonaPez
+@onready var progress_bar = $"../ProgressBar"
 @onready var timer = $"../ProgressBar/Timer"
 
-@export var velocidad_pez: float = 250.0
-@export var velocidad_jugador: float = 400.0
-@export var perdida_por_segundo: float = 0.2
-@export var ganancia_por_segundo: float = 0.4
+# === VARIABLES CONFIGURABLES ===
+@export var velocidad_pez := 200.0
+@export var velocidad_jugador := 400.0
+@export var resiliencia := 1.0           # Afecta la variabilidad del movimiento del pez
+@export var rango_colision := 50.0
+@export var progreso_subida := 45.0
+@export var progreso_bajada := 10.0
+@export var tiempo_proteccion := 5.0
+@export var limite_izquierdo := 0.0
+@export var limite_derecho := 620.0
 
-var direccion_pez := 1
+# === CONTROL DE ESTADO ===
 var progreso := 0.0
-var en_juego := false
-var fuera_zona_tiempo := 0.0
+var direccion_pez := 1
+var velocidad_actual_pez := 0.0
+var objetivo_x := 0.0
+var tiempo_transcurrido := 0.0
+var jugador
+var caña
 
+# === BLOQUEO DE INPUTS EXTERNOS ===
 func _ready():
-	hide()
-	barra_progreso.value = 0
+	progress_bar.value = 0
+	timer.start()
+	objetivo_x = randf_range(limite_izquierdo, limite_derecho)
+	velocidad_actual_pez = velocidad_pez
 
-func iniciar_minijuego():
-	show()
-	en_juego = true
-	progreso = 0
-	fuera_zona_tiempo = 0
-	zona_pez.position.x = randf_range(0, fondo_barra.size.x - zona_pez.size.x)
-	zona_jugador.position.x = (fondo_barra.size.x / 2.0) - (zona_jugador.size.x / 2.0)
+	jugador = get_node_or_null("/root/MainJuego/Pescador")
+	caña = get_node_or_null("/root/MainJuego/Pescador/CañaPesca")
 
-func finalizar_minijuego(resultado_exitoso: bool):
-	en_juego = false
-	hide()
-	emit_signal("minijuego_finalizado", resultado_exitoso)
+	if jugador:
+		jugador.set_process(false)
+		jugador.set_physics_process(false)
+	if caña:
+		caña.set_process(false)
+		caña.set_physics_process(false)
+
+	# 💎 Aplicar efectos de amuletos
+	Global.aplicar_efectos_minijuego(self)
+
 
 func _process(delta):
-	if not en_juego:
-		return
+	tiempo_transcurrido += delta
 	_mover_pez(delta)
 	_mover_jugador(delta)
 	verificar_colision(delta)
 
+# === Movimiento del pez (aleatorio, suave y dependiente de resiliencia) ===
 func _mover_pez(delta):
-	zona_pez.position.x += velocidad_pez * delta * direccion_pez
-	if zona_pez.position.x <= 0 or zona_pez.position.x + zona_pez.size.x >= fondo_barra.size.x:
-		direccion_pez *= -1  # rebota en los bordes
+	# Si el pez llegó cerca del objetivo, elige un nuevo destino aleatorio
+	if abs(zona_pez.position.x - objetivo_x) < 10.0:
+		objetivo_x = randf_range(limite_izquierdo, limite_derecho)
+		# Variar la velocidad en función de la resiliencia
+		velocidad_actual_pez = velocidad_pez * randf_range(0.6, 1.4) * resiliencia
 
+	# Movimiento suave hacia el objetivo
+	zona_pez.position.x = move_toward(zona_pez.position.x, objetivo_x, velocidad_actual_pez * delta)
+	zona_pez.position.x = clamp(zona_pez.position.x, limite_izquierdo, limite_derecho)
+
+# === Movimiento del jugador (solo con tecla SPACE / Action) ===
 func _mover_jugador(delta):
-	if Input.is_action_pressed("ui_right"):
-		zona_jugador.position.x = clamp(zona_jugador.position.x + velocidad_jugador * delta, 0, fondo_barra.size.x - zona_jugador.size.x)
-	if Input.is_action_pressed("ui_left"):
-		zona_jugador.position.x = clamp(zona_jugador.position.x - velocidad_jugador * delta, 0, fondo_barra.size.x - zona_jugador.size.x)
-
-func verificar_colision(delta):
-	var jugador_rect = Rect2(zona_jugador.position, zona_jugador.size)
-	var pez_rect = Rect2(zona_pez.position, zona_pez.size)
-
-	if jugador_rect.intersects(pez_rect):
-		fuera_zona_tiempo = 0
-		progreso += ganancia_por_segundo * delta
+	if Input.is_action_pressed("Action"): # ← tu keybind Space
+		zona_jugador.position.x += velocidad_jugador * delta
 	else:
-		fuera_zona_tiempo += delta
-		progreso -= perdida_por_segundo * delta
+		zona_jugador.position.x = move_toward(
+			zona_jugador.position.x,
+			limite_izquierdo,
+			velocidad_jugador * delta * 1.5
+		)
+	zona_jugador.position.x = clamp(zona_jugador.position.x, limite_izquierdo, limite_derecho)
 
-	barra_progreso.value = clamp(progreso * 100, 0, 100)
+# === Lógica de colisión y progreso ===
+func verificar_colision(delta):
+	var distancia = abs(zona_jugador.position.x - zona_pez.position.x)
+	var dentro: bool = distancia <= rango_colision
 
-	if progreso >= 1.0:
+	if dentro:
+		progreso += delta * progreso_subida
+	elif tiempo_transcurrido > tiempo_proteccion:
+		progreso -= delta * progreso_bajada
+
+	progress_bar.value = clamp(progreso, 0, 100)
+
+	if progress_bar.value >= 100:
 		finalizar_minijuego(true)
-	elif fuera_zona_tiempo >= 3.0:
+	elif progress_bar.value <= 0:
 		finalizar_minijuego(false)
+
+# === Finaliza el minijuego ===
+func finalizar_minijuego(resultado: bool):
+	timer.stop()
+
+	# 🔓 Restaurar movimiento y entrada del jugador y la caña
+	if jugador:
+		jugador.set_process(true)
+		jugador.set_physics_process(true)
+	if caña:
+		caña.set_process(true)
+		caña.set_physics_process(true)
+
+	print("🎮 Minijuego finalizado → Resultado:", resultado)
+	emit_signal("finalizado", resultado)
+
+	# 🔹 Si perdió el minijuego, liberar el pez atrapado inmediatamente
+	if not resultado:
+		var anzuelo = get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
+		if anzuelo and anzuelo.has_method("liberar_pez"):
+			anzuelo.liberar_pez()
+			print("❌ Minijuego perdido: pez liberado automáticamente.")
+		else:
+			push_warning("⚠️ No se encontró el anzuelo o falta liberar_pez().")
+
+	# 🔹 Ocultar el minijuego completo (incluye ProgressBar)
+	var root_minijuego = get_parent()
+	if root_minijuego:
+		root_minijuego.visible = false
+
+	# 🕐 Esperar un segundo antes de eliminarlo completamente
+	await get_tree().create_timer(1.0).timeout
+
+	# 🧭 Notificar a la caña directamente antes de destruir el minijuego
+	var caña = get_tree().get_root().get_node_or_null("MainJuego/CañaPesca")
+	if caña and caña.has_method("_on_minijuego_finalizado"):
+		caña._on_minijuego_finalizado(resultado)
+
+	# 🧹 Eliminar el minijuego de la escena
+	if root_minijuego:
+		root_minijuego.queue_free()

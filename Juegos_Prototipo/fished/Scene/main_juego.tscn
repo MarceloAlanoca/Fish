@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://tdciqdl46hah"]
+[gd_scene load_steps=32 format=3 uid="uid://tdciqdl46hah"]
 
 [ext_resource type="Script" uid="uid://b0j3irx7ewbf" path="res://main_juego.gd" id="1_d6ytk"]
 [ext_resource type="PackedScene" uid="uid://4jjq52b8upil" path="res://Scene/pescador.tscn" id="1_s1cr2"]
@@ -7,17 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://bg1wepdsnpm26" path="res://Scene/orca.tscn" id="4_f8irq"]
 [ext_resource type="Texture2D" uid="uid://djy7ggdscdqk" path="res://Assets/Capturas/Captura normal.png" id="4_ywkuk"]
 [ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/atun.tscn" id="5_sxn4p"]
-[ext_resource type="Texture2D" uid="uid://dcuvqone2hdp7" path="res://Assets/pixilart-drawing.png" id="6_a0wg1"]
-[ext_resource type="Texture2D" uid="uid://b6lek2xcudume" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (6).png" id="7_a0wg1"]
-[ext_resource type="Texture2D" uid="uid://rwf16guerkuw" path="res://Assets/DecoracionFono/muelle.png" id="7_elcoi"]
-[ext_resource type="Texture2D" uid="uid://comsgswdpprb1" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (7).png" id="8_lw2op"]
-[ext_resource type="Texture2D" uid="uid://bgqpe6uiercjq" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (8).png" id="9_d6ytk"]
-[ext_resource type="Texture2D" uid="uid://b52qetjdy54mt" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (9).png" id="10_b7s1v"]
-[ext_resource type="Texture2D" uid="uid://m6p3mvhu4xm0" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (10).png" id="11_hw3rg"]
-[ext_resource type="Texture2D" uid="uid://bg7np64couths" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (11).png" id="12_lyyrs"]
-[ext_resource type="Texture2D" uid="uid://dxck8h2qoyhjl" path="res://Assets/DecoracionFono/Corales/pixil-frame-0 (12).png" id="13_usf8m"]
+[ext_resource type="Texture2D" uid="uid://bwwtgycuyj036" path="res://Assets/Fondos/FondoCielo.png" id="6_1u8df"]
+[ext_resource type="Texture2D" uid="uid://c5alf4i5oueex" path="res://Assets/Fondos/FondoMar.png" id="6_elcoi"]
+[ext_resource type="Texture2D" uid="uid://b6lek2xcudume" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (6).png" id="7_a0wg1"]
+[ext_resource type="Texture2D" uid="uid://rwf16guerkuw" path="res://Assets/DecoracionFondo/muelle.png" id="7_elcoi"]
+[ext_resource type="Texture2D" uid="uid://comsgswdpprb1" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (7).png" id="8_lw2op"]
+[ext_resource type="Texture2D" uid="uid://bgqpe6uiercjq" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (8).png" id="9_d6ytk"]
+[ext_resource type="Texture2D" uid="uid://b52qetjdy54mt" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (9).png" id="10_b7s1v"]
+[ext_resource type="Texture2D" uid="uid://m6p3mvhu4xm0" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (10).png" id="11_hw3rg"]
+[ext_resource type="Texture2D" uid="uid://bg7np64couths" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (11).png" id="12_lyyrs"]
+[ext_resource type="Texture2D" uid="uid://dxck8h2qoyhjl" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (12).png" id="13_usf8m"]
 [ext_resource type="PackedScene" uid="uid://6cyxh7kyrvm5" path="res://Scene/inicio_control.tscn" id="15_lw2op"]
-[ext_resource type="Texture2D" uid="uid://mhiasdp3ruxj" path="res://Assets/DecoracionFono/deco.ar.png" id="16_b7s1v"]
+[ext_resource type="Texture2D" uid="uid://mhiasdp3ruxj" path="res://Assets/DecoracionFondo/deco.ar.png" id="16_b7s1v"]
 [ext_resource type="PackedScene" uid="uid://ddpxuqxbolx3p" path="res://Scene/inventory_ui.tscn" id="16_d6ytk"]
 [ext_resource type="Texture2D" uid="uid://c86jppr5lkn57" path="res://Assets/AssetsMenu/Madera.png" id="17_37g52"]
 [ext_resource type="Script" uid="uid://cqvyharch8f0c" path="res://Scripts/Spawner/spawner_pez_lv_1.gd" id="18_hw3rg"]
@@ -29,6 +30,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sp2o"]
 size = Vector2(29.0205, 183.532)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8df"]
+size = Vector2(1537.33, 1024.19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyyrs"]
 size = Vector2(2893, 733)
@@ -53,7 +57,7 @@ shape = SubResource("RectangleShape2D_5sp2o")
 [node name="Pescador" parent="." instance=ExtResource("1_s1cr2")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-360, -15)
+position = Vector2(380, 213)
 scale = Vector2(1.58455, 2.06755)
 
 [node name="TipoDeCaptura" type="Node2D" parent="Pescador"]
@@ -78,26 +82,27 @@ offset_bottom = 18.0
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="Fondo" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(3368, 211)
-scale = Vector2(80.6141, 8.50691)
-texture = ExtResource("6_a0wg1")
+[node name="Cielo" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(7244, -1671)
+scale = Vector2(12.6048, 4.62989)
+texture = ExtResource("6_1u8df")
 
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -662.0
-offset_top = -648.0
-offset_right = 338.0
-offset_bottom = -638.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(159.35, 89.8568)
-color = Color(0.349675, 0.666896, 1, 1)
+[node name="Mar" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(7408, 3041)
+scale = Vector2(12.0716, 5.45991)
+texture = ExtResource("6_elcoi")
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-142, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/Mar"]
+position = Vector2(0.0828857, 2.93054)
+shape = SubResource("RectangleShape2D_1u8df")
+
+[node name="Area2D" type="Area2D" parent="ParallaxBackground/ParallaxLayer/Mar/CollisionShape2D" groups=["agua"]]
+position = Vector2(-0.0828857, -2.93054)
+rotation = 3.14159
+scale = Vector2(27.2168, -2.26737)
+
+[node name="Muelle" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-144, 247)
 scale = Vector2(9.23466, 9.15013)
 texture = ExtResource("7_elcoi")
 
@@ -238,13 +243,14 @@ offset_bottom = -86.0
 visible = false
 
 [node name="InventoryTest" parent="CanvasLayer" instance=ExtResource("22_5sp2o")]
+visible = false
 offset_left = 1340.0
 offset_top = 45.0
 offset_right = 1340.0
 offset_bottom = 45.0
 
 [node name="SpawnerPezLv1" type="Area2D" parent="."]
-position = Vector2(-864, 486)
+position = Vector2(-870, 739)
 script = ExtResource("18_hw3rg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezLv1"]
@@ -253,7 +259,7 @@ shape = SubResource("RectangleShape2D_lyyrs")
 disabled = true
 
 [node name="SpawnerPezLv2" type="Area2D" parent="."]
-position = Vector2(-644, 689)
+position = Vector2(-617, 754)
 script = ExtResource("23_8vtdy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezLv2"]

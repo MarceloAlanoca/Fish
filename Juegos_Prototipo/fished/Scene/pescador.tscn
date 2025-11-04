@@ -27,7 +27,7 @@ flip_h = true
 position = Vector2(104, -69)
 scale = Vector2(1.61509, 1.41993)
 script = ExtResource("3_brvid")
-distancia_maxima = 5000
+distancia_maxima = 3000
 
 [node name="Caña" type="Sprite2D" parent="CañaPesca"]
 light_mask = 2

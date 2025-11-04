@@ -17,6 +17,7 @@ var estado := Estado.INACTIVO
 var velocidad_anzuelo := Vector2.ZERO
 var posicion_inicial := Vector2.ZERO
 var pez_atrapado: Node = null
+var modificador_probabilidad := 1.0
 
 # ==============================
 # REFERENCIAS
@@ -27,6 +28,7 @@ var pez_atrapado: Node = null
 @onready var libocap := ui.get_node_or_null("LibOCap") if ui else null
 @onready var inventory_ui = get_node_or_null("/root/MainJuego/CanvasLayer/InventoryUI")
 @onready var Tirar := get_node("/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
+
 
 # ==============================
 # DATOS EXTERNOS
@@ -42,13 +44,16 @@ var minijuego_escena := preload("res://Scene/pescar_minigame.tscn")
 # ==============================
 # READY
 # ==============================
-func _ready() -> void:
+func _ready():
 	add_to_group("anzuelo")
 	posicion_inicial = position
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	if Tirar:
 		Tirar.pressed.connect(_on_tirar_boton)
 	print("🎣 Anzuelo listo en posición:", posicion_inicial)
+
+	# 💎 Aplicar efectos globales de amuletos
+	Global.aplicar_efectos_anzuelo(self)
 
 # ==============================
 # COLISIÓN CON PECES
@@ -100,13 +105,15 @@ func _empezar_recoger():
 # MOVIMIENTO
 # ==============================
 func _physics_process(delta):
-	match estado:
-		Estado.LANZADO:
-			_mover_lanzamiento(delta)
-			_actualizar_pez()
-		Estado.RECOGIENDO:
-			_mover_recoger(delta)
-			_actualizar_pez()
+	# Si el anzuelo mueve su propia física, mantenelo. Si no, no pasa nada.
+	if estado == Estado.LANZADO:
+		_mover_lanzamiento(delta)
+	elif estado == Estado.RECOGIENDO:
+		_mover_recoger(delta)
+
+	# ✅ SIEMPRE mantener al pez pegado al anzuelo si existe,
+	#    aunque no estemos en LANZADO/RECOGIENDO (después del minijuego).
+	_actualizar_pez()
 
 func _mover_lanzamiento(delta):
 	velocidad_anzuelo.y += gravedad * delta
@@ -165,11 +172,10 @@ func obtener_probabilidad_captura(nombre_pez: String) -> float:
 		clave = "CapBallena"
 
 	if Box_Cap.Porcentaje_Captura.has(clave):
-		return Box_Cap.Porcentaje_Captura[clave]
+		return Box_Cap.Porcentaje_Captura[clave] * modificador_probabilidad
 	else:
-		push_warning("⚠️ Clave no encontrada para: " + nombre_pez)
-		return 0.5
-
+		return 0.5 * modificador_probabilidad
+		
 # ==============================
 # TRANSFORMAR PEZ EN BOLA
 # ==============================
@@ -221,10 +227,26 @@ func _iniciar_minijuego():
 	var minijuego = minijuego_escena.instantiate()
 	get_tree().root.add_child(minijuego)
 	minijuego.connect("finalizado", Callable(self, "_on_minijuego_finalizado"))
+	print("🎮 Minijuego iniciado desde el anzuelo")
+
+	var caña = get_node_or_null("/root/MainJuego/CañaPesca")
+	if caña:
+		caña.minijuego_activo = true
+
+	get_tree().root.add_child(minijuego)
+	minijuego.connect("finalizado", Callable(self, "_on_minijuego_finalizado"))
 
 func _on_minijuego_finalizado(resultado: bool):
-	if resultado:
-		print("✅ El jugador ganó el minijuego")
-	else:
-		print("❌ El jugador falló el minijuego")
+	print("🎮 Minijuego finalizado → Resultado:", resultado)
+
+	# Si pierde el minijuego, liberar el pez inmediatamente
+	if not resultado:
+		print("❌ Minijuego perdido: liberando pez antes de recoger.")
 		liberar_pez()
+
+	# 🔔 Avisar a la caña para que haga la recogida automática
+	var caña := get_node_or_null("/root/MainJuego/CañaPesca")
+	if caña and caña.has_method("_on_minijuego_finalizado"):
+		caña._on_minijuego_finalizado(resultado)
+	else:
+		push_warning("⚠️ No se encontró la caña o falta _on_minijuego_finalizado en CañaPesca")
