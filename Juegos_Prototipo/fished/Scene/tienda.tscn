@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs0lx2ya50xsy"]
+
+[ext_resource type="Texture2D" uid="uid://c0thhagnyykbx" path="res://Assets/Tienda/fondo tienda ingame.png" id="1_drgtu"]
+
+[node name="Tienda" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_drgtu")

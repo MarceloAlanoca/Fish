@@ -49,8 +49,8 @@ scale = Vector2(9.556, 6.3187)
 shape = SubResource("CircleShape2D_ykenn")
 
 [node name="Anzuelo" type="Sprite2D" parent="CañaPesca/Caña/Anzuelo"]
-position = Vector2(6.10352e-05, 0)
-scale = Vector2(0.2, 0.2)
+position = Vector2(11.4786, -9.34601e-05)
+scale = Vector2(0.398472, 0.326162)
 texture = ExtResource("5_0d0lj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

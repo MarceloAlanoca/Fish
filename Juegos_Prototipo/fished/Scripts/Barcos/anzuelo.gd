@@ -6,7 +6,7 @@ extends Area2D
 @export var velocidad_recoger := 300
 @export var fuerza_lanzamiento := 1000
 @export var gravedad := 1600
-@export var distancia_maxima := 2500
+@export var distancia_maxima := 2000
 
 enum Estado { INACTIVO, LANZADO, RECOGIENDO }
 var estado := Estado.INACTIVO
@@ -25,6 +25,8 @@ var pez_atrapado: Node = null
 @onready var sprite := $Sprite2D
 @onready var ui := get_tree().current_scene.get_node_or_null("CanvasLayer")
 @onready var libocap := ui.get_node_or_null("LibOCap") if ui else null
+@onready var inventory_ui = get_node_or_null("/root/MainJuego/CanvasLayer/InventoryUI")
+@onready var Tirar := get_node("/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
 
 # ==============================
 # DATOS EXTERNOS
@@ -33,12 +35,19 @@ var Box = load("res://Scripts/FishBox.gd")
 var Box_Cap = Box.new()
 
 # ==============================
+# MINIJUEGO
+# ==============================
+var minijuego_escena := preload("res://Scene/pescar_minigame.tscn")
+
+# ==============================
 # READY
 # ==============================
 func _ready() -> void:
 	add_to_group("anzuelo")
 	posicion_inicial = position
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	if Tirar:
+		Tirar.pressed.connect(_on_tirar_boton)
 	print("🎣 Anzuelo listo en posición:", posicion_inicial)
 
 # ==============================
@@ -54,19 +63,19 @@ func _on_body_entered(body):
 			_transformar_a_bola(pez_atrapado)
 			collision_shape.disabled = true
 			print("🎯 ¡Pez atrapado!: ", body.name)
+			_iniciar_minijuego()
 		else:
 			print("💨 El pez escapó:", body.name)
 
 # ==============================
-# INPUT
+# BOTÓN TIRAR (reemplaza ui_accept)
 # ==============================
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		match estado:
-			Estado.INACTIVO:
-				_lanzar()
-			Estado.LANZADO:
-				_empezar_recoger()
+func _on_tirar_boton():
+	match estado:
+		Estado.INACTIVO:
+			_lanzar()
+		Estado.LANZADO:
+			_empezar_recoger()
 
 # ==============================
 # LANZAR Y RECOGER
@@ -78,6 +87,8 @@ func _lanzar():
 	var angulo = deg_to_rad(-45)
 	velocidad_anzuelo = Vector2(cos(angulo), sin(angulo)) * fuerza_lanzamiento
 	print("🏹 Lanzando anzuelo...")
+	if inventory_ui:
+		inventory_ui.visible = false
 
 func _empezar_recoger():
 	if estado != Estado.LANZADO:
@@ -124,7 +135,7 @@ func _mostrar_lib_ocap():
 		libocap.mostrar_panel(pez_atrapado)
 		print("📋 Panel LibOCap mostrado")
 	else:
-		push_error("⚠️ No se encontró el nodo 'LibOCap'. Verifica la ruta en el CanvasLayer.")
+		push_error("⚠️ No se encontró el nodo 'LibOCap'.")
 
 # ==============================
 # PEZ PEGADO AL ANZUELO
@@ -152,7 +163,7 @@ func obtener_probabilidad_captura(nombre_pez: String) -> float:
 		clave = "CapPayaso"
 	elif "Ballena" in nombre_pez:
 		clave = "CapBallena"
-	
+
 	if Box_Cap.Porcentaje_Captura.has(clave):
 		return Box_Cap.Porcentaje_Captura[clave]
 	else:
@@ -202,3 +213,18 @@ func guardar_pez():
 		print("🎁 Guardando pez:", pez_atrapado.name)
 		pez_atrapado.queue_free()
 		pez_atrapado = null
+
+# ==============================
+# MINIJUEGO
+# ==============================
+func _iniciar_minijuego():
+	var minijuego = minijuego_escena.instantiate()
+	get_tree().root.add_child(minijuego)
+	minijuego.connect("finalizado", Callable(self, "_on_minijuego_finalizado"))
+
+func _on_minijuego_finalizado(resultado: bool):
+	if resultado:
+		print("✅ El jugador ganó el minijuego")
+	else:
+		print("❌ El jugador falló el minijuego")
+		liberar_pez()

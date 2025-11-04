@@ -1,11 +1,12 @@
 extends Control
 
 signal minijuego_finalizado(resultado_exitoso: bool)
-@onready var fondo_barra = $Control/FondoBarra
-@onready var zona_pez = $Control/FondoBarra/ZonaPez
-@onready var zona_jugador = $Control/FondoBarra/ZonaJugador
-@onready var barra_progreso = $Control/ProgresoBarra
-@onready var timer = $Control/Timer
+
+@onready var fondo_barra = $FondoBarra
+@onready var zona_pez = $ZonaPez
+@onready var zona_jugador = $ZonaJugador
+@onready var barra_progreso = $"../ProgressBar"
+@onready var timer = $"../ProgressBar/Timer"
 
 @export var velocidad_pez: float = 250.0
 @export var velocidad_jugador: float = 400.0
@@ -37,7 +38,6 @@ func finalizar_minijuego(resultado_exitoso: bool):
 func _process(delta):
 	if not en_juego:
 		return
-
 	_mover_pez(delta)
 	_mover_jugador(delta)
 	verificar_colision(delta)
@@ -70,4 +70,3 @@ func verificar_colision(delta):
 		finalizar_minijuego(true)
 	elif fuera_zona_tiempo >= 3.0:
 		finalizar_minijuego(false)
-		

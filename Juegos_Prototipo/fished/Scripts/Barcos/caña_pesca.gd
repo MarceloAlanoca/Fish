@@ -1,17 +1,22 @@
 extends Node2D
 
-@onready var camara = get_node("/root/MainJuego/Camera2D")
+# ==============================
+# CONFIGURACIÓN
+# ==============================
+@export var fuerza_lanzamiento := 1400
+@export var gravedad := 1800
+@export var velocidad_recoger := 1400
+@export var distancia_maxima := 3500
 
-
-@export var fuerza_lanzamiento = 1400
-@export var gravedad = 1800
-@export var velocidad_recoger = 1400
-@export var distancia_maxima = 3500
-
-
+# ==============================
+# SEÑALES
+# ==============================
 signal pesca_iniciada
 signal pesca_terminada
 
+# ==============================
+# VARIABLES DE ESTADO
+# ==============================
 var lanzado := false
 var recogiendo := false
 var en_uso := false
@@ -20,20 +25,72 @@ var pez_atrapado: CharacterBody2D = null
 var anzuelo: Area2D
 var velocidad_anzuelo := Vector2.ZERO
 var posicion_inicial := Vector2.ZERO
+var Tirar: Button = null
 
+# ==============================
+# REFERENCIAS
+# ==============================
+@onready var camara = get_node_or_null("/root/MainJuego/Camera2D")
+
+# ==============================
+# READY
+# ==============================
 func _ready():
 	anzuelo = $"Caña/Anzuelo"
 	posicion_inicial = anzuelo.position
+
+	# Conectar señal del anzuelo
 	if anzuelo.has_signal("pez_atrapado_signal"):
 		anzuelo.connect("pez_atrapado_signal", Callable(self, "_on_anzuelo_pez_atrapado"))
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		if not en_uso:
-			lanzar_anzuelo()
-		elif lanzado and not recogiendo:
-			empezar_recoger()
+	# Buscar y conectar botón “Lanzar”
+	_buscar_boton_tirar()
 
+# ==============================
+# BUSCAR BOTÓN "LANZAR"
+# ==============================
+func _buscar_boton_tirar():
+	print("🔍 Buscando botón 'Lanzar'...")
+	var posibles_rutas = [
+		"/root/MainJuego/CanvasLayer/Lanzar",
+		"/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar",
+		"/root/MainJuego/CanvasLayer/UI/Lanzar"
+	]
+
+	for ruta in posibles_rutas:
+		if has_node(ruta):
+			Tirar = get_node(ruta)
+			print("✅ Botón encontrado en:", ruta)
+			Tirar.connect("pressed", Callable(self, "_on_tirar_pressed"))
+			Tirar.focus_mode = Control.FOCUS_NONE  # Evita capturar el foco
+			return
+
+	print("⚠️ No se encontró ningún botón 'Lanzar' en las rutas conocidas.")
+
+# ==============================
+# BOTÓN PRESIONADO
+# ==============================
+func _on_tirar_pressed():
+	_manejar_tiro()
+
+# ==============================
+# LÓGICA DE LANZAR / RECOGER
+# ==============================
+func _manejar_tiro():
+	if not en_uso:
+		lanzar_anzuelo()
+		_actualizar_boton_texto("Recoger 🎣")
+	elif lanzado and not recogiendo:
+		empezar_recoger()
+		_actualizar_boton_texto("Lanzar 🐟")
+
+func _actualizar_boton_texto(texto: String):
+	if Tirar:
+		Tirar.text = texto
+
+# ==============================
+# LANZAR Y RECOGER
+# ==============================
 func lanzar_anzuelo():
 	if en_uso:
 		return
@@ -41,14 +98,12 @@ func lanzar_anzuelo():
 	recogiendo = false
 	en_uso = true
 	emit_signal("pesca_iniciada")
-	
+
 	if camara and "objeto_seguir" in camara:
 		camara.objeto_seguir = anzuelo
 
-
 	velocidad_anzuelo = Vector2(fuerza_lanzamiento, -fuerza_lanzamiento * 0.5)
 	print("🏹 Lanzando anzuelo...")
-
 
 func empezar_recoger():
 	if not lanzado or recogiendo:
@@ -56,6 +111,9 @@ func empezar_recoger():
 	recogiendo = true
 	print("↩️ Recogiendo anzuelo...")
 
+# ==============================
+# FÍSICAS
+# ==============================
 func _physics_process(delta):
 	if lanzado and not recogiendo:
 		_mover_lanzamiento(delta)
@@ -80,6 +138,9 @@ func _mover_recoger(delta):
 	else:
 		_finalizar_pesca()
 
+# ==============================
+# FINALIZAR PESCA
+# ==============================
 func _finalizar_pesca():
 	anzuelo.position = posicion_inicial
 	velocidad_anzuelo = Vector2.ZERO
@@ -89,9 +150,12 @@ func _finalizar_pesca():
 	emit_signal("pesca_terminada")
 	print("✅ Pesca terminada")
 
+	_actualizar_boton_texto("Lanzar 🎯")
+
 	if camara and "objeto_seguir" in camara:
-		var pescador = get_node("/root/MainJuego/Pescador")
-		camara.objeto_seguir = pescador
+		var pescador = get_node_or_null("/root/MainJuego/Pescador")
+		if pescador:
+			camara.objeto_seguir = pescador
 
 	# Mostrar panel si hay pez
 	if pez_atrapado:
@@ -100,6 +164,9 @@ func _finalizar_pesca():
 			ui.mostrar_decision(pez_atrapado)
 		pez_atrapado = null
 
+# ==============================
+# SEÑAL DEL ANZUELO
+# ==============================
 func _on_anzuelo_pez_atrapado(pez):
 	pez_atrapado = pez
 	print("🎣 ¡Pez atrapado!: ", pez.name)
