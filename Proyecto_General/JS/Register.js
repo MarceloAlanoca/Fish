@@ -54,3 +54,12 @@ if (closeBtn && panel) {
 }
 
 console.log("Panel detectado:", panel);
+
+// Modal de alerta
+function mostrarModal(mensaje) {
+  document.getElementById('alertText').textContent = mensaje;
+  document.getElementById('alertModal').style.display = 'flex';
+}
+function cerrarModal() {
+  document.getElementById('alertModal').style.display = 'none';
+}

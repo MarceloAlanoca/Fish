@@ -53,35 +53,42 @@
             <button type="submit" class="Enviar">Registrar</button>
         </div>
         <div id="optionalPanel" class="panel">
-        <h2>Datos opcionales</h2>
+            <h2>Datos opcionales</h2>
 
-        <div class="Grupo">
-            <input type="number" name="edad" min="1" max="100">
-            <span class="barra"></span>
-            <label>Edad</label>
+            <div class="Grupo">
+                <input type="number" name="edad" min="1" max="100">
+                <span class="barra"></span>
+                <label>Edad</label>
+            </div>
+
+            <div class="Grupo">
+                <select name="genero">
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <span class="barra"></span>
+                <label style="top:-14px; font-size:12px;">Género</label>
+            </div>
+
+
+            <div class="Grupo">
+                <input type="text" name="telefono">
+                <span class="barra"></span>
+                <label>Teléfono</label>
+            </div>
+
+            <button id="closePanel" class="CerrarOpc">Cerrar</button>
         </div>
-
-        <div class="Grupo">
-            <select name="genero">
-                <option value="" selected disabled>Seleccione una opción</option>
-                <option value="Hombre">Hombre</option>
-                <option value="Mujer">Mujer</option>
-                <option value="Otro">Otro</option>
-            </select>
-            <span class="barra"></span>
-            <label style="top:-14px; font-size:12px;">Género</label>
-        </div>
-
-
-        <div class="Grupo">
-            <input type="text" name="telefono">
-            <span class="barra"></span>
-            <label>Teléfono</label>
-        </div>
-
-        <button id="closePanel" class="CerrarOpc">Cerrar</button>
-    </div>
     </form>
+
+    <div id="alertModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p id="alertText"></p>
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
     <script src="../JS/Register.js"></script>
 </body>
 
