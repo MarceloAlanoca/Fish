@@ -140,36 +140,38 @@ func _finalizar_pesca():
 	lanzado = false
 	recogiendo = false
 	en_uso = false
-	emit_signal("pesca_terminada")
+	pez_atrapado = null
+	minijuego_activo = false
 
 	print("✅ Pesca terminada")
 
-	# ✅ Volver a seguir al pescador con la cámara
+	# ✅ Notificar correctamente una sola vez
+	emit_signal("pesca_terminada")
+
+	# ✅ Si el pescador existe, actualiza su estado
+	if pescador and pescador.has_method("_on_pesca_terminada"):
+		pescador._on_pesca_terminada()
+
+	# ✅ Restaurar cámara
 	if camara and "objeto_seguir" in camara:
 		var pescador_node = get_node_or_null("/root/MainJuego/Pescador")
 		if pescador_node:
 			camara.objeto_seguir = pescador_node
 
-	# ✅ Rehabilitar colisión del anzuelo
+	# ✅ Restaurar colisión
 	if anzuelo and anzuelo.has_node("CollisionShape2D"):
 		anzuelo.get_node("CollisionShape2D").disabled = false
 
-	# ✅ Mostrar el panel LibOCap si hay pez capturado
+	# ✅ Mostrar panel de captura si hay pez
 	if anzuelo and anzuelo.pez_atrapado:
 		var libocap = get_tree().root.get_node_or_null("MainJuego/CanvasLayer/LibOCap")
 		if libocap and libocap.has_method("mostrar_panel"):
-			libocap.mostrar_panel(anzuelo.pez_atrapado)
-			print("📖 Panel LibOCap mostrado automáticamente al recoger el pez.")
+			var nombre_real = anzuelo.nombre_pez_actual if anzuelo.nombre_pez_actual != "" else anzuelo.pez_atrapado.name
+			libocap.mostrar_panel(anzuelo.pez_atrapado, nombre_real)
+			print("📖 Panel LibOCap mostrado automáticamente al recoger el pez:", nombre_real)
 		else:
 			push_warning("⚠️ No se encontró LibOCap o no tiene mostrar_panel().")
 
-	# ✅ Limpiar referencia al pez en la caña (ya gestionado por LibOCap)
-	pez_atrapado = null
-	emit_signal("pesca_terminada")
-
-	# respaldo explícito
-	if pescador and pescador.has_method("_on_pesca_terminada"):
-		pescador._on_pesca_terminada()
 
 
 
@@ -181,17 +183,11 @@ func _on_minijuego_finalizado(resultado: bool):
 	minijuego_activo = false
 	enable_action()
 
-	# Forzamos que la caña empiece a recoger
+	# Forzar recogida
 	lanzado = true
 	recogiendo = false
-
 	if not resultado:
 		print("❌ Perdió el minijuego: la caña volverá vacía.")
 		pez_atrapado = null
 
-	# 🔁 Forzar recogida y asegurarse de restaurar movimiento al final
-	empezar_recoger()
-
-	# 🔔 Asegurar que el pescador recupere velocidad aunque algo falle
-	if pescador and pescador.has_method("_on_pesca_terminada"):
-		pescador._on_pesca_terminada()
+	empezar_recoger()  # esto ahora terminará correctamente

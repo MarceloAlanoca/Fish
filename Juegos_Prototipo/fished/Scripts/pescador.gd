@@ -13,7 +13,20 @@ var pescando := false
 
 func _ready():
 	_conectar_caña()
-	Global.aplicar_efectos_pescador(self)
+
+	# ✅ Guardar base de velocidad y penalización una sola vez
+	if not has_meta("vel_base"):
+		set_meta("vel_base", velocidad)
+	if not has_meta("multi_base"):
+		set_meta("multi_base", multiplicador_velocidad_pesca)
+
+	# ✅ Restaurar valores base antes de aplicar efectos
+	velocidad = get_meta("vel_base")
+	multiplicador_velocidad_pesca = get_meta("multi_base")
+
+	# ✅ Aplicar efectos activos sin duplicar
+	Global.reaplicar_efectos_pescador(self)
+
 
 func _conectar_caña():
 	if not caña or not is_instance_valid(caña):
@@ -68,5 +81,4 @@ func _on_pesca_iniciada():
 func _on_pesca_terminada():
 	pescando = false
 	puede_moverse = true
-	multiplicador_velocidad_pesca = 1.0  # 🔁 Restaurar al valor originald
 	print("✅ Movimiento restaurado después de la pesca")

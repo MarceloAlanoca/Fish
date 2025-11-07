@@ -18,6 +18,8 @@ var velocidad_anzuelo := Vector2.ZERO
 var posicion_inicial := Vector2.ZERO
 var pez_atrapado: Node = null
 var modificador_probabilidad := 1.0
+var nombre_pez_actual: String = ""
+
 
 # ==============================
 # REFERENCIAS
@@ -63,14 +65,14 @@ func _on_body_entered(body):
 		var probabilidad := obtener_probabilidad_captura(body.name)
 		if randf() <= probabilidad:
 			pez_atrapado = body
+			nombre_pez_actual = body.name  # ✅ guardamos el nombre original
 			if body.has_method("detener_movimiento"):
 				body.detener_movimiento()
 			_transformar_a_bola(pez_atrapado)
 			collision_shape.disabled = true
-			print("🎯 ¡Pez atrapado!: ", body.name)
+			print("🎯 ¡Pez atrapado!: ", nombre_pez_actual)
 			_iniciar_minijuego()
-		else:
-			print("💨 El pez escapó:", body.name)
+
 
 # ==============================
 # BOTÓN TIRAR (reemplaza ui_accept)
@@ -138,11 +140,14 @@ func _mover_recoger(delta):
 # MOSTRAR PANEL UI
 # ==============================
 func _mostrar_lib_ocap():
-	if libocap:
-		libocap.mostrar_panel(pez_atrapado)
-		print("📋 Panel LibOCap mostrado")
+	if nombre_pez_actual == "" and pez_atrapado:
+		nombre_pez_actual = pez_atrapado.name   # ✅ asegurar nombre antes del panel
+	if libocap and pez_atrapado:
+		libocap.mostrar_panel(pez_atrapado, nombre_pez_actual)
+		print("📋 Panel LibOCap mostrado con pez:", nombre_pez_actual)
 	else:
-		push_error("⚠️ No se encontró el nodo 'LibOCap'.")
+		push_error("⚠️ No se encontró el nodo 'LibOCap' o no hay pez.")
+
 
 # ==============================
 # PEZ PEGADO AL ANZUELO
@@ -212,13 +217,17 @@ func liberar_pez():
 	if pez_atrapado:
 		print("🐠 Liberando pez:", pez_atrapado.name)
 		pez_atrapado.queue_free()
-		pez_atrapado = null
+		call_deferred("_reset_pez")
 
 func guardar_pez():
 	if pez_atrapado:
 		print("🎁 Guardando pez:", pez_atrapado.name)
 		pez_atrapado.queue_free()
-		pez_atrapado = null
+		call_deferred("_reset_pez")
+		
+func _reset_pez():
+	pez_atrapado = null
+	collision_shape.disabled = false
 
 # ==============================
 # MINIJUEGO
@@ -237,16 +246,18 @@ func _iniciar_minijuego():
 	minijuego.connect("finalizado", Callable(self, "_on_minijuego_finalizado"))
 
 func _on_minijuego_finalizado(resultado: bool):
-	print("🎮 Minijuego finalizado → Resultado:", resultado)
+	# ✅ Si ganó el minijuego y aún no hay nombre guardado, guárdalo
+	if resultado and pez_atrapado and nombre_pez_actual == "":
+		nombre_pez_actual = pez_atrapado.name
 
-	# Si pierde el minijuego, liberar el pez inmediatamente
+	print("🎮 Minijuego finalizado → Resultado:", resultado)
+	if resultado and pez_atrapado and nombre_pez_actual == "":
+		nombre_pez_actual = pez_atrapado.name   # ✅ guarda nombre si no estaba
+
 	if not resultado:
 		print("❌ Minijuego perdido: liberando pez antes de recoger.")
 		liberar_pez()
 
-	# 🔔 Avisar a la caña para que haga la recogida automática
 	var caña := get_node_or_null("/root/MainJuego/CañaPesca")
 	if caña and caña.has_method("_on_minijuego_finalizado"):
 		caña._on_minijuego_finalizado(resultado)
-	else:
-		push_warning("⚠️ No se encontró la caña o falta _on_minijuego_finalizado en CañaPesca")

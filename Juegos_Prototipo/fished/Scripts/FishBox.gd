@@ -1,4 +1,5 @@
 extends Node2D
+
 var VelP = {
 	AtunVelocity = 450,
 	OrcaVelocity = 500,
@@ -37,11 +38,11 @@ var Porcentaje_Captura = {
 }
 
 var Bitcoin_Pez = {
-	BitOrca = 1000,
-	BitAtun = 400,
-	BitSalmon = 250,
-	BitPayaso = 400,
-	BitBarracuda = 550,
-	BitLenguado = 350,
-	BitBallena = 1500
+	"Orca": 1000,
+	"Atun": 400,
+	"Salmon": 250,
+	"Payaso": 400,
+	"Barracuda": 550,
+	"Lenguado": 350,
+	"Ballena": 1500
 }

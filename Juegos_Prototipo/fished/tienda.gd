@@ -45,6 +45,8 @@ extends Control
 # ================================
 func _ready():
 	# 🎵 Música de fondo
+	# 🔄 Cargar progreso antes de mostrar la tienda
+	Global.cargar_amuletos()
 	if musica_tienda and not musica_tienda.playing:
 		musica_tienda.stream = musica_fondo
 		musica_tienda.stream.set_loop(true)
@@ -109,6 +111,8 @@ func _on_articulo_comprado(boton: TextureButton):
 	if Global.doblones >= precio:
 		Global.doblones -= precio
 		Global.amuletos_comprados.append(nombre)
+		# 💾 Guardar datos inmediatamente después de comprar
+		Global.guardar_amuletos()
 		label_doblones.text = "💰 Doblones: %d" % Global.doblones
 
 		_tulio_hablar("react")
@@ -187,8 +191,9 @@ func _salir():
 	_tulio_hablar("goodbye")
 	_reproducir_sonido(sonido_despedida)
 	await get_tree().create_timer(1.5).timeout
-
+	Global.guardar_amuletos()
 	var main_scene = load("res://Scene/main_juego.tscn")
+	# 💾 Asegurar guardado final antes de volver al juego
 	if main_scene:
 		get_tree().change_scene_to_packed(main_scene)
 	else:

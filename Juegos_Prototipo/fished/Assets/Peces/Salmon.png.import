@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvloukejjmfub"
-path="res://.godot/imported/pez espada.png-61adb9ee7fb06839e493ee8fd7e66b08.ctex"
+uid="uid://bjt82bs7nd2dy"
+path="res://.godot/imported/Salmon.png-3f1d6c5dbb6613aae6632c9e0489e363.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/pez espada.png"
-dest_files=["res://.godot/imported/pez espada.png-61adb9ee7fb06839e493ee8fd7e66b08.ctex"]
+source_file="res://Assets/Peces/Salmon.png"
+dest_files=["res://.godot/imported/Salmon.png-3f1d6c5dbb6613aae6632c9e0489e363.ctex"]
 
 [params]
 

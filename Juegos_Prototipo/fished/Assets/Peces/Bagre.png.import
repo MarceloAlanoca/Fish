@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm6mo70gmvtwo"
-path="res://.godot/imported/ballena azul.png-31214ed2342c74a7ce29f5811e83a14f.ctex"
+uid="uid://imxggln5v1q7"
+path="res://.godot/imported/Bagre.png-8ac75fecaac3f7ab7d392f4c9beaf837.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/ballena azul.png"
-dest_files=["res://.godot/imported/ballena azul.png-31214ed2342c74a7ce29f5811e83a14f.ctex"]
+source_file="res://Assets/Peces/Bagre.png"
+dest_files=["res://.godot/imported/Bagre.png-8ac75fecaac3f7ab7d392f4c9beaf837.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvgmtegvn1yf3"
-path="res://.godot/imported/pez globo.png-abe45404afb8f1cd5ebcf4bcdeedb5b4.ctex"
+uid="uid://d1rep7tvlatnp"
+path="res://.godot/imported/Atun.png-85de8f5765459c2cdb2800273fb33fe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/pez globo.png"
-dest_files=["res://.godot/imported/pez globo.png-abe45404afb8f1cd5ebcf4bcdeedb5b4.ctex"]
+source_file="res://Assets/Peces/Atun.png"
+dest_files=["res://.godot/imported/Atun.png-85de8f5765459c2cdb2800273fb33fe9.ctex"]
 
 [params]
 

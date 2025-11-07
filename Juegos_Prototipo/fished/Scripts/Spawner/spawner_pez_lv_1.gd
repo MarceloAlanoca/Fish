@@ -4,11 +4,11 @@ extends Area2D
 # Escenas de los peces (cargadas directamente)
 # ------------------------------
 var fish_scenes: Array = [
-	load("res://Scene/Peces/atun.tscn"),       # índice 0
-	load("res://Scene/Peces/salmon.tscn"),     # índice 1
-	load("res://Scene/Peces/Barracuda.tscn"),  # índice 2
-	load("res://Scene/Peces/PezPayaso.tscn"),  # índice 3
-	load("res://Scene/Peces/LenguadoP.tscn")   # índice 4
+	load("res://Scene/Peces/Atun.tscn"),
+	load("res://Scene/Peces/Salmon.tscn"),
+	load("res://Scene/Peces/Barracuda.tscn"),
+	load("res://Scene/Peces/Payaso.tscn"),
+	load("res://Scene/Peces/Lenguado.tscn")
 ]
 
 # ------------------------------
@@ -61,7 +61,30 @@ func spawn_fish():
 	fish.global_position = get_random_point_inside_area()
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
+
+	# ✅ Asignar nombre real según la ruta (case-insensitive y tolerante)
+	var ruta: String = fish_scene.resource_path.to_lower()
+
+	if ruta.contains("/atun"):
+		fish.name = "Atun"
+	elif ruta.contains("/salmon"):
+		fish.name = "Salmon"
+	elif ruta.contains("/barracuda"):
+		fish.name = "Barracuda"
+	elif ruta.contains("/payaso") or ruta.contains("/pezpayaso"):
+		fish.name = "Payaso"
+	elif ruta.contains("/lenguado"):
+		fish.name = "Lenguado"
+	elif ruta.contains("/orca"):
+		fish.name = "Orca"
+	elif ruta.contains("/ballena"):
+		fish.name = "Ballena"
+	else:
+		fish.name = "Desconocido"
+
 	print("✅ Pez spawneado:", fish.name, "en", fish.global_position)
+
+
 
 # ------------------------------
 # Selección de pez usando probabilidades

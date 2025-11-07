@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8wteff418oco"
-path="res://.godot/imported/pez cirujano.png-4d69b1bb0cd808094b6ae0583709be3c.ctex"
+uid="uid://dmy8brw0jj78u"
+path="res://.godot/imported/Orca.png-95a43c0fe142a2bb87887c178100dbf9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/pez cirujano.png"
-dest_files=["res://.godot/imported/pez cirujano.png-4d69b1bb0cd808094b6ae0583709be3c.ctex"]
+source_file="res://Assets/Peces/Orca.png"
+dest_files=["res://.godot/imported/Orca.png-95a43c0fe142a2bb87887c178100dbf9.ctex"]
 
 [params]
 

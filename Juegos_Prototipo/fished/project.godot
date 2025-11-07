@@ -22,6 +22,8 @@ config/icon="res://icon.svg"
 
 Inventory="*res://Scripts/Scrip_Inventory/Inventory.gd"
 Global="*res://Scripts/global.gd"
+FishBox="*res://Scripts/FishBox.gd"
+Save="*res://Scripts/guardar_datos.gd"
 
 [editor_plugins]
 

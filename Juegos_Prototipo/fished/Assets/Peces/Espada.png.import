@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1rep7tvlatnp"
-path="res://.godot/imported/atun.png-cd837f16a55f12503bab7b37c8796eb6.ctex"
+uid="uid://cvloukejjmfub"
+path="res://.godot/imported/Espada.png-430abc6967cca5bda1b1f8217fc0797d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/atun.png"
-dest_files=["res://.godot/imported/atun.png-cd837f16a55f12503bab7b37c8796eb6.ctex"]
+source_file="res://Assets/Peces/Espada.png"
+dest_files=["res://.godot/imported/Espada.png-430abc6967cca5bda1b1f8217fc0797d.ctex"]
 
 [params]
 

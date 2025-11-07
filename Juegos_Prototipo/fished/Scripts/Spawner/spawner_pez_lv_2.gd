@@ -4,10 +4,10 @@ extends Area2D
 # Escenas de los peces (cargadas directamente)
 # ------------------------------
 var fish_scenes: Array = [
-	load("res://Scene/Peces/ballena.tscn"), #indice 0
-	load("res://Scene/Peces/orca.tscn")      # índice 1
-
+	load("res://Scene/Peces/Ballena.tscn"), # índice 0
+	load("res://Scene/Peces/Orca.tscn")     # índice 1
 ]
+
 
 # ------------------------------
 # Script con porcentajes

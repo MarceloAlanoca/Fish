@@ -3,9 +3,57 @@ extends Node
 # =======================================
 # VARIABLES GLOBALES
 # =======================================
-var doblones: int = 100
+var doblones: int = 10000
 var amuletos_comprados: Array = []
 var amuletos_equipados: Array = []
+
+func _ready():
+	# 🔥 BORRA EL GUARDADO ANTERIOR AL INICIAR (solo para desarrollo)
+	if FileAccess.file_exists("user://fishstack_save.json"):
+		DirAccess.remove_absolute("user://fishstack_save.json")
+		print("🧹 Archivo de guardado eliminado para reiniciar progreso.")
+
+
+# ====================================================
+# 💾 GUARDAR / CARGAR AMULETOS EQUIPADOS
+# ====================================================
+
+var save_path := "user://amuletos_guardados.save"
+
+func cargar_amuletos():
+	var data := Save.cargar_datos()
+	amuletos_comprados = data.get("amuletos", [])
+	amuletos_equipados = data.get("equipados", [])
+
+func guardar_amuletos():
+	var data := Save.cargar_datos()
+	data["amuletos"] = amuletos_comprados
+	data["equipados"] = amuletos_equipados
+	data["doblones"] = doblones
+	Save.guardar_datos(data)
+
+# ——— helpers para aplicar efectos sin “stackearlos” ———
+
+func _preparar_base_pescador(pescador: Node) -> void:
+	# Guarda la velocidad base una sola vez
+	if not pescador.has_meta("vel_base"):
+		pescador.set_meta("vel_base", pescador.velocidad)
+
+func reaplicar_efectos_pescador(pescador: Node) -> void:
+	if not pescador:
+		return
+
+	if pescador.has_meta("vel_base"):
+		pescador.velocidad = pescador.get_meta("vel_base")
+	if pescador.has_meta("multi_base"):
+		pescador.multiplicador_velocidad_pesca = pescador.get_meta("multi_base")
+
+	aplicar_efectos_pescador(pescador)
+
+
+
+
+
 
 # =======================================
 # 💎 EFECTOS DE AMULETOS REALES
@@ -18,13 +66,17 @@ func aplicar_efectos_pescador(pescador: Node) -> void:
 	if not pescador:
 		return
 
-	# Amuleto Raro → +50% velocidad de movimiento
+	# ✅ Amuleto Raro → +50% velocidad general y reduce penalización de pesca un 75%
 	if "Amuleto Raro" in amuletos_equipados:
-		pescador.velocidad *= 1.5
+		pescador.velocidad *= 1.5  # Aumenta un 50% la velocidad normal
+		# En vez de multiplicar, fijamos un valor estable que representa una penalización menor
+		pescador.multiplicador_velocidad_pesca = max(pescador.multiplicador_velocidad_pesca, 0.55)
+		print("⚙️ Amuleto Raro activo → Vel:", pescador.velocidad, " Multiplicador pesca:", pescador.multiplicador_velocidad_pesca)
 
-	# Amuleto Celestial → +25% velocidad pasiva (barco/pescador general)
+	# ✅ Amuleto Celestial → +25% velocidad pasiva (barco/pescador general)
 	if "Amuleto Celestial" in amuletos_equipados:
 		pescador.velocidad *= 1.25
+
 
 	# Amuleto Exótico → reduce velocidad en minijuego (35%) → se maneja en minijuego
 	# Amuleto Dineral → efectos de dinero se manejan en LibOCap

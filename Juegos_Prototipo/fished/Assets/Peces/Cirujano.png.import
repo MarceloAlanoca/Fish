@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://imxggln5v1q7"
-path="res://.godot/imported/bagre.png-7c069348d40e0ef697fa4149e572204b.ctex"
+uid="uid://c8wteff418oco"
+path="res://.godot/imported/Cirujano.png-2fef7c6a5e78479894d493fd82765099.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/bagre.png"
-dest_files=["res://.godot/imported/bagre.png-7c069348d40e0ef697fa4149e572204b.ctex"]
+source_file="res://Assets/Peces/Cirujano.png"
+dest_files=["res://.godot/imported/Cirujano.png-2fef7c6a5e78479894d493fd82765099.ctex"]
 
 [params]
 

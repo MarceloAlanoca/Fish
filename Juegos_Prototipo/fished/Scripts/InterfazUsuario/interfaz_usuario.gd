@@ -10,8 +10,11 @@ class_name InterfazUsuario
 
 var amuletos_equipados: Array = []
 
+# ======================================================
+# 🧩 INICIO
+# ======================================================
 func _ready():
-	await get_tree().process_frame  # ⏳ Espera 1 frame (asegura que ya se cargó el nodo)
+	await get_tree().process_frame  # asegura que todo esté cargado
 	
 	actualizar_label()
 
@@ -24,6 +27,12 @@ func _ready():
 		panel_mochila.visible = false
 	else:
 		push_warning("⚠️ PanelMochila no encontrado en InterfazUsuario")
+
+	# 🔁 sincronizar equipados desde Global al cargar
+	amuletos_equipados = Global.amuletos_equipados.duplicate()
+	_actualizar_barra_equipados()
+	_aplicar_efectos_inmediatos()
+
 
 # ======================================================
 # 💰 SINCRONIZAR DINERO
@@ -56,16 +65,13 @@ func _on_mochila_pressed():
 
 	panel_mochila.visible = !panel_mochila.visible
 
-	# 🧩 Control del input del panel
 	if panel_mochila.visible:
 		panel_mochila.mouse_filter = Control.MOUSE_FILTER_STOP
 		_cargar_amuletos_mochila()
 	else:
 		panel_mochila.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	# 🔄 Evitar que el botón quede con foco (y se vuelva a activar al lanzar caña)
-	boton_mochila.release_focus()
-
+	boton_mochila.release_focus() # evita activación accidental
 
 
 # ======================================================
@@ -80,10 +86,16 @@ func _cargar_amuletos_mochila():
 		boton.text = amuleto
 		boton.custom_minimum_size = Vector2(180, 60)
 		boton.connect("pressed", Callable(self, "_equipar_amuletos").bind(amuleto, boton))
+		
+		# marcar los que ya están equipados
+		if amuleto in amuletos_equipados:
+			boton.modulate = Color(0.7, 1, 0.7, 1)
+		
 		grid_mochila.add_child(boton)
 
+
 # ======================================================
-# 🧿 EQUIPAR / DESEQUIPAR
+# 🧿 EQUIPAR / DESEQUIPAR AMULETOS
 # ======================================================
 func _equipar_amuletos(nombre: String, boton: Button):
 	if nombre in amuletos_equipados:
@@ -96,8 +108,11 @@ func _equipar_amuletos(nombre: String, boton: Button):
 		amuletos_equipados.append(nombre)
 		boton.modulate = Color(0.7, 1, 0.7, 1)
 
+	# 🔄 sincronizar con Global y aplicar efectos
 	Global.amuletos_equipados = amuletos_equipados
+	Global.guardar_amuletos()
 	_actualizar_barra_equipados()
+	_aplicar_efectos_inmediatos()
 
 
 # ======================================================
@@ -112,6 +127,17 @@ func _actualizar_barra_equipados():
 		var icon_path = _buscar_icono(nombre)
 		if icon_path != "":
 			barra_equipados.get_child(i).texture = load(icon_path)
+
+
+# ======================================================
+# 💎 APLICAR EFECTOS AL PESCADOR EN TIEMPO REAL
+# ======================================================
+func _aplicar_efectos_inmediatos():
+	var pescador := get_tree().get_root().get_node_or_null("MainJuego/Pescador")
+	if pescador:
+		Global.reaplicar_efectos_pescador(pescador)
+		print("✨ Efectos reaplicados. Equipados actuales:", Global.amuletos_equipados)
+
 
 # ======================================================
 # 🧭 OBTENER RUTA DE ICONO SEGÚN NOMBRE

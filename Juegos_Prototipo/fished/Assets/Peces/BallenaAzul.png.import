@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmy8brw0jj78u"
-path="res://.godot/imported/orca.png-e2bd2dfdc8687214d95e29648ba53d8f.ctex"
+uid="uid://bm6mo70gmvtwo"
+path="res://.godot/imported/BallenaAzul.png-ea9e79bd344025847badbc58876f4e4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/orca.png"
-dest_files=["res://.godot/imported/orca.png-e2bd2dfdc8687214d95e29648ba53d8f.ctex"]
+source_file="res://Assets/Peces/BallenaAzul.png"
+dest_files=["res://.godot/imported/BallenaAzul.png-ea9e79bd344025847badbc58876f4e4a.ctex"]
 
 [params]
 

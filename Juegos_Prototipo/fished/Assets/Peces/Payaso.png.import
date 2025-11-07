@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4vsit4groqhi"
-path="res://.godot/imported/lenguado.png-2a9c46304249766770f4f7330636d12f.ctex"
+uid="uid://co4eei0427ehb"
+path="res://.godot/imported/Payaso.png-0c5fb7872d0320aabe359616bd73023f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Peces assets/lenguado.png"
-dest_files=["res://.godot/imported/lenguado.png-2a9c46304249766770f4f7330636d12f.ctex"]
+source_file="res://Assets/Peces/Payaso.png"
+dest_files=["res://.godot/imported/Payaso.png-0c5fb7872d0320aabe359616bd73023f.ctex"]
 
 [params]
 
