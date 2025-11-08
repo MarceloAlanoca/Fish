@@ -4,25 +4,13 @@
 [ext_resource type="AudioStream" uid="uid://caac6rhqvj27" path="res://Assets/Musicas/Cuphead OST - Porkrind's Shop [Music].mp3" id="2_3s1dv"]
 [ext_resource type="Texture2D" uid="uid://bgjamgmn483dq" path="res://Assets/Tulio/Idle.png" id="2_j3fex"]
 [ext_resource type="Texture2D" uid="uid://dl37hr7gwx2i6" path="res://Assets/Tienda/FondoTienda.png" id="2_k3vqj"]
+[ext_resource type="Texture2D" uid="uid://c6egglhaqguxq" path="res://Assets/Tienda/Estante.png" id="3_fs1ct"]
 [ext_resource type="Texture2D" uid="uid://cexr6oowd7ha" path="res://Assets/Amuletos/amuletocelestial.png" id="5_hf6te"]
 [ext_resource type="Texture2D" uid="uid://dvwwbhlecfeva" path="res://Assets/Amuletos/amuletocomun.png" id="6_nnsdc"]
 [ext_resource type="Texture2D" uid="uid://dwtt7pq6omuhj" path="res://Assets/Amuletos/amuletoexotico.png" id="7_1ieev"]
 [ext_resource type="Texture2D" uid="uid://c41yiq1c787f1" path="res://Assets/Amuletos/amuletomasplata.png" id="8_fs1ct"]
 [ext_resource type="Texture2D" uid="uid://bm2qtf1ffibbc" path="res://Assets/Amuletos/amuletosecreto.png" id="9_1ieev"]
 [ext_resource type="Texture2D" uid="uid://3m2t4d41dgt2" path="res://Assets/Amuletos/amuletoraro.png" id="10_fs1ct"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ieev"]
-bg_color = Color(1.46498e-06, 0.00195757, 0.02428, 0.796078)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-corner_detail = 6
 
 [node name="Tienda" type="Control"]
 layout_mode = 3
@@ -46,6 +34,16 @@ offset_bottom = 1019.0
 scale = Vector2(1.12044, 0.668824)
 texture = ExtResource("2_k3vqj")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(223, 163)
+scale = Vector2(0.320001, 0.303064)
+texture = ExtResource("3_fs1ct")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(223, 326)
+scale = Vector2(0.320001, 0.303064)
+texture = ExtResource("3_fs1ct")
+
 [node name="Tulio" type="Sprite2D" parent="."]
 position = Vector2(824, 530)
 scale = Vector2(0.6, 0.617)
@@ -53,10 +51,10 @@ texture = ExtResource("2_j3fex")
 
 [node name="LabelDoblones" type="Label" parent="."]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 34.0
-offset_right = 108.0
-offset_bottom = 57.0
+offset_left = 645.0
+offset_top = 15.0
+offset_right = 685.0
+offset_bottom = 38.0
 scale = Vector2(1.47168, 1.4708)
 
 [node name="Salir" type="Button" parent="."]
@@ -74,58 +72,59 @@ volume_db = 8.0
 [node name="AudioTienda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_3s1dv")
 
-[node name="Estanteria" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 61.0
-offset_top = 74.0
-offset_right = 231.0
-offset_bottom = 318.0
-scale = Vector2(3.39322, 2.45708)
-columns = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Articulo1" type="TextureButton" parent="Estanteria"]
-layout_mode = 2
+[node name="Articulo1" type="TextureButton" parent="CanvasLayer"]
+custom_minimum_size = Vector2(64, 64)
+offset_left = 37.0
+offset_top = 181.0
+offset_right = 107.0
+offset_bottom = 251.0
+scale = Vector2(1.96, 2.16)
 texture_normal = ExtResource("5_hf6te")
 
-[node name="Articulo2" type="TextureButton" parent="Estanteria"]
-layout_mode = 2
+[node name="Articulo2" type="TextureButton" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 30.0
+offset_right = 86.0
+offset_bottom = 100.0
+scale = Vector2(2.52681, 2.47619)
 texture_normal = ExtResource("6_nnsdc")
 
-[node name="Articulo3" type="TextureButton" parent="Estanteria"]
-layout_mode = 2
+[node name="Articulo3" type="TextureButton" parent="CanvasLayer"]
+offset_left = 148.0
+offset_top = 29.0
+offset_right = 218.0
+offset_bottom = 99.0
+scale = Vector2(1.8, 1.72)
 texture_normal = ExtResource("7_1ieev")
 
-[node name="Articulo4" type="TextureButton" parent="Estanteria"]
-layout_mode = 2
+[node name="Articulo4" type="TextureButton" parent="CanvasLayer"]
+offset_left = 267.0
+offset_top = 178.0
+offset_right = 337.0
+offset_bottom = 248.0
+scale = Vector2(1.4, 1.90434)
 texture_normal = ExtResource("8_fs1ct")
 
-[node name="Articulo5" type="TextureButton" parent="Estanteria"]
-layout_mode = 2
+[node name="Articulo5" type="TextureButton" parent="CanvasLayer"]
+offset_left = 144.0
+offset_top = 179.0
+offset_right = 214.0
+offset_bottom = 249.0
+scale = Vector2(1.84, 2.28)
 texture_normal = ExtResource("9_1ieev")
 
-[node name="Articulo6" type="TextureButton" parent="Estanteria"]
-layout_mode = 2
+[node name="Articulo6" type="TextureButton" parent="CanvasLayer"]
+offset_left = 250.0
+offset_top = 30.0
+offset_right = 320.0
+offset_bottom = 100.0
+scale = Vector2(1.96, 1.96)
 texture_normal = ExtResource("10_fs1ct")
 
-[node name="PanelInfo" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 499.0
-offset_top = 164.0
-offset_right = 499.0
-offset_bottom = 164.0
-scale = Vector2(0.849193, 0.900873)
-theme_override_styles/panel = SubResource("StyleBoxFlat_1ieev")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelInfo"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="LabelNombre" type="Label" parent="PanelInfo/VBoxContainer"]
-layout_mode = 2
-
-[node name="LabelPrecio" type="Label" parent="PanelInfo/VBoxContainer"]
-layout_mode = 2
-
-[node name="LabelEfecto" type="Label" parent="PanelInfo/VBoxContainer"]
-layout_mode = 2
+[node name="LabelInfo" type="Label" parent="CanvasLayer"]
+offset_left = 168.0
+offset_top = 531.0
+offset_right = 208.0
+offset_bottom = 554.0

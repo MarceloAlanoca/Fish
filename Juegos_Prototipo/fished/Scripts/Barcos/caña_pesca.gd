@@ -15,7 +15,7 @@ signal pesca_iniciada
 signal pesca_terminada
 
 # ==============================
-# VARIABLES DE ESTADO
+# VARIABLES
 # ==============================
 var lanzado := false
 var recogiendo := false
@@ -32,19 +32,7 @@ var posicion_inicial := Vector2.ZERO
 # ==============================
 @onready var camara = get_node_or_null("/root/MainJuego/Camera2D")
 @onready var pescador = get_node_or_null("/root/MainJuego/Pescador")
-
-# ==============================
-# CONTROL DE INPUT (tecla "Action")
-# ==============================
-func disable_action(action_name: String = "Action"):
-	InputMap.action_erase_event(action_name, InputEventKey.new())
-	print("⛔ Acción '%s' deshabilitada temporalmente" % action_name)
-
-func enable_action(action_name: String = "Action", key_code: int = KEY_SPACE):
-	var event := InputEventKey.new()
-	event.physical_keycode = key_code
-	InputMap.action_add_event(action_name, event)
-	print("✅ Acción '%s' reactivada" % action_name)
+@onready var Tirar := get_node_or_null("/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
 
 # ==============================
 # READY
@@ -52,20 +40,21 @@ func enable_action(action_name: String = "Action", key_code: int = KEY_SPACE):
 func _ready():
 	anzuelo = $"Caña/Anzuelo"
 	posicion_inicial = anzuelo.position
-	print("🎣 Caña lista, control con tecla 'Action' (Espacio)")
+	print("🎣 Caña lista — control mediante botón 'Lanzar'")
+
+	# ❌ Desactivar completamente tecla espacio
+	InputMap.erase_action("ui_accept")
+
+	# 🔗 Conectar botón "Lanzar"
+	if Tirar:
+		Tirar.pressed.connect(_on_tirar_boton)
+	else:
+		push_warning("⚠️ No se encontró el botón 'Lanzar' en el UI.")
 
 # ==============================
-# INPUT GENERAL
+# BOTÓN "LANZAR"
 # ==============================
-func _input(event):
-	if event.is_action_pressed("Action"):
-		_manejar_tiro()
-
-# ==============================
-# LÓGICA DE LANZAR / RECOGER
-# ==============================
-func _manejar_tiro():
-	# 🔒 Bloquear acción si el minijuego está activo
+func _on_tirar_boton():
 	if minijuego_activo:
 		print("⏸️ No puedes lanzar ni recoger durante el minijuego.")
 		return
@@ -86,7 +75,6 @@ func lanzar_anzuelo():
 	en_uso = true
 	emit_signal("pesca_iniciada")
 
-	# 🔹 Notificar al pescador
 	if pescador and pescador.has_method("_on_pesca_iniciada"):
 		pescador._on_pesca_iniciada()
 
@@ -97,9 +85,7 @@ func lanzar_anzuelo():
 	print("🏹 Lanzando anzuelo...")
 
 func empezar_recoger():
-	
 	if not lanzado or recogiendo:
-		print("🔎 empezar_recoger() lanzado =", lanzado, " recogiendo =", recogiendo)
 		return
 	recogiendo = true
 	print("↩️ Recogiendo anzuelo...")
@@ -144,36 +130,27 @@ func _finalizar_pesca():
 	minijuego_activo = false
 
 	print("✅ Pesca terminada")
-
-	# ✅ Notificar correctamente una sola vez
 	emit_signal("pesca_terminada")
 
-	# ✅ Si el pescador existe, actualiza su estado
 	if pescador and pescador.has_method("_on_pesca_terminada"):
 		pescador._on_pesca_terminada()
 
-	# ✅ Restaurar cámara
 	if camara and "objeto_seguir" in camara:
 		var pescador_node = get_node_or_null("/root/MainJuego/Pescador")
 		if pescador_node:
 			camara.objeto_seguir = pescador_node
 
-	# ✅ Restaurar colisión
 	if anzuelo and anzuelo.has_node("CollisionShape2D"):
 		anzuelo.get_node("CollisionShape2D").disabled = false
 
-	# ✅ Mostrar panel de captura si hay pez
 	if anzuelo and anzuelo.pez_atrapado:
 		var libocap = get_tree().root.get_node_or_null("MainJuego/CanvasLayer/LibOCap")
 		if libocap and libocap.has_method("mostrar_panel"):
 			var nombre_real = anzuelo.nombre_pez_actual if anzuelo.nombre_pez_actual != "" else anzuelo.pez_atrapado.name
 			libocap.mostrar_panel(anzuelo.pez_atrapado, nombre_real)
-			print("📖 Panel LibOCap mostrado automáticamente al recoger el pez:", nombre_real)
+			print("📖 Panel LibOCap mostrado automáticamente:", nombre_real)
 		else:
 			push_warning("⚠️ No se encontró LibOCap o no tiene mostrar_panel().")
-
-
-
 
 # ==============================
 # RESULTADO DEL MINIJUEGO
@@ -181,13 +158,11 @@ func _finalizar_pesca():
 func _on_minijuego_finalizado(resultado: bool):
 	print("🎮 Resultado del minijuego:", resultado)
 	minijuego_activo = false
-	enable_action()
 
-	# Forzar recogida
 	lanzado = true
 	recogiendo = false
 	if not resultado:
 		print("❌ Perdió el minijuego: la caña volverá vacía.")
 		pez_atrapado = null
 
-	empezar_recoger()  # esto ahora terminará correctamente
+	empezar_recoger()

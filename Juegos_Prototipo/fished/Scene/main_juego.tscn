@@ -1,12 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://tdciqdl46hah"]
+[gd_scene load_steps=31 format=3 uid="uid://tdciqdl46hah"]
 
 [ext_resource type="Script" uid="uid://b0j3irx7ewbf" path="res://main_juego.gd" id="1_d6ytk"]
 [ext_resource type="PackedScene" uid="uid://4jjq52b8upil" path="res://Scene/pescador.tscn" id="1_s1cr2"]
 [ext_resource type="Script" uid="uid://c40i1ipctdbbr" path="res://Scripts/FishBox.gd" id="2_ypr6b"]
-[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/Salmon.tscn" id="3_ya0dr"]
+[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/salmon.tscn" id="3_ya0dr"]
 [ext_resource type="PackedScene" uid="uid://bg1wepdsnpm26" path="res://Scene/orca.tscn" id="4_f8irq"]
 [ext_resource type="Texture2D" uid="uid://djy7ggdscdqk" path="res://Assets/Capturas/Captura normal.png" id="4_ywkuk"]
-[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/Atun.tscn" id="5_sxn4p"]
+[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/atun.tscn" id="5_sxn4p"]
 [ext_resource type="Texture2D" uid="uid://bwwtgycuyj036" path="res://Assets/Fondos/FondoCielo.png" id="6_1u8df"]
 [ext_resource type="Texture2D" uid="uid://c5alf4i5oueex" path="res://Assets/Fondos/FondoMar.png" id="6_elcoi"]
 [ext_resource type="Texture2D" uid="uid://b6lek2xcudume" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (6).png" id="7_a0wg1"]
@@ -30,9 +30,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sp2o"]
 size = Vector2(29.0205, 183.532)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8df"]
-size = Vector2(1537.33, 1024.19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyyrs"]
 size = Vector2(2893, 733)
@@ -91,15 +88,6 @@ texture = ExtResource("6_1u8df")
 position = Vector2(7408, 3041)
 scale = Vector2(12.0716, 5.45991)
 texture = ExtResource("6_elcoi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/Mar"]
-position = Vector2(0.0828857, 2.93054)
-shape = SubResource("RectangleShape2D_1u8df")
-
-[node name="Area2D" type="Area2D" parent="ParallaxBackground/ParallaxLayer/Mar/CollisionShape2D" groups=["agua"]]
-position = Vector2(-0.0828857, -2.93054)
-rotation = 3.14159
-scale = Vector2(27.2168, -2.26737)
 
 [node name="Muelle" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(-144, 247)

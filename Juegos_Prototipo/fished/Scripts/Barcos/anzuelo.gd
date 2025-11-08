@@ -20,7 +20,6 @@ var pez_atrapado: Node = null
 var modificador_probabilidad := 1.0
 var nombre_pez_actual: String = ""
 
-
 # ==============================
 # REFERENCIAS
 # ==============================
@@ -29,8 +28,7 @@ var nombre_pez_actual: String = ""
 @onready var ui := get_tree().current_scene.get_node_or_null("CanvasLayer")
 @onready var libocap := ui.get_node_or_null("LibOCap") if ui else null
 @onready var inventory_ui = get_node_or_null("/root/MainJuego/CanvasLayer/InventoryUI")
-@onready var Tirar := get_node("/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
-
+@onready var Tirar := get_node_or_null("/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
 
 # ==============================
 # DATOS EXTERNOS
@@ -50,32 +48,37 @@ func _ready():
 	add_to_group("anzuelo")
 	posicion_inicial = position
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	
+	# ❌ Desactivar completamente la tecla "ui_accept"
+	InputMap.erase_action("ui_accept")
+
+	# 🔗 Conectar el botón "Lanzar"
 	if Tirar:
 		Tirar.pressed.connect(_on_tirar_boton)
 	print("🎣 Anzuelo listo en posición:", posicion_inicial)
 
-	# 💎 Aplicar efectos globales de amuletos
 	Global.aplicar_efectos_anzuelo(self)
 
 # ==============================
-# COLISIÓN CON PECES
+# COLISIÓN CON PECES (SIN PROBABILIDAD)
 # ==============================
 func _on_body_entered(body):
 	if body.is_in_group("peces") and pez_atrapado == null:
-		var probabilidad := obtener_probabilidad_captura(body.name)
-		if randf() <= probabilidad:
-			pez_atrapado = body
-			nombre_pez_actual = body.name  # ✅ guardamos el nombre original
-			if body.has_method("detener_movimiento"):
-				body.detener_movimiento()
-			_transformar_a_bola(pez_atrapado)
-			collision_shape.disabled = true
-			print("🎯 ¡Pez atrapado!: ", nombre_pez_actual)
-			_iniciar_minijuego()
-
+		# ✅ Captura garantizada sin probabilidad
+		pez_atrapado = body
+		nombre_pez_actual = body.name
+		
+		if body.has_method("detener_movimiento"):
+			body.detener_movimiento()
+		
+		_transformar_a_bola(pez_atrapado)
+		collision_shape.disabled = true
+		print("🎯 ¡Pez atrapado directamente!: ", nombre_pez_actual)
+		
+		_iniciar_minijuego()
 
 # ==============================
-# BOTÓN TIRAR (reemplaza ui_accept)
+# BOTÓN "LANZAR"
 # ==============================
 func _on_tirar_boton():
 	match estado:
@@ -107,14 +110,10 @@ func _empezar_recoger():
 # MOVIMIENTO
 # ==============================
 func _physics_process(delta):
-	# Si el anzuelo mueve su propia física, mantenelo. Si no, no pasa nada.
 	if estado == Estado.LANZADO:
 		_mover_lanzamiento(delta)
 	elif estado == Estado.RECOGIENDO:
 		_mover_recoger(delta)
-
-	# ✅ SIEMPRE mantener al pez pegado al anzuelo si existe,
-	#    aunque no estemos en LANZADO/RECOGIENDO (después del minijuego).
 	_actualizar_pez()
 
 func _mover_lanzamiento(delta):
@@ -141,13 +140,12 @@ func _mover_recoger(delta):
 # ==============================
 func _mostrar_lib_ocap():
 	if nombre_pez_actual == "" and pez_atrapado:
-		nombre_pez_actual = pez_atrapado.name   # ✅ asegurar nombre antes del panel
+		nombre_pez_actual = pez_atrapado.name
 	if libocap and pez_atrapado:
 		libocap.mostrar_panel(pez_atrapado, nombre_pez_actual)
 		print("📋 Panel LibOCap mostrado con pez:", nombre_pez_actual)
 	else:
-		push_error("⚠️ No se encontró el nodo 'LibOCap' o no hay pez.")
-
+		push_error("⚠️ No se encontró 'LibOCap' o no hay pez.")
 
 # ==============================
 # PEZ PEGADO AL ANZUELO
@@ -156,31 +154,6 @@ func _actualizar_pez():
 	if pez_atrapado:
 		pez_atrapado.global_position = global_position
 
-# ==============================
-# PROBABILIDAD DE CAPTURA
-# ==============================
-func obtener_probabilidad_captura(nombre_pez: String) -> float:
-	var clave = ""
-	if "Atun" in nombre_pez:
-		clave = "CapAtun"
-	elif "Salmon" in nombre_pez:
-		clave = "CapSalmon"
-	elif "Orca" in nombre_pez:
-		clave = "CapOrca"
-	elif "Barracuda" in nombre_pez:
-		clave = "CapBarracuda"
-	elif "Lenguado" in nombre_pez:
-		clave = "CapLenguado"
-	elif "Payaso" in nombre_pez:
-		clave = "CapPayaso"
-	elif "Ballena" in nombre_pez:
-		clave = "CapBallena"
-
-	if Box_Cap.Porcentaje_Captura.has(clave):
-		return Box_Cap.Porcentaje_Captura[clave] * modificador_probabilidad
-	else:
-		return 0.5 * modificador_probabilidad
-		
 # ==============================
 # TRANSFORMAR PEZ EN BOLA
 # ==============================
@@ -242,17 +215,10 @@ func _iniciar_minijuego():
 	if caña:
 		caña.minijuego_activo = true
 
-	get_tree().root.add_child(minijuego)
-	minijuego.connect("finalizado", Callable(self, "_on_minijuego_finalizado"))
-
 func _on_minijuego_finalizado(resultado: bool):
-	# ✅ Si ganó el minijuego y aún no hay nombre guardado, guárdalo
 	if resultado and pez_atrapado and nombre_pez_actual == "":
 		nombre_pez_actual = pez_atrapado.name
-
 	print("🎮 Minijuego finalizado → Resultado:", resultado)
-	if resultado and pez_atrapado and nombre_pez_actual == "":
-		nombre_pez_actual = pez_atrapado.name   # ✅ guarda nombre si no estaba
 
 	if not resultado:
 		print("❌ Minijuego perdido: liberando pez antes de recoger.")
