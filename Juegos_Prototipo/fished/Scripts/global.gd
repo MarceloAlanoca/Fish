@@ -3,7 +3,7 @@ extends Node
 # =======================================
 # VARIABLES GLOBALES
 # =======================================
-var doblones: int = 10000
+var doblones: int = 100000
 var amuletos_comprados: Array = []
 var amuletos_equipados: Array = []
 

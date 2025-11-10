@@ -227,7 +227,7 @@ autoplay = "Intro"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]
 stream = ExtResource("5_2yje4")
-volume_db = -2.435
+volume_db = -13.295
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]

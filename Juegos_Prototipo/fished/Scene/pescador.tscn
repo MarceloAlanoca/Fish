@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://b4120w55dkict" path="res://Scripts/pescador.gd" id="1_qmwlb"]
 [ext_resource type="Script" uid="uid://ot3w171oofse" path="res://Scripts/Barcos/caña_pesca.gd" id="3_brvid"]
 [ext_resource type="Texture2D" uid="uid://ji8ub88q1acs" path="res://Assets/Pescador/pixil-frame-0 (2) (1).png" id="4_ykenn"]
-[ext_resource type="Texture2D" uid="uid://c6gc24rqusohx" path="res://Assets/Pescador/pixil-frame-0 (3).png" id="5_0d0lj"]
 [ext_resource type="Script" uid="uid://djtxxxfx4vra1" path="res://Scripts/Barcos/anzuelo.gd" id="5_ykenn"]
+[ext_resource type="Texture2D" uid="uid://dxkjk6srlk1ad" path="res://Assets/Pescador/anzuelo.png" id="6_ykenn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ykenn"]
 radius = 25.1875
@@ -38,7 +38,7 @@ texture = ExtResource("4_ykenn")
 [node name="Anzuelo" type="Area2D" parent="CañaPesca/Caña"]
 position = Vector2(167.174, 77.4687)
 scale = Vector2(0.539348, 0.747349)
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("5_ykenn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CañaPesca/Caña/Anzuelo"]
@@ -51,7 +51,7 @@ shape = SubResource("CircleShape2D_ykenn")
 [node name="Anzuelo" type="Sprite2D" parent="CañaPesca/Caña/Anzuelo"]
 position = Vector2(11.4786, -9.34601e-05)
 scale = Vector2(0.398472, 0.326162)
-texture = ExtResource("5_0d0lj")
+texture = ExtResource("6_ykenn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6.5, 0.5)

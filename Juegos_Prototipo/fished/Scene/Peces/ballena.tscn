@@ -7,7 +7,7 @@
 size = Vector2(306, 44)
 
 [node name="Ballena" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_hsyeb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

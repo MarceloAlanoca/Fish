@@ -14,7 +14,7 @@ var amuletos_equipados: Array = []
 # 🧩 INICIO
 # ======================================================
 func _ready():
-	await get_tree().process_frame  # asegura que todo esté cargado
+	await get_tree().process_frame  # asegura que todo esté cargadoF
 	
 	actualizar_label()
 
@@ -143,18 +143,21 @@ func _aplicar_efectos_inmediatos():
 # 🧭 OBTENER RUTA DE ICONO SEGÚN NOMBRE
 # ======================================================
 func _buscar_icono(nombre: String) -> String:
-	match nombre:
-		"Amuleto Común":
+	var n = nombre.to_lower().strip_edges()
+
+	match n:
+		"amuleto común", "amuleto comun":
 			return "res://Assets/Amuletos/amuletocomun.png"
-		"Amuleto Raro":
+		"amuleto raro":
 			return "res://Assets/Amuletos/amuletoraro.png"
-		"Amuleto Celestial":
+		"amuleto celestial":
 			return "res://Assets/Amuletos/amuletocelestial.png"
-		"Amuleto Dineral":
+		"amuleto dinerál", "amuleto diner al", "amuleto dineral":
 			return "res://Assets/Amuletos/amuletomasplata.png"
-		"Amuleto Secreto":
+		"amuleto secreto":
 			return "res://Assets/Amuletos/amuletosecreto.png"
-		"Amuleto Exotico":
+		"amuleto exótico", "amuleto exotico":
 			return "res://Assets/Amuletos/amuletoexotico.png"
 		_:
+			push_warning("⚠️ No se encontró ícono para: %s" % nombre)
 			return ""

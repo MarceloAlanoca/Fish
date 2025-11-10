@@ -26,6 +26,7 @@ var objetivo_x := 0.0
 var tiempo_transcurrido := 0.0
 var jugador
 var caña
+var anzuelo
 
 # === BLOQUEO DE INPUTS EXTERNOS ===
 func _ready():
@@ -36,6 +37,15 @@ func _ready():
 
 	jugador = get_node_or_null("/root/MainJuego/Pescador")
 	caña = get_node_or_null("/root/MainJuego/Pescador/CañaPesca")
+	anzuelo = get_node_or_null("/root/MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
+	if anzuelo and anzuelo.has_method("bloquear_por_minijuego"):
+		anzuelo.bloquear_por_minijuego()
+	var lanzar_boton = get_tree().root.get_node_or_null("MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
+	if lanzar_boton:
+		lanzar_boton.disabled = true
+		print("🎣 Botón 'Lanzar' desactivado durante el minijuego.")
+
+
 
 	if jugador:
 		jugador.set_process(false)
@@ -108,16 +118,29 @@ func finalizar_minijuego(resultado: bool):
 		caña.set_physics_process(true)
 
 	print("🎮 Minijuego finalizado → Resultado:", resultado)
+	print("🧩 [DEBUG] Emisión de señal 'finalizado' desde minijuego.gd")
+	print("   🔹 Nodo actual:", self)
+	print("   🔹 Resultado:", resultado)
+	print("   🔹 Timer activo:", timer.is_stopped() == false)
+	print("   🔹 ProgressBar valor:", progress_bar.value)
+	print("   🔹 get_parent():", get_parent())
+
+	# 🚫 Evitar emitir la señal más de una vez
+	if self.has_meta("finalizado_emitido") and self.get_meta("finalizado_emitido"):
+		print("⚠️ Señal 'finalizado' ya emitida, ignorando segunda llamada.")
+		return
+	self.set_meta("finalizado_emitido", true)
+
+	# 🎯 Emitimos la señal al anzuelo
 	emit_signal("finalizado", resultado)
 
-	# 🔹 Si perdió el minijuego, liberar el pez atrapado inmediatamente
+	# ❌ Si perdió, liberar pez y desbloquear UI del anzuelo
 	if not resultado:
-		var anzuelo = get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
-		if anzuelo and anzuelo.has_method("liberar_pez"):
-			anzuelo.liberar_pez()
-			print("❌ Minijuego perdido: pez liberado automáticamente.")
-		else:
-			push_warning("⚠️ No se encontró el anzuelo o falta liberar_pez().")
+		var anz = anzuelo if anzuelo else get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
+		if anz and anz.has_method("liberar_pez"):
+			anz.liberar_pez()
+		if anzuelo and anzuelo.has_method("desbloquear_por_minijuego"):
+			anzuelo.desbloquear_por_minijuego()
 
 	# 🔹 Ocultar el minijuego completo (incluye ProgressBar)
 	var root_minijuego = get_parent()
@@ -131,6 +154,12 @@ func finalizar_minijuego(resultado: bool):
 	var caña = get_tree().get_root().get_node_or_null("MainJuego/CañaPesca")
 	if caña and caña.has_method("_on_minijuego_finalizado"):
 		caña._on_minijuego_finalizado(resultado)
+
+	# 🔓 Rehabilitar el botón de lanzar al terminar el minijuego
+	var lanzar_boton = get_tree().root.get_node_or_null("MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
+	if lanzar_boton:
+		lanzar_boton.disabled = false
+		print("✅ Botón 'Lanzar' reactivado tras finalizar minijuego.")
 
 	# 🧹 Eliminar el minijuego de la escena
 	if root_minijuego:

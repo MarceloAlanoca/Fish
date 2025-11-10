@@ -7,7 +7,7 @@
 size = Vector2(183, 77)
 
 [node name="Orca" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_01w6b")
 
 [node name="OrcaSprite2D" type="Sprite2D" parent="."]

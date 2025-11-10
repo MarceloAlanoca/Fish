@@ -7,7 +7,7 @@
 size = Vector2(64, 19)
 
 [node name="PezPayaso" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_gw4lt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

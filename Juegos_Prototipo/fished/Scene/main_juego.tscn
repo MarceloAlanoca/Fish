@@ -1,12 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://tdciqdl46hah"]
+[gd_scene load_steps=32 format=3 uid="uid://tdciqdl46hah"]
 
 [ext_resource type="Script" uid="uid://b0j3irx7ewbf" path="res://main_juego.gd" id="1_d6ytk"]
 [ext_resource type="PackedScene" uid="uid://4jjq52b8upil" path="res://Scene/pescador.tscn" id="1_s1cr2"]
 [ext_resource type="Script" uid="uid://c40i1ipctdbbr" path="res://Scripts/FishBox.gd" id="2_ypr6b"]
-[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/salmon.tscn" id="3_ya0dr"]
+[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/Salmon.tscn" id="3_ya0dr"]
 [ext_resource type="PackedScene" uid="uid://bg1wepdsnpm26" path="res://Scene/orca.tscn" id="4_f8irq"]
 [ext_resource type="Texture2D" uid="uid://djy7ggdscdqk" path="res://Assets/Capturas/Captura normal.png" id="4_ywkuk"]
-[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/atun.tscn" id="5_sxn4p"]
+[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/Atun.tscn" id="5_sxn4p"]
 [ext_resource type="Texture2D" uid="uid://bwwtgycuyj036" path="res://Assets/Fondos/FondoCielo.png" id="6_1u8df"]
 [ext_resource type="Texture2D" uid="uid://c5alf4i5oueex" path="res://Assets/Fondos/FondoMar.png" id="6_elcoi"]
 [ext_resource type="Texture2D" uid="uid://b6lek2xcudume" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (6).png" id="7_a0wg1"]
@@ -28,6 +28,9 @@
 [ext_resource type="Script" uid="uid://b8nev4b7a3165" path="res://Scripts/Spawner/spawner_pez_lv_2.gd" id="23_8vtdy"]
 [ext_resource type="Script" uid="uid://jvaymwqmi5tm" path="res://Scripts/MainJuego/CameraFollow.gd" id="24_vpslh"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8df"]
+size = Vector2(18495, 5102.78)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sp2o"]
 size = Vector2(29.0205, 183.532)
 
@@ -40,6 +43,23 @@ size = Vector2(2931, 479)
 [node name="MainJuego" type="Node2D"]
 script = ExtResource("1_d6ytk")
 
+[node name="AreaAgua" type="Area2D" parent="." groups=["agua"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Mar" type="Sprite2D" parent="AreaAgua"]
+light_mask = 512
+visibility_layer = 512
+position = Vector2(7408, 3041)
+scale = Vector2(12.0716, 5.45991)
+texture = ExtResource("6_elcoi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAgua"]
+position = Vector2(7419.5, 3023.5)
+scale = Vector2(1, 1.08)
+shape = SubResource("RectangleShape2D_1u8df")
+debug_color = Color(0.395568, 0.830694, 0.703576, 0.42)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-142, 867)
 scale = Vector2(4.7843, -7.83718)
@@ -50,6 +70,14 @@ texture = ExtResource("17_37g52")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-104.388, 39.196)
 shape = SubResource("RectangleShape2D_5sp2o")
+
+[node name="InicioControl" parent="." instance=ExtResource("15_lw2op")]
+visible = false
+custom_minimum_size = Vector2(1500, 1000)
+offset_left = -1405.0
+offset_top = 18.0
+offset_right = -1405.0
+offset_bottom = 18.0
 
 [node name="Pescador" parent="." instance=ExtResource("1_s1cr2")]
 light_mask = 2
@@ -67,14 +95,6 @@ texture = ExtResource("4_ywkuk")
 flip_h = true
 flip_v = true
 
-[node name="InicioControl" parent="." instance=ExtResource("15_lw2op")]
-visible = false
-custom_minimum_size = Vector2(1500, 1000)
-offset_left = -1405.0
-offset_top = 18.0
-offset_right = -1405.0
-offset_bottom = 18.0
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -83,11 +103,6 @@ offset_bottom = 18.0
 position = Vector2(7244, -1671)
 scale = Vector2(12.6048, 4.62989)
 texture = ExtResource("6_1u8df")
-
-[node name="Mar" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(7408, 3041)
-scale = Vector2(12.0716, 5.45991)
-texture = ExtResource("6_elcoi")
 
 [node name="Muelle" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(-144, 247)

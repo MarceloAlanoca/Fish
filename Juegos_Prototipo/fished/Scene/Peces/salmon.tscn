@@ -7,7 +7,7 @@
 size = Vector2(60, 24)
 
 [node name="Salmon" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_w5knr")
 
 [node name="SalmonSprite2D" type="Sprite2D" parent="."]

@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfqx2k5g23va6"]
+[gd_scene load_steps=6 format=3 uid="uid://bfqx2k5g23va6"]
 
 [ext_resource type="Script" uid="uid://dqjln4124r77r" path="res://Scripts/InterfazUsuario/interfaz_usuario.gd" id="1_j5tya"]
 [ext_resource type="Texture2D" uid="uid://cxek80nekfh44" path="res://Assets/peso.png" id="2_pt6l3"]
+[ext_resource type="Texture2D" uid="uid://bujjvrgqy48l4" path="res://Assets/AssetsMenu/botones ver 2.png" id="3_dltne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvkx1"]
+atlas = ExtResource("3_dltne")
+region = Rect2(11.0125, 11.4431, 13.1666, 12.9032)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it3cs"]
+atlas = ExtResource("3_dltne")
+region = Rect2(36.4013, 10.5798, 12.6531, 12.8988)
 
 [node name="InterfazUsuario" type="Control"]
 layout_mode = 3
@@ -97,6 +106,38 @@ offset_right = 702.543
 offset_bottom = 202.651
 scale = Vector2(0.0517241, 0.2)
 columns = 2
+
+[node name="BotonSubir" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 205.0
+offset_top = 186.0
+offset_right = 226.0
+offset_bottom = 206.0
+scale = Vector2(7.65198, 7.03266)
+icon = SubResource("AtlasTexture_wvkx1")
+flat = true
+
+[node name="BotonBajar" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 208.0
+offset_top = 364.0
+offset_right = 228.0
+offset_bottom = 384.0
+scale = Vector2(7.73863, 6.70456)
+icon = SubResource("AtlasTexture_it3cs")
+flat = true
+
+[node name="BarraFuerza" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 261.0
+offset_top = 105.0
+offset_right = 308.0
+offset_bottom = 305.0
+scale = Vector2(1.12424, 1.21701)
+fill_mode = 3
 
 [connection signal="pressed" from="Mochila" to="." method="_on_mochila_pressed"]
 [connection signal="pressed" from="Tienda" to="." method="_on_tienda_pressed"]
