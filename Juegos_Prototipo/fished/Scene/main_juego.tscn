@@ -1,22 +1,24 @@
-[gd_scene load_steps=32 format=3 uid="uid://tdciqdl46hah"]
+[gd_scene load_steps=45 format=3 uid="uid://tdciqdl46hah"]
 
 [ext_resource type="Script" uid="uid://b0j3irx7ewbf" path="res://main_juego.gd" id="1_d6ytk"]
 [ext_resource type="PackedScene" uid="uid://4jjq52b8upil" path="res://Scene/pescador.tscn" id="1_s1cr2"]
-[ext_resource type="Script" uid="uid://c40i1ipctdbbr" path="res://Scripts/FishBox.gd" id="2_ypr6b"]
-[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/Salmon.tscn" id="3_ya0dr"]
-[ext_resource type="PackedScene" uid="uid://bg1wepdsnpm26" path="res://Scene/orca.tscn" id="4_f8irq"]
 [ext_resource type="Texture2D" uid="uid://djy7ggdscdqk" path="res://Assets/Capturas/Captura normal.png" id="4_ywkuk"]
-[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/Atun.tscn" id="5_sxn4p"]
 [ext_resource type="Texture2D" uid="uid://bwwtgycuyj036" path="res://Assets/Fondos/FondoCielo.png" id="6_1u8df"]
 [ext_resource type="Texture2D" uid="uid://c5alf4i5oueex" path="res://Assets/Fondos/FondoMar.png" id="6_elcoi"]
 [ext_resource type="Texture2D" uid="uid://b6lek2xcudume" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (6).png" id="7_a0wg1"]
 [ext_resource type="Texture2D" uid="uid://rwf16guerkuw" path="res://Assets/DecoracionFondo/muelle.png" id="7_elcoi"]
+[ext_resource type="Texture2D" uid="uid://kgmrsroh6iaf" path="res://Assets/DecoracionFondo/deco2.png" id="8_21ucq"]
 [ext_resource type="Texture2D" uid="uid://comsgswdpprb1" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (7).png" id="8_lw2op"]
 [ext_resource type="Texture2D" uid="uid://bgqpe6uiercjq" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (8).png" id="9_d6ytk"]
 [ext_resource type="Texture2D" uid="uid://b52qetjdy54mt" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (9).png" id="10_b7s1v"]
+[ext_resource type="Texture2D" uid="uid://4av31rb2nkhj" path="res://Assets/DecoracionFondo/Rocas/rock1.png" id="10_e12s2"]
+[ext_resource type="Texture2D" uid="uid://dp2li0td524k0" path="res://Assets/DecoracionFondo/Rocas/rock3.png" id="11_cweaw"]
 [ext_resource type="Texture2D" uid="uid://m6p3mvhu4xm0" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (10).png" id="11_hw3rg"]
+[ext_resource type="Texture2D" uid="uid://c4ehcccgmx2xt" path="res://Assets/DecoracionFondo/Rocas/rock2.png" id="12_gsydt"]
 [ext_resource type="Texture2D" uid="uid://bg7np64couths" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (11).png" id="12_lyyrs"]
+[ext_resource type="Texture2D" uid="uid://di0len23lp13y" path="res://Assets/DecoracionFondo/Rocas/rock4.png" id="13_j74a3"]
 [ext_resource type="Texture2D" uid="uid://dxck8h2qoyhjl" path="res://Assets/DecoracionFondo/Corales/pixil-frame-0 (12).png" id="13_usf8m"]
+[ext_resource type="Texture2D" uid="uid://cojnkhjyb1b6k" path="res://Assets/DecoracionFondo/Rocas/sand_tile.png" id="14_cweaw"]
 [ext_resource type="PackedScene" uid="uid://6cyxh7kyrvm5" path="res://Scene/inicio_control.tscn" id="15_lw2op"]
 [ext_resource type="Texture2D" uid="uid://mhiasdp3ruxj" path="res://Assets/DecoracionFondo/deco.ar.png" id="16_b7s1v"]
 [ext_resource type="PackedScene" uid="uid://ddpxuqxbolx3p" path="res://Scene/inventory_ui.tscn" id="16_d6ytk"]
@@ -26,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://pky31ympd2oo" path="res://Scene/lib_o_cap.tscn" id="19_usf8m"]
 [ext_resource type="PackedScene" uid="uid://cegi78pt5bk3f" path="res://Scene/inventory_test.tscn" id="22_5sp2o"]
 [ext_resource type="Script" uid="uid://b8nev4b7a3165" path="res://Scripts/Spawner/spawner_pez_lv_2.gd" id="23_8vtdy"]
+[ext_resource type="Texture2D" uid="uid://cvrknrpdm5361" path="res://Assets/DecoracionFondo/deco3.png" id="23_rmubn"]
 [ext_resource type="Script" uid="uid://jvaymwqmi5tm" path="res://Scripts/MainJuego/CameraFollow.gd" id="24_vpslh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8df"]
@@ -34,11 +37,47 @@ size = Vector2(18495, 5102.78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sp2o"]
 size = Vector2(29.0205, 183.532)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_82ygg"]
+atlas = ExtResource("8_21ucq")
+region = Rect2(80, 73.5, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5cs3"]
+atlas = ExtResource("10_e12s2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdp20"]
+atlas = ExtResource("11_cweaw")
+region = Rect2(308.781, 0, 459.219, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg8h2"]
+atlas = ExtResource("12_gsydt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihuck"]
+atlas = ExtResource("13_j74a3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e12s2"]
+size = Vector2(691, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cweaw"]
+atlas = ExtResource("10_e12s2")
+region = Rect2(526.655, 285.828, 168.593, 202.312)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsydt"]
+atlas = ExtResource("16_b7s1v")
+region = Rect2(17.9093, 61.0211, 37.2553, 37.8198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epf3u"]
+atlas = ExtResource("8_21ucq")
+region = Rect2(20.3607, 78.7831, 29.9171, 38.9487)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e12s2"]
+atlas = ExtResource("23_rmubn")
+region = Rect2(20.5357, 78.2186, 28.2237, 29.3526)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyyrs"]
-size = Vector2(2893, 733)
+size = Vector2(16437, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpslh"]
-size = Vector2(2931, 479)
+size = Vector2(13582, 941.25)
 
 [node name="MainJuego" type="Node2D"]
 script = ExtResource("1_d6ytk")
@@ -46,13 +85,6 @@ script = ExtResource("1_d6ytk")
 [node name="AreaAgua" type="Area2D" parent="." groups=["agua"]]
 collision_layer = 2
 collision_mask = 0
-
-[node name="Mar" type="Sprite2D" parent="AreaAgua"]
-light_mask = 512
-visibility_layer = 512
-position = Vector2(7408, 3041)
-scale = Vector2(12.0716, 5.45991)
-texture = ExtResource("6_elcoi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAgua"]
 position = Vector2(7419.5, 3023.5)
@@ -104,72 +136,280 @@ position = Vector2(7244, -1671)
 scale = Vector2(12.6048, 4.62989)
 texture = ExtResource("6_1u8df")
 
+[node name="Mar" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+light_mask = 512
+visibility_layer = 512
+position = Vector2(7408, 3041)
+scale = Vector2(12.0716, 5.45991)
+texture = ExtResource("6_elcoi")
+
+[node name="Palomas" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+
+[node name="Paloma" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Palomas"]
+position = Vector2(-225, -132)
+rotation = 3.14159
+scale = Vector2(1.05133, -0.778001)
+texture = SubResource("AtlasTexture_82ygg")
+
+[node name="Paloma2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Palomas"]
+position = Vector2(171, 87)
+rotation = 3.14159
+scale = Vector2(1.05133, -0.778001)
+texture = SubResource("AtlasTexture_82ygg")
+
+[node name="Paloma3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Palomas"]
+position = Vector2(148, -27)
+rotation = 3.14159
+scale = Vector2(1.05133, -0.778001)
+texture = SubResource("AtlasTexture_82ygg")
+
+[node name="Paloma4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Palomas"]
+position = Vector2(-584, -161)
+rotation = 3.14159
+scale = Vector2(1.05133, -0.778001)
+texture = SubResource("AtlasTexture_82ygg")
+
 [node name="Muelle" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(-144, 247)
 scale = Vector2(9.23466, 9.15013)
 texture = ExtResource("7_elcoi")
 
-[node name="Corales" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Rocas" type="StaticBody2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-110, 348)
 
-[node name="Coral1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(431, 599)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("7_a0wg1")
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(-444, 93)
+texture = SubResource("AtlasTexture_n5cs3")
 
-[node name="Coral2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(282, 594)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_lw2op")
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(-336, 317)
+texture = SubResource("AtlasTexture_bdp20")
 
-[node name="Coral3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(498, 590)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("9_d6ytk")
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(-303, 437)
+texture = SubResource("AtlasTexture_bdp20")
 
-[node name="Coral4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(380, 582)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("10_b7s1v")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(-101, 134)
+texture = SubResource("AtlasTexture_wg8h2")
 
-[node name="Coral5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(921, 606)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("11_hw3rg")
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(77, 304)
+texture = SubResource("AtlasTexture_ihuck")
 
-[node name="Coral6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(580, 602)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("12_lyyrs")
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(124, 446)
+texture = SubResource("AtlasTexture_ihuck")
 
-[node name="Coral7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
-position = Vector2(714, 606)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_usf8m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/Rocas"]
+position = Vector2(-108.5, 279)
+shape = SubResource("RectangleShape2D_e12s2")
+
+[node name="Arena" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(905, 1352)
+scale = Vector2(100, 26.982)
+texture = ExtResource("14_cweaw")
+
+[node name="Rocas" type="StaticBody2D" parent="ParallaxBackground/ParallaxLayer/Arena"]
+position = Vector2(15.27, -15.7142)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(0.69, 3.26143)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(0.67, 8.41302)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(0.67, 11.5262)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(1.68, 11.5262)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(0.72, 15.8995)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D8" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(2.58, 17.0113)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D9" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(1.23, 20.3469)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D10" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(1.55, 19.791)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D11" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(3.54, 20.421)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D12" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(1.27, 26.0544)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D13" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(1.68, 25.3502)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D14" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(2.88, 24.5719)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D15" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(3.99, 26.388)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D16" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(3.99, 31.0577)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D17" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(2.17, 31.0577)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D18" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena/Rocas"]
+position = Vector2(2.17, 31.0577)
+scale = Vector2(0.0162, 0.0362538)
+texture = SubResource("AtlasTexture_cweaw")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Arena"]
+position = Vector2(17.08, 32.0955)
+scale = Vector2(2.0632, 1)
+texture = ExtResource("14_cweaw")
 
 [node name="Deco" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
-position = Vector2(215, 598)
-scale = Vector2(3.01611, 3.84139)
-texture = ExtResource("16_b7s1v")
-hframes = 2
-vframes = 2
+position = Vector2(456, 366)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
-position = Vector2(1062, 614)
-scale = Vector2(3.57931, 4.19968)
+position = Vector2(-75.582, 597.35)
+scale = Vector2(4.41931, 6.47968)
 texture = ExtResource("16_b7s1v")
 hframes = 2
 vframes = 2
 frame = 1
 
 [node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
-position = Vector2(663, 608)
+position = Vector2(-8.58215, 590.35)
 scale = Vector2(3.57931, 4.19968)
 texture = ExtResource("16_b7s1v")
 hframes = 2
 vframes = 2
 frame = 1
+
+[node name="Sprite2D13" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(391.417, 607.35)
+scale = Vector2(3.57931, 4.19968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D12" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(250.418, 589.35)
+scale = Vector2(3.57931, 4.19968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D9" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1704, 617)
+scale = Vector2(3.57931, 4.19968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1327, 596)
+scale = Vector2(5.53931, 6.59968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D10" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1651, 603)
+scale = Vector2(5.53931, 6.59968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D11" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1496, 542)
+scale = Vector2(5.53931, 6.59968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D8" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1779, 612)
+scale = Vector2(5.53931, 6.59968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1860, 579)
+scale = Vector2(5.53931, 6.59968)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(160, 557)
+scale = Vector2(3.57931, 4.19968)
+texture = SubResource("AtlasTexture_gsydt")
+
+[node name="Sprite2D17" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1159, 536)
+scale = Vector2(3.57931, 4.19968)
+texture = SubResource("AtlasTexture_gsydt")
+
+[node name="Sprite2D18" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(562, 567)
+scale = Vector2(3.57931, 4.19968)
+texture = SubResource("AtlasTexture_gsydt")
+
+[node name="Sprite2D19" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(688, 557)
+scale = Vector2(3.57931, 4.19968)
+texture = SubResource("AtlasTexture_gsydt")
+
+[node name="Sprite2D20" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(633, 562)
+scale = Vector2(3.57931, 4.19968)
+texture = SubResource("AtlasTexture_gsydt")
+
+[node name="Sprite2D21" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(483, 557)
+scale = Vector2(3.57931, 4.19968)
+texture = SubResource("AtlasTexture_gsydt")
 
 [node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
 position = Vector2(1225, 610)
@@ -178,6 +418,34 @@ texture = ExtResource("16_b7s1v")
 hframes = 2
 vframes = 2
 frame = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(866, 587)
+scale = Vector2(3.01611, 3.84139)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+
+[node name="Sprite2D14" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(68.9999, 571)
+scale = Vector2(3.01611, 3.84139)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+
+[node name="Sprite2D15" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(956, 589)
+scale = Vector2(3.01611, 3.84139)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
+
+[node name="Sprite2D16" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
+position = Vector2(1048, 595)
+scale = Vector2(3.01611, 3.84139)
+texture = ExtResource("16_b7s1v")
+hframes = 2
+vframes = 2
 
 [node name="Madera" type="Node2D" parent="ParallaxBackground/ParallaxLayer/Deco"]
 visible = false
@@ -217,19 +485,254 @@ position = Vector2(109, 665)
 scale = Vector2(1.4834, -3.03815)
 texture = ExtResource("17_37g52")
 
-[node name="Pescados" type="Node2D" parent="."]
-visible = false
-position = Vector2(-3029, -217)
-script = ExtResource("2_ypr6b")
+[node name="Puero" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(357, 923)
+rotation = -3.14159
+scale = Vector2(2.57274, -3.04466)
+texture = SubResource("AtlasTexture_epf3u")
 
-[node name="Salmon" parent="Pescados" instance=ExtResource("3_ya0dr")]
-position = Vector2(576, 265)
+[node name="Corales" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(456, 366)
 
-[node name="Orca" parent="Pescados" instance=ExtResource("4_f8irq")]
-position = Vector2(330, 262)
+[node name="Coral1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1085, 611)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_a0wg1")
 
-[node name="Atun" parent="Pescados" instance=ExtResource("5_sxn4p")]
-position = Vector2(435, 449)
+[node name="Coral2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1138, 612)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_lw2op")
+
+[node name="Coral3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1209, 625)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_d6ytk")
+
+[node name="Coral4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1333, 643)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_b7s1v")
+
+[node name="Coral5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1275, 631)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_hw3rg")
+
+[node name="Coral6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1387, 631)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_lyyrs")
+
+[node name="Coral7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1015, 611)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_usf8m")
+
+[node name="Coral8" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(257, 553)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_a0wg1")
+
+[node name="Coral9" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(310, 554)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_lw2op")
+
+[node name="Coral10" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(381, 567)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_d6ytk")
+
+[node name="Coral11" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(505, 585)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_b7s1v")
+
+[node name="Coral12" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(940, 579)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_hw3rg")
+
+[node name="Coral13" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1052, 579)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_lyyrs")
+
+[node name="Coral14" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(680, 559)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_usf8m")
+
+[node name="Coral15" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(660, 610)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_a0wg1")
+
+[node name="Coral16" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(713, 611)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_lw2op")
+
+[node name="Coral17" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(784, 624)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_d6ytk")
+
+[node name="Coral18" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(908, 642)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_b7s1v")
+
+[node name="Coral19" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(144, 612)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_hw3rg")
+
+[node name="Coral20" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(256, 612)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_lyyrs")
+
+[node name="Coral21" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(-116, 592)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_usf8m")
+
+[node name="Coral22" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(412, 610)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_a0wg1")
+
+[node name="Coral23" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(-54.9999, 576)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_lw2op")
+
+[node name="Coral24" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(16.0002, 589)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_d6ytk")
+
+[node name="Coral25" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(140, 607)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_b7s1v")
+
+[node name="Coral26" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(82.0002, 595)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_hw3rg")
+
+[node name="Coral27" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1324, 692)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_lyyrs")
+
+[node name="Coral28" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(952, 672)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_usf8m")
+
+[node name="Coral29" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1420, 605)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_a0wg1")
+
+[node name="Coral30" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1473, 606)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_lw2op")
+
+[node name="Coral31" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1544, 619)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_d6ytk")
+
+[node name="Coral32" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1714, 745)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_b7s1v")
+
+[node name="Coral33" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1743, 678)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_hw3rg")
+
+[node name="Coral34" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1855, 678)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_lyyrs")
+
+[node name="Coral35" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1483, 658)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_usf8m")
+
+[node name="Coral36" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1600, 592)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_a0wg1")
+
+[node name="Coral37" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1566, 648)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_lw2op")
+
+[node name="Coral38" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1637, 661)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_d6ytk")
+
+[node name="Coral39" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1761, 679)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_b7s1v")
+
+[node name="Coral40" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1703, 667)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_hw3rg")
+
+[node name="Coral41" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1815, 667)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_lyyrs")
+
+[node name="Coral42" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Corales"]
+position = Vector2(1443, 647)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_usf8m")
+
+[node name="AnimalesDeco" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(8421.5, 600)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/AnimalesDeco"]
+position = Vector2(-8216.5, 338)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_e12s2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/AnimalesDeco"]
+position = Vector2(-6536.5, 345)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_e12s2")
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/AnimalesDeco"]
+position = Vector2(-6406.5, 341)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_e12s2")
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/AnimalesDeco"]
+position = Vector2(-7164.5, 334)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_e12s2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/AnimalesDeco"]
+position = Vector2(-7644.5, 394)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_e12s2")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/AnimalesDeco"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -257,7 +760,7 @@ position = Vector2(-870, 739)
 script = ExtResource("18_hw3rg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezLv1"]
-position = Vector2(1748.5, -22.5)
+position = Vector2(9291.5, -139)
 shape = SubResource("RectangleShape2D_lyyrs")
 disabled = true
 
@@ -266,7 +769,7 @@ position = Vector2(-617, 754)
 script = ExtResource("23_8vtdy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezLv2"]
-position = Vector2(1515.5, 304.5)
+position = Vector2(10482, 565.375)
 shape = SubResource("RectangleShape2D_vpslh")
 disabled = true
 
