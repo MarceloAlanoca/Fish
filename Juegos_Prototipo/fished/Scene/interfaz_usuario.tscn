@@ -60,9 +60,10 @@ text = "Lanzar
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 991.0
-offset_right = 1031.0
-offset_bottom = 23.0
+offset_left = 896.0
+offset_top = 6.0
+offset_right = 936.0
+offset_bottom = 29.0
 scale = Vector2(4.12, 3.68)
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]

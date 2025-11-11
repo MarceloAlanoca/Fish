@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Juegos_Prototipo/fished/Scene/Tiendas/Amuletos.tscn
 [gd_scene load_steps=13 format=3 uid="uid://bs0lx2ya50xsy"]
 
 [ext_resource type="Script" uid="uid://uin6g7kvlrx1" path="res://amuletos.gd" id="1_cs1jx"]
@@ -12,6 +13,26 @@
 [ext_resource type="Texture2D" uid="uid://c41yiq1c787f1" path="res://Assets/Amuletos/amuletomasplata.png" id="9_m4i73"]
 [ext_resource type="Texture2D" uid="uid://bm2qtf1ffibbc" path="res://Assets/Amuletos/amuletosecreto.png" id="10_j657u"]
 [ext_resource type="Texture2D" uid="uid://3m2t4d41dgt2" path="res://Assets/Amuletos/amuletoraro.png" id="11_kmp5t"]
+=======
+[gd_scene load_steps=14 format=3 uid="uid://bs0lx2ya50xsy"]
+
+[ext_resource type="Script" uid="uid://uin6g7kvlrx1" path="res://tienda.gd" id="1_yk4jq"]
+[ext_resource type="AudioStream" uid="uid://caac6rhqvj27" path="res://Assets/Musicas/Cuphead OST - Porkrind's Shop [Music].mp3" id="2_3s1dv"]
+[ext_resource type="Texture2D" uid="uid://bgjamgmn483dq" path="res://Assets/Tulio/Idle.png" id="2_j3fex"]
+[ext_resource type="Texture2D" uid="uid://chl8q25ypf8w2" path="res://Assets/Tulio/Sapito.png" id="2_jcf2x"]
+[ext_resource type="Texture2D" uid="uid://dl37hr7gwx2i6" path="res://Assets/Tienda/FondoTienda.png" id="2_k3vqj"]
+[ext_resource type="Texture2D" uid="uid://c6egglhaqguxq" path="res://Assets/Tienda/Estante.png" id="3_fs1ct"]
+[ext_resource type="Texture2D" uid="uid://cexr6oowd7ha" path="res://Assets/Amuletos/amuletocelestial.png" id="5_hf6te"]
+[ext_resource type="Texture2D" uid="uid://dvwwbhlecfeva" path="res://Assets/Amuletos/amuletocomun.png" id="6_nnsdc"]
+[ext_resource type="Texture2D" uid="uid://dwtt7pq6omuhj" path="res://Assets/Amuletos/amuletoexotico.png" id="7_1ieev"]
+[ext_resource type="Texture2D" uid="uid://c41yiq1c787f1" path="res://Assets/Amuletos/amuletomasplata.png" id="8_fs1ct"]
+[ext_resource type="Texture2D" uid="uid://bm2qtf1ffibbc" path="res://Assets/Amuletos/amuletosecreto.png" id="9_1ieev"]
+[ext_resource type="Texture2D" uid="uid://3m2t4d41dgt2" path="res://Assets/Amuletos/amuletoraro.png" id="10_fs1ct"]
+>>>>>>> fb1b32cf52eff9f0526d1048e46ec4bb64b1f2d3:Juegos_Prototipo/fished/Scene/tienda.tscn
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wspw5"]
+atlas = ExtResource("2_jcf2x")
+region = Rect2(0, 5.5, 53, 57)
 
 [node name="Tienda" type="Control"]
 layout_mode = 3
@@ -130,6 +151,13 @@ offset_top = 531.0
 offset_right = 208.0
 offset_bottom = 554.0
 
+<<<<<<< HEAD:Juegos_Prototipo/fished/Scene/Tiendas/Amuletos.tscn
 [node name="InterfazTienda" parent="." instance=ExtResource("2_q6bci")]
 offset_right = 1150.0
 offset_bottom = 80.0
+=======
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(479, 386)
+scale = Vector2(2.87692, 2.20371)
+texture = SubResource("AtlasTexture_wspw5")
+>>>>>>> fb1b32cf52eff9f0526d1048e46ec4bb64b1f2d3:Juegos_Prototipo/fished/Scene/tienda.tscn
