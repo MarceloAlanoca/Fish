@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://uagl1sst1hcq"]
+
+[ext_resource type="Texture2D" uid="uid://8lhyvordlqlq" path="res://Assets/Peces/Sheet1.png" id="1_3jmd5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("1_3jmd5")
+region = Rect2(0.0401001, 142.441, 56.4474, 49.5589)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4jo0"]
+radius = 189.235
+
+[node name="Kraken" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(11, 11)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.40025, 1.3151)
+shape = SubResource("CircleShape2D_o4jo0")

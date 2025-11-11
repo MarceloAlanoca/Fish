@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkirwewkis10i"]
+
+[ext_resource type="Texture2D" uid="uid://cbl0ax22hunom" path="res://Assets/Peces/TiburonCallejero.png" id="1_m5bux"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioahf"]
+atlas = ExtResource("1_m5bux")
+region = Rect2(14.2721, 9.8409, 41.0527, 41.5192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osh10"]
+size = Vector2(159, 198)
+
+[node name="TiburonCallejero" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = SubResource("AtlasTexture_ioahf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, -3)
+shape = SubResource("RectangleShape2D_osh10")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhgfjgevqrruq"]
+
+[ext_resource type="Texture2D" uid="uid://co4eei0427ehb" path="res://Assets/Peces assets/pez payaso.png" id="1_bvay8"]
+[ext_resource type="Script" uid="uid://dhl5meiug46dy" path="res://Scripts/Fish script/pez_payaso.gd" id="1_gw4lt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_313mr"]
+size = Vector2(64, 19)
+
+[node name="PezPayaso" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_gw4lt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bvay8")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, -11.5)
+shape = SubResource("RectangleShape2D_313mr")

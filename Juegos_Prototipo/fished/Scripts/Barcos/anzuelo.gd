@@ -3,20 +3,15 @@ extends Area2D
 # ==============================
 # CONFIGURACIÓN
 # ==============================
-@export var velocidad_recoger := 300
-@export var fuerza_lanzamiento := 1000
-@export var gravedad := 1600
-@export var distancia_maxima := 2000
-
-# 💧 Variables para control del agua y botones
-@export var velocidad_vertical := 250.0
+@export var gravedad := 1200.0
+@export var fuerza_lanzamiento := 20
+@export var distancia_maxima := 450.0
+@export var velocidad_vertical := 60.0
+@export var velocidad_recogida_manual := 80.0
+@export var limite_superior_base := 600.0
+@export var limite_inferior_base := 1250.0
 @export var tiempo_necesario := 3.0
 
-# 🌊 Límites verticales del movimiento del anzuelo dentro del agua
-@export var limite_superior_base := 850.0
-@export var limite_inferior_base := 3000.0
-
-@export var velocidad_recogida_manual := 900.0  # 💨 controla qué tan rápido vuelve el anzuelo
 
 var minijuego: Node = null
 var minijuego_conectado := false
@@ -39,6 +34,18 @@ var botones_bloqueados := false  # Controla si los botones están deshabilitados
 
 
 enum Estado { INACTIVO, LANZADO, RECOGIENDO }
+
+func _dump_estado(tag:String):
+	print("[ANZUELO]", tag,
+		" | estado=", estado,
+		" | pos=", Vector2(round(position.x), round(position.y)),
+		" | pos_ini=", Vector2(round(posicion_inicial.x), round(posicion_inicial.y)),
+		" | dentro_agua=", dentro_del_agua,
+		" | en_trans_caida=", en_transicion_caida,
+		" | recogida_auto=", recogida_automatica,
+		" | rec_auto_prog=", recogida_automatica_en_progreso,
+		" | bloqueado_minig=", bloqueado_por_minijuego)
+
 var estado := Estado.INACTIVO
 
 # ==============================
@@ -119,6 +126,7 @@ func _ready():
 
 	print("✅ Botones conectados para movimiento manual")
 	print("🎣 Anzuelo listo en posición:", posicion_inicial)
+	_dump_estado("READY")
 
 
 
@@ -136,7 +144,10 @@ func _ready():
 		boton_bajar.shortcut_in_tooltip = false
 		boton_bajar.pressed.connect(Callable(self, "_bajar_caña"))
 
-	Global.aplicar_efectos_anzuelo(self)
+	var pescador = get_node_or_null("/root/MainJuego/Pescador")
+	var caña = get_node_or_null("/root/MainJuego/Pescador/CañaPesca")
+	Global.aplicar_efectos_caña(caña, self, pescador)
+
 	print("🎣 Anzuelo listo en posición:", posicion_inicial)
 	
 	if boton_subir and boton_bajar:
@@ -185,12 +196,25 @@ func _on_tirar_boton():
 func _lanzar():
 	if estado != Estado.INACTIVO:
 		return
+	
+	# 🔁 Reinicia físicas completamente
+	velocidad_anzuelo = Vector2.ZERO
+	gravedad = 1200.0
+
 	estado = Estado.LANZADO
-	var angulo = deg_to_rad(-45)
+	
+	# 🎯 Cálculo del ángulo corregido: que siempre vaya HACIA ABAJO
+	var angulo = deg_to_rad(45)  # <-- sin el signo menos
 	velocidad_anzuelo = Vector2(cos(angulo), sin(angulo)) * fuerza_lanzamiento
-	print("🏹 Lanzando anzuelo...")
+	velocidad_anzuelo.y = abs(velocidad_anzuelo.y)  # fuerza la dirección hacia abajo
+
+	print("🏹 Lanzando anzuelo... Velocidad inicial:", velocidad_anzuelo)
+	
 	if inventory_ui:
 		inventory_ui.visible = false
+
+	_dump_estado("LANZAR() -> LANZADO")
+
 
 func _empezar_recoger():
 	# 🔹 Si ya está recogiendo, no repetir
@@ -218,6 +242,7 @@ func _empezar_recoger():
 	limite_inferior = INF
 	print("✅ Limites desactivados correctamente.")
 
+	_dump_estado("_empezar_recoger() ENTER")
 
 
 # ==============================
@@ -227,9 +252,16 @@ func _physics_process(delta):
 	# 🌊 Fase 1: transición de caída dentro del agua (caída realista sin poder pescar)
 	if en_transicion_caida:
 		tiempo_caida_actual += delta
-		velocidad_anzuelo.y += gravedad * delta * 0.25
+		
+		# 🔽 Reduce drásticamente la fuerza de caída para que se vea más natural
+		velocidad_anzuelo.y += gravedad * delta * 0.03  # antes * 0.25
+		
+		# 🔽 Limita la velocidad máxima hacia abajo
+		velocidad_anzuelo.y = clamp(velocidad_anzuelo.y, -50, 200)
+		
 		position.y += velocidad_anzuelo.y * delta
 		position.y = clamp(position.y, limite_superior, limite_inferior)
+
 
 		if tiempo_caida_actual >= tiempo_caida_en_agua:
 			en_transicion_caida = false
@@ -323,66 +355,93 @@ func _restaurar_limites():
 
 
 func _mover_lanzamiento(delta):
-	# 🔒 Desactivar el botón de lanzar mientras el anzuelo está en el aire
-	if Tirar:
-		Tirar.disabled = true
-
-	# Si está dentro del agua, detener gravedad
-	if dentro_del_agua:
-		velocidad_anzuelo.y = 0
-		return
-
-	# Movimiento normal de caída
+	# ✅ Aplica gravedad solo hacia abajo
 	velocidad_anzuelo.y += gravedad * delta
 	position += velocidad_anzuelo * delta
 
-	# Límite máximo de distancia del lanzamiento
+	# 🔒 Limita la distancia máxima de lanzamiento
 	if position.distance_to(posicion_inicial) > distancia_maxima:
 		var dir = (position - posicion_inicial).normalized()
 		position = posicion_inicial + dir * distancia_maxima
 		velocidad_anzuelo = Vector2.ZERO
 
+	# 💧 Si el anzuelo toca el límite inferior (fondo del agua)
+	if position.y >= limite_inferior - 1.0:
+		position.y = limite_inferior
+		
+		# 🔹 Frenar la velocidad vertical
+		velocidad_anzuelo.y = 0.0
+		
+		# 🔹 Simular resistencia del agua (frena el avance horizontal)
+		velocidad_anzuelo.x = lerp(velocidad_anzuelo.x, 0.0, 0.15)
 
-func _mover_recoger(delta):
+		# 🔹 Empieza un retroceso leve hacia el barco (posición inicial)
+		var direccion_retorno = (posicion_inicial - position).normalized()
+		position.x = lerp(position.x, posicion_inicial.x, 0.02)
+
+		if not dentro_del_agua:
+			velocidad_anzuelo.y = -abs(gravedad) * 0.1
+
+		# 🔹 Marca que está en el agua (control de fase)
+		dentro_del_agua = true
+
+
+var __last_pos := Vector2.ZERO
+var __stuck_frames := 0
+
+func _mover_recoger(delta: float) -> void:
 	if Tirar:
 		Tirar.disabled = true
 
-	# Durante toda la recogida, forzamos límites infinitos
 	limite_superior = -INF
 	limite_inferior = INF
 	dentro_del_agua = false
 
-	var dist = position.distance_to(posicion_inicial)
-	position = position.move_toward(posicion_inicial, velocidad_recogida_manual * delta)
+	var dist: float = position.distance_to(posicion_inicial)
 
-	print("⬆️ [AUTO] Subiendo... Y =", round(position.y), "Distancia restante:", round(dist))
+	# Calcular paso de movimiento con suavizado
+	var paso: float = velocidad_recogida_manual * delta
+	if dist < 50.0:
+		paso *= clamp(dist / 50.0, 0.25, 1.0)   # ← clamp en minúsculas
 
-	# 💥 Si está muy cerca de la posición inicial
-	if dist <= 5:
-		print("✅ [AUTO] Llegó a posición inicial!")
-		print("   - Estado antes:", estado, " Recogida automática:", recogida_automatica)
+	position = position.move_toward(posicion_inicial, paso)
 
+	print("⬆️ [AUTO] Subiendo... y=", round(position.y), " dist=", str(snapped(dist, 0.01)), " paso=", round(paso))
+
+	if not dentro_del_agua and (estado == Estado.RECOGIENDO or recogida_automatica):
+		print("[ANZUELO] FUERA DEL AGUA PERO RECOGIENDO | dist=", str(snapped(dist, 0.01)))
+
+	if dist <= 5.0:
+		print("[ANZUELO] OBJETIVO ALCANZADO → set INACTIVO + notificar caña")
 		position = posicion_inicial
 		velocidad_anzuelo = Vector2.ZERO
 		estado = Estado.INACTIVO
 		recogida_automatica = false
 		bloqueado_por_minijuego = false
 		collision_shape.disabled = false
-
 		_restaurar_limites()
 		_reset_ui_state()
 
-		if Tirar:
-			Tirar.disabled = false
+		# ✅ Notificar a la caña (sin tocar)
+		var caña: Node = null
+		var nodo_actual = self
+		while nodo_actual != null:
+			if nodo_actual.name == "CañaPesca":
+				caña = nodo_actual
+				break
+			nodo_actual = nodo_actual.get_parent()
+		if not caña:
+			caña = get_node_or_null("/root/MainJuego/Pescador/CañaPesca")
+		if not caña:
+			for nodo in get_tree().get_nodes_in_group("caña"):
+				caña = nodo
+				break
 
-		var caña = get_node_or_null("/root/MainJuego/CañaPesca")
 		if caña and caña.has_method("_on_anzuelo_recogido"):
-			print("📨 [AUTO] Avisando a la caña que la recogida terminó.")
+			print("[ANZUELO] ✅ Notificando a caña _on_anzuelo_recogido() — ruta:", caña.get_path())
 			caña._on_anzuelo_recogido()
-
-		print("✅ [AUTO] Recogida completada con éxito.\n")
-
-
+		else:
+			print("[ANZUELO] ❌ No se pudo encontrar la caña para notificar — revisa la ruta exacta.")
 
 # ==============================
 # MOSTRAR PANEL UI
@@ -456,6 +515,7 @@ func _reset_pez():
 # ==============================
 func _iniciar_minijuego():
 	# Ocultar botones mientras dura el minijuego
+	_dump_estado("_iniciar_minijuego()")
 	_ocultar_botones()
 	if boton_subir: boton_subir.disabled = true
 	if boton_bajar: boton_bajar.disabled = true
@@ -471,9 +531,15 @@ func _iniciar_minijuego():
 		minijuego = null
 		print("🧹 Minijuego anterior eliminado y desconectado.")
 
-	# 🎮 Crear uno nuevo
+# 🎮 Crear uno nuevo
 	minijuego = minijuego_escena.instantiate()
 	get_tree().root.add_child(minijuego)
+
+	var pescador = get_node_or_null("/root/MainJuego/Pescador")
+	var caña = get_node_or_null("/root/MainJuego/Pescador/CañaPesca")
+	Global.aplicar_efectos_caña(caña, self, pescador)
+	caña.minijuego_activo = true
+
 
 	# 🔒 Conexión única
 	if not minijuego.is_connected("finalizado", Callable(self, "_on_minijuego_finalizado")):
@@ -481,10 +547,10 @@ func _iniciar_minijuego():
 		minijuego_conectado = true
 	print("🎮 Minijuego iniciado desde el anzuelo (conexión única creada).")
 
-	var caña = get_node_or_null("/root/MainJuego/CañaPesca")
+
 	if caña:
 		caña.minijuego_activo = true
-
+		
 
 
 func _on_minijuego_finalizado(resultado: bool):
@@ -493,6 +559,8 @@ func _on_minijuego_finalizado(resultado: bool):
 	print("   🔸 minijuego_conectado:", minijuego_conectado)
 	print("   🔸 recogida_automatica_en_progreso:", recogida_automatica_en_progreso)
 	print("   🔸 Estado actual:", estado if "estado" in self else "no definido")
+	_dump_estado("_on_minijuego_finalizado:"+str(resultado))
+
 
 	# 🔒 Evitar ejecuciones múltiples
 	if recogida_automatica_en_progreso:
@@ -562,6 +630,14 @@ func _on_area_entered(area):
 	botones_bloqueados = false
 	tiempo_caida_actual = 0.0
 
+	if area.is_in_group("agua"):
+		await get_tree().process_frame  # 🔹 asegura que el frame siguiente tome el cambio
+		gravedad = 300.0
+		velocidad_anzuelo *= 0.5
+		print("💧 Físicas reducidas al entrar al agua (resistencia aplicada)")
+		_dump_estado("_on_area_entered:"+area.name)
+
+
 
 func _on_area_exited(area):
 	print("🏝️ _on_area_exited() →", area.name)
@@ -569,18 +645,36 @@ func _on_area_exited(area):
 	if not area.is_in_group("agua"):
 		return
 
+	# ⛔ Si estamos recogiendo (auto o manual), NO resetear nada aún.
 	if estado == Estado.RECOGIENDO or recogida_automatica:
-		print("💧 IGNORADO por estado RECOGIENDO o recogida_automatica =", recogida_automatica)
+		print("[ANZUELO]_on_area_exited IGNORE RESET (recogiendo). " +
+			"estado=", estado, " | pos=", position, " | objetivo=", posicion_inicial)
+		# Sólo marcamos que ya no estamos en agua para que no se muestren botones y no frene la subida
+		dentro_del_agua = false
+		en_transicion_caida = false
+		# Mantener límites infinitos mientras sube
 		limite_superior = -INF
 		limite_inferior = INF
-		dentro_del_agua = false
 		return
 
+	# ✅ Caso normal (no recogiendo): restaurar
 	print("🏖️ Salió del agua (estado =", estado, ") → restaurando límites base")
 	_reset_ui_state()
 	limite_superior = limite_superior_base
 	limite_inferior = limite_inferior_base
 
+	gravedad = 1200.0
+	velocidad_anzuelo = Vector2.ZERO
+	if caña:
+		caña.gravedad = 1800.0
+
+	print("☀️ Físicas restauradas al salir del agua (anzuelo y caña)")
+	dentro_del_agua = false
+	en_transicion_caida = false
+	recogida_automatica = false
+	recogida_automatica_en_progreso = false
+	puede_atrapar = true
+	print("🌞 Estado restaurado completamente al salir del agua.")
 
 
 # 💧 Mostrar/Ocultar botones

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cio22ke67uxv5"]
+
+[ext_resource type="Texture2D" uid="uid://cgsqfhc7g00tf" path="res://Assets/Peces/AbisalDemonio.png" id="1_smsid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15wvf"]
+atlas = ExtResource("1_smsid")
+region = Rect2(8.674, 7.97488, 54.1149, 47.1173)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rtvx"]
+size = Vector2(182, 135)
+
+[node name="AbisalDemonio" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_15wvf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 1)
+shape = SubResource("RectangleShape2D_4rtvx")

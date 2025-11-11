@@ -1,39 +1,30 @@
 extends Area2D
 
-# ------------------------------
-# Escenas de los peces (cargadas directamente)
-# ------------------------------
+# ===========================================================
+# 🐠 SISTEMA DE SPAWN DE PECES (Nivel 1 - Superficial)
+# ===========================================================
+
+# --- Escenas de peces que aparecerán en esta zona ---
 var fish_scenes: Array = [
 	load("res://Scene/Peces/Atun.tscn"),
 	load("res://Scene/Peces/Salmon.tscn"),
 	load("res://Scene/Peces/Barracuda.tscn"),
 	load("res://Scene/Peces/Payaso.tscn"),
-	load("res://Scene/Peces/Lenguado.tscn")
+	load("res://Scene/Peces/Lenguado.tscn"),
+	load("res://Scene/Peces/Bordo.tscn")
 ]
 
-# ------------------------------
-# Script con porcentajes
-# ------------------------------
-var Box = load("res://Scripts/FishBox.gd")
-var Porcentaje = Box.new()
-
-var fish_probabilities: Array = [
-	Porcentaje.PorcentajeP["PorAtun"],
-	Porcentaje.PorcentajeP["PorSalmon"],
-	Porcentaje.PorcentajeP["PorBarracuda"],
-	Porcentaje.PorcentajeP["PorPayaso"],
-	Porcentaje.PorcentajeP["PorLenguado"]
-]
-
-# ------------------------------
-# Configuración de spawn
-# ------------------------------
+# --- Configuración general ---
 @export var spawn_delay := 1.5     # Tiempo entre spawns
 @export var max_fish := 22         # Máximo de peces activos
 
-# ------------------------------
-# Inicialización
-# ------------------------------
+# --- Referencia a FishBox ---
+var Box = load("res://Scripts/FishBox.gd")
+var Datos = Box.new()
+
+# ===========================================================
+# 🧩 Inicialización
+# ===========================================================
 func _ready():
 	randomize()
 	var timer = Timer.new()
@@ -42,76 +33,97 @@ func _ready():
 	timer.timeout.connect(spawn_fish)
 	add_child(timer)
 
-# ------------------------------
-# Spawn de peces
-# ------------------------------
+# ===========================================================
+# 🐟 Función principal de spawn
+# ===========================================================
 func spawn_fish():
-	# Contamos solo peces activos en la escena
+	# Evita sobrepoblación
 	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
 	if fish_count >= max_fish:
 		return
 
-	var fish_scene = seleccionar_fish_scene()
+	# Escoger pez al azar
+	var fish_scene = fish_scenes.pick_random()
 	if fish_scene == null:
-		print("⚠️ Escena del pez es null. Revisa las rutas.")
 		return
 
-	# Instanciamos y agregamos a la escena principal
 	var fish = fish_scene.instantiate()
+
+	# ===========================================================
+	# 💎 Asignar calidad (según probabilidad)
+	# ===========================================================
+	var roll = randf()
+	if roll < 0.60:
+		fish.calidad = "Común"
+	elif roll < 0.80:
+		fish.calidad = "Raro"
+	elif roll < 0.93:
+		fish.calidad = "Exótico"
+	elif roll < 0.985:
+		fish.calidad = "Mitológico"
+	elif roll < 0.997:
+		fish.calidad = "Secreto"
+	else:
+		fish.calidad = "Celestial"
+
+	# ===========================================================
+	# 🚫 Si la calidad es demasiado alta para este nivel, no spawnear
+	# ===========================================================
+	var zonas_validas = ["Común", "Raro", "Exótico"]  # nivel 1 solo permite estas
+	if not zonas_validas.has(fish.calidad):
+		fish.queue_free()
+		return  # 🟡 simplemente salimos y el timer hará el próximo spawn
+
+	# ===========================================================
+	# ⚡ Asignar velocidad de progresión (impacta el minijuego)
+	# ===========================================================
+	match fish.calidad:
+		"Común":
+			fish.vel_progresion = 1.0
+		"Raro":
+			fish.vel_progresion = 1.2
+		"Exótico":
+			fish.vel_progresion = 1.4
+		"Mitológico":
+			fish.vel_progresion = 1.6
+		"Secreto":
+			fish.vel_progresion = 1.8
+		"Celestial":
+			fish.vel_progresion = 2.0
+
+	# ===========================================================
+	# 📍 Configurar nombre del pez
+	# ===========================================================
+	var ruta: String = fish_scene.resource_path.to_lower()
+
+	var nombre_asignado := "Desconocido"
+	if ruta.contains("atun"):
+		nombre_asignado = "Atun"
+	elif ruta.contains("salmon"):
+		nombre_asignado = "Salmon"
+	elif ruta.contains("barracuda"):
+		nombre_asignado = "Barracuda"
+	elif ruta.contains("payaso"):
+		nombre_asignado = "Payaso"
+	elif ruta.contains("lenguado"):
+		nombre_asignado = "Lenguado"
+	elif ruta.contains("bordo"):
+		nombre_asignado = "Bordo"
+
+	fish.name = nombre_asignado
+	fish.set_meta("nombre_real", nombre_asignado)
+
+
 	fish.global_position = get_random_point_inside_area()
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
 
-	# ✅ Asignar nombre real según la ruta (case-insensitive y tolerante)
-	var ruta: String = fish_scene.resource_path.to_lower()
-
-	if ruta.contains("/atun"):
-		fish.name = "Atun"
-	elif ruta.contains("/salmon"):
-		fish.name = "Salmon"
-	elif ruta.contains("/barracuda"):
-		fish.name = "Barracuda"
-	elif ruta.contains("/payaso") or ruta.contains("/pezpayaso"):
-		fish.name = "Payaso"
-	elif ruta.contains("/lenguado"):
-		fish.name = "Lenguado"
-	elif ruta.contains("/orca"):
-		fish.name = "Orca"
-	elif ruta.contains("/ballena"):
-		fish.name = "Ballena"
-	else:
-		fish.name = "Desconocido"
-
-	print("✅ Pez spawneado:", fish.name, "en", fish.global_position)
+	print("🐟 Pez spawneado:", fish.name, "| Calidad:", fish.calidad, "| VelProg:", fish.vel_progresion)
 
 
-
-# ------------------------------
-# Selección de pez usando probabilidades
-# ------------------------------
-func seleccionar_fish_scene() -> PackedScene:
-	var total_prob := 0.0
-	for p in fish_probabilities:
-		total_prob += p
-
-	if total_prob <= 0.0:
-		print("⚠️ Probabilidades no válidas, devolviendo primer pez")
-		return fish_scenes[0]
-
-	var roll := randf() * total_prob
-	var acumulado := 0.0
-
-	for i in fish_probabilities.size():
-		acumulado += fish_probabilities[i]
-		if roll <= acumulado:
-			return fish_scenes[i]
-
-	# fallback
-	return fish_scenes[0]
-
-# ------------------------------
-# Obtener posición aleatoria dentro del área
-# ------------------------------
+# ===========================================================
+# 📦 Generar punto aleatorio dentro del área del spawner
+# ===========================================================
 func get_random_point_inside_area() -> Vector2:
 	if not $CollisionShape2D:
 		return Vector2.ZERO
@@ -132,5 +144,4 @@ func get_random_point_inside_area() -> Vector2:
 	else:
 		print("⚠️ Shape no soportado para spawn:", shape)
 
-	# Convertimos de local a global
 	return shape_transform.origin + shape_transform.basis_xform(point)

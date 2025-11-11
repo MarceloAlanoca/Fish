@@ -1,17 +1,32 @@
 extends Node
 
+var MODO_DESARROLLO := false
+
 # =======================================
 # VARIABLES GLOBALES
 # =======================================
-var doblones: int = 100000
+var doblones: int = 100
 var amuletos_comprados: Array = []
 var amuletos_equipados: Array = []
+var cañas_compradas: Array = []
+var caña_equipada: String = ""  # nombre de la caña equipada actualmente
+
+const RUTA_CAÑAS := {
+	"Caña de Madera Fuerte": "res://Assets/Cañas/cañaT1.png",
+	"Caña de Mango Grande": "res://Assets/Cañas/cañaT2.png",
+	"Caña de Acero": "res://Assets/Cañas/cañaT3.png",
+	"Caña Épica": "res://Assets/Cañas/cañaT4.png",
+	"Caña Legendaria": "res://Assets/Cañas/cañaT5.png"
+}
+var caña_sprite_path: String = ""  # 🔁 textura de la caña equipada
 
 func _ready():
-	# 🔥 BORRA EL GUARDADO ANTERIOR AL INICIAR (solo para desarrollo)
-	if FileAccess.file_exists("user://fishstack_save.json"):
+	if MODO_DESARROLLO and FileAccess.file_exists("user://fishstack_save.json"):
 		DirAccess.remove_absolute("user://fishstack_save.json")
-		print("🧹 Archivo de guardado eliminado para reiniciar progreso.")
+		print("🧹 Archivo reiniciado (modo desarrollo).")
+
+	cargar_cañas()
+
 
 
 # ====================================================
@@ -35,25 +50,29 @@ func guardar_amuletos():
 # ——— helpers para aplicar efectos sin “stackearlos” ———
 
 func _preparar_base_pescador(pescador: Node) -> void:
-	# Guarda la velocidad base una sola vez
+	if not pescador:
+		return
+	# 💾 Solo guarda la base UNA VEZ: nunca la pisa después
 	if not pescador.has_meta("vel_base"):
 		pescador.set_meta("vel_base", pescador.velocidad)
+	if not pescador.has_meta("multi_base"):
+		pescador.set_meta("multi_base", pescador.multiplicador_velocidad_pesca)
+
+
 
 func reaplicar_efectos_pescador(pescador: Node) -> void:
 	if not pescador:
 		return
 
-	if pescador.has_meta("vel_base"):
-		pescador.velocidad = pescador.get_meta("vel_base")
-	if pescador.has_meta("multi_base"):
-		pescador.multiplicador_velocidad_pesca = pescador.get_meta("multi_base")
+	# 🧱 Si no hay base guardada, la crea una vez
+	_preparar_base_pescador(pescador)
 
+	# 🔁 Restaurar valores originales antes de aplicar nada
+	pescador.velocidad = float(pescador.get_meta("vel_base"))
+	pescador.multiplicador_velocidad_pesca = float(pescador.get_meta("multi_base"))
+
+	# ⚙️ Aplicar efectos actuales desde cero (sin acumular)
 	aplicar_efectos_pescador(pescador)
-
-
-
-
-
 
 # =======================================
 # 💎 EFECTOS DE AMULETOS REALES
@@ -66,16 +85,27 @@ func aplicar_efectos_pescador(pescador: Node) -> void:
 	if not pescador:
 		return
 
-	# ✅ Amuleto Raro → +50% velocidad general y reduce penalización de pesca un 75%
-	if "Amuleto Raro" in amuletos_equipados:
-		pescador.velocidad *= 1.5  # Aumenta un 50% la velocidad normal
-		# En vez de multiplicar, fijamos un valor estable que representa una penalización menor
-		pescador.multiplicador_velocidad_pesca = max(pescador.multiplicador_velocidad_pesca, 0.55)
-		print("⚙️ Amuleto Raro activo → Vel:", pescador.velocidad, " Multiplicador pesca:", pescador.multiplicador_velocidad_pesca)
+	var base_vel: float = float(pescador.get_meta("vel_base"))
+	var base_mult: float = float(pescador.get_meta("multi_base"))
 
-	# ✅ Amuleto Celestial → +25% velocidad pasiva (barco/pescador general)
+	var nueva_vel: float = base_vel
+	var nuevo_mult: float = base_mult
+
+	# ✅ Amuleto Raro → +50% velocidad y penalización pesca mínima
+	if "Amuleto Raro" in amuletos_equipados:
+		nueva_vel *= 1.5
+		nuevo_mult = max(nuevo_mult, 0.55)
+		print("⚙️ Amuleto Raro aplicado → Vel:", nueva_vel, "Mult:", nuevo_mult)
+
+	# ✅ Amuleto Celestial → +25% velocidad general
 	if "Amuleto Celestial" in amuletos_equipados:
-		pescador.velocidad *= 1.25
+		nueva_vel *= 1.25
+		print("⚙️ Amuleto Celestial aplicado → Vel:", nueva_vel)
+
+	# 🔹 Guardar resultado final sin modificar la base
+	pescador.velocidad = nueva_vel
+	pescador.multiplicador_velocidad_pesca = nuevo_mult
+
 
 
 	# Amuleto Exótico → reduce velocidad en minijuego (35%) → se maneja en minijuego
@@ -156,3 +186,154 @@ func aplicar_efectos_ganancia(valor: int) -> int:
 			resultado += 500
 
 	return resultado
+	
+# # =======================================
+# 🎣 EFECTOS DE CAÑAS — APLICADOS A CAÑA Y ANZUELO + SPRITE
+# =======================================
+func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, minijuego: Node = null) -> void:
+	if not caña or not anzuelo:
+		return
+
+	# 🔁 Guardar valores base solo la primera vez
+	if not anzuelo.has_meta("vel_base"):
+		anzuelo.set_meta("vel_base", anzuelo.velocidad_recogida_manual)
+	if not anzuelo.has_meta("vel_vertical_base"):
+		anzuelo.set_meta("vel_vertical_base", anzuelo.velocidad_vertical)
+	if not anzuelo.has_meta("limite_inferior_base"):
+		anzuelo.set_meta("limite_inferior_base", anzuelo.limite_inferior_base)
+	if not caña.has_meta("fuerza_base"):
+		caña.set_meta("fuerza_base", caña.fuerza_lanzamiento)
+	if minijuego and not minijuego.has_meta("resiliencia_base"):
+		minijuego.set_meta("resiliencia_base", minijuego.resiliencia)
+
+	# 🔄 Restaurar valores base
+	anzuelo.velocidad_recogida_manual = anzuelo.get_meta("vel_base")
+	anzuelo.velocidad_vertical = anzuelo.get_meta("vel_vertical_base")
+	anzuelo.limite_inferior_base = anzuelo.get_meta("limite_inferior_base")
+	caña.fuerza_lanzamiento = caña.get_meta("fuerza_base")
+	if minijuego:
+		minijuego.resiliencia = minijuego.get_meta("resiliencia_base")
+
+	# =======================================================
+	# ⚙️ Aplicar efectos progresivos por tipo de caña
+	# =======================================================
+	match caña_equipada:
+		"Caña de Madera Fuerte":
+			# Caña básica → poca profundidad y rebote normal
+			anzuelo.limite_inferior_base = 1000.0
+			anzuelo.gravedad = 1200.0
+			if minijuego:
+				minijuego.resiliencia *= 1.0
+			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña de Madera Fuerte"])
+
+		"Caña de Mango Grande":
+			# Un poco más profunda, menos freno al tocar el agua
+			anzuelo.velocidad_recogida_manual *= 1.15
+			anzuelo.velocidad_vertical *= 1.15
+			anzuelo.gravedad = 1000.0
+			anzuelo.limite_inferior_base = 2000.0
+			if minijuego:
+				minijuego.resiliencia *= 0.95
+			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña de Mango Grande"])
+
+		"Caña de Acero":
+			# Ideal para media profundidad, 45%+ recogida
+			anzuelo.velocidad_recogida_manual *= 1.3
+			anzuelo.velocidad_vertical *= 1.3
+			caña.fuerza_lanzamiento *= 1.5
+			anzuelo.gravedad = 800.0  # menos rebote
+			anzuelo.limite_inferior_base = 6000.0
+			if minijuego:
+				minijuego.resiliencia *= 1
+			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña de Acero"])
+
+		"Caña Épica":
+			# Muy profunda, casi sin rebote al agua
+			anzuelo.velocidad_recogida_manual *= 1.45
+			anzuelo.velocidad_vertical *= 1.4
+			caña.fuerza_lanzamiento *= 1.15
+			anzuelo.gravedad = 600.0
+			anzuelo.limite_inferior_base = 12000.0
+			if minijuego:
+				minijuego.resiliencia *= 0.85
+			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña Épica"])
+
+		"Caña Legendaria":
+			# Máxima profundidad, movimiento fluido y rebote casi nulo
+			anzuelo.velocidad_recogida_manual *= 5
+			anzuelo.velocidad_vertical *= 5
+			caña.fuerza_lanzamiento *= 2
+			anzuelo.gravedad = 400.0
+			anzuelo.limite_inferior_base = 20000.0
+			if minijuego:
+				minijuego.resiliencia *= 0.8
+			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña Legendaria"])
+
+	print("🎣 Efectos aplicados →", caña_equipada)
+	print("   ⚙️ gravedad:", anzuelo.gravedad,
+		  " | recogida:", anzuelo.velocidad_recogida_manual,
+		  " | vertical:", anzuelo.velocidad_vertical,
+		  " | límite:", anzuelo.limite_inferior_base)
+
+		
+func _actualizar_sprite_caña(pescador: Node, textura_path: String) -> void:
+	if not pescador:
+		return
+
+	var sprite := pescador.get_node_or_null("CañaPesca/Caña/Sprite2D")
+	if sprite:
+		sprite.texture = load(textura_path)
+		print("🎨 Sprite de caña actualizado correctamente:", textura_path)
+	else:
+		push_warning("⚠️ No se encontró el sprite de la caña (CañaPesca/Caña/Sprite2D)")
+
+# ====================================================
+# 💾 GUARDAR / CARGAR CAÑAS COMPRADAS Y EQUIPADA
+# ====================================================
+
+func cargar_cañas():
+	var data := Save.cargar_datos()
+	cañas_compradas = data.get("cañas", [])
+	caña_equipada = data.get("caña_equipada", "")
+	caña_sprite_path = data.get("caña_sprite", "")
+
+	if cañas_compradas.is_empty():
+		cañas_compradas.append("Caña de Madera Fuerte")
+
+	if caña_equipada == "" or not (caña_equipada in cañas_compradas):
+		caña_equipada = "Caña de Madera Fuerte"
+
+	# 🔁 Asegura que la textura coincida con la caña equipada
+	if RUTA_CAÑAS.has(caña_equipada):
+		caña_sprite_path = RUTA_CAÑAS[caña_equipada]
+	else:
+		caña_sprite_path = "res://Assets/Cañas/cañaT1.png"
+
+	print("🎣 Caña cargada:", caña_equipada, "| sprite:", caña_sprite_path)
+
+
+
+func guardar_cañas():
+	# 🧩 Asegura que la ruta del sprite corresponda a la caña actual
+	if RUTA_CAÑAS.has(caña_equipada):
+		caña_sprite_path = RUTA_CAÑAS[caña_equipada]
+	else:
+		caña_sprite_path = "res://Assets/Cañas/cañaT1.png"  # fallback seguro
+
+	var data := Save.cargar_datos()
+	data["cañas"] = cañas_compradas
+	data["caña_equipada"] = caña_equipada
+	data["caña_sprite"] = caña_sprite_path
+	data["doblones"] = doblones
+	Save.guardar_datos(data)
+	print("💾 Guardado:", caña_equipada, "| sprite:", caña_sprite_path)
+
+
+# Aplica el sprite guardado cuando el jugador vuelve al juego
+func aplicar_sprite_guardado(pescador: Node):
+	if not pescador:
+		return
+	var sprite := pescador.get_node_or_null("CañaPesca/Caña/Sprite2D")
+	if sprite and caña_sprite_path != "":
+		sprite.texture = load(caña_sprite_path)
+		print("🎨 Sprite reaplicado desde guardado:", caña_sprite_path)

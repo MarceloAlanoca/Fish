@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://5g1uxtpnqps8"]
+
+[ext_resource type="Texture2D" uid="uid://il7qvidypa0r" path="res://Assets/Peces assets/Hadales.png" id="1_7yunq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vr3j"]
+atlas = ExtResource("1_7yunq")
+region = Rect2(81.6317, 13.7369, 42.0789, 15.3947)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64lxh"]
+size = Vector2(84, 22)
+
+[node name="PezBaboso" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.15, 2.15)
+texture = SubResource("AtlasTexture_7vr3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_64lxh")

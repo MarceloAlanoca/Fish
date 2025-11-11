@@ -105,6 +105,41 @@ func verificar_colision(delta):
 	elif progress_bar.value <= 0:
 		finalizar_minijuego(false)
 
+func configurar_por_pez(pez):
+	if not pez:
+		return
+
+	match pez.calidad:
+		"Común":
+			progress_bar.tint_progress = Color(1, 1, 1) # Blanco
+			resiliencia = 1.0
+			progreso_subida = 45.0 * pez.vel_progresion
+
+		"Raro":
+			progress_bar.tint_progress = Color(0.4, 0.7, 1) # Azul claro
+			resiliencia = 1.2
+			progreso_subida = 40.0 * pez.vel_progresion
+
+		"Exótico":
+			progress_bar.tint_progress = Color(0.8, 0.3, 1) # Violeta
+			resiliencia = 1.4
+			progreso_subida = 36.0 * pez.vel_progresion
+
+		"Mitológico":
+			progress_bar.tint_progress = Color(1, 0.7, 0.2) # Dorado-anaranjado
+			resiliencia = 1.6
+			progreso_subida = 33.0 * pez.vel_progresion
+
+		"Secreto":
+			progress_bar.tint_progress = Color(0.2, 1, 0.6) # Verde agua
+			resiliencia = 1.8
+			progreso_subida = 30.0 * pez.vel_progresion
+
+		"Celestial":
+			progress_bar.tint_progress = Color(0.6, 0.9, 1.0) # Azul celeste brillante
+			resiliencia = 2.0
+			progreso_subida = 27.0 * pez.vel_progresion
+
 # === Finaliza el minijuego ===
 func finalizar_minijuego(resultado: bool):
 	timer.stop()

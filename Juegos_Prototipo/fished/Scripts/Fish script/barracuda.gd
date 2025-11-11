@@ -7,24 +7,40 @@ var velocidad = Box_Vel.VelP["BarracudaVelocity"]
 var direccion: Vector2 = Vector2(1, 0)
 var distancia_maxima = Box_Vel.Dist["DistBarracuda"]
 var distancia_recorrida: float = 0
-var detenido := false # 👈 Control de movimiento detenido
+var detenido := false
+
+# 🔹 NUEVAS VARIABLES DE CALIDAD Y PROGRESIÓN
+@export var calidad := "Exotico"       # Común, Raro, Exótico, Mitológico, Secreto, Celestial
+@export var vel_progresion := 1.0
 
 func _ready() -> void:
 	add_to_group("peces")
 
-	# 👇 Dirección inicial aleatoria (50% izquierda, 50% derecha)
+	# Dirección aleatoria
 	if randf() > 0.5:
 		direccion = -direccion
 	mirar_hacia_direccion()
 
+	# 🔸 Color visual según la calidad (opcional, solo para debug)
+	if has_node("Sprite2D"):
+		var sprite = $Sprite2D
+		match calidad:
+			"Común": sprite.modulate = Color(1, 1, 1)
+			"Raro": sprite.modulate = Color(0.4, 0.7, 1)
+			"Exótico": sprite.modulate = Color(0.8, 0.3, 1)
+			"Mitológico": sprite.modulate = Color(1, 0.7, 0.2)
+			"Secreto": sprite.modulate = Color(0.2, 1, 0.6)
+			"Celestial": sprite.modulate = Color(0.6, 0.9, 1)
+
 func _physics_process(delta: float) -> void:
 	if detenido:
-		return # 🚫 no se mueve si está detenido
+		return
 
 	var movimiento = direccion * velocidad * delta
 	position += movimiento
 	distancia_recorrida += velocidad * delta
 
+	# Cambiar dirección al llegar a su distancia máxima
 	if distancia_recorrida >= distancia_maxima:
 		direccion = -direccion
 		distancia_recorrida = 0
@@ -32,16 +48,9 @@ func _physics_process(delta: float) -> void:
 
 func mirar_hacia_direccion() -> void:
 	if has_node("Sprite2D"):
-		var sprite = $Sprite2D
-		sprite.flip_h = direccion.x > 0
-	elif has_node("BolaCaptura"):
-		return
-	else:
-		print("⚠️ No se encontró sprite para rotar:", self.name)
+		$Sprite2D.flip_h = direccion.x > 0
 
 func detener_movimiento() -> void:
-	# La orca podría resistirse un poco antes de detenerse del todo
-	velocidad = 0
 	detenido = true
 	set_physics_process(false)
-	print("⏸ Payaso detenids:", name)
+	print("⏸ Pez detenido:", name)

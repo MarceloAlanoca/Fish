@@ -7,19 +7,26 @@ var velocidad = Box_Vel.VelP["PayasoVelocity"]
 var direccion: Vector2 = Vector2(1, 0)
 var distancia_maxima = Box_Vel.Dist["DistPayaso"]
 var distancia_recorrida: float = 0
-var detenido := false # 👈 Control de movimiento detenido
+var detenido := false
+
+# 🔹 NUEVAS VARIABLES DE CALIDAD Y PROGRESIÓN
+@export var calidad := "Exótico"       # Común, Raro, Exótico, Mitológico, Secreto, Celestial
+@export var vel_progresion := 1.0
 
 func _ready() -> void:
 	add_to_group("peces")
 
-	# 👇 Dirección inicial aleatoria (50% izquierda, 50% derecha)
+	# Dirección aleatoria
 	if randf() > 0.5:
 		direccion = -direccion
 	mirar_hacia_direccion()
 
+	# ❌ ELIMINAMOS EL BLOQUE DE COLOR
+	# Esto permite mantener el color original del sprite
+
 func _physics_process(delta: float) -> void:
 	if detenido:
-		return # 🚫 no se mueve si está detenido
+		return
 
 	var movimiento = direccion * velocidad * delta
 	position += movimiento
@@ -32,16 +39,9 @@ func _physics_process(delta: float) -> void:
 
 func mirar_hacia_direccion() -> void:
 	if has_node("Sprite2D"):
-		var sprite = $Sprite2D
-		sprite.flip_h = direccion.x > 0
-	elif has_node("BolaCaptura"):
-		return
-	else:
-		print("⚠️ No se encontró sprite para rotar:", self.name)
+		$Sprite2D.flip_h = direccion.x > 0
 
 func detener_movimiento() -> void:
-	# La orca podría resistirse un poco antes de detenerse del todo
-	velocidad = 0
 	detenido = true
 	set_physics_process(false)
-	print("⏸ Payaso detenids:", name)
+	print("⏸ Pez detenido:", name)

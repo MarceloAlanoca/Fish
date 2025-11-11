@@ -1,0 +1,159 @@
+[gd_scene load_steps=22 format=3 uid="uid://bcpvn1jvh1lia"]
+
+[ext_resource type="Script" uid="uid://m1w3iidg4lgh" path="res://Scene/Tiendas/cañas.gd" id="1_0lyys"]
+[ext_resource type="Texture2D" uid="uid://crkptjhgyci4c" path="res://Assets/Vendedores/Salesman/Idle.png" id="2_gb7h0"]
+[ext_resource type="Texture2D" uid="uid://cnmyle47jx67q" path="res://Assets/Fondos/BackgroundCañas.jpg" id="3_a8hon"]
+[ext_resource type="AudioStream" uid="uid://ttyggthsr2os" path="res://Assets/SFX/GuardadoUndertale.ogg" id="3_p2moj"]
+[ext_resource type="AudioStream" uid="uid://ccoh502hpby1h" path="res://Assets/SFX/DespetidaUndertale.ogg" id="4_4sy4r"]
+[ext_resource type="Texture2D" uid="uid://5eej5pw6k4fb" path="res://Assets/Fondos/FondoGrids.png" id="4_p2moj"]
+[ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="5_4sy4r"]
+[ext_resource type="AudioStream" uid="uid://mv30fdx734tb" path="res://Assets/SFX/DañoUndertale.ogg" id="5_fj715"]
+[ext_resource type="Texture2D" uid="uid://cq5pba05vggar" path="res://Assets/Cañas/cañaT1.png" id="6_fj715"]
+[ext_resource type="Texture2D" uid="uid://b405bhvaobpvw" path="res://Assets/Cañas/cañaT2.png" id="7_coxph"]
+[ext_resource type="Texture2D" uid="uid://dovcupyw5n6u0" path="res://Assets/Vendedores/Salesman/Salesman.png" id="7_fj715"]
+[ext_resource type="Texture2D" uid="uid://rf7our75ktgn" path="res://Assets/Cañas/cañaT3.png" id="8_3nnkb"]
+[ext_resource type="Texture2D" uid="uid://cx6cuf7p7ji3x" path="res://Assets/Cañas/cañaT4.png" id="9_gaq7b"]
+[ext_resource type="Texture2D" uid="uid://d35ih45jopk7q" path="res://Assets/Cañas/cañaT5.png" id="10_b65wr"]
+[ext_resource type="AudioStream" uid="uid://t7cwv66uw11j" path="res://Assets/Musicas/14. Welcome to the Green Room (DELTARUNE Chapter 3+4 Soundtrack) - Toby Fox [TubeRipper.cc].ogg" id="11_h75cr"]
+[ext_resource type="AudioStream" uid="uid://c1nholsk7fvpy" path="res://Assets/SFX/SalesmanHablando.ogg" id="12_gb7h0"]
+[ext_resource type="PackedScene" uid="uid://brpgvacmdou1g" path="res://Scene/Tiendas/InterfazTienda.tscn" id="12_twv6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb7h0"]
+atlas = ExtResource("2_gb7h0")
+region = Rect2(164.206, 134.393, 743.007, 1405.14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjidr"]
+atlas = ExtResource("4_p2moj")
+region = Rect2(88.39, 200.57, 252.89, 198.44)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fj715"]
+font = ExtResource("5_4sy4r")
+font_color = Color(0.478431, 1, 1, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4sy4r"]
+font = ExtResource("5_4sy4r")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+outline_size = 6
+
+[node name="Cañas" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0lyys")
+musica_fondo = ExtResource("11_h75cr")
+sonido_compra = ExtResource("3_p2moj")
+sonido_despedida = ExtResource("4_4sy4r")
+sonido_error = ExtResource("5_fj715")
+sonido_voz = ExtResource("12_gb7h0")
+salesman_normal = ExtResource("7_fj715")
+salesman_habla = SubResource("AtlasTexture_gb7h0")
+salesman_vende = SubResource("AtlasTexture_gb7h0")
+salesman_despide = SubResource("AtlasTexture_gb7h0")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 768.0
+scale = Vector2(0.600791, 0.840307)
+texture = ExtResource("3_a8hon")
+
+[node name="FondoGrid" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 123.0
+offset_right = 278.0
+offset_bottom = 321.0
+scale = Vector2(1.75279, 1.69684)
+texture = SubResource("AtlasTexture_mjidr")
+
+[node name="Salir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 927.0
+offset_top = 96.0
+offset_right = 1024.0
+offset_bottom = 153.0
+scale = Vector2(1.98712, 2.07895)
+theme_override_fonts/font = ExtResource("5_4sy4r")
+theme_override_font_sizes/font_size = 40
+text = "Salir"
+
+[node name="Seccion" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = 149.0
+offset_right = 451.0
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="Articulo1" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("6_fj715")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo2" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("7_coxph")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo3" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("8_3nnkb")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo4" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("9_gaq7b")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo5" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("10_b65wr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Salesman" type="Sprite2D" parent="."]
+position = Vector2(801, 391)
+scale = Vector2(0.519984, 0.456752)
+texture = ExtResource("7_fj715")
+
+[node name="LabelInfo" type="Label" parent="."]
+layout_mode = 2
+offset_left = 74.0
+offset_top = 488.0
+offset_right = 174.0
+offset_bottom = 511.0
+label_settings = SubResource("LabelSettings_fj715")
+
+[node name="AudioTienda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_h75cr")
+
+[node name="AudioEfectos" type="AudioStreamPlayer" parent="."]
+
+[node name="VozSalesman" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_gb7h0")
+
+[node name="InterfazTienda" parent="." instance=ExtResource("12_twv6e")]
+
+[node name="LabelSubtitulos" type="Label" parent="."]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 407.0
+offset_right = 570.0
+offset_bottom = 430.0
+label_settings = SubResource("LabelSettings_4sy4r")
+
+[node name="LabelDoblones" type="Label" parent="."]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 79.0
+offset_right = 633.0
+offset_bottom = 102.0
+scale = Vector2(1.62392, 1.51079)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://djrgel1c3uphg"]
+
+[ext_resource type="Texture2D" uid="uid://rg8strgntrct" path="res://Assets/Peces/Sheet10.png" id="1_186rd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_186rd")
+region = Rect2(3.35336, 2.18775, 62.0455, 57.847)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_186rd"]
+size = Vector2(356, 215)
+
+[node name="Nahuelito" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(9, 9)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(42, 28)
+rotation = -0.786864
+scale = Vector2(1.41154, 0.828063)
+shape = SubResource("RectangleShape2D_186rd")

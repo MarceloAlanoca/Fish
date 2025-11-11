@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://deqn3073hkowj"]
+
+[ext_resource type="Texture2D" uid="uid://ctktv0m8vilwy" path="res://Assets/Peces/Sheet5.png" id="1_yx28c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_yx28c")
+region = Rect2(14.5462, 6.93162, 31.6106, 24.2724)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx28c"]
+size = Vector2(191, 134)
+
+[node name="RetroGlobo" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -7)
+shape = SubResource("RectangleShape2D_yx28c")

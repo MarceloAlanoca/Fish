@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://3tt1vy7mr2i5"]
+
+[ext_resource type="Texture2D" uid="uid://ctktv0m8vilwy" path="res://Assets/Peces/Sheet5.png" id="1_y3qga"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_y3qga")
+region = Rect2(74.7252, 2.57905, 45.7224, 34.9974)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3qga"]
+size = Vector2(167, 127)
+
+[node name="CamaronPistola" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8.5, -0.5)
+shape = SubResource("RectangleShape2D_y3qga")

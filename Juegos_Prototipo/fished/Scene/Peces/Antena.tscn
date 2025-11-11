@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpie8eqweyjbu"]
+
+[ext_resource type="Texture2D" uid="uid://dlw23jp3cnavp" path="res://Assets/Peces/PezAntena.png" id="1_w8lhv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpeu1"]
+size = Vector2(188, 113)
+
+[node name="Antena" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_w8lhv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -15.5)
+shape = SubResource("RectangleShape2D_qpeu1")

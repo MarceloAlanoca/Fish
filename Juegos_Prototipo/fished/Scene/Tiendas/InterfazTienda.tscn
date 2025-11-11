@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://brpgvacmdou1g"]
+
+[ext_resource type="Script" uid="uid://dxd0wpi7wpi6b" path="res://Scene/Tiendas/interfaz_tienda.gd" id="1_jynmh"]
+[ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_lr2b5"]
+
+[node name="InterfazTienda" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jynmh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1150, 60)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1150, 60)
+layout_mode = 0
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Amuletos" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.884314, 3.34509e-06, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("2_lr2b5")
+theme_override_font_sizes/font_size = 30
+text = "Amuletos"
+
+[node name="Cañas" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.884314, 3.34509e-06, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("2_lr2b5")
+theme_override_font_sizes/font_size = 30
+text = "Cañas"
+
+[node name="Disfraces" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.884314, 3.34509e-06, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("2_lr2b5")
+theme_override_font_sizes/font_size = 30
+text = "Disfraces"
+
+[node name="Barcos" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.884314, 3.34509e-06, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("2_lr2b5")
+theme_override_font_sizes/font_size = 30
+text = "Barcos"

@@ -89,15 +89,14 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PanelMochila" type="Panel" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 218.0
-offset_top = 208.0
-offset_right = 258.0
-offset_bottom = 248.0
+offset_left = 258.0
+offset_top = 138.0
+offset_right = 298.0
+offset_bottom = 178.0
 scale = Vector2(18.8665, 6.2514)
 
-[node name="GridContainer" type="GridContainer" parent="PanelMochila"]
+[node name="GridContainerAmuletos" type="GridContainer" parent="PanelMochila"]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 0
 offset_left = 2.54338
@@ -107,24 +106,45 @@ offset_bottom = 202.651
 scale = Vector2(0.0517241, 0.2)
 columns = 2
 
-[node name="BotonSubir" type="Button" parent="."]
-visible = false
+[node name="PanelCañas" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 205.0
-offset_top = 186.0
-offset_right = 226.0
-offset_bottom = 206.0
+offset_left = 403.0
+offset_top = 431.0
+offset_right = 443.0
+offset_bottom = 471.0
+scale = Vector2(11.9101, 4.85143)
+
+[node name="GridContainerCañas" type="GridContainer" parent="PanelCañas"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.43492
+offset_top = 8.86337
+offset_right = 562.435
+offset_bottom = 168.863
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0642005, 0.200283)
+columns = 6
+
+[node name="BotonSubir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 341.0
+offset_right = 120.0
+offset_bottom = 361.0
 scale = Vector2(7.65198, 7.03266)
 icon = SubResource("AtlasTexture_wvkx1")
 flat = true
 
 [node name="BotonBajar" type="Button" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 208.0
-offset_top = 364.0
-offset_right = 228.0
-offset_bottom = 384.0
+offset_left = 102.0
+offset_top = 519.0
+offset_right = 122.0
+offset_bottom = 539.0
 scale = Vector2(7.73863, 6.70456)
 icon = SubResource("AtlasTexture_it3cs")
 flat = true

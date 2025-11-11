@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7kilbpxg7p5h"]
+
+[ext_resource type="Texture2D" uid="uid://dfu4p00poo4aj" path="res://Assets/Peces/Sheet7.png" id="1_oawy7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_oawy7")
+region = Rect2(16.0849, 1.36152, 41.2532, 20.0483)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7vgv"]
+size = Vector2(79, 37)
+
+[node name="Rojo" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_e7vgv")

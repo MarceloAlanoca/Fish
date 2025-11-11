@@ -5,8 +5,12 @@ class_name InterfazUsuario
 @onready var boton_tienda: Button = $"Tienda"
 @onready var boton_mochila: Button = $"Mochila"
 @onready var panel_mochila: Panel = $PanelMochila
-@onready var grid_mochila: GridContainer = $"PanelMochila/GridContainer"
+@onready var grid_mochila: GridContainer = $"PanelMochila/GridContainerAmuletos"
 @onready var barra_equipados: HBoxContainer = $"BarrasEquipados"
+@onready var panel_cañas: Panel = $PanelCañas
+@onready var grid_cañas: GridContainer = $"PanelCañas/GridContainerCañas"
+
+
 
 var amuletos_equipados: Array = []
 
@@ -28,6 +32,14 @@ func _ready():
 	else:
 		push_warning("⚠️ PanelMochila no encontrado en InterfazUsuario")
 
+	if panel_cañas:
+		panel_cañas.visible = false
+	else:
+		push_warning("⚠️ PanelCañas no encontrado en InterfazUsuario")
+
+	# cargar caña equipada si hay
+	_actualizar_caña_equipada()
+
 	# 🔁 sincronizar equipados desde Global al cargar
 	amuletos_equipados = Global.amuletos_equipados.duplicate()
 	_actualizar_barra_equipados()
@@ -48,7 +60,7 @@ func agregar_dinero(cantidad: int):
 # 🏪 ABRIR TIENDA
 # ======================================================
 func _abrir_tienda():
-	var tienda = load("res://Scene/tienda.tscn")
+	var tienda = load("res://Scene/Tiendas/Amuletos.tscn")
 	if tienda:
 		get_tree().change_scene_to_packed(tienda)
 	else:
@@ -59,19 +71,22 @@ func _abrir_tienda():
 # 🎒 ABRIR / CERRAR MOCHILA
 # ======================================================
 func _on_mochila_pressed():
-	if not panel_mochila:
-		push_warning("⚠️ PanelMochila no está disponible")
-		return
+	var visible_now = !panel_mochila.visible
 
-	panel_mochila.visible = !panel_mochila.visible
+	panel_mochila.visible = visible_now
+	panel_cañas.visible = visible_now
 
-	if panel_mochila.visible:
+	if visible_now:
 		panel_mochila.mouse_filter = Control.MOUSE_FILTER_STOP
+		panel_cañas.mouse_filter = Control.MOUSE_FILTER_STOP
 		_cargar_amuletos_mochila()
+		_cargar_cañas_panel()
 	else:
 		panel_mochila.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel_cañas.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	boton_mochila.release_focus() # evita activación accidental
+	boton_mochila.release_focus()
+
 
 
 # ======================================================
@@ -135,8 +150,11 @@ func _actualizar_barra_equipados():
 func _aplicar_efectos_inmediatos():
 	var pescador := get_tree().get_root().get_node_or_null("MainJuego/Pescador")
 	if pescador:
+		# 🧩 Reinicia valores base antes de aplicar efectos nuevos
+		Global._preparar_base_pescador(pescador)
 		Global.reaplicar_efectos_pescador(pescador)
-		print("✨ Efectos reaplicados. Equipados actuales:", Global.amuletos_equipados)
+		print("✨ Efectos recalculados. Amuletos activos:", Global.amuletos_equipados)
+
 
 
 # ======================================================
@@ -161,3 +179,117 @@ func _buscar_icono(nombre: String) -> String:
 		_:
 			push_warning("⚠️ No se encontró ícono para: %s" % nombre)
 			return ""
+
+# ======================================================
+# 🎣 PANEL DE CAÑAS
+# ======================================================
+
+func mostrar_panel_cañas():
+	if not panel_cañas:
+		push_warning("⚠️ PanelCañas no encontrado")
+		return
+
+	panel_cañas.visible = !panel_cañas.visible
+
+	if panel_cañas.visible:
+		_cargar_cañas_panel()
+	else:
+		panel_cañas.visible = false
+
+func _cargar_cañas_panel():
+	for n in grid_cañas.get_children():
+		n.queue_free()
+
+	for caña in Global.cañas_compradas:
+		var boton = TextureButton.new()
+		var icon_path = _buscar_icono_caña(caña)
+		if icon_path != "":
+			boton.texture_normal = load(icon_path)
+		else:
+			continue
+
+		boton.tooltip_text = caña
+		boton.custom_minimum_size = Vector2(80, 80)
+		boton.connect("pressed", Callable(self, "_equipar_caña").bind(caña, boton))
+
+		# marcar la caña equipada
+		if caña == Global.caña_equipada:
+			boton.modulate = Color(0.6, 1, 0.6, 1)
+		else:
+			boton.modulate = Color(1, 1, 1, 1)
+
+		grid_cañas.add_child(boton)
+
+func _equipar_caña(nombre: String, boton: TextureButton):
+	var pescador := get_tree().get_root().get_node_or_null("MainJuego/Pescador")
+
+	# 🚫 Bloquear cambio si el jugador está pescando
+	if pescador and "pescando" in pescador and pescador.pescando:
+		print("🚫 No puedes cambiar de caña mientras estás pescando.")
+		return
+
+	Global.caña_equipada = nombre
+	Global.guardar_cañas()
+	_actualizar_caña_equipada()
+
+	# 🎨 Actualizar visualmente los botones
+	for b in grid_cañas.get_children():
+		b.modulate = Color(1, 1, 1, 1)
+	boton.modulate = Color(0.6, 1, 0.6, 1)
+
+	# 🎣 Reaplicar efectos (solo si no está pescando)
+	var caña_nodo := get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca")
+	var anzuelo_nodo := get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Anzuelo")
+
+	if pescador and caña_nodo and anzuelo_nodo:
+		Global.aplicar_efectos_caña(caña_nodo, anzuelo_nodo, pescador)
+
+	print("🎣 Caña equipada:", nombre)
+	# 🔄 Forzar actualización visual del sprite en vivo
+	if pescador:
+		var sprite := pescador.get_node_or_null("CañaPesca/Caña")
+		if sprite:
+			var path := _buscar_icono_caña(Global.caña_equipada)
+			sprite.texture = load(path)
+			print("🎨 Sprite de caña actualizado desde InterfazUsuario:", path)
+
+
+
+
+func _buscar_icono_caña(nombre: String) -> String:
+	match nombre:
+		"Caña de Madera Fuerte":
+			return "res://Assets/Cañas/cañaT1.png"
+		"Caña de Mango Grande":
+			return "res://Assets/Cañas/cañaT2.png"
+		"Caña de Acero":
+			return "res://Assets/Cañas/cañaT3.png"
+		"Caña Épica":
+			return "res://Assets/Cañas/cañaT4.png"
+		"Caña Legendaria":
+			return "res://Assets/Cañas/cañaT5.png"
+		_:
+			return ""
+
+func _actualizar_caña_equipada():
+	var pescador := get_tree().get_root().get_node_or_null("MainJuego/Pescador")
+	if not pescador:
+		push_warning("⚠️ No se encontró el Pescador en la escena principal.")
+		return
+
+	var sprite := pescador.get_node_or_null("CañaPesca/Caña/Sprite2D")
+	if not sprite:
+		push_warning("⚠️ No se encontró el Sprite2D de la caña en el Pescador.")
+		return
+
+	var path := ""
+	match Global.caña_equipada:
+		"Caña de Madera Fuerte": path = "res://Assets/Cañas/cañaT1.png"
+		"Caña de Mango Grande": path = "res://Assets/Cañas/cañaT2.png"
+		"Caña de Acero": path = "res://Assets/Cañas/cañaT3.png"
+		"Caña Épica": path = "res://Assets/Cañas/cañaT4.png"
+		"Caña Legendaria": path = "res://Assets/Cañas/cañaT5.png"
+		_: path = "res://Assets/Cañas/cañaT1.png"  # fallback
+
+	sprite.texture = load(path)
+	print("🎨 Sprite de caña actualizado a:", path)

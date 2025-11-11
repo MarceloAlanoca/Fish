@@ -12,21 +12,21 @@ var is_facing_right := true
 var pescando := false
 
 func _ready():
+	Global.cargar_cañas()  # ✅ asegura que se cargue antes de aplicar
+	var sprite := get_node_or_null("CañaPesca/Caña")
+	if sprite and Global.caña_sprite_path != "":
+		sprite.texture = load(Global.caña_sprite_path)
+		print("🎨 Sprite restaurado:", Global.caña_sprite_path)
+	Global.aplicar_sprite_guardado(self)
 	_conectar_caña()
+	await get_tree().process_frame
 
-	# ✅ Guardar base de velocidad y penalización una sola vez
-	if not has_meta("vel_base"):
-		set_meta("vel_base", velocidad)
-	if not has_meta("multi_base"):
-		set_meta("multi_base", multiplicador_velocidad_pesca)
-
-	# ✅ Restaurar valores base antes de aplicar efectos
-	velocidad = get_meta("vel_base")
-	multiplicador_velocidad_pesca = get_meta("multi_base")
-
-	# ✅ Aplicar efectos activos sin duplicar
-	Global.reaplicar_efectos_pescador(self)
-
+	# Reaplicar efectos y sprite
+	if Global.caña_equipada != "":
+		var caña_nodo = get_node_or_null("CañaPesca")
+		var anzuelo_nodo = get_node_or_null("CañaPesca/Caña/Anzuelo")
+		if caña_nodo and anzuelo_nodo:
+			Global.aplicar_efectos_caña(caña_nodo, anzuelo_nodo, self)
 
 func _conectar_caña():
 	if not caña or not is_instance_valid(caña):

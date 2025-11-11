@@ -3,10 +3,10 @@ extends Node2D
 # ==============================
 # CONFIGURACIÓN
 # ==============================
-@export var fuerza_lanzamiento := 1400
+@export var fuerza_lanzamiento := 1200
 @export var gravedad := 1800
 @export var velocidad_recoger := 1400
-@export var distancia_maxima := 3500
+@export var distancia_maxima := 1000
 @onready var anzuelo := get_node_or_null("/root/MainJuego/Anzuelo")
 
 var cargando_fuerza := false
@@ -20,6 +20,13 @@ var fuerza_actual := 0.0
 @export var velocidad_rebote := 200.0         # velocidad de subida/bajada de la barra
 var direccion_barra := 1                      # 1 = sube, -1 = baja
 
+func _dump_estado_cana(tag:String):
+	print("[CAÑA]", tag,
+		" | lanzado=", lanzado,
+		" | recogiendo=", recogiendo,
+		" | en_uso=", en_uso,
+		" | minijuego_activo=", minijuego_activo,
+		" | anzuelo_estado=", anzuelo.estado if anzuelo else "NA")
 
 # ==============================
 # SEÑALES
@@ -68,6 +75,10 @@ func _ready():
 		Tirar.button_up.connect(_on_tirar_soltado)
 	else:
 		push_warning("⚠️ No se encontró el botón 'Lanzar' en el UI.")
+		
+	_dump_estado_cana("READY")
+	add_to_group("caña")
+
 
 # ==============================
 # LANZAR Y RECOGER
@@ -110,10 +121,10 @@ func _on_boton_lanzar_pressed():
 
 
 func empezar_recoger():
-	if not lanzado or recogiendo:
-		return
+	if not lanzado or recogiendo: return
 	recogiendo = true
-	print("↩️ Recogiendo anzuelo...")
+	_dump_estado_cana("empezar_recoger -> recogiendo=TRUE")
+
 
 # ==============================
 # FÍSICAS
@@ -153,17 +164,16 @@ func _physics_process(delta):
 	# ⚙️ MOVIMIENTO DE LA CAÑA Y ANZUELO
 	# ==============================
 	if lanzado and not recogiendo:
-		if anzuelo and not anzuelo.dentro_del_agua:
-			_mover_lanzamiento(delta)
-	elif recogiendo:
-		# ✅ No mover el anzuelo directamente mientras se recoge
-		if anzuelo and anzuelo.estado != anzuelo.Estado.RECOGIENDO:
-			_mover_recoger(delta)
-
+		if anzuelo:
+			if anzuelo.dentro_del_agua or anzuelo.en_transicion_caida:
+				# 🔹 dentro del agua → la caña NO aplica gravedad
+				velocidad_anzuelo = Vector2.ZERO
+			else:
+				_mover_lanzamiento(delta)
 
 
 func _mover_lanzamiento(delta):
-	velocidad_anzuelo.y += gravedad * delta
+	velocidad_anzuelo.y += gravedad * delta * 0.05
 	anzuelo.position += velocidad_anzuelo * delta
 	if anzuelo.position.distance_to(posicion_inicial) > distancia_maxima:
 		var dir = (anzuelo.position - posicion_inicial).normalized()
@@ -171,6 +181,9 @@ func _mover_lanzamiento(delta):
 		velocidad_anzuelo = Vector2.ZERO
 	if pez_atrapado:
 		pez_atrapado.global_position = anzuelo.global_position
+		
+	print("⚙️ Caña moviendo anzuelo Y =", anzuelo.position.y, " dentro_del_agua =", anzuelo.dentro_del_agua)
+	
 
 func _mover_recoger(delta):
 	# Evitar interferencia externa
@@ -241,14 +254,27 @@ func _on_minijuego_finalizado(resultado: bool):
 
 	empezar_recoger()
 
+# caña.gd
 func _on_anzuelo_recogido():
 	if not anzuelo:
 		return
-	print("✅ Anzuelo recogido — restaurando límites y UI.")
-	if anzuelo.has_method("_restaurar_limites"):
-		anzuelo._restaurar_limites()
-	if anzuelo.has_method("_reset_ui_state"):
-		anzuelo._reset_ui_state()
+	print("✅ Anzuelo recogido — cerrando pesca desde caña.")
+
+	lanzado = false
+	recogiendo = false
+	en_uso = false
+	minijuego_activo = false
+	pez_atrapado = null
+	if timer_fisicas:
+		timer_fisicas.stop()
+
+	_finalizar_pesca()
+
+	if Tirar:
+		Tirar.disabled = false
+	print("[CAÑA] Liberada para nuevo lanzamiento | lanzado=", lanzado, " recogiendo=", recogiendo, " en_uso=", en_uso)
+
+
 
 func _iniciar_tiempo_fisicas():
 	# 🔒 Bloquea el botón 'Lanzar' mientras dura la caída del anzuelo
@@ -299,6 +325,12 @@ func lanzar_con_fuerza(poder: float):
 	if anzuelo and anzuelo.has_method("_restaurar_limites"):
 		anzuelo._restaurar_limites()
 
+	velocidad_anzuelo = Vector2(poder, -poder * 0.5)
+# 🔁 Reinicia su componente vertical para evitar residuos
+	velocidad_anzuelo.y = -abs(velocidad_anzuelo.y)
+	_dump_estado_cana("lanzar_con_fuerza:"+str(round(poder)))
+
+
 		
 func _on_tirar_presionado():
 	if not en_uso and not recogiendo:
@@ -310,6 +342,7 @@ func _on_tirar_presionado():
 		print("🔹 Iniciando carga de fuerza...")
 
 func _on_tirar_soltado():
+	_dump_estado_cana("_on_tirar_soltado PRE")
 	if cargando_fuerza:
 		var poder: float = lerp(fuerza_minima, fuerza_maxima, fuerza_actual / 100.0)
 		print("🏹 Lanzamiento con fuerza:", poder)
@@ -323,3 +356,4 @@ func _on_tirar_soltado():
 		recogiendo = true
 		if anzuelo and anzuelo.has_method("_empezar_recoger"):
 			anzuelo._empezar_recoger()
+	_dump_estado_cana("_on_tirar_soltado POST")

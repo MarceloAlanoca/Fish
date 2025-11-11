@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://de60hypdjhngb"]
+
+[ext_resource type="Texture2D" uid="uid://8lhyvordlqlq" path="res://Assets/Peces/Sheet1.png" id="1_nics5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("1_nics5")
+region = Rect2(14.6173, 80.4354, 33.5907, 23.9409)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxhfu"]
+size = Vector2(35, 22)
+
+[node name="Piedra" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.15, 1.15)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_xxhfu")

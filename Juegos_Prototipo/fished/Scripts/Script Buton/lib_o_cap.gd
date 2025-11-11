@@ -36,12 +36,22 @@ func mostrar_panel(pez: Node, nombre_real: String = "") -> void:
 	pez_actual = pez
 	panel.visible = true
 
-	# ✅ Limpia el nombre (quita espacios y números)
-	var nombre_final = nombre_real if nombre_real != "" else pez_actual.name
+	var nombre_final = nombre_real
+
+	# 🟢 Usa el nombre guardado en meta si existe
+	if pez_actual.has_meta("nombre_real"):
+		nombre_final = pez_actual.get_meta("nombre_real")
+	elif pez_actual.name != "":
+		nombre_final = pez_actual.name
+	else:
+		nombre_final = "Desconocido"
+
 	nombre_final = nombre_final.strip_edges()
 	nombre_final = nombre_final.rstrip("0123456789")
 
 	var valor = calcular_precio(nombre_final)
+	label_mensaje.text = "¡Pescaste un %s! 💰%d doblones" % [nombre_final, valor]
+
 
 	# ✅ Texto con color aleatorio
 	var colores = [
@@ -55,23 +65,33 @@ func mostrar_panel(pez: Node, nombre_real: String = "") -> void:
 	label_mensaje.text = "¡Pescaste un %s! 💰%d doblones" % [nombre_final, valor]
 	label_mensaje.visible = true
 
-	# ✅ Cargar imagen del pez (si existe)
-	var ruta = "res://Assets/Peces/%s.png" % nombre_final
-	print("🔎 Buscando imagen en:", ruta)
+	# ✅ Mostrar imagen del pez, compatible con texturas normales y Atlas
+	var sprite_node = pez_actual.get_node_or_null("Sprite2D")
 
-	if ResourceLoader.exists(ruta):
-		var textura = load(ruta)
-		pez_preview.texture = textura
-		print("🖼️ Imagen mostrada para:", nombre_final)
-		
+	if sprite_node and sprite_node.texture:
+		var tex = sprite_node.texture
+
+		if tex is AtlasTexture:
+			# Si es una AtlasTexture, clonar la subtextura
+			var atlas_tex: AtlasTexture = tex
+			var subtex = AtlasTexture.new()
+			subtex.atlas = atlas_tex.atlas
+			subtex.region = atlas_tex.region
+			pez_preview.texture = subtex
+			print("🖼️ Imagen clonada desde AtlasTexture para:", nombre_final)
+		else:
+			# Si es una textura normal
+			pez_preview.texture = tex
+			print("🖼️ Imagen copiada directamente desde el pez:", nombre_final)
 	else:
-		pez_preview.texture = null
-		print("🚫 Imagen no encontrada para:", nombre_final, "→", ruta)
-
-	pez_preview.visible = pez_preview.texture != null
-
-	print("📋 Mostrando panel de venta para:", nombre_final)
-
+		# Fallback si no tiene Sprite2D o textura
+		var ruta = "res://Assets/Peces/%s.png" % nombre_final
+		if ResourceLoader.exists(ruta):
+			pez_preview.texture = load(ruta)
+			print("🖼️ Imagen cargada por ruta:", nombre_final)
+		else:
+			pez_preview.texture = null
+			print("🚫 No se encontró imagen para:", nombre_final)
 
 
 # ========================================================

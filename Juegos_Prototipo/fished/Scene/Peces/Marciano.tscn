@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5ykc13xfyqe7"]
+
+[ext_resource type="Texture2D" uid="uid://c4gffdf6nwwn" path="res://Assets/Peces/Sheet3.png" id="1_og38k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("1_og38k")
+region = Rect2(63.7718, 38.8774, 28.8386, 21.2049)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m7of"]
+size = Vector2(59, 46)
+
+[node name="Marciano" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.25, 2.25)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_2m7of")

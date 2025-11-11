@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch3blgbuypl1j"]
+
+[ext_resource type="Texture2D" uid="uid://8lhyvordlqlq" path="res://Assets/Peces/Sheet1.png" id="1_rsm53"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("1_rsm53")
+region = Rect2(143.132, 89.2501, 37.9737, 33.3553)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ho71"]
+
+[node name="Pulpo" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 1)
+scale = Vector2(6.41808, 6.29607)
+shape = SubResource("CircleShape2D_7ho71")
