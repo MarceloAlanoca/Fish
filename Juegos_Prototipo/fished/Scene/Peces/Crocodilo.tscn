@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4kadpr2nam1p"]
+[gd_scene load_steps=5 format=3 uid="uid://d4kadpr2nam1p"]
 
+[ext_resource type="Script" uid="uid://qni75c8rrjox" path="res://Scene/Peces/crocodilo.gd" id="1_soxqi"]
 [ext_resource type="Texture2D" uid="uid://d3gilussq1o" path="res://Assets/Peces/Sheet6.png" id="1_xhijl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
@@ -10,6 +11,8 @@ region = Rect2(74.991, 14.8917, 49.8041, 22.1052)
 size = Vector2(150, 62)
 
 [node name="Crocodilo" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_soxqi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

@@ -1,11 +1,11 @@
 extends Node
 
-var MODO_DESARROLLO := false
+var MODO_DESARROLLO := true
 
 # =======================================
 # VARIABLES GLOBALES
 # =======================================
-var doblones: int = 100
+var doblones: int = 100000
 var amuletos_comprados: Array = []
 var amuletos_equipados: Array = []
 var cañas_compradas: Array = []
@@ -220,7 +220,7 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 	match caña_equipada:
 		"Caña de Madera Fuerte":
 			# Caña básica → poca profundidad y rebote normal
-			anzuelo.limite_inferior_base = 1000.0
+			anzuelo.limite_inferior_base = 200.0 + 6.5
 			anzuelo.gravedad = 1200.0
 			if minijuego:
 				minijuego.resiliencia *= 1.0
@@ -231,7 +231,7 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 			anzuelo.velocidad_recogida_manual *= 1.15
 			anzuelo.velocidad_vertical *= 1.15
 			anzuelo.gravedad = 1000.0
-			anzuelo.limite_inferior_base = 2000.0
+			anzuelo.limite_inferior_base = 922.50 + 6.5
 			if minijuego:
 				minijuego.resiliencia *= 0.95
 			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña de Mango Grande"])
@@ -242,7 +242,7 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 			anzuelo.velocidad_vertical *= 1.3
 			caña.fuerza_lanzamiento *= 1.5
 			anzuelo.gravedad = 800.0  # menos rebote
-			anzuelo.limite_inferior_base = 6000.0
+			anzuelo.limite_inferior_base = 3050.0 + 6.5
 			if minijuego:
 				minijuego.resiliencia *= 1
 			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña de Acero"])
@@ -253,7 +253,7 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 			anzuelo.velocidad_vertical *= 1.4
 			caña.fuerza_lanzamiento *= 1.15
 			anzuelo.gravedad = 600.0
-			anzuelo.limite_inferior_base = 12000.0
+			anzuelo.limite_inferior_base = 5180.0 + 6.5
 			if minijuego:
 				minijuego.resiliencia *= 0.85
 			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña Épica"])
@@ -264,16 +264,23 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 			anzuelo.velocidad_vertical *= 5
 			caña.fuerza_lanzamiento *= 2
 			anzuelo.gravedad = 400.0
-			anzuelo.limite_inferior_base = 20000.0
+			anzuelo.limite_inferior_base = 25000.0
 			if minijuego:
 				minijuego.resiliencia *= 0.8
 			_actualizar_sprite_caña(pescador, RUTA_CAÑAS["Caña Legendaria"])
+			
+		# ✅ Asegurar que los límites activos del anzuelo coincidan con los nuevos base
+	# 🟢 Actualizar límites activos del anzuelo
+	anzuelo.limite_superior = anzuelo.limite_superior_base
+	anzuelo.limite_inferior = anzuelo.limite_inferior_base
 
 	print("🎣 Efectos aplicados →", caña_equipada)
 	print("   ⚙️ gravedad:", anzuelo.gravedad,
 		  " | recogida:", anzuelo.velocidad_recogida_manual,
 		  " | vertical:", anzuelo.velocidad_vertical,
 		  " | límite:", anzuelo.limite_inferior_base)
+	
+	
 
 		
 func _actualizar_sprite_caña(pescador: Node, textura_path: String) -> void:

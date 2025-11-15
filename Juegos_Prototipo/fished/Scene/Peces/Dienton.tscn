@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0c8wh05x0upa"]
+[gd_scene load_steps=6 format=3 uid="uid://d0c8wh05x0upa"]
 
 [ext_resource type="Texture2D" uid="uid://c7egivnrlkh2h" path="res://Assets/Peces/Dienton.png" id="1_05hd1"]
+[ext_resource type="Script" uid="uid://cksaq3h33lut5" path="res://Scripts/Fish script/dienton.gd" id="1_ncpmw"]
+[ext_resource type="Texture2D" uid="uid://brqfpufwvivt5" path="res://Assets/light.png" id="3_ofxpc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y0pki"]
 atlas = ExtResource("1_05hd1")
@@ -9,6 +11,8 @@ atlas = ExtResource("1_05hd1")
 size = Vector2(227, 103)
 
 [node name="Dienton" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ncpmw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -17,3 +21,13 @@ texture = SubResource("AtlasTexture_y0pki")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10.5, -15.5)
 shape = SubResource("RectangleShape2D_ncpmw")
+
+[node name="LuzPivot" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="LuzPivot"]
+position = Vector2(-42, -20)
+color = Color(0, 0.0333333, 1, 1)
+energy = 1.5
+blend_mode = 2
+texture = ExtResource("3_ofxpc")
+texture_scale = 0.1

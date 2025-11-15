@@ -11,7 +11,7 @@ extends Area2D
 @export var limite_superior_base := 600.0
 @export var limite_inferior_base := 1250.0
 @export var tiempo_necesario := 3.0
-
+@export var resistencia_agua := 30  # Multiplicador de velocidad al entrar al agua
 
 var minijuego: Node = null
 var minijuego_conectado := false
@@ -31,6 +31,17 @@ var en_transicion_caida := false
 var botones_mostrados := false
 var puede_atrapar := true   # Bloquea capturas durante los primeros segundos bajo el agua
 var botones_bloqueados := false  # Controla si los botones están deshabilitados
+
+# ==============================
+# LUZ DEL ANZUELO
+# ==============================
+@onready var luz_anzuelo := $SpriteAnzuelo/LuzAnzuelo
+
+
+var luz_actual := 0.0         # energía actual
+var luz_objetivo := 0.0       # energía hacia donde debe ir
+var velocidad_luz := 1.5      # suavizado (más alto = más rápido)
+
 
 
 enum Estado { INACTIVO, LANZADO, RECOGIENDO }
@@ -88,6 +99,7 @@ var minijuego_escena := preload("res://Scene/pescar_minigame.tscn")
 # READY
 # ==============================
 func _ready():
+	print("💡 LUZ:", luz_anzuelo)
 	add_to_group("anzuelo")
 	posicion_inicial = position
 	limite_superior = limite_superior_base
@@ -105,11 +117,11 @@ func _ready():
 		boton_subir.focus_mode = Control.FOCUS_ALL
 		boton_subir.mouse_filter = Control.MOUSE_FILTER_STOP
 		boton_subir.pressed.connect(func():
-			print("⬆️ PRESSED subir")
+			#print("⬆️ PRESSED subir")
 			subir_pulsado = true
 			bajar_pulsado = false)
 		boton_subir.button_up.connect(func():
-			print("⬆️ UP subir")
+			#print("⬆️ UP subir")
 			subir_pulsado = false)
 
 	if boton_bajar:
@@ -117,11 +129,11 @@ func _ready():
 		boton_bajar.focus_mode = Control.FOCUS_ALL
 		boton_bajar.mouse_filter = Control.MOUSE_FILTER_STOP
 		boton_bajar.pressed.connect(func():
-			print("⬇️ PRESSED bajar")
+			#print("⬇️ PRESSED bajar")
 			bajar_pulsado = true
 			subir_pulsado = false)
 		boton_bajar.button_up.connect(func():
-			print("⬇️ UP bajar")
+			#print("⬇️ UP bajar")
 			bajar_pulsado = false)
 
 	print("✅ Botones conectados para movimiento manual")
@@ -155,7 +167,7 @@ func _ready():
 	else:
 		print("❌ No se encontraron los botones del UI.")
 
-
+	print("💡 Nodo Anzuelo listo con nombre:", name)
 
 # ==============================
 # COLISIÓN CON PECES (SIN PROBABILIDAD)
@@ -297,8 +309,8 @@ func _physics_process(delta):
 		# 🔒 Habilitar / deshabilitar botones según posición
 		_actualizar_estado_botones()
 
-		if moved:
-			print("📍 Moviendo anzuelo Y =", round(position.y))
+	#	if moved:
+	#		print("📍 Moviendo anzuelo Y =", round(position.y))				#Deteccion de posicion
 
 		_comprobar_agua(delta)
 		return
@@ -322,6 +334,12 @@ func _physics_process(delta):
 
 	_actualizar_pez()
 	_comprobar_agua(delta)
+	
+	# 🌟 Transición suave de la luz
+	#if luz_anzuelo:
+	#	luz_actual = lerp(luz_actual, luz_objetivo, delta * velocidad_luz)
+	#	luz_anzuelo.energy = luz_actual
+
 
 func _actualizar_estado_botones():
 	if not boton_subir or not boton_bajar:
@@ -534,6 +552,9 @@ func _iniciar_minijuego():
 # 🎮 Crear uno nuevo
 	minijuego = minijuego_escena.instantiate()
 	get_tree().root.add_child(minijuego)
+	
+	if pez_atrapado:
+		minijuego.get_node("Control").configurar_por_pez(pez_atrapado)
 
 	var pescador = get_node_or_null("/root/MainJuego/Pescador")
 	var caña = get_node_or_null("/root/MainJuego/Pescador/CañaPesca")
@@ -633,7 +654,7 @@ func _on_area_entered(area):
 	if area.is_in_group("agua"):
 		await get_tree().process_frame  # 🔹 asegura que el frame siguiente tome el cambio
 		gravedad = 300.0
-		velocidad_anzuelo *= 0.5
+		velocidad_anzuelo *= resistencia_agua
 		print("💧 Físicas reducidas al entrar al agua (resistencia aplicada)")
 		_dump_estado("_on_area_entered:"+area.name)
 
@@ -783,3 +804,25 @@ func forzar_recogida_manual():
 	bajar_pulsado = false
 	if boton_subir: boton_subir.disabled = true
 	if boton_bajar: boton_bajar.disabled = true
+
+# ==============================
+#  LUZ CORRECTA PARA GODOT 4
+# ==============================
+func encender_luz_abisal():
+	if luz_anzuelo:
+		luz_anzuelo.energy = 2.0
+		luz_anzuelo.color = Color(1.0, 1.0, 0.9)  # blanco cálido
+		print("💡 [ANZUELO] Luz abisal ON (energy)")
+
+
+func encender_luz_hadal():
+	if luz_anzuelo:
+		luz_anzuelo.energy = 5.0
+		luz_anzuelo.color = Color(1.0, 1.0, 0.8)
+		print("💡 [ANZUELO] Luz hadal ON (energy)")
+
+
+func apagar_luz_superficial():
+	if luz_anzuelo:
+		luz_anzuelo.energy = 0.0
+		print("💡 [ANZUELO] Luz OFF")

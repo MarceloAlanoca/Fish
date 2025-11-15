@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfqx2k5g23va6"]
+[gd_scene load_steps=8 format=3 uid="uid://bfqx2k5g23va6"]
 
 [ext_resource type="Script" uid="uid://dqjln4124r77r" path="res://Scripts/InterfazUsuario/interfaz_usuario.gd" id="1_j5tya"]
 [ext_resource type="Texture2D" uid="uid://cxek80nekfh44" path="res://Assets/peso.png" id="2_pt6l3"]
 [ext_resource type="Texture2D" uid="uid://bujjvrgqy48l4" path="res://Assets/AssetsMenu/botones ver 2.png" id="3_dltne"]
+[ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="4_wvkx1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvkx1"]
 atlas = ExtResource("3_dltne")
@@ -11,6 +12,12 @@ region = Rect2(11.0125, 11.4431, 13.1666, 12.9032)
 [sub_resource type="AtlasTexture" id="AtlasTexture_it3cs"]
 atlas = ExtResource("3_dltne")
 region = Rect2(36.4013, 10.5798, 12.6531, 12.8988)
+
+[sub_resource type="LabelSettings" id="LabelSettings_it3cs"]
+font = ExtResource("4_wvkx1")
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="InterfazUsuario" type="Control"]
 layout_mode = 3
@@ -60,10 +67,9 @@ text = "Lanzar
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 896.0
-offset_top = 6.0
-offset_right = 936.0
-offset_bottom = 29.0
+offset_left = 991.0
+offset_right = 1031.0
+offset_bottom = 23.0
 scale = Vector2(4.12, 3.68)
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]
@@ -159,6 +165,15 @@ offset_right = 308.0
 offset_bottom = 305.0
 scale = Vector2(1.12424, 1.21701)
 fill_mode = 3
+
+[node name="LabelProfundidad" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 209.0
+offset_right = 87.0
+offset_bottom = 242.0
+text = "XXX  M"
+label_settings = SubResource("LabelSettings_it3cs")
 
 [connection signal="pressed" from="Mochila" to="." method="_on_mochila_pressed"]
 [connection signal="pressed" from="Tienda" to="." method="_on_tienda_pressed"]

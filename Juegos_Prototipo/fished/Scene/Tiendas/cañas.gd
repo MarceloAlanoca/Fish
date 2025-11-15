@@ -101,38 +101,38 @@ func _ready():
 	# 🎣 Crear cañas
 	var cañas = [
 		{
-			"nombre": "Caña de Madera Fuerte",
-			"precio": 1000,
-			"efecto": "-Caña ya comprada-",
-			"profundidad": "Superficial - 500m",
+			"nombre": "Caña de Madera",
+			"precio": 10,
+			"efecto": "-Caña inicial y sin beneficios, con un buen tiro capaz logras romper ese mero limite",
+			"profundidad": "Superficial - 150m",
 			"icono": preload("res://Assets/Cañas/cañaT1.png")
 		},
 		{
 			"nombre": "Caña de Mango Grande",
 			"precio": 2400,
 			"efecto": "Aumenta en un 20% la Velocidad de recogida",
-			"profundidad": "Aguas poco Profundas - 2000m",
+			"profundidad": "Aguas poco Profundas - 1000m",
 			"icono": preload("res://Assets/Cañas/cañaT2.png")
 		},
 		{
 			"nombre": "Caña de Acero",
 			"precio": 6400,
 			"efecto": "Aumenta la velocidad de recogida, subida y bajada (vertical) del anzuelo un 45%.",
-			"profundidad": "Agua profundas - 10000m",
+			"profundidad": "Agua profundas - 3500m",
 			"icono": preload("res://Assets/Cañas/cañaT3.png")
 		},
 		{
 			"nombre": "Caña Épica",
 			"precio": 14800,
 			"efecto": "25%- de resilencia y 50%+ de velocidad de anzuelo vertical",
-			"profundidad": "Abisal - 15000m",
+			"profundidad": "Abisal - 6000m",
 			"icono": preload("res://Assets/Cañas/cañaT4.png")
 		},
 		{
 			"nombre": "Caña Legendaria",
 			"precio": 24000,
 			"efecto": "Relantiza la barra de carga al lanzar la caña un 25%, Velocidad +65% a todo el anzuelo (Recogida y vertical) y -30% resiliencia al pescar.",
-			"profundidad": "Hadal - 20000m",
+			"profundidad": "Hadal - 10000m",
 			"icono": preload("res://Assets/Cañas/cañaT5.png")
 		}
 	]

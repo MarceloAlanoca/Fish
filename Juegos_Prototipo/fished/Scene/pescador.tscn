@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4jjq52b8upil"]
+[gd_scene load_steps=11 format=3 uid="uid://4jjq52b8upil"]
 
 [ext_resource type="Texture2D" uid="uid://cpq1m1gwr5pya" path="res://Assets/Barcos/unnamed.png" id="1_pj0q3"]
 [ext_resource type="Script" uid="uid://b4120w55dkict" path="res://Scripts/pescador.gd" id="1_qmwlb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cq5pba05vggar" path="res://Assets/Cañas/cañaT1.png" id="4_ykenn"]
 [ext_resource type="Script" uid="uid://djtxxxfx4vra1" path="res://Scripts/Barcos/anzuelo.gd" id="5_ykenn"]
 [ext_resource type="Texture2D" uid="uid://dxkjk6srlk1ad" path="res://Assets/Pescador/anzuelo.png" id="6_ykenn"]
+[ext_resource type="Texture2D" uid="uid://brqfpufwvivt5" path="res://Assets/light.png" id="7_0d0lj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykenn"]
 atlas = ExtResource("4_ykenn")
@@ -46,12 +47,12 @@ texture = SubResource("AtlasTexture_ykenn")
 [node name="Anzuelo" type="Area2D" parent="CañaPesca/Caña"]
 position = Vector2(22.9089, 33.1002)
 scale = Vector2(0.0539348, 0.0747349)
-collision_mask = 6
+collision_layer = 9
+collision_mask = 54
 script = ExtResource("5_ykenn")
 distancia_maxima = 2000.0
 velocidad_recogida_manual = 100.0
 limite_superior_base = 90.0
-limite_inferior_base = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CañaPesca/Caña/Anzuelo"]
 light_mask = 2
@@ -60,10 +61,16 @@ position = Vector2(6.10352e-05, 0)
 scale = Vector2(9.556, 6.3187)
 shape = SubResource("CircleShape2D_ykenn")
 
-[node name="Anzuelo" type="Sprite2D" parent="CañaPesca/Caña/Anzuelo"]
+[node name="SpriteAnzuelo" type="Sprite2D" parent="CañaPesca/Caña/Anzuelo"]
 position = Vector2(-11.466, 0)
 scale = Vector2(0.398472, 0.326162)
 texture = ExtResource("6_ykenn")
+
+[node name="LuzAnzuelo" type="PointLight2D" parent="CañaPesca/Caña/Anzuelo/SpriteAnzuelo"]
+position = Vector2(28.7764, 0.000972748)
+scale = Vector2(12.0396, 11.4028)
+energy = 0.1
+texture = ExtResource("7_0d0lj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6.5, 0.5)

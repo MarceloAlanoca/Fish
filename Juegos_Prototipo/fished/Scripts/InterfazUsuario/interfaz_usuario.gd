@@ -9,15 +9,19 @@ class_name InterfazUsuario
 @onready var barra_equipados: HBoxContainer = $"BarrasEquipados"
 @onready var panel_cañas: Panel = $PanelCañas
 @onready var grid_cañas: GridContainer = $"PanelCañas/GridContainerCañas"
+@onready var label_profundidad: Label = $"LabelProfundidad"
 
 
 
 var amuletos_equipados: Array = []
+var anzuelo: Node = null
 
 # ======================================================
 # 🧩 INICIO
 # ======================================================
 func _ready():
+	anzuelo = get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
+	
 	await get_tree().process_frame  # asegura que todo esté cargadoF
 	
 	actualizar_label()
@@ -239,12 +243,17 @@ func _equipar_caña(nombre: String, boton: TextureButton):
 
 	# 🎣 Reaplicar efectos (solo si no está pescando)
 	var caña_nodo := get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca")
-	var anzuelo_nodo := get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Anzuelo")
+	var anzuelo_nodo := get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
 
 	if pescador and caña_nodo and anzuelo_nodo:
 		Global.aplicar_efectos_caña(caña_nodo, anzuelo_nodo, pescador)
 
+		# 🔁 refrescar límites activos del anzuelo
+		if anzuelo_nodo.has_method("_restaurar_limites"):
+			anzuelo_nodo._restaurar_limites()
+
 	print("🎣 Caña equipada:", nombre)
+
 	# 🔄 Forzar actualización visual del sprite en vivo
 	if pescador:
 		var sprite := pescador.get_node_or_null("CañaPesca/Caña")
@@ -252,8 +261,6 @@ func _equipar_caña(nombre: String, boton: TextureButton):
 			var path := _buscar_icono_caña(Global.caña_equipada)
 			sprite.texture = load(path)
 			print("🎨 Sprite de caña actualizado desde InterfazUsuario:", path)
-
-
 
 
 func _buscar_icono_caña(nombre: String) -> String:
@@ -293,3 +300,29 @@ func _actualizar_caña_equipada():
 
 	sprite.texture = load(path)
 	print("🎨 Sprite de caña actualizado a:", path)
+
+func _process(_delta):
+	actualizar_profundidad()
+
+
+const Y_SUPERFICIE_REAL := 250.0  # <-- actualizar con tu valor exacto
+const PIXELES_POR_METRO := 2.5
+
+func actualizar_profundidad():
+	if not anzuelo or not label_profundidad:
+		return
+
+	# Solo cuando realmente está sumergido
+	if not anzuelo.dentro_del_agua:
+		label_profundidad.text = "Profundidad: ---"
+		return
+
+	# Distancia desde la superficie real del agua
+	var px: float = anzuelo.global_position.y - Y_SUPERFICIE_REAL
+
+	if px < 0:
+		px = 0
+
+	var metros := int(px / PIXELES_POR_METRO)
+
+	label_profundidad.text = "Profundidad: %d m" % metros

@@ -7,6 +7,7 @@ extends Node2D
 @export var gravedad := 1800
 @export var velocidad_recoger := 1400
 @export var distancia_maxima := 1000
+@export var freno_cana_en_agua := 0.8
 @onready var anzuelo := get_node_or_null("/root/MainJuego/Anzuelo")
 
 var cargando_fuerza := false
@@ -167,7 +168,7 @@ func _physics_process(delta):
 		if anzuelo:
 			if anzuelo.dentro_del_agua or anzuelo.en_transicion_caida:
 				# 🔹 dentro del agua → la caña NO aplica gravedad
-				velocidad_anzuelo = Vector2.ZERO
+				velocidad_anzuelo = velocidad_anzuelo * freno_cana_en_agua
 			else:
 				_mover_lanzamiento(delta)
 

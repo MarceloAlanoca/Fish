@@ -1,35 +1,36 @@
 extends Area2D
 
-# ------------------------------
-# Escenas de los peces (cargadas directamente)
-# ------------------------------
+# ===========================================================
+# 🐠 SISTEMA DE SPAWN DE PECES (Nivel 2)
+# ===========================================================
+
+# --- Peces de este nivel ---
 var fish_scenes: Array = [
-	load("res://Scene/Peces/Ballena.tscn"), # índice 0
-	load("res://Scene/Peces/Orca.tscn")     # índice 1
+	load("res://Scene/Peces/Ballena.tscn"),
+	load("res://Scene/Peces/Orca.tscn"),
+	load("res://Scene/Peces/Crocodilo.tscn"),
+	load("res://Scene/Peces/Marciano.tscn"),
+	load("res://Scene/Peces/Delfin.tscn")
 ]
 
-
-# ------------------------------
-# Script con porcentajes
-# ------------------------------
-var Box = load("res://Scripts/FishBox.gd")
-var Porcentaje = Box.new()
-
+# --- Sistema de probabilidades para Layer 2 ---
 var fish_probabilities: Array = [
-	Porcentaje.PorcentajeP["PorBallena"],
-	Porcentaje.PorcentajeP["PorOrca"],
-	
+	0.40,  # Ballena
+	0.25,  # Orca
+	0.15,  # Crocodilo
+	0.20,  # Maricano
+	0.50   # Delfin
 ]
 
-# ------------------------------
-# Configuración de spawn
-# ------------------------------
-@export var spawn_delay := 1.5     # Tiempo entre spawns
-@export var max_fish := 15         # Máximo de peces activos
 
-# ------------------------------
-# Inicialización
-# ------------------------------
+# --- Configuración general ---
+@export var spawn_delay := 1
+@export var max_fish := 45
+
+
+# ===========================================================
+# 🧩 INICIALIZACIÓN
+# ===========================================================
 func _ready():
 	randomize()
 	var timer = Timer.new()
@@ -38,39 +39,71 @@ func _ready():
 	timer.timeout.connect(spawn_fish)
 	add_child(timer)
 
-# ------------------------------
-# Spawn de peces
-# ------------------------------
+
+# ===========================================================
+# 🐟 FUNCIÓN PRINCIPAL DE SPAWN
+# ===========================================================
 func spawn_fish():
-	# Contamos solo peces activos en la escena
 	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
 	if fish_count >= max_fish:
 		return
 
 	var fish_scene = seleccionar_fish_scene()
 	if fish_scene == null:
-		print("⚠️ Escena del pez es null. Revisa las rutas.")
+		print("⚠️ Escena de pez NULL")
 		return
 
-	# Instanciamos y agregamos a la escena principal
 	var fish = fish_scene.instantiate()
+
+	# ===========================================================
+	# 🚫 NO ASIGNAR CALIDAD AQUÍ – YA VIENE DEL SCRIPT DEL PEZ
+	# ===========================================================
+
+	# ===========================================================
+	# 🚫 Filtrar según calidad del propio pez
+	# ===========================================================
+	var zonas_validas = ["Común", "Raro", "Exotico", "Mitológico"]
+	if not zonas_validas.has(fish.calidad):
+		fish.queue_free()
+		return
+
+	# ===========================================================
+	# 📌 Posición aleatoria
+	# ===========================================================
 	fish.global_position = get_random_point_inside_area()
+
+	# ===========================================================
+	# 📍 Nombre según escena
+	# ===========================================================
+	if fish_scene.resource_path.to_lower().contains("ballena"):
+		fish.name = "Ballena"
+	elif fish_scene.resource_path.to_lower().contains("orca"):
+		fish.name = "Orca"
+	elif fish_scene.resource_path.to_lower().contains("marciano"):
+		fish.name = "Marciano"
+	elif fish_scene.resource_path.to_lower().contains("crocodilo"):
+		fish.name = "Crocodilo"
+	elif fish_scene.resource_path.to_lower().contains("delfin"):
+		fish.name = "Delfin"
+
+	fish.set_meta("nombre_real", fish.name)
+
+	# ===========================================================
+	# 🐟 Agregar pez al juego
+	# ===========================================================
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
-	print("✅ Pez spawneado:", fish.name, "en", fish.global_position)
 
-# ------------------------------
-# Selección de pez usando probabilidades
-# ------------------------------
+	print("🐬 Pez L2:", fish.name, "| Calidad:", fish.calidad)
+
+
+# ===========================================================
+# 🎯 Selección usando probabilidades
+# ===========================================================
 func seleccionar_fish_scene() -> PackedScene:
 	var total_prob := 0.0
 	for p in fish_probabilities:
 		total_prob += p
-
-	if total_prob <= 0.0:
-		print("⚠️ Probabilidades no válidas, devolviendo primer pez")
-		return fish_scenes[0]
-
 	var roll := randf() * total_prob
 	var acumulado := 0.0
 
@@ -79,31 +112,28 @@ func seleccionar_fish_scene() -> PackedScene:
 		if roll <= acumulado:
 			return fish_scenes[i]
 
-	# fallback
 	return fish_scenes[0]
 
-# ------------------------------
-# Obtener posición aleatoria dentro del área
-# ------------------------------
+
+# ===========================================================
+# 📦 Punto aleatorio dentro del área
+# ===========================================================
 func get_random_point_inside_area() -> Vector2:
 	if not $CollisionShape2D:
 		return Vector2.ZERO
 
 	var shape = $CollisionShape2D.shape
-	var shape_transform = $CollisionShape2D.global_transform
-	var point := Vector2.ZERO
+	var trans = $CollisionShape2D.global_transform
+	var p := Vector2.ZERO
 
 	if shape is RectangleShape2D:
-		var extents = shape.extents
-		var rand_x = randf_range(-extents.x, extents.x)
-		var rand_y = randf_range(-extents.y, extents.y)
-		point = Vector2(rand_x, rand_y)
+		p = Vector2(
+			randf_range(-shape.extents.x, shape.extents.x),
+			randf_range(-shape.extents.y, shape.extents.y)
+		)
 	elif shape is CircleShape2D:
 		var r = shape.radius * sqrt(randf())
-		var angle = randf_range(0, TAU)
-		point = Vector2(cos(angle), sin(angle)) * r
-	else:
-		print("⚠️ Shape no soportado para spawn:", shape)
+		var ang = randf_range(0, TAU)
+		p = Vector2(cos(ang), sin(ang)) * r
 
-	# Convertimos de local a global
-	return shape_transform.origin + shape_transform.basis_xform(point)
+	return trans.origin + trans.basis_xform(p)

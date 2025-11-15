@@ -10,8 +10,8 @@ var distancia_recorrida: float = 0
 var detenido := false
 
 # 🔹 NUEVAS VARIABLES DE CALIDAD Y PROGRESIÓN
-@export var calidad := "Exótico"       # Común, Raro, Exótico, Mitológico, Secreto, Celestial
-@export var vel_progresion := 1.0
+@export var calidad := "Exotico"       # Común, Raro, Exótico, Mitológico, Secreto, Celestial
+@export var vel_progresion := 1
 
 func _ready() -> void:
 	add_to_group("peces")

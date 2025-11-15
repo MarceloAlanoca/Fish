@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3qdvt3ladjfa"]
+[gd_scene load_steps=5 format=3 uid="uid://c3qdvt3ladjfa"]
 
 [ext_resource type="Texture2D" uid="uid://dwreb6dha1318" path="res://Assets/Peces/Sheet2.png" id="1_7p0fi"]
+[ext_resource type="Script" uid="uid://be0st86fss0t7" path="res://Scripts/Fish script/cebra.gd" id="1_qxmvw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
 atlas = ExtResource("1_7p0fi")
@@ -10,6 +11,8 @@ region = Rect2(10.0415, 26.7762, 31.4186, 17.7584)
 size = Vector2(84, 52)
 
 [node name="Cebra" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_qxmvw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

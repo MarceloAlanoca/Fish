@@ -109,36 +109,39 @@ func configurar_por_pez(pez):
 	if not pez:
 		return
 
+	# Cambiar imagen del pez según calidad
 	match pez.calidad:
 		"Común":
-			progress_bar.tint_progress = Color(1, 1, 1) # Blanco
+			zona_pez.texture = load("res://Assets/Minijuego/Azul.jpg")
 			resiliencia = 1.0
-			progreso_subida = 45.0 * pez.vel_progresion
+			progreso_subida = 45.0 / pez.vel_progresion
 
 		"Raro":
-			progress_bar.tint_progress = Color(0.4, 0.7, 1) # Azul claro
+			zona_pez.texture = load("res://Assets/Minijuego/Verde.png")
 			resiliencia = 1.2
-			progreso_subida = 40.0 * pez.vel_progresion
+			progreso_subida = 40.0 / pez.vel_progresion
 
-		"Exótico":
-			progress_bar.tint_progress = Color(0.8, 0.3, 1) # Violeta
+		"Exotico":
+			zona_pez.texture = load("res://Assets/Minijuego/Amarillo.png")
 			resiliencia = 1.4
-			progreso_subida = 36.0 * pez.vel_progresion
+			progreso_subida = 30.0 / pez.vel_progresion
 
-		"Mitológico":
-			progress_bar.tint_progress = Color(1, 0.7, 0.2) # Dorado-anaranjado
+		"Mitologico":
+			zona_pez.texture = load("res://Assets/Minijuego/Morado.png")
 			resiliencia = 1.6
-			progreso_subida = 33.0 * pez.vel_progresion
+			progreso_subida = 20.0 / pez.vel_progresion
 
 		"Secreto":
-			progress_bar.tint_progress = Color(0.2, 1, 0.6) # Verde agua
+			zona_pez.texture = load("res://Assets/Minijuego/Gris.png")
 			resiliencia = 1.8
-			progreso_subida = 30.0 * pez.vel_progresion
+			progreso_subida = 10.0 / pez.vel_progresion
 
 		"Celestial":
-			progress_bar.tint_progress = Color(0.6, 0.9, 1.0) # Azul celeste brillante
+			zona_pez.texture = load("res://Assets/Minijuego/Cyan.png")
 			resiliencia = 2.0
-			progreso_subida = 27.0 * pez.vel_progresion
+			progreso_subida = 7.0 / pez.vel_progresion
+
+
 
 # === Finaliza el minijuego ===
 func finalizar_minijuego(resultado: bool):

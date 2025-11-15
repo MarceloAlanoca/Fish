@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5ykc13xfyqe7"]
+[gd_scene load_steps=5 format=3 uid="uid://b5ykc13xfyqe7"]
 
+[ext_resource type="Script" uid="uid://b7655jrs124w4" path="res://Scripts/Fish script/marciano.gd" id="1_2m7of"]
 [ext_resource type="Texture2D" uid="uid://c4gffdf6nwwn" path="res://Assets/Peces/Sheet3.png" id="1_og38k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
@@ -10,6 +11,8 @@ region = Rect2(63.7718, 38.8774, 28.8386, 21.2049)
 size = Vector2(59, 46)
 
 [node name="Marciano" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_2m7of")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.25, 2.25)
