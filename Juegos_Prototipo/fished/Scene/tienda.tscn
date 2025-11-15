@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://uin6g7kvlrx1" path="res://tienda.gd" id="1_yk4jq"]
 [ext_resource type="AudioStream" uid="uid://caac6rhqvj27" path="res://Assets/Musicas/Cuphead OST - Porkrind's Shop [Music].mp3" id="2_3s1dv"]
-[ext_resource type="Texture2D" uid="uid://bgjamgmn483dq" path="res://Assets/Tulio/Idle.png" id="2_j3fex"]
+[ext_resource type="Texture2D" uid="uid://bgjamgmn483dq" path="res://Assets/Vendedores/Tulio/Idle.png" id="2_j3fex"]
 [ext_resource type="Texture2D" uid="uid://dl37hr7gwx2i6" path="res://Assets/Tienda/FondoTienda.png" id="2_k3vqj"]
 [ext_resource type="Texture2D" uid="uid://c6egglhaqguxq" path="res://Assets/Tienda/Estante.png" id="3_fs1ct"]
 [ext_resource type="Texture2D" uid="uid://cexr6oowd7ha" path="res://Assets/Amuletos/amuletocelestial.png" id="5_hf6te"]
