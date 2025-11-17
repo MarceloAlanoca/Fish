@@ -1,0 +1,173 @@
+[gd_scene load_steps=23 format=3 uid="uid://cap61rfpwljr7"]
+
+[ext_resource type="Script" uid="uid://be0p24sq07me2" path="res://Scene/Tiendas/barcos.gd" id="1_1bvqq"]
+[ext_resource type="PackedScene" uid="uid://brpgvacmdou1g" path="res://Scene/Tiendas/InterfazTienda.tscn" id="1_g6qeg"]
+[ext_resource type="AudioStream" uid="uid://ckdwrba5b3cj7" path="res://Assets/Musicas/Once Upon (Shop Soundtrack) OUTCOME MEMORIES OST [TubeRipper.cc].ogg" id="2_doe03"]
+[ext_resource type="Texture2D" uid="uid://bui40gj6afsfk" path="res://Assets/Fondos/BackgroundBarcos.png" id="2_l0wf3"]
+[ext_resource type="Texture2D" uid="uid://btvrwpsdovth5" path="res://Assets/Vendedores/Chino/Quieto.png" id="3_jxgkl"]
+[ext_resource type="Texture2D" uid="uid://bw5tindx0vit3" path="res://Assets/Vendedores/Chino/Saludo.png" id="4_b77tu"]
+[ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="5_p4kss"]
+[ext_resource type="Texture2D" uid="uid://0da01x463bmy" path="res://Assets/Vendedores/Chino/Adios.png" id="5_wqhcc"]
+[ext_resource type="Texture2D" uid="uid://b7f2e552rj8yp" path="res://Assets/Vendedores/Chino/Compra.png" id="6_l8bsb"]
+[ext_resource type="Texture2D" uid="uid://htm07ca2ggob" path="res://Assets/Fondos/FondoGrid2.png" id="10_28lvm"]
+[ext_resource type="Texture2D" uid="uid://bbdihg1mnvmw4" path="res://Assets/Barcos/barcoT1.png" id="11_daoq0"]
+[ext_resource type="Texture2D" uid="uid://jqnwe1cfglnd" path="res://Assets/Barcos/barcoT2.png" id="12_a6wbh"]
+[ext_resource type="AudioStream" uid="uid://t7cwv66uw11j" path="res://Assets/Musicas/14. Welcome to the Green Room (DELTARUNE Chapter 3+4 Soundtrack) - Toby Fox [TubeRipper.cc].ogg" id="12_daoq0"]
+[ext_resource type="Texture2D" uid="uid://cnat241kd2j2c" path="res://Assets/Barcos/barcoT3.png" id="13_kbwfu"]
+[ext_resource type="Texture2D" uid="uid://dtr56xm0vdowj" path="res://Assets/Barcos/barcoT4.png" id="14_jvojf"]
+[ext_resource type="Texture2D" uid="uid://8nnt1b41mwfe" path="res://Assets/Barcos/barcoT5.png" id="15_7jusb"]
+[ext_resource type="Texture2D" uid="uid://dad8iac8dghk6" path="res://Assets/DecoracionFondo/Radio.png" id="16_b77tu"]
+[ext_resource type="FontFile" uid="uid://ceqw36klspkrs" path="res://Assets/Fonts/Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf" id="16_jxgkl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2xmg"]
+atlas = ExtResource("10_28lvm")
+region = Rect2(200, 456, 632, 496)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kbwfu"]
+font = ExtResource("16_jxgkl")
+font_size = 12
+font_color = Color(1, 0.1, 0.1, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jvojf"]
+font = ExtResource("5_p4kss")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+outline_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_b77tu"]
+font = ExtResource("16_jxgkl")
+font_size = 14
+
+[node name="Barcos" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1bvqq")
+musica_fondo = ExtResource("2_doe03")
+chino_normal = ExtResource("3_jxgkl")
+chino_habla = ExtResource("4_b77tu")
+chino_despide = ExtResource("5_wqhcc")
+chino_vende = ExtResource("6_l8bsb")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 1922.0
+offset_bottom = 1022.0
+scale = Vector2(0.607179, 0.654669)
+texture = ExtResource("2_l0wf3")
+
+[node name="InterfazTienda" parent="." instance=ExtResource("1_g6qeg")]
+
+[node name="Salir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 955.0
+offset_top = 89.0
+offset_right = 1052.0
+offset_bottom = 146.0
+scale = Vector2(1.53851, 1.58137)
+theme_override_fonts/font = ExtResource("5_p4kss")
+theme_override_font_sizes/font_size = 40
+text = "Salir"
+
+[node name="FondoGrid" type="TextureRect" parent="."]
+modulate = Color(0.65, 0.65, 0.65, 1)
+layout_mode = 2
+offset_left = 633.0
+offset_top = 204.0
+offset_right = 2125.0
+offset_bottom = 1169.0
+scale = Vector2(0.297777, 0.376225)
+texture = SubResource("AtlasTexture_k2xmg")
+
+[node name="Seccion" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 677.0
+offset_top = 277.0
+offset_right = 1057.0
+offset_bottom = 585.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="Articulo1" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("11_daoq0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo2" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("12_a6wbh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo3" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("13_kbwfu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo4" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("14_jvojf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo5" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("15_7jusb")
+metadata/_edit_use_anchors_ = true
+
+[node name="Chino" type="Sprite2D" parent="."]
+position = Vector2(347, 447)
+scale = Vector2(0.710332, 0.726723)
+texture = ExtResource("3_jxgkl")
+
+[node name="Radio" type="Sprite2D" parent="."]
+position = Vector2(560, 534)
+scale = Vector2(0.148717, 0.132016)
+texture = ExtResource("16_b77tu")
+
+[node name="LabelInfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 136.0
+offset_right = 147.0
+offset_bottom = 159.0
+label_settings = SubResource("LabelSettings_kbwfu")
+
+[node name="AudioTienda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_daoq0")
+
+[node name="AudioEfectos" type="AudioStreamPlayer" parent="."]
+
+[node name="VozChino" type="AudioStreamPlayer" parent="."]
+
+[node name="LabelSubtitulos" type="Label" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 206.0
+offset_right = 165.0
+offset_bottom = 236.0
+label_settings = SubResource("LabelSettings_jvojf")
+
+[node name="LabelDoblones" type="Label" parent="."]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 562.0
+offset_right = 708.0
+offset_bottom = 585.0
+scale = Vector2(1.62392, 1.51079)
+
+[node name="LabelBarco" type="Label" parent="."]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 65.0
+offset_right = 335.0
+offset_bottom = 88.0
+scale = Vector2(1.62392, 1.51079)
+label_settings = SubResource("LabelSettings_b77tu")

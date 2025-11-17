@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3emcq0odxhna"
+path="res://.godot/imported/Terraria Music - Title Screen.mp3-e9a698e6225c39550104881479eb7a96.mp3str"
+
+[deps]
+
+source_file="res://Assets/Musicas/Terraria Music - Title Screen.mp3"
+dest_files=["res://.godot/imported/Terraria Music - Title Screen.mp3-e9a698e6225c39550104881479eb7a96.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

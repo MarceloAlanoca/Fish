@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgg5nnvdpbdk1"]
+
+[ext_resource type="Script" uid="uid://c40i1ipctdbbr" path="res://Scripts/FishBox.gd" id="1_k1s4s"]
+[ext_resource type="Script" uid="uid://dei0un7gx81iu" path="res://Scripts/Fish script/AtunM.gd" id="2_u8s2n"]
+[ext_resource type="Texture2D" uid="uid://d1rep7tvlatnp" path="res://Assets/Peces/Atun.png" id="3_yhik1"]
+[ext_resource type="Texture2D" uid="uid://bjt82bs7nd2dy" path="res://Assets/Peces/Salmon.png" id="4_k7d3a"]
+[ext_resource type="Script" uid="uid://b85fidb1rdtp8" path="res://Scripts/Fish script/salmon.gd" id="4_ouk8c"]
+[ext_resource type="Script" uid="uid://nd6hutp6hcas" path="res://Scripts/Fish script/orca.gd" id="6_d1uo8"]
+[ext_resource type="Texture2D" uid="uid://dmy8brw0jj78u" path="res://Assets/Peces/Orca.png" id="7_jnnis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhik1"]
+size = Vector2(56, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouk8c"]
+size = Vector2(60, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdp58"]
+size = Vector2(183, 77)
+
+[node name="Pescados" type="Node2D"]
+visible = false
+script = ExtResource("1_k1s4s")
+
+[node name="Atun" type="CharacterBody2D" parent="."]
+position = Vector2(156, 72)
+script = ExtResource("2_u8s2n")
+
+[node name="AtunSprite2D" type="Sprite2D" parent="Atun"]
+texture = ExtResource("3_yhik1")
+flip_h = true
+
+[node name="AtunShape2D" type="CollisionShape2D" parent="Atun"]
+position = Vector2(3, -10.5)
+shape = SubResource("RectangleShape2D_yhik1")
+
+[node name="Salmon" type="CharacterBody2D" parent="."]
+position = Vector2(276, 71)
+script = ExtResource("4_ouk8c")
+
+[node name="SalmonSprite2D" type="Sprite2D" parent="Salmon"]
+texture = ExtResource("4_k7d3a")
+flip_h = true
+
+[node name="SalmonShape2D" type="CollisionShape2D" parent="Salmon"]
+position = Vector2(6, -2)
+shape = SubResource("RectangleShape2D_ouk8c")
+
+[node name="Orca" type="CharacterBody2D" parent="."]
+position = Vector2(360, 193)
+script = ExtResource("6_d1uo8")
+
+[node name="OrcaSprite2D" type="Sprite2D" parent="Orca"]
+scale = Vector2(3.63894, 2.63004)
+texture = ExtResource("7_jnnis")
+flip_h = true
+
+[node name="OrcaShape2D" type="CollisionShape2D" parent="Orca"]
+position = Vector2(15.5, 8.5)
+shape = SubResource("RectangleShape2D_xdp58")

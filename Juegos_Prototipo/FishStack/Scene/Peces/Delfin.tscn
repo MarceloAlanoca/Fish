@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://burp2vb1ipe38"]
+
+[ext_resource type="Script" uid="uid://dhabio0xvieat" path="res://Scene/Peces/delfin.gd" id="1_2bov8"]
+[ext_resource type="Texture2D" uid="uid://ctktv0m8vilwy" path="res://Assets/Peces/Sheet5.png" id="1_46i1b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_46i1b")
+region = Rect2(81.9612, 70.599, 40.0263, 53.8816)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46i1b"]
+size = Vector2(212.115, 142)
+
+[node name="Delfin" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_2bov8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.0122
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -15)
+scale = Vector2(0.998097, 0.44488)
+shape = SubResource("RectangleShape2D_46i1b")

@@ -15,7 +15,7 @@
     <div class="Game">
         <div class="Gameinfo">
             <div class="TextGame">
-                <h1>¡Bienvenido a Fished!</h1>
+                <h1>¡Bienvenido a FishStack!</h1>
                 <br>
                 <h2>¿Cómo se juega?</h2>
                 <p>
@@ -27,7 +27,7 @@
                 <div class="GameFrame">
                     <iframe 
                         id="gameFrame"
-                        src="../../Juegos_Prototipo/Fished.html" 
+                        src="../../Juegos_Prototipo/FishStack.html" 
                         width="1200" 
                         height="800" 
                         frameborder="0" 

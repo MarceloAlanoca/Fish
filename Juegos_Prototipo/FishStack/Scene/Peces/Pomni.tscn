@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cietk72um76bv"]
+
+[ext_resource type="Texture2D" uid="uid://d1afamwyho1xc" path="res://Assets/Peces/Pomni.png" id="1_3n4mk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_3n4mk")
+region = Rect2(15.2051, 13.1065, 38.2536, 22.3924)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh0bi"]
+size = Vector2(84, 42)
+
+[node name="Pomni" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.25, 2.25)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_uh0bi")

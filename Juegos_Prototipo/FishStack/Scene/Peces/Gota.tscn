@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfa0rwa405w5m"]
+
+[ext_resource type="Script" uid="uid://cn7tk3np7h8m6" path="res://Scripts/Fish script/gota.gd" id="1_jogcx"]
+[ext_resource type="Texture2D" uid="uid://dwreb6dha1318" path="res://Assets/Peces/Sheet2.png" id="1_ycmse"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("1_ycmse")
+region = Rect2(71.7352, 25.4194, 30.4251, 21.7323)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jogcx"]
+size = Vector2(152, 89)
+
+[node name="Gota" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_jogcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0.5)
+shape = SubResource("RectangleShape2D_jogcx")

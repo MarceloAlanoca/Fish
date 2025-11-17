@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://uun1lvtno1sv"]
+
+[ext_resource type="Script" uid="uid://dei0un7gx81iu" path="res://Scripts/Fish script/AtunM.gd" id="1_hakb5"]
+[ext_resource type="Texture2D" uid="uid://d1rep7tvlatnp" path="res://Assets/Peces assets/atun.png" id="2_na6dk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjdhd"]
+size = Vector2(56, 29)
+
+[node name="Atun" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_hakb5")
+
+[node name="AtunSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_na6dk")
+flip_h = true
+
+[node name="AtunShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 4
+position = Vector2(3, -10.5)
+shape = SubResource("RectangleShape2D_hjdhd")
+debug_color = Color(0.722347, 0.0973908, 0, 0.42)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ckdwrba5b3cj7"
+path="res://.godot/imported/Once Upon (Shop Soundtrack) OUTCOME MEMORIES OST [TubeRipper.cc].ogg-50190a844bc5cc453eba2e4e5c8c70ec.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Musicas/Once Upon (Shop Soundtrack) OUTCOME MEMORIES OST [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/Once Upon (Shop Soundtrack) OUTCOME MEMORIES OST [TubeRipper.cc].ogg-50190a844bc5cc453eba2e4e5c8c70ec.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

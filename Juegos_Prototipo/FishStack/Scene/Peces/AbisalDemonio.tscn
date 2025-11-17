@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cio22ke67uxv5"]
+
+[ext_resource type="Script" uid="uid://cwh0lpcv2bi3o" path="res://Scripts/Fish script/abisal_demonio.gd" id="1_4rtvx"]
+[ext_resource type="Texture2D" uid="uid://cgsqfhc7g00tf" path="res://Assets/Peces/AbisalDemonio.png" id="1_smsid"]
+[ext_resource type="Texture2D" uid="uid://brqfpufwvivt5" path="res://Assets/light.png" id="3_7egmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15wvf"]
+atlas = ExtResource("1_smsid")
+region = Rect2(8.674, 7.97488, 54.1149, 47.1173)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rtvx"]
+size = Vector2(182, 135)
+
+[node name="AbisalDemonio" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_4rtvx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_15wvf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 1)
+shape = SubResource("RectangleShape2D_4rtvx")
+
+[node name="LuzPivot" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="LuzPivot"]
+position = Vector2(-90, -77)
+color = Color(1, 0.46, 0.46, 1)
+energy = 2.0
+blend_mode = 2
+texture = ExtResource("3_7egmf")
+texture_scale = 0.2

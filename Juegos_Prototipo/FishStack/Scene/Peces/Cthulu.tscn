@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5q8us7w2xo0r"]
+
+[ext_resource type="Texture2D" uid="uid://rg8strgntrct" path="res://Assets/Peces/Sheet10.png" id="1_oirxj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_oirxj")
+region = Rect2(64.4659, 9.18537, 64.3781, 50.8493)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oirxj"]
+radius = 294.16
+
+[node name="Cthulu" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(13, 13)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33, 19)
+scale = Vector2(1.28524, 1.02712)
+shape = SubResource("CircleShape2D_oirxj")

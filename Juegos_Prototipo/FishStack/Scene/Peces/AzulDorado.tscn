@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://i6wtogttap58"]
+
+[ext_resource type="Texture2D" uid="uid://d3gilussq1o" path="res://Assets/Peces/Sheet6.png" id="1_qpm2n"]
+[ext_resource type="Script" uid="uid://b120edspkvrp6" path="res://Scripts/Fish script/azul_dorado.gd" id="1_ufuw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
+atlas = ExtResource("1_qpm2n")
+region = Rect2(9.03536, 10.0296, 53.9761, 28.39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpm2n"]
+size = Vector2(211, 72)
+
+[node name="AzulDorado" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ufuw0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_hwv7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 7)
+scale = Vector2(0.642309, 0.737619)
+shape = SubResource("RectangleShape2D_qpm2n")

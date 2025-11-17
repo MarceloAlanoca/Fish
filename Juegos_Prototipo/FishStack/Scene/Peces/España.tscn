@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://tjkmbnftmufq"]
+
+[ext_resource type="Texture2D" uid="uid://n1ucs8658w4e" path="res://Assets/Peces/Sheet4.png" id="1_4qnro"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("1_4qnro")
+region = Rect2(145.128, 15.3666, 25.4578, 10.1835)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qnro"]
+size = Vector2(69, 45)
+
+[node name="España" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -0.5)
+scale = Vector2(1.50368, 1)
+shape = SubResource("RectangleShape2D_4qnro")

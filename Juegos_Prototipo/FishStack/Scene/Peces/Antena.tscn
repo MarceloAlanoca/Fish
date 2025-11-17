@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpie8eqweyjbu"]
+
+[ext_resource type="Texture2D" uid="uid://dlw23jp3cnavp" path="res://Assets/Peces/PezAntena.png" id="1_w8lhv"]
+[ext_resource type="Script" uid="uid://db3dulsvnee7o" path="res://Scripts/Fish script/antena.gd" id="1_wiof5"]
+[ext_resource type="Texture2D" uid="uid://brqfpufwvivt5" path="res://Assets/light.png" id="3_0ovgw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpeu1"]
+size = Vector2(188, 113)
+
+[node name="Antena" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_wiof5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_w8lhv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -15.5)
+shape = SubResource("RectangleShape2D_qpeu1")
+
+[node name="LuzPivot" type="Node2D" parent="."]
+position = Vector2(1, -1)
+
+[node name="PointLight2D" type="PointLight2D" parent="LuzPivot"]
+position = Vector2(-44, -84)
+color = Color(0.716667, 1, 0, 1)
+energy = 1.5
+blend_mode = 2
+texture = ExtResource("3_0ovgw")
+texture_scale = 0.25
