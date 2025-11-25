@@ -1,14 +1,12 @@
 <?php
 session_start();
-
 // Páginas libres (que no requieren sesión)
 $paginas_libres = ['Login.php', 'Register.php', 'PrincipalPage.php'];
 
 // Detectar la página actual
 $pagina_actual = basename($_SERVER['PHP_SELF']);
-
 // Si no tiene sesión y no está en páginas libres
-if (!in_array($pagina_actual, $paginas_libres) && !isset($_SESSION["id_usuario"])) {
+if (!isset($_SESSION["id_usuario"]) && !in_array($pagina_actual, $paginas_libres)) {
     ob_clean();
 
     // Mostramos un modal en pantalla
@@ -91,4 +89,6 @@ if (!in_array($pagina_actual, $paginas_libres) && !isset($_SESSION["id_usuario"]
     ';
     exit; // Detiene toda la ejecución posterior
 }
+$userID = $_SESSION["id_usuario"] ?? null;
+
 ?>

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://kktkhalui2hv"]
+[gd_scene load_steps=5 format=3 uid="uid://kktkhalui2hv"]
 
+[ext_resource type="Script" uid="uid://s7xkajjisw0g" path="res://Scripts/Fish script/union.gd" id="1_24kn2"]
 [ext_resource type="Texture2D" uid="uid://c4gffdf6nwwn" path="res://Assets/Peces/Sheet3.png" id="1_v6h1s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
@@ -10,6 +11,8 @@ region = Rect2(2.32957, 5.15159, 28.7368, 23.6053)
 size = Vector2(68, 43)
 
 [node name="Union" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_24kn2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.45797, 2.16951)

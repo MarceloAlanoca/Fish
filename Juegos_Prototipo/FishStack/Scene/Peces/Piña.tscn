@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccwcr6550jiks"]
+[gd_scene load_steps=5 format=3 uid="uid://ccwcr6550jiks"]
 
+[ext_resource type="Script" uid="uid://qwuqpisk26oi" path="res://Scripts/Fish script/piña.gd" id="1_ca0f3"]
 [ext_resource type="Texture2D" uid="uid://dfu4p00poo4aj" path="res://Assets/Peces/Sheet7.png" id="1_wxatp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
@@ -10,6 +11,8 @@ region = Rect2(13.3724, 67.1051, 40.6421, 20.3211)
 size = Vector2(80, 39)
 
 [node name="Piña" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ca0f3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

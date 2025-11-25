@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfqx2k5g23va6"]
+[gd_scene load_steps=12 format=3 uid="uid://bfqx2k5g23va6"]
 
 [ext_resource type="Script" uid="uid://dqjln4124r77r" path="res://Scripts/InterfazUsuario/interfaz_usuario.gd" id="1_j5tya"]
 [ext_resource type="Texture2D" uid="uid://cxek80nekfh44" path="res://Assets/peso.png" id="2_pt6l3"]
 [ext_resource type="Texture2D" uid="uid://bujjvrgqy48l4" path="res://Assets/AssetsMenu/botones ver 2.png" id="3_dltne"]
 [ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="4_wvkx1"]
+[ext_resource type="Texture2D" uid="uid://ctp5bk00dkaen" path="res://Assets/AssetsMenu/ActivoAnzuelo.png" id="5_5okl4"]
+[ext_resource type="Texture2D" uid="uid://dj1thdbyoo8lr" path="res://Assets/AssetsMenu/DesactivoAnzuelo.png" id="6_gcjc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvkx1"]
 atlas = ExtResource("3_dltne")
@@ -18,6 +20,14 @@ font = ExtResource("4_wvkx1")
 font_size = 30
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syqvo"]
+atlas = ExtResource("5_5okl4")
+region = Rect2(31, 32, 38, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihsvf"]
+atlas = ExtResource("6_gcjc8")
+region = Rect2(30, 32, 39, 37)
 
 [node name="InterfazUsuario" type="Control"]
 layout_mode = 3
@@ -67,10 +77,10 @@ text = "Lanzar
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 991.0
-offset_right = 1031.0
+offset_left = 894.0
+offset_right = 934.0
 offset_bottom = 23.0
-scale = Vector2(4.12, 3.68)
+scale = Vector2(3, 2.68)
 
 [node name="Sprite2D" type="Sprite2D" parent="Label"]
 position = Vector2(-11.8932, 44.5652)
@@ -95,47 +105,6 @@ layout_mode = 2
 [node name="Slot3" type="TextureRect" parent="BarrasEquipados"]
 layout_mode = 2
 
-[node name="PanelMochila" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 258.0
-offset_top = 138.0
-offset_right = 298.0
-offset_bottom = 178.0
-scale = Vector2(18.8665, 6.2514)
-
-[node name="GridContainerAmuletos" type="GridContainer" parent="PanelMochila"]
-custom_minimum_size = Vector2(400, 200)
-layout_mode = 0
-offset_left = 2.54338
-offset_top = 2.65112
-offset_right = 702.543
-offset_bottom = 202.651
-scale = Vector2(0.0517241, 0.2)
-columns = 2
-
-[node name="PanelCañas" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 403.0
-offset_top = 431.0
-offset_right = 443.0
-offset_bottom = 471.0
-scale = Vector2(11.9101, 4.85143)
-
-[node name="GridContainerCañas" type="GridContainer" parent="PanelCañas"]
-custom_minimum_size = Vector2(600, 200)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.43492
-offset_top = 8.86337
-offset_right = 562.435
-offset_bottom = 168.863
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.0642005, 0.200283)
-columns = 6
-
 [node name="BotonSubir" type="Button" parent="."]
 layout_mode = 0
 offset_left = 99.0
@@ -156,6 +125,71 @@ scale = Vector2(7.73863, 6.70456)
 icon = SubResource("AtlasTexture_it3cs")
 flat = true
 
+[node name="BotonDerecha" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1160.88
+offset_top = 302.0
+offset_right = 1181.88
+offset_bottom = 322.0
+rotation = 1.5708
+scale = Vector2(7.65198, 7.03266)
+icon = SubResource("AtlasTexture_wvkx1")
+flat = true
+
+[node name="BotonIzquierda" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1010.79
+offset_top = 305.0
+offset_right = 1030.79
+offset_bottom = 325.0
+rotation = 1.5708
+scale = Vector2(7.81907, 7.13928)
+icon = SubResource("AtlasTexture_it3cs")
+flat = true
+
+[node name="PanelMochila" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 138.0
+offset_right = 298.0
+offset_bottom = 178.0
+scale = Vector2(18.8665, 6.2514)
+mouse_filter = 2
+
+[node name="GridContainerAmuletos" type="GridContainer" parent="PanelMochila"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 0
+offset_left = 2.54338
+offset_top = 2.65112
+offset_right = 702.543
+offset_bottom = 202.651
+scale = Vector2(0.0517241, 0.2)
+columns = 2
+
+[node name="PanelCañas" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 431.0
+offset_right = 443.0
+offset_bottom = 471.0
+scale = Vector2(11.9101, 4.85143)
+mouse_filter = 2
+
+[node name="GridContainerCañas" type="GridContainer" parent="PanelCañas"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.43492
+offset_top = 8.86337
+offset_right = 562.435
+offset_bottom = 168.863
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0642005, 0.200283)
+columns = 6
+
 [node name="BarraFuerza" type="ProgressBar" parent="."]
 visible = false
 layout_mode = 0
@@ -174,6 +208,38 @@ offset_right = 87.0
 offset_bottom = 242.0
 text = "XXX  M"
 label_settings = SubResource("LabelSettings_it3cs")
+
+[node name="BotonPausa" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 56.0
+offset_bottom = 32.0
+scale = Vector2(2.39727, 2.47339)
+text = "Pausa"
+
+[node name="ButtonActivoAnzuelo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 733.0
+offset_top = 1.0
+offset_right = 841.0
+offset_bottom = 109.0
+scale = Vector2(0.809863, 0.782544)
+icon = SubResource("AtlasTexture_syqvo")
+flat = true
+expand_icon = true
+
+[node name="ButtonDesactivoAnzuelo" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 733.0
+offset_top = 1.0
+offset_right = 841.0
+offset_bottom = 109.0
+scale = Vector2(0.809863, 0.782544)
+icon = SubResource("AtlasTexture_ihsvf")
+flat = true
+expand_icon = true
 
 [connection signal="pressed" from="Mochila" to="." method="_on_mochila_pressed"]
 [connection signal="pressed" from="Tienda" to="." method="_on_tienda_pressed"]

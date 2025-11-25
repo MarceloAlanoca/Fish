@@ -12,24 +12,38 @@ var fish_scenes: Array = [
 	load("res://Scene/Peces/LoboMarino.tscn"),
 	load("res://Scene/Peces/Pavo.tscn"),
 	load("res://Scene/Peces/Remo.tscn"),
-	load("res://Scene/Peces/RetroGlobo.tscn")
+	load("res://Scene/Peces/RetroGlobo.tscn"),
+	load("res://Scene/Peces/España.tscn"),
+	load("res://Scene/Peces/Hueco.tscn"),
+	load("res://Scene/Peces/MocoAtomico.tscn"),
+	load("res://Scene/Peces/Vladimir.tscn"),
+	load("res://Scene/Peces/Pomni.tscn"),
+	load("res://Scene/Peces/Piedra.tscn")
 ]
+
 
 # --- Sistema de probabilidades para Layer 3 ---
 var fish_probabilities: Array = [
 	0.10,  # Coral
-	0.80,  # AzulDorado
-	0.70,  # CamaronPistola
+	0.42,  # AzulDorado
+	0.68,  # CamaronPistola
 	0.45,  # LoboMarino
-	0.70,  # Pavo
-	0.20,  # Remo
-	0.50   # RetroGlobo
+	0.60,  # Pavo
+	0.30,  # Remo
+	0.65,  # RetroGlobo
+	0.45,  # España
+	0.45,  # Hueco
+	0.45,  # MocoAtomico
+	0.45,  # Vladimir
+	0.10,  # Pomni
+	0.60   # Piedra
 ]
 
 
+
 # --- Configuración general ---
-@export var spawn_delay := 1
-@export var max_fish := 45
+@export var spawn_delay := 3.5
+@export var max_fish := 60
 
 
 # ===========================================================
@@ -48,7 +62,7 @@ func _ready():
 # 🐟 FUNCIÓN PRINCIPAL DE SPAWN
 # ===========================================================
 func spawn_fish():
-	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
+	var fish_count = get_tree().get_nodes_in_group("peces_l3").size()
 	if fish_count >= max_fish:
 		return
 
@@ -60,7 +74,7 @@ func spawn_fish():
 	var fish = fish_scene.instantiate()
 
 	# NO asignar calidad, ya viene del script del pez
-	var zonas_validas = ["Comun", "Raro", "Exotico", "Mitologico" ,"Celestial"]
+	var zonas_validas = ["Comun", "Raro", "Exotico", "Mitologico" ,"Celestial","Secreto"]
 	if not zonas_validas.has(fish.calidad):
 		fish.queue_free()
 		return
@@ -71,26 +85,27 @@ func spawn_fish():
 	# Asignar nombre según escena
 	var path = fish_scene.resource_path.to_lower()
 
-	if path.contains("coral"):
-		fish.name = "Coral"
-	elif path.contains("azuldorado"):
-		fish.name = "AzulDorado"
-	elif path.contains("camaronpistola"):
-		fish.name = "CamaronPistola"
-	elif path.contains("lobomarino"):
-		fish.name = "LoboMarino"
-	elif path.contains("pavo"):
-		fish.name = "Pavo"
-	elif path.contains("remo"):
-		fish.name = "Remo"
-	elif path.contains("retroglobo"):
-		fish.name = "RetroGlobo"
+	if path.contains("coral"): fish.name = "Coral"
+	elif path.contains("azuldorado"): fish.name = "AzulDorado"
+	elif path.contains("camaronpistola"): fish.name = "CamaronPistola"
+	elif path.contains("lobomarino"): fish.name = "LoboMarino"
+	elif path.contains("pavo"): fish.name = "Pavo"
+	elif path.contains("remo"): fish.name = "Remo"
+	elif path.contains("retroglobo"): fish.name = "RetroGlobo"
+	elif path.contains("españa"): fish.name = "España"
+	elif path.contains("hueco"): fish.name = "Hueco"
+	elif path.contains("mocoatomico"): fish.name = "MocoAtomico"
+	elif path.contains("vladimir"): fish.name = "Vladimir"
+	elif path.contains("pomni"): fish.name = "Pomni"
+	elif path.contains("piedra"): fish.name = "Piedra"
+
 
 	fish.set_meta("nombre_real", fish.name)
 
 	# Agregar al juego
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
+	fish.add_to_group("peces_l3")
 
 	print("🐟 Pez L3:", fish.name, "| Calidad:", fish.calidad)
 

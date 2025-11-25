@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://kenk5wwa2els"]
+
+[ext_resource type="Script" uid="uid://yk21geeshgnh" path="res://Scripts/Fish script/outcome_memories.gd" id="1_jcclp"]
+[ext_resource type="Texture2D" uid="uid://dhnc5y7cuetge" path="res://Assets/Peces/Sheet12.png" id="1_to4lt"]
+[ext_resource type="AudioStream" uid="uid://ulemgycbcwkp" path="res://Assets/SFX/Youre Too Slow - Sound Effect [TubeRipper.cc].ogg" id="3_p7kp0"]
+[ext_resource type="AudioStream" uid="uid://oob14epwv3ud" path="res://Assets/Musicas/EGGROLED - Eggman emote OUTCOME MEMORIES OST [TubeRipper.cc].ogg" id="4_m3hbb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcclp"]
+atlas = ExtResource("1_to4lt")
+region = Rect2(72, 8, 40, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0htav"]
+size = Vector2(28, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcclp"]
+
+[sub_resource type="Gradient" id="Gradient_0htav"]
+offsets = PackedFloat32Array(0, 0.226415, 0.477987, 0.735849)
+colors = PackedColorArray(0.0248711, 0.337371, 0.790682, 1, 0.266329, 0.539893, 0.993013, 1, 0.00875465, 0.221851, 0.544666, 1, 0.487699, 0.680729, 0.997676, 1)
+
+[node name="OutcomeMemories" type="CharacterBody2D" node_paths=PackedStringArray("sonido_cercania", "sonido_eggman", "zona_proximidad", "zona_anzuelo", "estela", "pivote_estela")]
+scale = Vector2(2.222, 2.222)
+collision_layer = 4
+script = ExtResource("1_jcclp")
+sonido_cercania = NodePath("AudioStreamPlayer2D")
+sonido_eggman = NodePath("AudioStreamPlayer2DEggman")
+zona_proximidad = NodePath("Area2D_Proximidad")
+zona_anzuelo = NodePath("Area2D_Anzuelo")
+estela = NodePath("Pivote_Estela/CPUParticles2D")
+pivote_estela = NodePath("Pivote_Estela")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_jcclp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_0htav")
+
+[node name="Area2D_Anzuelo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Anzuelo"]
+position = Vector2(0.450045, 2.25023)
+scale = Vector2(6.36358, 4.40334)
+shape = SubResource("CircleShape2D_jcclp")
+
+[node name="Area2D_Proximidad" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Proximidad"]
+position = Vector2(0.450045, 2.25023)
+scale = Vector2(21.8079, 16.9713)
+shape = SubResource("CircleShape2D_jcclp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_p7kp0")
+
+[node name="AudioStreamPlayer2DEggman" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_m3hbb")
+
+[node name="Pivote_Estela" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Pivote_Estela"]
+position = Vector2(14.8515, 3.60036)
+amount = 12
+lifetime = 5.41
+preprocess = 0.2
+speed_scale = 8.8
+direction = Vector2(2, 180)
+gravity = Vector2(0, 0)
+scale_amount_min = 13.0
+scale_amount_max = 13.0
+color_ramp = SubResource("Gradient_0htav")

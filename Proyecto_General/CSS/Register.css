@@ -21,6 +21,12 @@ body {
     background-position: 0%, 50%;
   }
 }
+.mensaje-error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
 
 h1 {
   text-align: center;

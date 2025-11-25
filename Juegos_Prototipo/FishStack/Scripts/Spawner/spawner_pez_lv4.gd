@@ -12,8 +12,12 @@ var fish_scenes: Array = [
 	load("res://Scene/Peces/Kraken.tscn"),
 	load("res://Scene/Peces/Luciernaga.tscn"),
 	load("res://Scene/Peces/Dienton.tscn"),
-	load("res://Scene/Peces/Antena.tscn")
+	load("res://Scene/Peces/Antena.tscn"),
+	load("res://Scene/Peces/Esqueleto.tscn"), 
+	load("res://Scene/Peces/Megalodon.tscn"),  
+	load("res://Scene/Peces/Nahuelito.tscn")   
 ]
+
 
 # --- Sistema de probabilidades para Layer 4 ---
 var fish_probabilities: Array = [
@@ -23,12 +27,16 @@ var fish_probabilities: Array = [
 	0.40,  # Kraken
 	0.35,  # Luciernaga
 	0.35,  # Dienton
-	0.40   # Antena
+	0.40,  # Antena
+	0.455,  # Esqueleto  
+	0.10,  # Megalodon   
+	0.05   # Nahuelito   
 ]
 
 
+
 # --- Configuración general ---
-@export var spawn_delay := 1.2
+@export var spawn_delay := 5
 @export var max_fish := 55
 
 
@@ -48,7 +56,7 @@ func _ready():
 # 🐟 FUNCIÓN PRINCIPAL DE SPAWN
 # ===========================================================
 func spawn_fish():
-	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
+	var fish_count = get_tree().get_nodes_in_group("peces_l4").size()
 	if fish_count >= max_fish:
 		return
 
@@ -85,12 +93,20 @@ func spawn_fish():
 		fish.name = "Dienton"
 	elif path.contains("antena"):
 		fish.name = "Antena"
+	elif path.contains("esqueleto"):
+		fish.name = "Esqueleto"
+	elif path.contains("megalodon"):
+		fish.name = "Megalodon"
+	elif path.contains("nahuelito"):
+		fish.name = "Nahuelito"
+
 
 	fish.set_meta("nombre_real", fish.name)
 
 	# Agregar al juego
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
+	fish.add_to_group("peces_l4")
 
 	print("🐡 Pez L4:", fish.name, "| Calidad:", fish.calidad)
 

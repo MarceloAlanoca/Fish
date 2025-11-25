@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b51oa82kxp2qn"]
+
+[ext_resource type="Texture2D" uid="uid://dj02cb5p4ob4e" path="res://Assets/Peces/Bloop.png" id="1_fjqbn"]
+[ext_resource type="Script" uid="uid://2jin8es48kb1" path="res://Scripts/Fish script/bloop.gd" id="1_laa68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdysf"]
+size = Vector2(735, 573)
+
+[node name="Bloop" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_laa68")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.00003, 1.00001)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_fjqbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -43)
+shape = SubResource("RectangleShape2D_fdysf")

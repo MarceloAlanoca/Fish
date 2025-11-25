@@ -1,4 +1,6 @@
 extends Area2D
+var debug_timer := 0.0
+var debug_interval := 3.0  # cada 3 segundos
 
 # ==============================
 # CONFIGURACIÓN
@@ -12,7 +14,11 @@ extends Area2D
 @export var limite_inferior_base := 1250.0
 @export var tiempo_necesario := 3.0
 @export var resistencia_agua := 30  # Multiplicador de velocidad al entrar al agua
+@onready var ray_derecha = $CollisionShape2D/RayDerecha
+@onready var ray_izquierda = $CollisionShape2D/RayIzquierda
+@onready var ray_abajo = $CollisionShape2D/RayAbajo
 
+var bloqueado_por_pared := false
 var minijuego: Node = null
 var minijuego_conectado := false
 var recogida_automatica_en_progreso := false
@@ -31,6 +37,7 @@ var en_transicion_caida := false
 var botones_mostrados := false
 var puede_atrapar := true   # Bloquea capturas durante los primeros segundos bajo el agua
 var botones_bloqueados := false  # Controla si los botones están deshabilitados
+var pesca_habilitada := true
 
 # ==============================
 # LUZ DEL ANZUELO
@@ -72,7 +79,7 @@ var nombre_pez_actual: String = ""
 # REFERENCIAS
 # ==============================
 @onready var collision_shape := $CollisionShape2D
-@onready var sprite := $Sprite2D
+@onready var sprite := $SpriteAnzuelo
 @onready var libocap := ui.get_node_or_null("LibOCap") if ui else null
 @onready var inventory_ui = get_node_or_null("/root/MainJuego/CanvasLayer/InventoryUI")
 @onready var Tirar := get_node_or_null("/root/MainJuego/CanvasLayer/InterfazUsuario/Lanzar")
@@ -169,14 +176,47 @@ func _ready():
 
 	print("💡 Nodo Anzuelo listo con nombre:", name)
 
-# ==============================
-# COLISIÓN CON PECES (SIN PROBABILIDAD)
-# ==============================
 func _on_body_entered(body):
-	if not puede_atrapar:
-		return  # ⛔ ignora cualquier colisión durante la caída
 
+	# ==============================
+	# 1. COLISIÓN CON PARED LATERAL
+	# ==============================
+	if body.is_in_group("pared"):
+		print("🚫 Anzuelo chocó con la pared → REBOTE")
+
+		# Bloquear movimiento
+		velocidad_anzuelo = Vector2.ZERO
+		bajar_pulsado = false
+		subir_pulsado = false
+
+		# Rebote suave hacia el agua
+		if global_position.x > 0:
+			position.x -= 6
+		else:
+			position.x += 6
+
+		# Deshabilitar bajar
+		if boton_bajar:
+			boton_bajar.disabled = true
+
+		return
+
+
+	# ===================================
+	# 2. SI AÚN NO PUEDE ATRAPAR, IGNORAR
+	# ===================================
+	if not pesca_habilitada:
+		return
+
+	if not puede_atrapar:
+		return
+
+
+	# ==============================
+	# 3. COLISIÓN CON PEZ
+	# ==============================
 	if body.is_in_group("peces") and pez_atrapado == null:
+
 		pez_atrapado = body
 		nombre_pez_actual = body.name
 
@@ -187,9 +227,16 @@ func _on_body_entered(body):
 		collision_shape.disabled = true
 		print("🎯 ¡Pez atrapado directamente!: ", nombre_pez_actual)
 
-		# 🚫 Desactivar límites temporales al atrapar
+		# Descativar límites y empezar minijuego
 		_desactivar_limites_temporal()
 		_iniciar_minijuego()
+
+func _on_body_exited(body):
+	if body.is_in_group("pared"):
+		print("✔ Anzuelo salió de la pared → bajar habilitado")
+
+		if boton_bajar:
+			boton_bajar.disabled = false
 
 
 # ==============================
@@ -230,6 +277,10 @@ func _lanzar():
 
 func _empezar_recoger():
 	# 🔹 Si ya está recogiendo, no repetir
+	if ui:
+		ui.boton_anzuelo_on.disabled = true
+		ui.boton_anzuelo_off.disabled = true
+	
 	if estado == Estado.RECOGIENDO:
 		print("🚫 _empezar_recoger cancelado: ya en recogida.")
 		return
@@ -249,6 +300,7 @@ func _empezar_recoger():
 	if Tirar: Tirar.disabled = true
 	if boton_subir: boton_subir.disabled = true
 	if boton_bajar: boton_bajar.disabled = true
+	_oscurecer_anzuelo()   # ← AÑADIR AQUÍ
 
 	limite_superior = -INF
 	limite_inferior = INF
@@ -261,42 +313,43 @@ func _empezar_recoger():
 # MOVIMIENTO
 # ==============================
 func _physics_process(delta):
-	# 🌊 Fase 1: transición de caída dentro del agua (caída realista sin poder pescar)
+			
+	# 🌊 Fase 1: transición de caída dentro del agua
 	if en_transicion_caida:
 		tiempo_caida_actual += delta
-		
-		# 🔽 Reduce drásticamente la fuerza de caída para que se vea más natural
-		velocidad_anzuelo.y += gravedad * delta * 0.03  # antes * 0.25
-		
-		# 🔽 Limita la velocidad máxima hacia abajo
+		velocidad_anzuelo.y += gravedad * delta * 0.03
 		velocidad_anzuelo.y = clamp(velocidad_anzuelo.y, -50, 200)
-		
+
 		position.y += velocidad_anzuelo.y * delta
 		position.y = clamp(position.y, limite_superior, limite_inferior)
-
 
 		if tiempo_caida_actual >= tiempo_caida_en_agua:
 			en_transicion_caida = false
 			dentro_del_agua = true
-			puede_atrapar = true   # ✅ ahora sí puede atrapar peces
+			puede_atrapar = true
 			tiempo_en_agua = 0.0
 			velocidad_anzuelo = Vector2.ZERO
 			print("🐟 Control manual activado tras 5 s de caída en agua.")
 		return
 
-	# 💧 Fase 2: control manual activo
+	# 💧 Fase 2: control manual dentro del agua
 	if dentro_del_agua:
-	# ⛔ si está bloqueado o en recogida automática, ignorar movimiento manual
+		# 1️⃣ detectar paredes primero
+		_detectar_paredes()
+
+		# 2️⃣ actualizar estado de botones
+		_actualizar_estado_botones()
+
+		# 3️⃣ si minijuego o recogida → bloquear movimiento
 		if bloqueado_por_minijuego or recogida_automatica:
 			subir_pulsado = false
 			bajar_pulsado = false
-			_actualizar_estado_botones()
 			_comprobar_agua(delta)
 			return
-			
+
 		var moved := false
 
-		# 🔽 Movimiento con límites
+		# 4️⃣ Movimiento manual
 		if subir_pulsado and position.y > limite_superior + 10:
 			position.y -= velocidad_vertical * delta
 			moved = true
@@ -304,44 +357,40 @@ func _physics_process(delta):
 			position.y += velocidad_vertical * delta
 			moved = true
 
+		# clamp final
 		position.y = clamp(position.y, limite_superior, limite_inferior)
 
-		# 🔒 Habilitar / deshabilitar botones según posición
+		# 5️⃣ Actualización final de botones
 		_actualizar_estado_botones()
-
-	#	if moved:
-	#		print("📍 Moviendo anzuelo Y =", round(position.y))				#Deteccion de posicion
-
 		_comprobar_agua(delta)
 		return
 
-	# 🚀 Fase 3: comportamiento normal (fuera del agua)
+	# -------------------------------
+	# 🚀 FASE 3: comportamiento normal
+	# -------------------------------
 	if estado == Estado.LANZADO:
 		_mover_lanzamiento(delta)
 	elif estado == Estado.RECOGIENDO or recogida_automatica:
 		_mover_recoger(delta)
 
-
 	_actualizar_pez()
 	_comprobar_agua(delta)
 
-
-
-		
-	if dentro_del_agua:
-		print("🟢 dentro_del_agua =", dentro_del_agua, "  ↑", subir_pulsado, " ↓", bajar_pulsado)
-
-
-	_actualizar_pez()
-	_comprobar_agua(delta)
-	
-	# 🌟 Transición suave de la luz
-	#if luz_anzuelo:
-	#	luz_actual = lerp(luz_actual, luz_objetivo, delta * velocidad_luz)
-	#	luz_anzuelo.energy = luz_actual
+	# 🌟 Luz del anzuelo (si la reactivás)
+	# if luz_anzuelo:
+	# 	luz_actual = lerp(luz_actual, luz_objetivo, delta * velocidad_luz)
+	# 	luz_anzuelo.energy = luz_actual
 
 
 func _actualizar_estado_botones():
+	# 🧱 SI ESTAMOS BLOQUEADOS POR PARED, NO PERMITIR QUE EL UI TOQUE NADA
+	if bloqueado_por_pared:
+		if boton_subir:
+			boton_subir.disabled = false
+		if boton_bajar:
+			boton_bajar.disabled = true
+		return
+
 	if not boton_subir or not boton_bajar:
 		return
 
@@ -354,8 +403,12 @@ func _actualizar_estado_botones():
 	var en_superficie := position.y <= limite_superior + 2.0
 	var en_fondo := position.y >= limite_inferior - 2.0
 
-	boton_subir.disabled = (not dentro_del_agua) or en_superficie
+	boton_subir.disabled = false   # 🔥 nunca se desactiva
 	boton_bajar.disabled = (not dentro_del_agua) or en_fondo
+
+
+	# DEBUG TRACK: quién cambia el botón
+	print("⚙️ _actualizar_estado_botones() → subir:", boton_subir.disabled, " bajar:", boton_bajar.disabled, " | bloqueado_por_pared:", bloqueado_por_pared)
 
 			
 # 🚫 Desactiva los límites mientras sube el anzuelo
@@ -410,7 +463,10 @@ var __stuck_frames := 0
 func _mover_recoger(delta: float) -> void:
 	if Tirar:
 		Tirar.disabled = true
-
+		
+	if ui:
+		ui.boton_anzuelo_on.disabled = true
+		ui.boton_anzuelo_off.disabled = true
 	limite_superior = -INF
 	limite_inferior = INF
 	dentro_del_agua = false
@@ -432,6 +488,9 @@ func _mover_recoger(delta: float) -> void:
 	if dist <= 5.0:
 		print("[ANZUELO] OBJETIVO ALCANZADO → set INACTIVO + notificar caña")
 		position = posicion_inicial
+		if ui:
+			ui.boton_anzuelo_on.disabled = false
+			ui.boton_anzuelo_off.disabled = false
 		velocidad_anzuelo = Vector2.ZERO
 		estado = Estado.INACTIVO
 		recogida_automatica = false
@@ -439,6 +498,7 @@ func _mover_recoger(delta: float) -> void:
 		collision_shape.disabled = false
 		_restaurar_limites()
 		_reset_ui_state()
+		_iluminar_anzuelo() 
 
 		# ✅ Notificar a la caña (sin tocar)
 		var caña: Node = null
@@ -532,6 +592,10 @@ func _reset_pez():
 # MINIJUEGO
 # ==============================
 func _iniciar_minijuego():
+	if ui:
+		ui.boton_anzuelo_on.disabled = true
+		ui.boton_anzuelo_off.disabled = true
+
 	# Ocultar botones mientras dura el minijuego
 	_dump_estado("_iniciar_minijuego()")
 	_ocultar_botones()
@@ -575,6 +639,11 @@ func _iniciar_minijuego():
 
 
 func _on_minijuego_finalizado(resultado: bool):
+	if ui:
+		ui.boton_anzuelo_on.disabled = false
+		ui.boton_anzuelo_off.disabled = false
+
+	
 	print("\n🧩 [DEBUG] Entró a _on_minijuego_finalizado()")
 	print("   🔸 minijuego:", minijuego)
 	print("   🔸 minijuego_conectado:", minijuego_conectado)
@@ -712,6 +781,7 @@ func _ocultar_botones():
 		boton_bajar.visible = false
 		botones_mostrados = false
 
+
 # ⬆️⬇️ Movimiento manual con límites
 func _subir_caña():
 	if not dentro_del_agua:
@@ -757,10 +827,12 @@ func bloquear_por_minijuego():
 	_ocultar_botones()
 	if boton_subir: boton_subir.disabled = true
 	if boton_bajar: boton_bajar.disabled = true
-
+	_oscurecer_anzuelo()   # ← AÑADIR AQUÍ
+	
 func desbloquear_por_minijuego():
 	bloqueado_por_minijuego = false
 	_actualizar_estado_botones()
+	_iluminar_anzuelo()
 
 func recogida_automatica_por_minijuego():
 	print("⚙️ [AUTO] Recogida automática iniciada por minijuego.")
@@ -774,6 +846,7 @@ func recogida_automatica_por_minijuego():
 	bloqueado_por_minijuego = true
 	_desactivar_limites_temporal()
 	estado = Estado.RECOGIENDO
+	_oscurecer_anzuelo()   # ← AÑADIR AQUÍ
 	dentro_del_agua = false
 	en_transicion_caida = false
 	puede_atrapar = false
@@ -826,3 +899,63 @@ func apagar_luz_superficial():
 	if luz_anzuelo:
 		luz_anzuelo.energy = 0.0
 		print("💡 [ANZUELO] Luz OFF")
+
+func _detectar_paredes():
+	var pescador = get_node_or_null("/root/MainJuego/Pescador")
+
+	var derecha: bool = ray_derecha.is_colliding()
+	var izquierda: bool = ray_izquierda.is_colliding()
+	var abajo: bool = ray_abajo.is_colliding()
+
+	# ================================
+	# LOG GENERAL DE DETECCIÓN
+	# ================================
+	print("🔍 _detectar_paredes() → D:", derecha, " | I:", izquierda, " | A:", abajo)
+
+	# Si cualquier dirección detecta pared → bloqueo general
+	bloqueado_por_pared = derecha or izquierda or abajo
+
+	# ================================
+	# BLOQUEO DE BAJAR
+	# ================================
+	if abajo:
+		print("⛔ pared abajo detectada → no baja más")
+		if boton_bajar:
+			boton_bajar.disabled = true
+	else:
+		if boton_bajar and not bloqueado_por_minijuego:
+			boton_bajar.disabled = false
+
+	# ================================
+	# BLOQUEO LATERAL DERECHO
+	# ================================
+	if derecha:
+
+		print("⛔ pared derecha detectada")
+		if pescador:
+			pescador._bloquear_derecha = true
+	else:
+		if pescador:
+			pescador._bloquear_derecha = false
+
+	# ================================
+	# BLOQUEO LATERAL IZQUIERDO
+	# ================================
+	if izquierda:
+
+		print("⛔ pared izquierda detectada")
+		if boton_bajar:
+			boton_bajar.disabled = true
+		if pescador:
+			pescador._bloquear_izquierda = true
+	else:
+		if pescador:
+			pescador._bloquear_izquierda = false
+
+	print("🔍 FINAL → bloqueado_por_pared =", bloqueado_por_pared, " | bajar.disabled =", boton_bajar.disabled if boton_bajar else "N/A")
+
+func _oscurecer_anzuelo():
+	sprite.modulate = Color(0, 0, 0, 0.6)   # tono oscuro
+
+func _iluminar_anzuelo():
+	sprite.modulate = Color(1, 1, 1, 1)     # normal

@@ -28,7 +28,7 @@
         <a href="Proyecto_General/Views/Home.php" class="boton-continuar" id="button">Continuar</a>
       <?php else: ?>
         <a href="Proyecto_General/Views/Login.php" class="boton-inicio" id="button">Iniciar sesión</a>
-        <a href="Proyecto_General/Views/Register.php" class="boton-registro" id="button">Registrarse</a>
+        <a href="Proyecto_General/Views/RegisterView.php" class="boton-registro" id="button">Registrarse</a>
       <?php endif; ?>
     </div>
 

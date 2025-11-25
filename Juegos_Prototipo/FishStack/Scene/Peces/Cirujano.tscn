@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bti4txxpui6so"]
+
+[ext_resource type="Texture2D" uid="uid://c8wteff418oco" path="res://Assets/Peces assets/pez cirujano.png" id="1_jwe5r"]
+[ext_resource type="Script" uid="uid://c5i8t422plmeb" path="res://Scripts/Fish script/cirujano.gd" id="1_tlono"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlono"]
+size = Vector2(94, 43)
+
+[node name="Cirujano" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_tlono")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jwe5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 2.5)
+shape = SubResource("RectangleShape2D_tlono")

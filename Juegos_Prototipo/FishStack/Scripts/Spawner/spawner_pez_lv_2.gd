@@ -10,22 +10,38 @@ var fish_scenes: Array = [
 	load("res://Scene/Peces/Orca.tscn"),
 	load("res://Scene/Peces/Crocodilo.tscn"),
 	load("res://Scene/Peces/Marciano.tscn"),
-	load("res://Scene/Peces/Delfin.tscn")
+	load("res://Scene/Peces/Delfin.tscn"),
+	load("res://Scene/Peces/Cirujano.tscn"),
+	load("res://Scene/Peces/Espada.tscn"),
+	load("res://Scene/Peces/OutcomeMemories.tscn"),
+	load("res://Scene/Peces/Globo.tscn"),
+	load("res://Scene/Peces/Pulpo.tscn"),
+	load("res://Scene/Peces/Dorado.tscn"),
+	load("res://Scene/Peces/Mecha.tscn"),
+	load("res://Scene/Peces/PezArgentina.tscn")
 ]
+
 
 # --- Sistema de probabilidades para Layer 2 ---
 var fish_probabilities: Array = [
-	0.40,  # Ballena
-	0.25,  # Orca
-	0.15,  # Crocodilo
-	0.20,  # Maricano
-	0.50   # Delfin
+	0.75, # Ballena
+	0.65, # Orca
+	0.65, # Crocodilo
+	0.20, # Marciano
+	0.75, # Delfin
+	0.45, # Cirujano
+	0.70, # Espada
+	0.05, # OutcomeMemories
+	0.70, # Globo
+	0.60, # Pulpo
+	0.30, # Dorado
+	0.50, # Mecha
+	0.07  # PezArgentina
 ]
 
-
 # --- Configuración general ---
-@export var spawn_delay := 1
-@export var max_fish := 45
+@export var spawn_delay := 2.25
+@export var max_fish := 55
 
 
 # ===========================================================
@@ -44,7 +60,7 @@ func _ready():
 # 🐟 FUNCIÓN PRINCIPAL DE SPAWN
 # ===========================================================
 func spawn_fish():
-	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
+	var fish_count = get_tree().get_nodes_in_group("peces_l2").size()
 	if fish_count >= max_fish:
 		return
 
@@ -62,7 +78,7 @@ func spawn_fish():
 	# ===========================================================
 	# 🚫 Filtrar según calidad del propio pez
 	# ===========================================================
-	var zonas_validas = ["Común", "Raro", "Exotico", "Mitológico"]
+	var zonas_validas = ["Comun", "Raro", "Exotico", "Mitologico","Secreto"]
 	if not zonas_validas.has(fish.calidad):
 		fish.queue_free()
 		return
@@ -75,16 +91,35 @@ func spawn_fish():
 	# ===========================================================
 	# 📍 Nombre según escena
 	# ===========================================================
-	if fish_scene.resource_path.to_lower().contains("ballena"):
+	var ruta = fish_scene.resource_path.to_lower()
+
+	if ruta.contains("ballena"):
 		fish.name = "Ballena"
-	elif fish_scene.resource_path.to_lower().contains("orca"):
+	elif ruta.contains("orca"):
 		fish.name = "Orca"
-	elif fish_scene.resource_path.to_lower().contains("marciano"):
-		fish.name = "Marciano"
-	elif fish_scene.resource_path.to_lower().contains("crocodilo"):
+	elif ruta.contains("crocodilo"):
 		fish.name = "Crocodilo"
-	elif fish_scene.resource_path.to_lower().contains("delfin"):
+	elif ruta.contains("marciano"):
+		fish.name = "Marciano"
+	elif ruta.contains("delfin"):
 		fish.name = "Delfin"
+	elif ruta.contains("cirujano"):
+		fish.name = "Cirujano"
+	elif ruta.contains("espada"):
+		fish.name = "Espada"
+	elif ruta.contains("outcomememories"):
+		fish.name = "OutcomeMemories"
+	elif ruta.contains("globo"):
+		fish.name = "Globo"
+	elif ruta.contains("pulpo"):
+		fish.name = "Pulpo"
+	elif ruta.contains("dorado"):
+		fish.name = "Dorado"
+	elif ruta.contains("mecha"):
+		fish.name = "Mecha"
+	elif ruta.contains("pezargentina"):
+		fish.name = "PezArgentina"
+
 
 	fish.set_meta("nombre_real", fish.name)
 
@@ -93,7 +128,7 @@ func spawn_fish():
 	# ===========================================================
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
-
+	fish.add_to_group("peces_l2")  # 🔥 nuevo grupo exclusivo para layer 2
 	print("🐬 Pez L2:", fish.name, "| Calidad:", fish.calidad)
 
 
@@ -119,21 +154,15 @@ func seleccionar_fish_scene() -> PackedScene:
 # 📦 Punto aleatorio dentro del área
 # ===========================================================
 func get_random_point_inside_area() -> Vector2:
-	if not $CollisionShape2D:
+	var col := $CollisionShape2D
+	if col == null or col.shape == null:
 		return Vector2.ZERO
 
-	var shape = $CollisionShape2D.shape
-	var trans = $CollisionShape2D.global_transform
-	var p := Vector2.ZERO
+	var shape = col.shape
 
 	if shape is RectangleShape2D:
-		p = Vector2(
-			randf_range(-shape.extents.x, shape.extents.x),
-			randf_range(-shape.extents.y, shape.extents.y)
-		)
-	elif shape is CircleShape2D:
-		var r = shape.radius * sqrt(randf())
-		var ang = randf_range(0, TAU)
-		p = Vector2(cos(ang), sin(ang)) * r
+		var local_x = randf_range(-shape.extents.x, shape.extents.x)
+		var local_y = randf_range(-shape.extents.y, shape.extents.y)
+		return col.global_transform * Vector2(local_x, local_y)
 
-	return trans.origin + trans.basis_xform(p)
+	return col.global_position

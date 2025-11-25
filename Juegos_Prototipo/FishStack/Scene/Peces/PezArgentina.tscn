@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx1ulx5uowcvb"]
+
+[ext_resource type="Script" uid="uid://rna7smpthg3a" path="res://Scripts/Fish script/argentina.gd" id="1_j2rxv"]
+[ext_resource type="Texture2D" uid="uid://8lhyvordlqlq" path="res://Assets/Peces/Sheet1.png" id="2_4k5hm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
+atlas = ExtResource("2_4k5hm")
+region = Rect2(16.579, 15.1579, 29.7632, 24.6316)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2rxv"]
+size = Vector2(31, 16)
+
+[sub_resource type="Gradient" id="Gradient_7y2qq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.06, 0.906, 1, 1)
+
+[node name="PezArgentina" type="CharacterBody2D" node_paths=PackedStringArray("estela_celeste_1", "estela_blanca", "estela_celeste_2", "pivote_estelas")]
+scale = Vector2(3, 3)
+collision_layer = 4
+script = ExtResource("1_j2rxv")
+estela_celeste_1 = NodePath("Pivote_Estelas/EstelaCeleste1")
+estela_blanca = NodePath("Pivote_Estelas/EstelaBlanca")
+estela_celeste_2 = NodePath("Pivote_Estelas/EstelaCeleste2")
+pivote_estelas = NodePath("Pivote_Estelas")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.15, 1.15)
+texture = SubResource("AtlasTexture_trk67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_j2rxv")
+
+[node name="Pivote_Estelas" type="Node2D" parent="."]
+
+[node name="EstelaCeleste1" type="CPUParticles2D" parent="Pivote_Estelas"]
+position = Vector2(16.6667, -2.33333)
+scale = Vector2(5.14345, 6.20316)
+amount = 10
+lifetime = 0.55
+direction = Vector2(0, 0)
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+scale_amount_min = 12.0
+scale_amount_max = 12.0
+color_ramp = SubResource("Gradient_7y2qq")
+
+[node name="EstelaCeleste2" type="CPUParticles2D" parent="Pivote_Estelas"]
+position = Vector2(16.6667, 0.666667)
+scale = Vector2(5.14345, 6.20316)
+amount = 10
+lifetime = 0.55
+direction = Vector2(0, 0)
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+scale_amount_min = 12.0
+scale_amount_max = 12.0
+color_ramp = SubResource("Gradient_7y2qq")
+
+[node name="EstelaBlanca" type="CPUParticles2D" parent="Pivote_Estelas"]
+position = Vector2(16.6667, -1)
+scale = Vector2(10.6368, 6.20316)
+amount = 10
+lifetime = 0.55
+direction = Vector2(0, 0)
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+scale_amount_min = 12.0
+scale_amount_max = 12.0

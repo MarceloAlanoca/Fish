@@ -151,7 +151,7 @@ func _ready():
 			boton.mouse_exited.connect(_on_hover_exited)
 			boton.pressed.connect(func(): _comprar_caña(boton))
 
-			if data.nombre in Global.cañas_compradas:
+			if data.nombre in Global.canas_compradas:
 				_marcar_comprado(boton)
 
 	boton_salir.pressed.connect(_salir)
@@ -188,7 +188,7 @@ func _comprar_caña(boton: TextureButton):
 	var nombre = boton.get_meta("nombre")
 	var precio = boton.get_meta("precio")
 
-	if nombre in Global.cañas_compradas:
+	if nombre in Global.canas_compradas:
 		audio_efectos.stream = sonido_error
 		audio_efectos.play()
 		_hablar(frases_error.pick_random())
@@ -196,7 +196,7 @@ func _comprar_caña(boton: TextureButton):
 
 	if Global.doblones >= precio:
 		Global.doblones -= precio
-		Global.cañas_compradas.append(nombre)
+		Global.canas_compradas.append(nombre)
 		Global.guardar_cañas()
 		label_doblones.text = "💰 Doblones: %d" % Global.doblones
 
@@ -204,11 +204,12 @@ func _comprar_caña(boton: TextureButton):
 		audio_efectos.stream = sonido_compra
 		audio_efectos.play()
 		_hablar(frases_compra.pick_random())
+		
 	else:
 		audio_efectos.stream = sonido_error
 		audio_efectos.play()
 		_hablar(frases_error.pick_random())
-		
+		Global.guardar_doblones()
 	if boton.disabled:
 		return
 	boton.disabled = true

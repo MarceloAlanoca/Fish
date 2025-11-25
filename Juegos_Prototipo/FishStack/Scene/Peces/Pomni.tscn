@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cietk72um76bv"]
+[gd_scene load_steps=8 format=3 uid="uid://cietk72um76bv"]
 
 [ext_resource type="Texture2D" uid="uid://d1afamwyho1xc" path="res://Assets/Peces/Pomni.png" id="1_3n4mk"]
+[ext_resource type="Script" uid="uid://dybqrixu80muy" path="res://Scripts/Fish script/pomni.gd" id="1_hncck"]
+[ext_resource type="AudioStream" uid="uid://dcy57va61nqs0" path="res://Assets/Musicas/The Amazing Digital Circus - Main Theme [TubeRipper.cc].ogg" id="3_hncck"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
 atlas = ExtResource("1_3n4mk")
@@ -9,7 +11,20 @@ region = Rect2(15.2051, 13.1065, 38.2536, 22.3924)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uh0bi"]
 size = Vector2(84, 42)
 
-[node name="Pomni" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hncck"]
+
+[sub_resource type="Gradient" id="Gradient_hncck"]
+offsets = PackedFloat32Array(0.176101, 0.383648, 0.603774, 0.72956, 0.861635)
+colors = PackedColorArray(0.0999999, 0, 1, 1, 0.892537, 0, 0.354229, 1, 0.0999999, 0, 1, 1, 1, 0, 0.266666, 1, 1, 1, 0, 1)
+
+[node name="Pomni" type="CharacterBody2D" node_paths=PackedStringArray("sonido_cercania", "zona_anzuelo", "estela", "pivote_estela")]
+scale = Vector2(1.75, 1.75)
+collision_layer = 4
+script = ExtResource("1_hncck")
+sonido_cercania = NodePath("AudioCercania")
+zona_anzuelo = NodePath("Area2D_Anzuelo")
+estela = NodePath("Pivote_Estela/Estela")
+pivote_estela = NodePath("Pivote_Estela")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.25, 2.25)
@@ -18,3 +33,28 @@ texture = SubResource("AtlasTexture_hwv7f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_uh0bi")
+
+[node name="Area2D_Anzuelo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Anzuelo"]
+position = Vector2(0.450045, 2.25023)
+scale = Vector2(53.6662, 44.4439)
+shape = SubResource("CircleShape2D_hncck")
+
+[node name="AudioCercania" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hncck")
+
+[node name="Pivote_Estela" type="Node2D" parent="."]
+
+[node name="Estela" type="CPUParticles2D" parent="Pivote_Estela"]
+position = Vector2(38.8571, 1.71429)
+scale = Vector2(23.4368, 6.20316)
+amount = 20
+lifetime = 0.55
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 25.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+color_ramp = SubResource("Gradient_hncck")

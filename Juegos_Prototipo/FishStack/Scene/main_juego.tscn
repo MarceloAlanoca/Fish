@@ -1,15 +1,15 @@
-[gd_scene load_steps=41 format=3 uid="uid://tdciqdl46hah"]
+[gd_scene load_steps=48 format=3 uid="uid://tdciqdl46hah"]
 
 [ext_resource type="Script" uid="uid://b0j3irx7ewbf" path="res://main_juego.gd" id="1_d6ytk"]
 [ext_resource type="PackedScene" uid="uid://4jjq52b8upil" path="res://Scene/pescador.tscn" id="1_s1cr2"]
 [ext_resource type="Texture2D" uid="uid://cq866kxannpmm" path="res://Assets/Fondos/ZonasOceano/FondoProfundidad1-2.png" id="2_1u8df"]
 [ext_resource type="Script" uid="uid://c40i1ipctdbbr" path="res://Scripts/FishBox.gd" id="2_ypr6b"]
-[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/salmon.tscn" id="3_ya0dr"]
+[ext_resource type="PackedScene" uid="uid://bhi28l5twjyu6" path="res://Scene/Peces/Salmon.tscn" id="3_ya0dr"]
 [ext_resource type="Texture2D" uid="uid://ckdpmqhnowqtm" path="res://Assets/Fondos/ZonasOceano/FondoAbisal.png" id="4_82ygg"]
 [ext_resource type="PackedScene" uid="uid://bg1wepdsnpm26" path="res://Scene/orca.tscn" id="4_f8irq"]
 [ext_resource type="Texture2D" uid="uid://djy7ggdscdqk" path="res://Assets/Capturas/Captura normal.png" id="4_ywkuk"]
 [ext_resource type="Script" uid="uid://djl7ionrr1pwh" path="res://Scripts/Luces/zona_abisal.gd" id="5_cweaw"]
-[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/atun.tscn" id="5_sxn4p"]
+[ext_resource type="PackedScene" uid="uid://uun1lvtno1sv" path="res://Scene/Peces/Atun.tscn" id="5_sxn4p"]
 [ext_resource type="Texture2D" uid="uid://bwwtgycuyj036" path="res://Assets/Fondos/FondoCielo.png" id="6_1u8df"]
 [ext_resource type="Texture2D" uid="uid://c5alf4i5oueex" path="res://Assets/Fondos/ZonasOceano/FondoMar.png" id="6_elcoi"]
 [ext_resource type="Script" uid="uid://cyftrrtu8oggn" path="res://Scripts/Luces/zona_hadal.gd" id="6_gsydt"]
@@ -32,15 +32,28 @@
 [ext_resource type="Script" uid="uid://b8nev4b7a3165" path="res://Scripts/Spawner/spawner_pez_lv_2.gd" id="23_8vtdy"]
 [ext_resource type="Script" uid="uid://jvaymwqmi5tm" path="res://Scripts/MainJuego/CameraFollow.gd" id="24_vpslh"]
 [ext_resource type="Script" uid="uid://jrd6efph8raw" path="res://Scripts/Spawner/spawner_pez_lv3.gd" id="29_rmubn"]
+[ext_resource type="PackedScene" uid="uid://3e4c3qeq2evh" path="res://Scene/PauseMenu.tscn" id="29_wg8h2"]
 [ext_resource type="Script" uid="uid://51qkycibwd7x" path="res://Scripts/Spawner/spawner_pez_lv4.gd" id="31_epf3u"]
 [ext_resource type="Script" uid="uid://dgi81pvue7678" path="res://Scripts/Spawner/spawner_pez_lv5.gd" id="33_gsydt"]
+[ext_resource type="Texture2D" uid="uid://b281wgy0xh7xi" path="res://Assets/DecoracionFondo/Rocas/RocaInicial.png" id="34_bdp20"]
+[ext_resource type="Texture2D" uid="uid://bq417xk806mle" path="res://Assets/DecoracionFondo/Rocas/RocaProfundas.png" id="35_wg8h2"]
+[ext_resource type="Texture2D" uid="uid://c0hc3ka8lupmr" path="res://Assets/DecoracionFondo/Rocas/RocaAbisal.png" id="36_ihuck"]
 
 [sub_resource type="Environment" id="Environment_j74a3"]
 glow_enabled = true
 glow_intensity = 1.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsydt"]
+size = Vector2(3746, 21852)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j74a3"]
+size = Vector2(1062, 15750)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdp20"]
+size = Vector2(892, 9448)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8df"]
-size = Vector2(18495, 22581.5)
+size = Vector2(18495, 25242.9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5cs3"]
 size = Vector2(9516.15, 6182)
@@ -64,6 +77,48 @@ environment = SubResource("Environment_j74a3")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(0, 4)
 
+[node name="ParedDerecha" type="StaticBody2D" parent="." groups=["pared"]]
+position = Vector2(15241, 12285)
+collision_layer = 256
+
+[node name="Primero" type="CollisionShape2D" parent="ParedDerecha"]
+position = Vector2(-461, 1428)
+shape = SubResource("RectangleShape2D_gsydt")
+
+[node name="Medio" type="CollisionShape2D" parent="ParedDerecha"]
+position = Vector2(-2873, 4519)
+shape = SubResource("RectangleShape2D_j74a3")
+
+[node name="Ultimo" type="CollisionShape2D" parent="ParedDerecha"]
+position = Vector2(-3854, 9251)
+scale = Vector2(1, 1.4)
+shape = SubResource("RectangleShape2D_bdp20")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="." groups=["pared"]]
+position = Vector2(455, 12285)
+collision_layer = 256
+
+[node name="Primero" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(-677, 1391)
+scale = Vector2(0.933363, 0.996061)
+shape = SubResource("RectangleShape2D_gsydt")
+
+[node name="Medio" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(1633, 4459)
+scale = Vector2(1.24757, 0.997301)
+shape = SubResource("RectangleShape2D_j74a3")
+
+[node name="Ultimo" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(2694, 10012)
+scale = Vector2(1, 1.5011)
+shape = SubResource("RectangleShape2D_bdp20")
+
+[node name="Ultimo2" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(6976, 15649)
+rotation = -1.58511
+scale = Vector2(1, 1.5011)
+shape = SubResource("RectangleShape2D_bdp20")
+
 [node name="AreaAgua" type="Area2D" parent="." groups=["agua"]]
 scale = Vector2(1, 1.00126)
 collision_layer = 2
@@ -77,7 +132,7 @@ scale = Vector2(12.0716, 2.49167)
 texture = ExtResource("6_elcoi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAgua"]
-position = Vector2(7420, 12441)
+position = Vector2(7420, 13878.2)
 scale = Vector2(1, 1.08)
 shape = SubResource("RectangleShape2D_1u8df")
 debug_color = Color(0.395568, 0.830694, 0.703576, 0.42)
@@ -85,13 +140,13 @@ debug_color = Color(0.395568, 0.830694, 0.703576, 0.42)
 [node name="Mares-Profundo" type="Sprite2D" parent="AreaAgua"]
 modulate = Color(0.65, 0.65, 0.65, 1)
 position = Vector2(7211, 5834.68)
-scale = Vector2(7.40296, 6.02356)
+scale = Vector2(7.60296, 6.02356)
 texture = ExtResource("2_1u8df")
 
 [node name="Abisal" type="Sprite2D" parent="AreaAgua"]
 texture_repeat = 2
 position = Vector2(7292.04, 12055.8)
-scale = Vector2(8.93511, 6.72547)
+scale = Vector2(9.45511, 6.72547)
 texture = ExtResource("4_82ygg")
 region_enabled = true
 region_rect = Rect2(7.21686, 82.3433, 1016.78, 941.657)
@@ -99,7 +154,7 @@ region_rect = Rect2(7.21686, 82.3433, 1016.78, 941.657)
 [node name="Hadal" type="Sprite2D" parent="AreaAgua"]
 modulate = Color(0.0133333, 0, 0.4, 1)
 position = Vector2(7264.04, 21550.9)
-scale = Vector2(7.18198, 12.5396)
+scale = Vector2(8.02198, 12.5396)
 texture = ExtResource("4_82ygg")
 
 [node name="ZonaAbisal" type="Area2D" parent="."]
@@ -124,14 +179,26 @@ script = ExtResource("6_gsydt")
 position = Vector2(4885.08, 1453)
 shape = SubResource("RectangleShape2D_n5cs3")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Madera" type="StaticBody2D" parent="."]
 position = Vector2(-142, 867)
 scale = Vector2(4.7843, -7.83718)
 
-[node name="Sprite2D7" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D7" type="Sprite2D" parent="Madera"]
 texture = ExtResource("17_37g52")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Madera"]
+position = Vector2(-104.388, 39.196)
+shape = SubResource("RectangleShape2D_5sp2o")
+
+[node name="Madera2" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(14676, 867)
+scale = Vector2(4.7843, -7.83718)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Madera2"]
+texture = ExtResource("17_37g52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Madera2"]
 position = Vector2(-104.388, 39.196)
 shape = SubResource("RectangleShape2D_5sp2o")
 
@@ -315,6 +382,12 @@ offset_left = 1340.0
 offset_top = 45.0
 offset_right = 1340.0
 offset_bottom = 45.0
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("29_wg8h2")]
+visible = false
+
+[node name="MenuOpciones" parent="CanvasLayer" instance=ExtResource("29_wg8h2")]
+visible = false
 
 [node name="SpawnerPezSuperficial1" type="Area2D" parent="."]
 position = Vector2(-870, 885)
@@ -526,6 +599,113 @@ script = ExtResource("33_gsydt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal"]
 shape = SubResource("RectangleShape2D_vpslh")
 disabled = true
+
+[node name="SpawnerPezHadal2" type="Area2D" parent="."]
+position = Vector2(9144, 16909)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal2"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="SpawnerPezHadal3" type="Area2D" parent="."]
+position = Vector2(5515, 20032)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal3"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="SpawnerPezHadal4" type="Area2D" parent="."]
+position = Vector2(9144, 20032)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal4"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="SpawnerPezHadal5" type="Area2D" parent="."]
+position = Vector2(5515, 23126)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal5"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="SpawnerPezHadal6" type="Area2D" parent="."]
+position = Vector2(9144, 23126)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal6"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="SpawnerPezHadal7" type="Area2D" parent="."]
+position = Vector2(5515, 25506)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal7"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="SpawnerPezHadal8" type="Area2D" parent="."]
+position = Vector2(9144, 25506)
+scale = Vector2(1.2151, -6.42266)
+script = ExtResource("33_gsydt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerPezHadal8"]
+shape = SubResource("RectangleShape2D_vpslh")
+disabled = true
+
+[node name="Rocas" type="Node2D" parent="."]
+position = Vector2(7209, 9191)
+
+[node name="Roca" type="Sprite2D" parent="Rocas"]
+position = Vector2(7838, -3571)
+scale = Vector2(26.8686, 42.8916)
+texture = ExtResource("34_bdp20")
+
+[node name="Roca2" type="Sprite2D" parent="Rocas"]
+position = Vector2(-7869, -3571)
+scale = Vector2(26.8686, 42.8916)
+texture = ExtResource("34_bdp20")
+
+[node name="Roca3" type="Sprite2D" parent="Rocas"]
+modulate = Color(0.950167, 1, 0.77, 1)
+position = Vector2(9282, -8818)
+scale = Vector2(26.8686, 42.8916)
+texture = ExtResource("34_bdp20")
+
+[node name="RocaProfunda" type="Sprite2D" parent="Rocas"]
+position = Vector2(7166, 2558)
+scale = Vector2(34.0595, 44.8591)
+texture = ExtResource("35_wg8h2")
+
+[node name="RocaProfunda2" type="Sprite2D" parent="Rocas"]
+position = Vector2(-7295, 2558)
+scale = Vector2(34.0595, 44.8591)
+texture = ExtResource("35_wg8h2")
+
+[node name="RocaAbisal2" type="Sprite2D" parent="Rocas"]
+position = Vector2(-7984, 11939)
+scale = Vector2(61.2335, 90.5858)
+texture = ExtResource("36_ihuck")
+
+[node name="RocaAbisal" type="Sprite2D" parent="Rocas"]
+position = Vector2(8097, 11939)
+scale = Vector2(61.2335, 90.5858)
+texture = ExtResource("36_ihuck")
+
+[node name="RocaAbisal3" type="Sprite2D" parent="Rocas"]
+position = Vector2(-182, 23016)
+scale = Vector2(58.6434, 68.5884)
+texture = ExtResource("36_ihuck")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("objeto_seguir")]
 position = Vector2(-422, 264)

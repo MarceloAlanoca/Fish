@@ -107,6 +107,7 @@ func _on_articulo_comprado(boton: TextureButton):
 		Global.amuletos_comprados.append(nombre)
 		Global.guardar_amuletos()
 		label_doblones.text = "💰 Doblones: %d" % Global.doblones
+		Global.guardar_doblones()
 
 		_tulio_hablar("react")
 		_reproducir_sonido(sonido_compra)

@@ -25,6 +25,10 @@ Global="*res://Scripts/global.gd"
 FishBox="*res://Scripts/FishBox.gd"
 Save="*res://Scripts/guardar_datos.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray()
@@ -32,6 +36,7 @@ enabled=PackedStringArray()
 [global_group]
 
 agua="La zona donde estan los peces y reacciona la caña"
+pared=""
 
 [input]
 

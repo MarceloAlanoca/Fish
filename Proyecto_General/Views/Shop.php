@@ -18,6 +18,7 @@
     Bienvenido a la Tienda de FishStack, aquí encontrarás diferentes pases que podras adquirir y se veran reflejados
     en el juego junto a ser permanentes en la cuenta.
   </p>
+  <p>Actualmente en WIP, pero se te da la opcion de comprarlo y aplicarse una vez este</p>
 </div>
 
 <div class="Filtros">
@@ -51,7 +52,7 @@
         <div class="modal-info">
             <h3 id="modalTitulo"></h3>
             <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
-            <p id="modalDescripcion"></p>
+            <p id="modalDescripcion" class="descripcion-scroll"></p>
 
             <button id="btnComprar" class="ButtonConfirmPur"></button>
         </div>

@@ -4,6 +4,10 @@ extends Node2D
 @onready var canvas_modulate := $CanvasModulate
 
 func _ready():
+	print("🌐 Plataforma:", OS.get_name())
+	print("📁 user:// path real:", ProjectSettings.globalize_path("user://"))
+	var pescador = $Pescador
+	Global.aplicar_sprite_guardado(pescador)
 	Global.cargar_amuletos()
 	set_luz_superficial()  # luz inicial
 
@@ -88,3 +92,7 @@ func _on_zona_superior_area_entered(area: Area2D) -> void:
 	print("☀️ VOLVIÓ A SUPERFICIE:", area.name)
 	if area.name == "Anzuelo":
 		set_luz_superficial()
+		
+func recibir_user_id(id):
+	print("📩 UserID recibido desde JS:", id)
+	Global.guardar_progreso_en_server(id)

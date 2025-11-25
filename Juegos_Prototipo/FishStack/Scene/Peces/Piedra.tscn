@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://de60hypdjhngb"]
+[gd_scene load_steps=5 format=3 uid="uid://de60hypdjhngb"]
 
 [ext_resource type="Texture2D" uid="uid://8lhyvordlqlq" path="res://Assets/Peces/Sheet1.png" id="1_nics5"]
+[ext_resource type="Script" uid="uid://d4km7jg5wie52" path="res://Scene/Peces/piedra.gd" id="1_xxhfu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
 atlas = ExtResource("1_nics5")
@@ -10,6 +11,9 @@ region = Rect2(14.6173, 80.4354, 33.5907, 23.9409)
 size = Vector2(35, 22)
 
 [node name="Piedra" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 4
+script = ExtResource("1_xxhfu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.15, 1.15)

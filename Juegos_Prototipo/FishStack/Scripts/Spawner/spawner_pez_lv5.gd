@@ -10,21 +10,27 @@ var fish_scenes: Array = [
 	load("res://Scene/Peces/Baboso.tscn"),
 	load("res://Scene/Peces/Molesto.tscn"),
 	load("res://Scene/Peces/AnguilaElectrica.tscn"),
-	load("res://Scene/Peces/Abominable.tscn")
+	load("res://Scene/Peces/Abominable.tscn"),
+	load("res://Scene/Peces/Bloop.tscn"),
+	load("res://Scene/Peces/Chtulu.tscn")   
 ]
+
 
 # --- Probabilidades Layer 5 ---
 var fish_probabilities: Array = [
-	0.45,   # CaracolAzul
-	0.35,   # Baboso
-	0.30,   # Molesto
-	0.15,   # AnguilaElectrica
-	0.10    # Abominable
+	0.40,  # CaracolAzul
+	0.30,  # Baboso
+	0.25,  # Molesto
+	0.20,  # AnguilaElectrica
+	0.15,  # Abominable
+	0.05,  # Bloop (MUY RARO)
+	0.02   # Chtulu (ULTRA RARO)
 ]
 
+
 # --- Configuración general ---
-@export var spawn_delay := 1
-@export var max_fish := 25
+@export var spawn_delay := 10
+@export var max_fish := 55
 
 
 # ===========================================================
@@ -43,7 +49,7 @@ func _ready():
 # 🐟 FUNCIÓN PRINCIPAL DE SPAWN
 # ===========================================================
 func spawn_fish():
-	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
+	var fish_count = get_tree().get_nodes_in_group("peces_l5").size()
 	if fish_count >= max_fish:
 		return
 
@@ -76,11 +82,17 @@ func spawn_fish():
 		fish.name = "AnguilaElectrica"
 	elif path.contains("abominable"):
 		fish.name = "Abominable"
+	elif path.contains("bloop"):
+		fish.name = "Bloop"
+	elif path.contains("chtulu"):
+		fish.name = "Chtulu"
+
 
 	fish.set_meta("nombre_real", fish.name)
 
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
+	fish.add_to_group("peces_l5")
 
 	print("(0_0) Pez L5:", fish.name, "| Calidad:", fish.calidad)
 

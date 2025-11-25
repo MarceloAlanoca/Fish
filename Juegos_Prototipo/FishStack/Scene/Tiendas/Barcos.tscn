@@ -10,18 +10,28 @@
 [ext_resource type="Texture2D" uid="uid://0da01x463bmy" path="res://Assets/Vendedores/Chino/Adios.png" id="5_wqhcc"]
 [ext_resource type="Texture2D" uid="uid://b7f2e552rj8yp" path="res://Assets/Vendedores/Chino/Compra.png" id="6_l8bsb"]
 [ext_resource type="Texture2D" uid="uid://htm07ca2ggob" path="res://Assets/Fondos/FondoGrid2.png" id="10_28lvm"]
-[ext_resource type="Texture2D" uid="uid://bbdihg1mnvmw4" path="res://Assets/Barcos/barcoT1.png" id="11_daoq0"]
-[ext_resource type="Texture2D" uid="uid://jqnwe1cfglnd" path="res://Assets/Barcos/barcoT2.png" id="12_a6wbh"]
 [ext_resource type="AudioStream" uid="uid://t7cwv66uw11j" path="res://Assets/Musicas/14. Welcome to the Green Room (DELTARUNE Chapter 3+4 Soundtrack) - Toby Fox [TubeRipper.cc].ogg" id="12_daoq0"]
-[ext_resource type="Texture2D" uid="uid://cnat241kd2j2c" path="res://Assets/Barcos/barcoT3.png" id="13_kbwfu"]
-[ext_resource type="Texture2D" uid="uid://dtr56xm0vdowj" path="res://Assets/Barcos/barcoT4.png" id="14_jvojf"]
-[ext_resource type="Texture2D" uid="uid://8nnt1b41mwfe" path="res://Assets/Barcos/barcoT5.png" id="15_7jusb"]
 [ext_resource type="Texture2D" uid="uid://dad8iac8dghk6" path="res://Assets/DecoracionFondo/Radio.png" id="16_b77tu"]
 [ext_resource type="FontFile" uid="uid://ceqw36klspkrs" path="res://Assets/Fonts/Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf" id="16_jxgkl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2xmg"]
 atlas = ExtResource("10_28lvm")
 region = Rect2(200, 456, 632, 496)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jrkf4"]
+load_path = "res://.godot/imported/barcoT1.png-f194ed994dae682b812614d699b8d63d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p4kss"]
+load_path = "res://.godot/imported/barcoT2.png-ad2b4bf33f0784384ecfc0e193c0c6e8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_doe03"]
+load_path = "res://.godot/imported/barcoT3.png-2d437722f03604ae3244bfcdd401ba88.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jxgkl"]
+load_path = "res://.godot/imported/barcoT4.png-1713cf851983224684d97fc786368f7c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l0wf3"]
+load_path = "res://.godot/imported/barcoT5.png-a65e4599fa2c3fe301ccbe872523d00c.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_kbwfu"]
 font = ExtResource("16_jxgkl")
@@ -99,27 +109,27 @@ columns = 3
 
 [node name="Articulo1" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("11_daoq0")
+texture_normal = SubResource("CompressedTexture2D_jrkf4")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo2" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("12_a6wbh")
+texture_normal = SubResource("CompressedTexture2D_p4kss")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo3" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("13_kbwfu")
+texture_normal = SubResource("CompressedTexture2D_doe03")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo4" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("14_jvojf")
+texture_normal = SubResource("CompressedTexture2D_jxgkl")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo5" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("15_7jusb")
+texture_normal = SubResource("CompressedTexture2D_l0wf3")
 metadata/_edit_use_anchors_ = true
 
 [node name="Chino" type="Sprite2D" parent="."]

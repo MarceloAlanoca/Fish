@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckd4w4vp7bpi4"]
+
+[ext_resource type="Script" uid="uid://w0qesd2m260m" path="res://Scripts/Fish script/espada.gd" id="1_75vhu"]
+[ext_resource type="Texture2D" uid="uid://cvloukejjmfub" path="res://Assets/Peces assets/pez espada.png" id="1_g7nim"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75vhu"]
+size = Vector2(117, 44)
+
+[node name="Espada" type="CharacterBody2D"]
+scale = Vector2(1.77, 1.77)
+collision_layer = 4
+script = ExtResource("1_75vhu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.21134, 1)
+texture = ExtResource("1_g7nim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -11)
+shape = SubResource("RectangleShape2D_75vhu")

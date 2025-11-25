@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bosedpss0rcf4"]
+
+[ext_resource type="Script" uid="uid://bv87k3df58056" path="res://Scripts/Fish script/megalodon.gd" id="1_j4xhr"]
+[ext_resource type="Texture2D" uid="uid://4unyue134u8s" path="res://Assets/Peces/Megalodon.png" id="1_rh8xm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4xhr"]
+size = Vector2(557, 211)
+
+[node name="Megalodon" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_j4xhr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.503752, 0.505416)
+texture = ExtResource("1_rh8xm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, 5.5)
+shape = SubResource("RectangleShape2D_j4xhr")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkkrwd0nagh4w"]
+[gd_scene load_steps=5 format=3 uid="uid://dkkrwd0nagh4w"]
 
+[ext_resource type="Script" uid="uid://kemc1wo1soi4" path="res://Scripts/Fish script/vladimir.gd" id="1_nvkss"]
 [ext_resource type="Texture2D" uid="uid://n1ucs8658w4e" path="res://Assets/Peces/Sheet4.png" id="1_qtpaf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
@@ -10,6 +11,8 @@ region = Rect2(21.0795, 139.362, 23.0921, 16.9342)
 size = Vector2(77, 36)
 
 [node name="Vladimir" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_nvkss")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3.25, 3.25)

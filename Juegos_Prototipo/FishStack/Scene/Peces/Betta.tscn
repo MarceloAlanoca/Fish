@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cygbld16nakb2"]
+[gd_scene load_steps=5 format=3 uid="uid://cygbld16nakb2"]
 
 [ext_resource type="Texture2D" uid="uid://c4gffdf6nwwn" path="res://Assets/Peces/Sheet3.png" id="1_04tkx"]
+[ext_resource type="Script" uid="uid://djj3udwttllxr" path="res://Scripts/Fish script/betta.gd" id="1_g78y8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trk67"]
 atlas = ExtResource("1_04tkx")
@@ -10,6 +11,8 @@ region = Rect2(66.9875, 3.09896, 26.6842, 23.6053)
 size = Vector2(51.7831, 45.4254)
 
 [node name="Betta" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_g78y8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.3, 2.3)

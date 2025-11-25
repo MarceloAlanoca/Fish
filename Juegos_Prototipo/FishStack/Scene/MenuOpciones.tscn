@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6y8b7b1e4ajn"]
+
+[ext_resource type="Texture2D" uid="uid://onwmo3oh04yl" path="res://Assets/Minijuego/Negro.jpg" id="1_2pav3"]
+[ext_resource type="Script" uid="uid://c3o0bwtl5t2ys" path="res://Scripts/menu_opciones.gd" id="1_4ca1q"]
+[ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_4ca1q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8qjr"]
+font = ExtResource("2_4ca1q")
+font_size = 53
+
+[node name="MenuOpciones" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ca1q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.729412)
+layout_mode = 0
+offset_right = 275.0
+offset_bottom = 183.0
+scale = Vector2(4.18154, 3.52875)
+texture = ExtResource("1_2pav3")
+
+[node name="LabelPausa" type="Label" parent="."]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 52.0
+offset_right = 765.0
+offset_bottom = 116.0
+text = "Opciones"
+label_settings = SubResource("LabelSettings_q8qjr")
+horizontal_alignment = 1
+
+[node name="BotonRetroceder" type="Button" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 277.0
+offset_right = 553.0
+offset_bottom = 308.0
+scale = Vector2(2.5489, 2.6715)
+text = "Retroceder
+"
+
+[node name="BotonContinuar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 171.0
+offset_right = 562.0
+offset_bottom = 202.0
+scale = Vector2(2.38797, 2.66106)
+text = "Continuar
+"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 442.0
+offset_right = 422.0
+offset_bottom = 458.0
+scale = Vector2(3, 3)
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelPorcentaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 385.0
+offset_top = 514.0
+offset_right = 767.0
+offset_bottom = 578.0
+label_settings = SubResource("LabelSettings_q8qjr")
+horizontal_alignment = 1
+
+[node name="LabelVolumen" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 387.0
+offset_right = 766.0
+offset_bottom = 451.0
+text = "Volumen"
+label_settings = SubResource("LabelSettings_q8qjr")
+horizontal_alignment = 1

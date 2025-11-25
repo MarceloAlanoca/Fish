@@ -10,7 +10,15 @@ class_name InterfazUsuario
 @onready var panel_cañas: Panel = $PanelCañas
 @onready var grid_cañas: GridContainer = $"PanelCañas/GridContainerCañas"
 @onready var label_profundidad: Label = $"LabelProfundidad"
+@onready var boton_pausa = $BotonPausa
+@onready var pause_menu = load("res://Scene/PauseMenu.tscn")
+@onready var boton_anzuelo_on := $ButtonActivoAnzuelo
+@onready var boton_anzuelo_off := $ButtonDesactivoAnzuelo
+@onready var boton_izquierda := $"BotonIzquierda"
+@onready var boton_derecha := $"BotonDerecha"
 
+var izquierda_pulsado := false
+var derecha_pulsado := false
 
 
 var amuletos_equipados: Array = []
@@ -20,10 +28,41 @@ var anzuelo: Node = null
 # 🧩 INICIO
 # ======================================================
 func _ready():
-	anzuelo = get_tree().get_root().get_node_or_null("MainJuego/Pescador/CañaPesca/Caña/Anzuelo")
+	# =======================
+	# CONECTAR BOTONES MÓVIL
+	# =======================
+	if not boton_anzuelo_on.pressed.is_connected(_toggle_anzuelo_off):
+		boton_anzuelo_on.pressed.connect(_toggle_anzuelo_off)
+
+	if not boton_anzuelo_off.pressed.is_connected(_toggle_anzuelo_on):
+		boton_anzuelo_off.pressed.connect(_toggle_anzuelo_on)
 	
-	await get_tree().process_frame  # asegura que todo esté cargadoF
+	if not boton_pausa.pressed.is_connected(_abrir_pausa):
+		boton_pausa.pressed.connect(_abrir_pausa)
 	
+	boton_izquierda.button_down.connect(func():
+		print("DOWN LEFT")
+		izquierda_pulsado = true
+		derecha_pulsado = false
+	)
+
+	boton_izquierda.button_up.connect(func():
+		print("UP LEFT")
+		izquierda_pulsado = false
+	)
+
+	boton_derecha.button_down.connect(func():
+		print("DOWN RIGHT")
+		derecha_pulsado = true
+		izquierda_pulsado = false
+	)
+
+	boton_derecha.button_up.connect(func():
+		print("UP RIGHT")
+		derecha_pulsado = false
+	)
+
+	# (lo demás del _ready igual)
 	actualizar_label()
 
 	if not boton_tienda.pressed.is_connected(_abrir_tienda):
@@ -42,12 +81,30 @@ func _ready():
 		push_warning("⚠️ PanelCañas no encontrado en InterfazUsuario")
 
 	# cargar caña equipada si hay
-	_actualizar_caña_equipada()
+	_actualizar_cana_equipada()
 
 	# 🔁 sincronizar equipados desde Global al cargar
 	amuletos_equipados = Global.amuletos_equipados.duplicate()
 	_actualizar_barra_equipados()
 	_aplicar_efectos_inmediatos()
+	
+	# 🔗 Enlazar el anzuelo automáticamente
+	var pescador := get_tree().root.get_node_or_null("MainJuego/Pescador")
+	if pescador:
+		anzuelo = pescador.get_node_or_null("CañaPesca/Caña/Anzuelo")
+
+	if anzuelo == null:
+		push_warning("⚠️ HUD no encontró el anzuelo")
+	
+func bloquear_boton_izquierda(bloquear: bool):
+	boton_izquierda.disabled = bloquear
+	if bloquear:
+		izquierda_pulsado = false
+
+func bloquear_boton_derecha(bloquear: bool):
+	boton_derecha.disabled = bloquear
+	if bloquear:
+		derecha_pulsado = false
 
 
 # ======================================================
@@ -207,7 +264,7 @@ func _cargar_cañas_panel():
 	for n in grid_cañas.get_children():
 		n.queue_free()
 
-	for caña in Global.cañas_compradas:
+	for caña in Global.canas_compradas:
 		var boton = TextureButton.new()
 		var icon_path = _buscar_icono_caña(caña)
 		if icon_path != "":
@@ -220,7 +277,7 @@ func _cargar_cañas_panel():
 		boton.connect("pressed", Callable(self, "_equipar_caña").bind(caña, boton))
 
 		# marcar la caña equipada
-		if caña == Global.caña_equipada:
+		if caña == Global.cana_equipada:
 			boton.modulate = Color(0.6, 1, 0.6, 1)
 		else:
 			boton.modulate = Color(1, 1, 1, 1)
@@ -235,9 +292,10 @@ func _equipar_caña(nombre: String, boton: TextureButton):
 		print("🚫 No puedes cambiar de caña mientras estás pescando.")
 		return
 
-	Global.caña_equipada = nombre
+	Global.cana_equipada = nombre
 	Global.guardar_cañas()
-	_actualizar_caña_equipada()
+	Global.aplicar_sprite_guardado(pescador)
+	_actualizar_cana_equipada()
 
 	# 🎨 Actualizar visualmente los botones
 	for b in grid_cañas.get_children():
@@ -261,7 +319,7 @@ func _equipar_caña(nombre: String, boton: TextureButton):
 	if pescador:
 		var sprite := pescador.get_node_or_null("CañaPesca/Caña")
 		if sprite:
-			var path := _buscar_icono_caña(Global.caña_equipada)
+			var path := _buscar_icono_caña(Global.cana_equipada)
 			sprite.texture = load(path)
 			print("🎨 Sprite de caña actualizado desde InterfazUsuario:", path)
 
@@ -281,33 +339,27 @@ func _buscar_icono_caña(nombre: String) -> String:
 		_:
 			return ""
 
-func _actualizar_caña_equipada():
-	var pescador := get_tree().get_root().get_node_or_null("MainJuego/Pescador")
-	if not pescador:
-		push_warning("⚠️ No se encontró el Pescador en la escena principal.")
+func _actualizar_cana_equipada():
+	var pescador := get_tree().root.get_node_or_null("MainJuego/Pescador")
+	if pescador == null:
 		return
 
-	var sprite := pescador.get_node_or_null("CañaPesca/Caña/Sprite2D")
-	if not sprite:
-		push_warning("⚠️ No se encontró el Sprite2D de la caña en el Pescador.")
+	var sprite := pescador.get_node_or_null("CañaPesca/Caña")
+	if sprite == null:
 		return
 
-	var path := ""
-	match Global.caña_equipada:
-		"Caña de Madera Fuerte": path = "res://Assets/Cañas/cañaT1.png"
-		"Caña de Mango Grande": path = "res://Assets/Cañas/cañaT2.png"
-		"Caña de Acero": path = "res://Assets/Cañas/cañaT3.png"
-		"Caña Épica": path = "res://Assets/Cañas/cañaT4.png"
-		"Caña Legendaria": path = "res://Assets/Cañas/cañaT5.png"
-		_: path = "res://Assets/Cañas/cañaT1.png"  # fallback
+	var path := Global.caña_sprite_path
+	if path == "":
+		path = Global.RUTA_CAÑAS.get(Global.cana_equipada, "")
 
-	sprite.texture = load(path)
-	print("🎨 Sprite de caña actualizado a:", path)
+	if path != "":
+		sprite.texture = load(path)
+		print("🎣 [HUD] Sprite cargado:", path)
+
 
 func _process(_delta):
 	actualizar_profundidad()
-
-
+	
 const Y_SUPERFICIE_REAL := 250.0  # <-- actualizar con tu valor exacto
 const PIXELES_POR_METRO := 2.5
 
@@ -329,3 +381,25 @@ func actualizar_profundidad():
 	var metros := int(px / PIXELES_POR_METRO)
 
 	label_profundidad.text = "Profundidad: %d m" % metros
+
+func _abrir_pausa():
+	if get_tree().paused:
+		return
+
+	var pm = pause_menu.instantiate()
+	add_child(pm)
+
+	get_tree().paused = true
+	pm.visible = true
+
+func _toggle_anzuelo_off():
+	if anzuelo:
+		anzuelo.pesca_habilitada = false
+	boton_anzuelo_on.visible = false
+	boton_anzuelo_off.visible = true
+
+func _toggle_anzuelo_on():
+	if anzuelo:
+		anzuelo.pesca_habilitada = true
+	boton_anzuelo_on.visible = true
+	boton_anzuelo_off.visible = false

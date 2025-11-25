@@ -1,3 +1,16 @@
+window.addEventListener("message", (event) => {
+    if (event.data.type === "USER_DATA") {
+        console.log("🔥 Web recibió USER ID:", event.data.userID);
+
+        // Enviar a Godot
+        if (typeof window.sendUserIDToGodot === "function") {
+            window.sendUserIDToGodot(event.data.userID);
+        } else {
+            console.error("❌ Godot no cargó sendUserIDToGodot");
+        }
+    }
+});
+
 const iframe = document.getElementById("gameFrame");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const soundBtn = document.getElementById("soundBtn");
@@ -21,3 +34,4 @@ soundBtn.addEventListener("click", () => {
   // Enviar mensaje al iframe si tu juego soporta audio controlado desde fuera
   iframe.contentWindow.postMessage({ mute: soundMuted }, "*");
 });
+

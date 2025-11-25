@@ -1,0 +1,155 @@
+[gd_scene load_steps=16 format=3 uid="uid://bue56erapdqeh"]
+
+[ext_resource type="Script" uid="uid://goawbpmoesp6" path="res://Scene/Tiendas/poseidon.gd" id="1_axwai"]
+[ext_resource type="PackedScene" uid="uid://brpgvacmdou1g" path="res://Scene/Tiendas/InterfazTienda.tscn" id="2_lmdqm"]
+[ext_resource type="Texture2D" uid="uid://dvwydtisk75jo" path="res://Assets/Fondos/Arco.png" id="3_37uf8"]
+[ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_ra0u5"]
+[ext_resource type="Texture2D" uid="uid://cptir047o0l4g" path="res://Assets/Alineaciones/Alineacion1.png" id="5_0njy5"]
+[ext_resource type="Texture2D" uid="uid://dqai1f50c4gv4" path="res://Assets/FondoGrid4.png" id="6_0njy5"]
+[ext_resource type="Texture2D" uid="uid://xbah3o613uq5" path="res://Assets/Alineaciones/Alineacion2.png" id="6_62wel"]
+[ext_resource type="Texture2D" uid="uid://beex0ppvot8wl" path="res://Assets/Alineaciones/Alineacion3.png" id="7_lf6o2"]
+[ext_resource type="Texture2D" uid="uid://bjv637maymshl" path="res://Assets/Vendedores/Poseidon.png" id="8_dnwys"]
+[ext_resource type="FontFile" uid="uid://ceqw36klspkrs" path="res://Assets/Fonts/Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf" id="9_ax4io"]
+[ext_resource type="AudioStream" uid="uid://dcr5ratdgfrvh" path="res://Assets/Musicas/POSEIDON-FISHSTACK.ogg" id="10_20ed6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62wel"]
+atlas = ExtResource("6_0njy5")
+region = Rect2(112, 368, 792, 568)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mvy5s"]
+font = ExtResource("3_ra0u5")
+font_size = 12
+font_color = Color(0.1, 0.97, 1, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uc5xd"]
+font = ExtResource("9_ax4io")
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_pklmh"]
+font = ExtResource("3_ra0u5")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+outline_size = 6
+
+[node name="Poseidon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_axwai")
+musica_fondo = ExtResource("10_20ed6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 1024.0
+scale = Vector2(0.753901, 0.639066)
+texture = ExtResource("3_37uf8")
+
+[node name="InterfazTienda" parent="." instance=ExtResource("2_lmdqm")]
+
+[node name="Salir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 955.0
+offset_top = 89.0
+offset_right = 1052.0
+offset_bottom = 146.0
+scale = Vector2(1.53851, 1.58137)
+theme_override_fonts/font = ExtResource("3_ra0u5")
+theme_override_font_sizes/font_size = 40
+text = "Salir"
+
+[node name="FondoGrid" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 80.0
+offset_right = 1498.0
+offset_bottom = 1045.0
+scale = Vector2(0.451773, 0.452863)
+texture = SubResource("AtlasTexture_62wel")
+
+[node name="Seccion" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 209.0
+offset_right = 762.0
+offset_bottom = 517.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.760378, 0.756207)
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="Articulo1" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("5_0njy5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo2" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("6_62wel")
+texture_pressed = ExtResource("6_62wel")
+metadata/_edit_use_anchors_ = true
+
+[node name="Articulo3" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("7_lf6o2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Poseidon" type="Sprite2D" parent="."]
+position = Vector2(975, 513)
+scale = Vector2(9.33362, 9.52847)
+texture = ExtResource("8_dnwys")
+
+[node name="LabelInfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 517.0
+offset_right = 132.0
+offset_bottom = 540.0
+scale = Vector2(1.2886, 1.17033)
+label_settings = SubResource("LabelSettings_mvy5s")
+
+[node name="LabelPrecio" type="Label" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 397.0
+offset_right = 301.0
+offset_bottom = 420.0
+scale = Vector2(1.62392, 1.51079)
+label_settings = SubResource("LabelSettings_uc5xd")
+
+[node name="LabelNombre" type="Label" parent="."]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 138.0
+offset_right = 271.0
+offset_bottom = 168.0
+label_settings = SubResource("LabelSettings_pklmh")
+
+[node name="LabelEquipado" type="Label" parent="."]
+layout_mode = 0
+offset_left = 683.0
+offset_top = 182.0
+offset_right = 723.0
+offset_bottom = 212.0
+label_settings = SubResource("LabelSettings_pklmh")
+
+[node name="AudioTienda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_20ed6")
+
+[node name="AudioEfectos" type="AudioStreamPlayer" parent="."]
+
+[node name="VozPoseidon" type="AudioStreamPlayer" parent="."]
+
+[node name="LabelDoblones" type="Label" parent="."]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 85.0
+offset_right = 713.0
+offset_bottom = 108.0
+scale = Vector2(1.62392, 1.51079)

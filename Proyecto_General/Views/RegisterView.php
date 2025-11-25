@@ -11,7 +11,7 @@
 
 <body>
 
-    <form action="../FuncionesPHP/Register.php" method="post" id="form">
+    <form action="../FuncionesPHP/Registrar.php" method="post">
         <h1>Registro</h1>
         <div class="form">
 

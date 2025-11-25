@@ -1,16 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://4jjq52b8upil"]
 
-[ext_resource type="Texture2D" uid="uid://cpq1m1gwr5pya" path="res://Assets/Barcos/unnamed.png" id="1_pj0q3"]
 [ext_resource type="Script" uid="uid://b4120w55dkict" path="res://Scripts/pescador.gd" id="1_qmwlb"]
+[ext_resource type="Texture2D" uid="uid://b1ljvybd41cw0" path="res://Assets/Barcos/barcoT1.png" id="2_6ucfj"]
 [ext_resource type="Script" uid="uid://ot3w171oofse" path="res://Scripts/Barcos/caña_pesca.gd" id="3_brvid"]
 [ext_resource type="Texture2D" uid="uid://cq5pba05vggar" path="res://Assets/Cañas/cañaT1.png" id="4_ykenn"]
 [ext_resource type="Script" uid="uid://djtxxxfx4vra1" path="res://Scripts/Barcos/anzuelo.gd" id="5_ykenn"]
 [ext_resource type="Texture2D" uid="uid://dxkjk6srlk1ad" path="res://Assets/Pescador/anzuelo.png" id="6_ykenn"]
 [ext_resource type="Texture2D" uid="uid://brqfpufwvivt5" path="res://Assets/light.png" id="7_0d0lj"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ykenn"]
-atlas = ExtResource("4_ykenn")
-region = Rect2(8, 36.5, 58, 64)
+[ext_resource type="Texture2D" uid="uid://b8qpgmisgrapo" path="res://Assets/Skines/Skin0.png" id="8_6ucfj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ykenn"]
 radius = 25.1875
@@ -21,11 +18,16 @@ size = Vector2(215, 53)
 [node name="Pescador" type="CharacterBody2D"]
 script = ExtResource("1_qmwlb")
 
+[node name="George" type="Sprite2D" parent="."]
+position = Vector2(-2, -23)
+scale = Vector2(1.63034, 1.2828)
+texture = ExtResource("8_6ucfj")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 2
 visibility_layer = 2
 scale = Vector2(-2.39961, 1.84737)
-texture = ExtResource("1_pj0q3")
+texture = ExtResource("2_6ucfj")
 flip_h = true
 
 [node name="CañaPesca" type="Node2D" parent="."]
@@ -42,13 +44,13 @@ fuerza_maxima = 180
 light_mask = 2
 visibility_layer = 2
 position = Vector2(6.19161, -7.0426)
-texture = SubResource("AtlasTexture_ykenn")
+texture = ExtResource("4_ykenn")
 
 [node name="Anzuelo" type="Area2D" parent="CañaPesca/Caña"]
 position = Vector2(22.9089, 33.1002)
 scale = Vector2(0.0539348, 0.0747349)
 collision_layer = 9
-collision_mask = 54
+collision_mask = 310
 script = ExtResource("5_ykenn")
 distancia_maxima = 2000.0
 velocidad_recogida_manual = 100.0
@@ -60,6 +62,24 @@ visibility_layer = 4
 position = Vector2(11.4806, 0.000323528)
 scale = Vector2(6.23502, 5.6805)
 shape = SubResource("CircleShape2D_ykenn")
+
+[node name="RayDerecha" type="RayCast2D" parent="CañaPesca/Caña/Anzuelo/CollisionShape2D"]
+position = Vector2(-3.05176e-05, 1.65891)
+scale = Vector2(2.97367, 2.35554)
+target_position = Vector2(25, 0)
+collision_mask = 256
+
+[node name="RayIzquierda" type="RayCast2D" parent="CañaPesca/Caña/Anzuelo/CollisionShape2D"]
+position = Vector2(-3.05176e-05, 1.65891)
+scale = Vector2(2.97367, 2.35554)
+target_position = Vector2(-25, 0)
+collision_mask = 256
+
+[node name="RayAbajo" type="RayCast2D" parent="CañaPesca/Caña/Anzuelo/CollisionShape2D"]
+position = Vector2(-3.05176e-05, 1.65891)
+scale = Vector2(2.97367, 2.35554)
+target_position = Vector2(0, 25)
+collision_mask = 256
 
 [node name="SpriteAnzuelo" type="Sprite2D" parent="CañaPesca/Caña/Anzuelo"]
 position = Vector2(-11.466, 0)

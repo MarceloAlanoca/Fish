@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce425c84030o"]
+
+[ext_resource type="Script" uid="uid://clpgqulddhwnb" path="res://Scripts/Fish script/bagre.gd" id="1_tjsb8"]
+[ext_resource type="Texture2D" uid="uid://imxggln5v1q7" path="res://Assets/Peces assets/bagre.png" id="1_wi5wk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjsb8"]
+size = Vector2(98, 29)
+
+[node name="Bagre" type="CharacterBody2D"]
+scale = Vector2(1.25, 1.25)
+collision_layer = 4
+script = ExtResource("1_tjsb8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wi5wk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tjsb8")

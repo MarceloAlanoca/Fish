@@ -1,138 +1,176 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsi635xyljtvp"]
+[gd_scene load_steps=21 format=3 uid="uid://dsi635xyljtvp"]
 
 [ext_resource type="Script" uid="uid://b0s8r8lf5fqh0" path="res://Scene/Tiendas/skines.gd" id="1_kllp1"]
 [ext_resource type="PackedScene" uid="uid://brpgvacmdou1g" path="res://Scene/Tiendas/InterfazTienda.tscn" id="1_qy1pc"]
-[ext_resource type="Texture2D" uid="uid://cnmyle47jx67q" path="res://Assets/Fondos/BackgroundCañas.jpg" id="3_olb0x"]
-[ext_resource type="Texture2D" uid="uid://5eej5pw6k4fb" path="res://Assets/Fondos/FondoGrids.png" id="4_h8vwk"]
+[ext_resource type="Texture2D" uid="uid://cuu4dcsllb2ns" path="res://Assets/Fondos/FondoSkines.png" id="2_wu8xo"]
+[ext_resource type="Texture2D" uid="uid://cm10tuwxmq32x" path="res://Assets/Vendedores/Tiburon/Saludando.png" id="3_t1kr0"]
+[ext_resource type="Texture2D" uid="uid://iy4ij2smghd1" path="res://Assets/Vendedores/Tiburon/Normal.png" id="3_wu8xo"]
+[ext_resource type="Texture2D" uid="uid://dpilfo35bssk2" path="res://Assets/FondoGrid3.png" id="4_wu8xo"]
 [ext_resource type="FontFile" uid="uid://co4itwuo7owmy" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="5_t1kr0"]
-[ext_resource type="Texture2D" uid="uid://cq5pba05vggar" path="res://Assets/Cañas/cañaT1.png" id="6_cwpd5"]
-[ext_resource type="Texture2D" uid="uid://b405bhvaobpvw" path="res://Assets/Cañas/cañaT2.png" id="7_udvl7"]
-[ext_resource type="Texture2D" uid="uid://rf7our75ktgn" path="res://Assets/Cañas/cañaT3.png" id="8_hseyu"]
-[ext_resource type="Texture2D" uid="uid://cx6cuf7p7ji3x" path="res://Assets/Cañas/cañaT4.png" id="9_4j63t"]
-[ext_resource type="Texture2D" uid="uid://d35ih45jopk7q" path="res://Assets/Cañas/cañaT5.png" id="10_fxywp"]
-[ext_resource type="Texture2D" uid="uid://dovcupyw5n6u0" path="res://Assets/Vendedores/Salesman/Salesman.png" id="11_fndsr"]
-[ext_resource type="AudioStream" uid="uid://t7cwv66uw11j" path="res://Assets/Musicas/14. Welcome to the Green Room (DELTARUNE Chapter 3+4 Soundtrack) - Toby Fox [TubeRipper.cc].ogg" id="12_tffgn"]
-[ext_resource type="AudioStream" uid="uid://c1nholsk7fvpy" path="res://Assets/SFX/SalesmanHablando.ogg" id="13_oucre"]
+[ext_resource type="Texture2D" uid="uid://b8qpgmisgrapo" path="res://Assets/Skines/Skin0.png" id="7_h8vwk"]
+[ext_resource type="FontFile" uid="uid://ceqw36klspkrs" path="res://Assets/Fonts/Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf" id="7_rckp6"]
+[ext_resource type="Texture2D" uid="uid://ctm3wh0jlchv" path="res://Assets/Skines/Skin1.png" id="8_t1kr0"]
+[ext_resource type="Texture2D" uid="uid://ctkqci4wq4vsq" path="res://Assets/Skines/Skin2.png" id="9_cwpd5"]
+[ext_resource type="Texture2D" uid="uid://82lfp8hrngqc" path="res://Assets/Skines/Skin3.png" id="10_udvl7"]
+[ext_resource type="Texture2D" uid="uid://bcdfyrf4t4hyv" path="res://Assets/Skines/Skin4.png" id="11_hseyu"]
+[ext_resource type="Texture2D" uid="uid://vnm245dx3ny" path="res://Assets/Skines/Skin5.png" id="12_4j63t"]
+[ext_resource type="AudioStream" uid="uid://cnpv6iub76ey0" path="res://Assets/Musicas/ElVendedorDeLos7Mares-FISHSTACK.ogg" id="14_h8vwk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xnde"]
-atlas = ExtResource("4_h8vwk")
-region = Rect2(88.39, 200.57, 252.89, 198.44)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sffse"]
+atlas = ExtResource("2_wu8xo")
+region = Rect2(0, 584, 1024, 440)
 
-[sub_resource type="LabelSettings" id="LabelSettings_qmhrb"]
-font = ExtResource("5_t1kr0")
-font_color = Color(0.478431, 1, 1, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wsi6"]
+atlas = ExtResource("4_wu8xo")
+region = Rect2(200, 464, 624, 480)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hseyu"]
+font = ExtResource("7_rckp6")
+font_color = Color(0.0166664, 0, 1, 1)
 outline_size = 4
-outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_wkmr0"]
+[sub_resource type="LabelSettings" id="LabelSettings_4j63t"]
 font = ExtResource("5_t1kr0")
 font_size = 25
 font_color = Color(0, 0, 0, 1)
 outline_size = 6
 
+[sub_resource type="LabelSettings" id="LabelSettings_fxywp"]
+font = ExtResource("7_rckp6")
+font_size = 14
+
 [node name="Skines" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_kllp1")
+tiburon_normal = ExtResource("3_wu8xo")
+tiburon_saludando = ExtResource("3_t1kr0")
+pos_normal = Vector2(270, 440)
+pos_saludo = Vector2(270, 420)
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_right = 1019.0
+offset_bottom = 1024.0
+scale = Vector2(1.129, 0.99651)
+texture = ExtResource("2_wu8xo")
 
 [node name="InterfazTienda" parent="." instance=ExtResource("1_qy1pc")]
 
-[node name="Fondo" type="TextureRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 768.0
-scale = Vector2(0.600791, 0.840307)
-texture = ExtResource("3_olb0x")
+[node name="Tiburon" type="Sprite2D" parent="."]
+position = Vector2(270, 399)
+scale = Vector2(8.13062, 9.93836)
+texture = ExtResource("3_wu8xo")
 
-[node name="FondoGrid" type="TextureRect" parent="."]
-offset_left = 26.0
-offset_top = 123.0
-offset_right = 278.0
-offset_bottom = 321.0
-scale = Vector2(1.75279, 1.69684)
-texture = SubResource("AtlasTexture_2xnde")
+[node name="MesaTaberna" type="Sprite2D" parent="."]
+position = Vector2(578, 708)
+scale = Vector2(1.21378, 1.03803)
+texture = SubResource("AtlasTexture_sffse")
 
 [node name="Salir" type="Button" parent="."]
-offset_left = 927.0
-offset_top = 96.0
-offset_right = 1024.0
-offset_bottom = 153.0
-scale = Vector2(1.98712, 2.07895)
+layout_mode = 0
+offset_left = 955.0
+offset_top = 89.0
+offset_right = 1052.0
+offset_bottom = 146.0
+scale = Vector2(1.53851, 1.58137)
 theme_override_fonts/font = ExtResource("5_t1kr0")
 theme_override_font_sizes/font_size = 40
 text = "Salir"
+
+[node name="FondoGrid" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 209.0
+offset_right = 2052.0
+offset_bottom = 1174.0
+scale = Vector2(0.377777, 0.376225)
+texture = SubResource("AtlasTexture_0wsi6")
 
 [node name="Seccion" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
-offset_top = 149.0
-offset_right = 451.0
-offset_bottom = 457.0
+offset_left = 607.0
+offset_top = 236.0
+offset_right = 987.0
+offset_bottom = 544.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 40
+scale = Vector2(1.42022, 1.4427)
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 3
 
 [node name="Articulo1" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("6_cwpd5")
+texture_normal = ExtResource("7_h8vwk")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo2" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("7_udvl7")
+texture_normal = ExtResource("8_t1kr0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo3" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("8_hseyu")
+texture_normal = ExtResource("9_cwpd5")
+texture_pressed = ExtResource("9_cwpd5")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo4" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("9_4j63t")
+texture_normal = ExtResource("10_udvl7")
 metadata/_edit_use_anchors_ = true
 
 [node name="Articulo5" type="TextureButton" parent="Seccion"]
 layout_mode = 2
-texture_normal = ExtResource("10_fxywp")
+texture_normal = ExtResource("11_hseyu")
 metadata/_edit_use_anchors_ = true
 
-[node name="Tiburon" type="Sprite2D" parent="."]
-position = Vector2(801, 391)
-scale = Vector2(0.519984, 0.456752)
-texture = ExtResource("11_fndsr")
+[node name="Articulo6" type="TextureButton" parent="Seccion"]
+layout_mode = 2
+texture_normal = ExtResource("12_4j63t")
+metadata/_edit_use_anchors_ = true
 
 [node name="LabelInfo" type="Label" parent="."]
-offset_left = 74.0
-offset_top = 488.0
-offset_right = 174.0
-offset_bottom = 511.0
-label_settings = SubResource("LabelSettings_qmhrb")
+layout_mode = 0
+offset_left = 47.0
+offset_top = 136.0
+offset_right = 147.0
+offset_bottom = 159.0
+label_settings = SubResource("LabelSettings_hseyu")
 
 [node name="AudioTienda" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_tffgn")
+stream = ExtResource("14_h8vwk")
 
 [node name="AudioEfectos" type="AudioStreamPlayer" parent="."]
 
-[node name="VozSalesman" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_oucre")
-
-[node name="InterfazTienda2" parent="." instance=ExtResource("1_qy1pc")]
+[node name="VozTiburon" type="AudioStreamPlayer" parent="."]
 
 [node name="LabelSubtitulos" type="Label" parent="."]
-offset_left = 530.0
-offset_top = 407.0
-offset_right = 570.0
-offset_bottom = 430.0
-label_settings = SubResource("LabelSettings_wkmr0")
+layout_mode = 0
+offset_left = 125.0
+offset_top = 206.0
+offset_right = 165.0
+offset_bottom = 236.0
+label_settings = SubResource("LabelSettings_4j63t")
 
 [node name="LabelDoblones" type="Label" parent="."]
-offset_left = 593.0
-offset_top = 79.0
-offset_right = 633.0
-offset_bottom = 102.0
+layout_mode = 0
+offset_left = 668.0
+offset_top = 580.0
+offset_right = 708.0
+offset_bottom = 603.0
 scale = Vector2(1.62392, 1.51079)
+
+[node name="LabelSkin" type="Label" parent="."]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 65.0
+offset_right = 335.0
+offset_bottom = 88.0
+scale = Vector2(1.62392, 1.51079)
+label_settings = SubResource("LabelSettings_fxywp")

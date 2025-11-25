@@ -117,6 +117,8 @@ func _on_vender_pressed() -> void:
 
 		var valor = Global.aplicar_efectos_ganancia(calcular_precio(nombre_guardado))
 		Global.doblones += valor
+		Global.guardar_doblones()
+
 
 		print("💰 Pez vendido:", nombre_guardado, "Valor:", valor, "Total global:", Global.doblones)
 

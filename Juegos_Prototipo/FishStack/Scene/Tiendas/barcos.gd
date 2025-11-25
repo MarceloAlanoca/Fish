@@ -182,6 +182,7 @@ func _comprar_o_equipar_barco(boton: TextureButton):
 		label_doblones.text = "💰 Doblones: %d" % Global.doblones
 		_reproducir_sonido(sonido_compra)
 		_chino_hablar("react")
+		Global.guardar_doblones()
 
 	# 3) EQUIPAR BARCO
 	Global.barco_equipado = nombre

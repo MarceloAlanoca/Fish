@@ -13,6 +13,9 @@ var VelP = {
 	"BordoVelocity": 500,
 	"BettaVelocity": 475,
 	"UnionVelocity": 500,
+	"BagreVelocity": 500,
+	"RojoVelocity": 550,
+	"PiñaVelocity": 300,
 
 	# -------- Layer 2 --------
 	"BallenaVelocity": 300,
@@ -20,6 +23,14 @@ var VelP = {
 	"CrocodiloVelocity": 550,
 	"MarcianoVelocity": 450,
 	"DelfinVelocity": 600,
+	"CirujanoVelocity": 400,
+	"EspadaVelocity": 1000,
+	"OutcomeMemoriesVelocity": 750,
+	"GloboVelocity": 750,
+	"PulpoVelocity": 600,
+	"DoradoVelocity": 500,
+	"MechaVelocity": 600,
+	"PezArgentinaVelocity": 400,
 
 	# -------- Layer 3 --------
 	"CoralVelocity": 250,
@@ -29,6 +40,12 @@ var VelP = {
 	"PavoVelocity": 450,
 	"RemoVelocity": 600,
 	"RetroGloboVelocity": 475,
+	"EspañaVelocity": 500,
+	"HuecoVelocity": 400,
+	"MocoAtomicoVelocity": 450,
+	"VladimirVelocity": 500,
+	"PomniVelocity": 500,
+	"PiedraVelocity": 20,
 
 	# -------- Layer 4 --------
 	"CebraVelocity": 700,
@@ -38,6 +55,9 @@ var VelP = {
 	"LuciernagaVelocity": 650,
 	"DientonVelocity": 750,
 	"AntenaVelocity": 800,
+	"EsqueletoVelocity": 200,
+	"MegalodonVelocity": 400,
+	"NahuelitoVelocity": 500,
 
 	# -------- Layer 5 --------
 	"CaracolAzulVelocity": 250,
@@ -45,15 +65,13 @@ var VelP = {
 	"MolestoVelocity": 400,
 	"AnguilaElectricaVelocity": 900,
 	"AbominableVelocity": 750,
+	"BloopVelocity": 350,
+	"ChtuluVelocity": 300,
 
 	# -------- Otros / Especiales --------
 	"PinguinoVelocity": 450,
-	"PomniVelocity": 500,
-	"PezArgentinaVelocity": 400,
-	"PezMolestoVelocity": 450,
-	"PezBabosoVelocity": 350,
 	"CofreVelocity": 0,
-	"PiedraVelocity": 0
+	"LeviananVelocity": 150
 }
 
 # ===========================================================
@@ -69,6 +87,9 @@ var Dist = {
 	"DistBordo": 600,
 	"DistBetta": 500,
 	"DistUnion": 550,
+	"DistBagre": 550,
+	"DistRojo": 450,
+	"DistPiña": 300,
 
 	# -------- Layer 2 --------
 	"DistBallena": 1250,
@@ -76,6 +97,14 @@ var Dist = {
 	"DistCrocodilo": 850,
 	"DistMarciano": 700,
 	"DistDelfin": 1000,
+	"DistCirujano": 800,
+	"DistEspada": 2000,
+	"DistOutcomeMemories": 2500,
+	"DistGlobo": 700,
+	"DistPulpo": 600,
+	"DistDorado": 650,
+	"DistMecha": 900,
+	"DistPezArgentina": 500,
 
 	# -------- Layer 3 --------
 	"DistCoral": 400,
@@ -85,6 +114,12 @@ var Dist = {
 	"DistPavo": 650,
 	"DistRemo": 850,
 	"DistRetroGlobo": 700,
+	"DistEspaña": 700,
+	"DistHueco": 500,
+	"DistMocoAtomico": 550,
+	"DistVladimir": 700,
+	"DistPomni": 650,
+	"DistPiedra": 50,
 
 	# -------- Layer 4 --------
 	"DistCebra": 900,
@@ -94,6 +129,9 @@ var Dist = {
 	"DistLuciernaga": 700,
 	"DistDienton": 950,
 	"DistAntena": 1000,
+	"DistEsqueleto": 400,
+	"DistMegalodon": 2000,
+	"DistNahuelito": 800,
 
 	# -------- Layer 5 --------
 	"DistCaracolAzul": 300,
@@ -101,13 +139,13 @@ var Dist = {
 	"DistMolesto": 450,
 	"DistAnguilaElectrica": 1100,
 	"DistAbominable": 1000,
+	"DistBloop": 2000,
+	"DistChtulu": 2500,
 
 	# -------- Otros / Especiales --------
 	"DistPinguino": 800,
-	"DistPomni": 650,
-	"DistPezArgentina": 500,
-	"DistPiedra": 50,
-	"DistCofre": 50
+	"DistCofre": 50,
+	"DistLevianan": 3000
 }
 
 # ===========================================================
@@ -123,6 +161,9 @@ var Bitcoin_Pez = {
 	"Bordo": 400,
 	"Betta": 500,
 	"Union": 500,
+	"Bagre": 600,
+	"Rojo": 450,
+	"Piña": 300,
 
 	# -------- Layer 2 --------
 	"Ballena": 1500,
@@ -130,6 +171,14 @@ var Bitcoin_Pez = {
 	"Crocodilo": 800,
 	"Marciano": 1650,
 	"Delfin": 850,
+	"Cirujano": 900,
+	"Espada": 1200,
+	"Globo": 800,
+	"PezArgentina": 1200,
+	"OutcomeMemories": 3000,
+	"Pulpo": 900,
+	"Dorado": 650,
+	"Mecha": 1100,
 
 	# -------- Layer 3 --------
 	"Coral": 3500,
@@ -139,6 +188,12 @@ var Bitcoin_Pez = {
 	"Pavo": 2500,
 	"Remo": 3500,
 	"RetroGlobo": 3000,
+	"Piedra": 1000,
+	"Pomni": 950,
+	"España": 2000,
+	"Hueco": 1500,
+	"MocoAtomico": 1800,
+	"Vladimir": 2500,
 
 	# -------- Layer 4 --------
 	"Cebra": 3500,
@@ -148,6 +203,9 @@ var Bitcoin_Pez = {
 	"Luciernaga": 4500,
 	"Dienton": 4000,
 	"Antena": 5000,
+	"Esqueleto": 3000,
+	"Nahuelito": 15000,
+	"Megalodon": 20000,
 
 	# -------- Layer 5 --------
 	"CaracolAzul": 6000,
@@ -155,13 +213,11 @@ var Bitcoin_Pez = {
 	"Molesto": 6500,
 	"AnguilaElectrica": 6500,
 	"Abominable": 7000,
+	"Bloop": 35000,
+	"Chtulu": 30000,
 
 	# -------- Otros / Especiales --------
 	"Pinguino": 850,
-	"Pomni": 950,
-	"PezArgentina": 600,
-	"PezBaboso": 550,
-	"PezMolesto": 650,
 	"Cofre": 2500,
-	"Piedra": 10
+	"Levianan": 45000
 }

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://djrgel1c3uphg"]
+[gd_scene load_steps=5 format=3 uid="uid://djrgel1c3uphg"]
 
+[ext_resource type="Script" uid="uid://bltlcs6a5mxgk" path="res://Scripts/Fish script/nahuelito.gd" id="1_1he00"]
 [ext_resource type="Texture2D" uid="uid://rg8strgntrct" path="res://Assets/Peces/Sheet10.png" id="1_186rd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwv7f"]
@@ -10,6 +11,8 @@ region = Rect2(3.35336, 2.18775, 62.0455, 57.847)
 size = Vector2(356, 215)
 
 [node name="Nahuelito" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_1he00")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(9, 9)

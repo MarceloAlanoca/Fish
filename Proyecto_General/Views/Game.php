@@ -27,11 +27,12 @@
                 <div class="GameFrame">
                     <iframe 
                         id="gameFrame"
-                        src="../../Juegos_Prototipo/FishStack.html" 
-                        width="1200" 
-                        height="800" 
-                        frameborder="0" 
-                        allowfullscreen>
+                        src="../../Juegos_Prototipo/FishStack.html"
+                        width="1200"
+                        height="800"
+                        frameborder="0"
+                        allow="gamepad *; fullscreen *; clipboard-read *; clipboard-write *; storage-access *;"
+                    >
                     </iframe>
 
                     <!-- Barra negra inferior -->
@@ -52,5 +53,15 @@
     </div>
 
     <?php include("Footer.php"); ?>
+        <script>
+        document.getElementById("gameFrame").onload = function () {
+            const userID = <?php echo $_SESSION["id_usuario"]; ?>;
+            document.getElementById("gameFrame").contentWindow.postMessage(
+                { type: "USER_DATA", userID: userID },
+                "*"
+            );
+        };
+    </script>
+
 </body>
 </html>

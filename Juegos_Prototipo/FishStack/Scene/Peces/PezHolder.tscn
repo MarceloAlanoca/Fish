@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://2eed5xoconwf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41fw1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdysf"]
+size = Vector2(735, 573)
+
+[node name="PezHolder" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_41fw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(44, 26)
+shape = SubResource("RectangleShape2D_fdysf")

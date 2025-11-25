@@ -4,18 +4,24 @@ extends Area2D
 # 🐠 SISTEMA DE SPAWN DE PECES (Nivel 1 - Superficial)
 # ===========================================================
 
-# --- Peces de este nivel ---
 var fish_scenes: Array = [
+	# -------- Layer 1 Completo --------
 	load("res://Scene/Peces/Atun.tscn"),
 	load("res://Scene/Peces/Salmon.tscn"),
 	load("res://Scene/Peces/Barracuda.tscn"),
 	load("res://Scene/Peces/Payaso.tscn"),
 	load("res://Scene/Peces/Lenguado.tscn"),
-	load("res://Scene/Peces/Bordo.tscn")
+	load("res://Scene/Peces/Bordo.tscn"),
+	load("res://Scene/Peces/Betta.tscn"),
+	load("res://Scene/Peces/Union.tscn"),
+	load("res://Scene/Peces/Bagre.tscn"),
+	load("res://Scene/Peces/Rojo.tscn"),
+	load("res://Scene/Peces/Piña.tscn")
 ]
 
-@export var spawn_delay := 1.0
-@export var max_fish := 35
+
+@export var spawn_delay := 2.25
+@export var max_fish := 75
 
 
 # ===========================================================
@@ -35,7 +41,7 @@ func _ready():
 # ===========================================================
 func spawn_fish():
 	# Evita sobrepoblación global
-	var fish_count = get_tree().current_scene.get_tree().get_nodes_in_group("peces").size()
+	var fish_count = get_tree().get_nodes_in_group("peces_l1").size()
 	if fish_count >= max_fish:
 		return
 
@@ -54,7 +60,7 @@ func spawn_fish():
 	# ===========================================================
 	# 🚫 Filtrar peces que NO pertenecen a esta zona
 	# ===========================================================
-	var zonas_validas = ["Común", "Raro", "Exótico"]
+	var zonas_validas = ["Comun", "Raro", "Exotico"]
 	
 	if not zonas_validas.has(fish.calidad):
 		fish.queue_free()
@@ -77,6 +83,17 @@ func spawn_fish():
 		fish.name = "Lenguado"
 	elif ruta.contains("bordo"):
 		fish.name = "Bordo"
+	elif ruta.contains("betta"):
+		fish.name = "Betta"
+	elif ruta.contains("union"):
+		fish.name = "Union"
+	elif ruta.contains("bagre"):
+		fish.name = "Bagre"
+	elif ruta.contains("rojo"):
+		fish.name = "Rojo"
+	elif ruta.contains("piña") or ruta.contains("pina"):
+		fish.name = "Piña"
+
 	else:
 		fish.name = "Desconocido"
 	
@@ -90,6 +107,7 @@ func spawn_fish():
 	# Agregar el pez a la escena
 	get_tree().current_scene.add_child(fish)
 	fish.add_to_group("peces")
+	fish.add_to_group("peces_l1")
 
 	print("🐟 Pez L1:", fish.name, "| Calidad:", fish.calidad)
 
