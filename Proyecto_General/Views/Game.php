@@ -44,7 +44,6 @@
 
                         <div class="GameBarRight">
                             <button id="fullscreenBtn" class="bar-btn" title="Pantalla completa">⛶</button>
-                            <button id="soundBtn" class="bar-btn" title="Sonido">🔊</button>
                         </div>
                     </div>
                 </div>
