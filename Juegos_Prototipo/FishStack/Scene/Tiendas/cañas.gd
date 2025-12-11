@@ -29,6 +29,7 @@ extends Control
 @export var salesman_habla: Texture2D
 @export var salesman_vende: Texture2D
 @export var salesman_despide: Texture2D
+@export var salesman_error: Texture2D
 
 # ================================
 # 🔹 POSICIONES / ROTACIONES
@@ -103,8 +104,8 @@ func _ready():
 		{
 			"nombre": "Caña de Madera",
 			"precio": 10,
-			"efecto": "-Caña inicial y sin beneficios, con un buen tiro capaz logras romper ese mero limite",
-			"profundidad": "Superficial - 150m",
+			"efecto": "Caña inicial y sin beneficios",
+			"profundidad": "Superficial - 400m",
 			"icono": preload("res://Assets/Cañas/cañaT1.png")
 		},
 		{
@@ -204,11 +205,12 @@ func _comprar_caña(boton: TextureButton):
 		audio_efectos.stream = sonido_compra
 		audio_efectos.play()
 		_hablar(frases_compra.pick_random())
-		
+		salesman.texture = salesman_vende
 	else:
 		audio_efectos.stream = sonido_error
 		audio_efectos.play()
 		_hablar(frases_error.pick_random())
+		salesman.texture = salesman_error
 		Global.guardar_doblones()
 	if boton.disabled:
 		return
@@ -276,6 +278,7 @@ func _salir():
 	audio_efectos.stream = sonido_despedida
 	audio_efectos.play()
 	_hablar(frases_despedida.pick_random())
+	salesman.texture = salesman_despide
 	await get_tree().create_timer(3.0).timeout
 	Global.guardar_cañas()
 	get_tree().change_scene_to_file("res://Scene/main_juego.tscn")

@@ -7,6 +7,7 @@ class_name LibOCap
 @onready var interfaz := $"../InterfazUsuario" # Referencia a la UI global si está en escena
 @onready var label_mensaje := $LabelMensaje
 @onready var pez_preview := $PezPreview
+@onready var ui := get_tree().root.get_node_or_null("MainJuego/CanvasLayer/InterfazUsuario")
 
 var pez_actual: Node = null
 var anzuelo: Node = null
@@ -98,6 +99,8 @@ func mostrar_panel(pez: Node, nombre_real: String = "") -> void:
 # 🐟 Liberar pez sin vender
 # ========================================================
 func _on_liberar_pressed() -> void:
+	if ui:
+		ui.desbloquear_tienda()
 	if anzuelo:
 		anzuelo.liberar_pez()
 	panel.visible = false
@@ -108,6 +111,8 @@ func _on_liberar_pressed() -> void:
 # 💰 Vender pez → sumar a Global.doblones y actualizar UI
 # ========================================================
 func _on_vender_pressed() -> void:
+	if ui:
+		ui.desbloquear_tienda()
 	if pez_actual:
 		var nombre_guardado = pez_actual.get_meta("nombre_real", pez_actual.name)
 		nombre_guardado = nombre_guardado.rstrip("0123456789")

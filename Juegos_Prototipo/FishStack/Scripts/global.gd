@@ -112,7 +112,6 @@ func _ready():
 	cargar_cañas()
 
 
-
 # ====================================================
 # 💾 GUARDAR / CARGAR AMULETOS EQUIPADOS
 # ====================================================
@@ -308,7 +307,7 @@ func aplicar_efectos_ganancia(valor: int) -> int:
 	# 💎 Amuleto Dineral → X2 ganancia + chance de bono
 	# ==================================================
 	if "Amuleto Dineral" in amuletos_equipados:
-		resultado *= 2
+		resultado *= 1.45
 		if randf() <= 0.25:
 			resultado += 500
 
@@ -358,7 +357,7 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 	match cana_equipada:
 		"Caña de Madera Fuerte":
 			# Caña básica → poca profundidad y rebote normal
-			anzuelo.limite_inferior_base = 200.0 + 6.5
+			anzuelo.limite_inferior_base = 400.0 + 6.5
 			anzuelo.gravedad = 1200.0
 			if minijuego:
 				minijuego.resiliencia *= 1.0
@@ -366,8 +365,8 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 
 		"Caña de Mango Grande":
 			# Un poco más profunda, menos freno al tocar el agua
-			anzuelo.velocidad_recogida_manual *= 1.15
-			anzuelo.velocidad_vertical *= 1.15
+			anzuelo.velocidad_recogida_manual *= 1.7
+			anzuelo.velocidad_vertical *= 1.3
 			anzuelo.gravedad = 1000.0
 			anzuelo.limite_inferior_base = 922.50 + 6.5
 			if minijuego:
@@ -376,8 +375,8 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 
 		"Caña de Acero":
 			# Ideal para media profundidad, 45%+ recogida
-			anzuelo.velocidad_recogida_manual *= 1.3
-			anzuelo.velocidad_vertical *= 1.3
+			anzuelo.velocidad_recogida_manual *= 2.5
+			anzuelo.velocidad_vertical *= 2
 			caña.fuerza_lanzamiento *= 1.5
 			anzuelo.gravedad = 800.0  # menos rebote
 			anzuelo.limite_inferior_base = 3050.0 + 6.5
@@ -387,8 +386,8 @@ func aplicar_efectos_caña(caña: Node, anzuelo: Node, pescador: Node = null, mi
 
 		"Caña Épica":
 			# Muy profunda, casi sin rebote al agua
-			anzuelo.velocidad_recogida_manual *= 1.45
-			anzuelo.velocidad_vertical *= 1.4
+			anzuelo.velocidad_recogida_manual *= 4
+			anzuelo.velocidad_vertical *= 3.25
 			caña.fuerza_lanzamiento *= 1.15
 			anzuelo.gravedad = 600.0
 			anzuelo.limite_inferior_base = 5180.0 + 6.5
@@ -439,7 +438,7 @@ func _actualizar_sprite_caña(pescador: Node, textura_path: String) -> void:
 func cargar_cañas():
 	var data := Save.cargar_datos()
 	canas_compradas = data.get("cañas", [])
-	cana_equipada = data.get("cana_equipada", "")
+	cana_equipada = data.get("caña_equipada", "")
 	caña_sprite_path = data.get("caña_sprite", "")
 
 	if canas_compradas.is_empty():

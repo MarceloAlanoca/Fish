@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://bcpvn1jvh1lia"]
+[gd_scene load_steps=24 format=3 uid="uid://bcpvn1jvh1lia"]
 
 [ext_resource type="Script" uid="uid://m1w3iidg4lgh" path="res://Scene/Tiendas/cañas.gd" id="1_0lyys"]
-[ext_resource type="Texture2D" uid="uid://crkptjhgyci4c" path="res://Assets/Vendedores/Salesman/Idle.png" id="2_gb7h0"]
 [ext_resource type="Texture2D" uid="uid://cnmyle47jx67q" path="res://Assets/Fondos/BackgroundCañas.jpg" id="3_a8hon"]
 [ext_resource type="AudioStream" uid="uid://ttyggthsr2os" path="res://Assets/SFX/GuardadoUndertale.ogg" id="3_p2moj"]
 [ext_resource type="AudioStream" uid="uid://ccoh502hpby1h" path="res://Assets/SFX/DespetidaUndertale.ogg" id="4_4sy4r"]
@@ -12,15 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://b405bhvaobpvw" path="res://Assets/Cañas/cañaT2.png" id="7_coxph"]
 [ext_resource type="Texture2D" uid="uid://dovcupyw5n6u0" path="res://Assets/Vendedores/Salesman/Salesman.png" id="7_fj715"]
 [ext_resource type="Texture2D" uid="uid://rf7our75ktgn" path="res://Assets/Cañas/cañaT3.png" id="8_3nnkb"]
+[ext_resource type="Texture2D" uid="uid://ccb816egr4p6c" path="res://Assets/Vendedores/Salesman/Frase.png" id="8_gaq7b"]
+[ext_resource type="Texture2D" uid="uid://bl257uvsuywf" path="res://Assets/Vendedores/Salesman/Venta.png" id="9_b65wr"]
 [ext_resource type="Texture2D" uid="uid://cx6cuf7p7ji3x" path="res://Assets/Cañas/cañaT4.png" id="9_gaq7b"]
 [ext_resource type="Texture2D" uid="uid://d35ih45jopk7q" path="res://Assets/Cañas/cañaT5.png" id="10_b65wr"]
+[ext_resource type="Texture2D" uid="uid://dfx1een8wtmw4" path="res://Assets/Vendedores/Salesman/Felicidad.png" id="10_h75cr"]
+[ext_resource type="Texture2D" uid="uid://puxdlmb1k2er" path="res://Assets/Vendedores/Salesman/Enojo.png" id="11_gaq7b"]
 [ext_resource type="AudioStream" uid="uid://t7cwv66uw11j" path="res://Assets/Musicas/14. Welcome to the Green Room (DELTARUNE Chapter 3+4 Soundtrack) - Toby Fox [TubeRipper.cc].ogg" id="11_h75cr"]
 [ext_resource type="AudioStream" uid="uid://c1nholsk7fvpy" path="res://Assets/SFX/SalesmanHablando.ogg" id="12_gb7h0"]
 [ext_resource type="PackedScene" uid="uid://brpgvacmdou1g" path="res://Scene/Tiendas/InterfazTienda.tscn" id="12_twv6e"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gb7h0"]
-atlas = ExtResource("2_gb7h0")
-region = Rect2(164.206, 134.393, 743.007, 1405.14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjidr"]
 atlas = ExtResource("4_p2moj")
@@ -48,9 +47,10 @@ sonido_despedida = ExtResource("4_4sy4r")
 sonido_error = ExtResource("5_fj715")
 sonido_voz = ExtResource("12_gb7h0")
 salesman_normal = ExtResource("7_fj715")
-salesman_habla = SubResource("AtlasTexture_gb7h0")
-salesman_vende = SubResource("AtlasTexture_gb7h0")
-salesman_despide = SubResource("AtlasTexture_gb7h0")
+salesman_habla = ExtResource("8_gaq7b")
+salesman_vende = ExtResource("9_b65wr")
+salesman_despide = ExtResource("10_h75cr")
+salesman_error = ExtResource("11_gaq7b")
 
 [node name="Fondo" type="TextureRect" parent="."]
 layout_mode = 0

@@ -61,7 +61,7 @@ func _ready():
 		{"nombre": "Amuleto Común", "precio": 1000, "efecto": "Reduce la resiliencia general un -10%", "icono": preload("res://Assets/Amuletos/amuletocomun.png")},
 		{"nombre": "Amuleto Raro", "precio": 2500, "efecto": "Reduce la penalización de pesca un -50% y velocidad del pescador +50%", "icono": preload("res://Assets/Amuletos/amuletoraro.png")},
 		{"nombre": "Amuleto Celestial", "precio": 11600, "efecto": "Resiliencia -25% y velocidad pasiva del barco +25%", "icono": preload("res://Assets/Amuletos/amuletocelestial.png")},
-		{"nombre": "Amuleto Dineral", "precio": 5600, "efecto": "Ganancia x2. Cada pez puede dar 500 doblones extra (25%)", "icono": preload("res://Assets/Amuletos/amuletomasplata.png")},
+		{"nombre": "Amuleto Dineral", "precio": 5600, "efecto": "Ganancia x1.45. Cada pez puede dar 500 doblones extra (25%)", "icono": preload("res://Assets/Amuletos/amuletomasplata.png")},
 		{"nombre": "Amuleto Secreto", "precio": 33600, "efecto": "Duplica la zona al pescar, 45% suerte de noche, 20% velocidad de progresión", "icono": preload("res://Assets/Amuletos/amuletosecreto.png")},
 		{"nombre": "Amuleto Exótico", "precio": 3600, "efecto": "Reduce la velocidad del pez y jugador un 35%, suerte +20%", "icono": preload("res://Assets/Amuletos/amuletoexotico.png")}
 	]

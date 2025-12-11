@@ -12,7 +12,7 @@ var debug_interval := 3.0  # cada 3 segundos
 @export var velocidad_recogida_manual := 80.0
 @export var limite_superior_base := 600.0
 @export var limite_inferior_base := 1250.0
-@export var tiempo_necesario := 3.0
+@export var tiempo_necesario := 1
 @export var resistencia_agua := 30  # Multiplicador de velocidad al entrar al agua
 @onready var ray_derecha = $CollisionShape2D/RayDerecha
 @onready var ray_izquierda = $CollisionShape2D/RayIzquierda
@@ -595,6 +595,7 @@ func _iniciar_minijuego():
 	if ui:
 		ui.boton_anzuelo_on.disabled = true
 		ui.boton_anzuelo_off.disabled = true
+		ui.bloquear_tienda()
 
 	# Ocultar botones mientras dura el minijuego
 	_dump_estado("_iniciar_minijuego()")
@@ -642,8 +643,8 @@ func _on_minijuego_finalizado(resultado: bool):
 	if ui:
 		ui.boton_anzuelo_on.disabled = false
 		ui.boton_anzuelo_off.disabled = false
-
-	
+		
+		
 	print("\n🧩 [DEBUG] Entró a _on_minijuego_finalizado()")
 	print("   🔸 minijuego:", minijuego)
 	print("   🔸 minijuego_conectado:", minijuego_conectado)
@@ -701,7 +702,7 @@ func _on_minijuego_finalizado(resultado: bool):
 # 💧 Detección de entrada al agua
 func _on_area_entered(area):
 	print("🌊 _on_area_entered() →", area.name)
-
+	ui.ocultar()
 	if not area.is_in_group("agua"):
 		return
 

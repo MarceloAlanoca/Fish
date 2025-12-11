@@ -28,6 +28,12 @@ var jugador
 var caña
 var anzuelo
 
+var pantalla_presionada := false
+
+func _input(event):
+	if event is InputEventScreenTouch:
+		pantalla_presionada = event.pressed
+
 # === BLOQUEO DE INPUTS EXTERNOS ===
 func _ready():
 	progress_bar.value = 0
@@ -78,7 +84,7 @@ func _mover_pez(delta):
 
 # === Movimiento del jugador (solo con tecla SPACE / Action) ===
 func _mover_jugador(delta):
-	if Input.is_action_pressed("Action"): # ← tu keybind Space
+	if Input.is_action_pressed("Action") or pantalla_presionada: # ← tu keybind Space
 		zona_jugador.position.x += velocidad_jugador * delta
 	else:
 		zona_jugador.position.x = move_toward(

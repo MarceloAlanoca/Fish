@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 
 func mirar_hacia_direccion():
 	if has_node("Sprite2D"):
-		$Sprite2D.flip_h = direccion.x < 0
+		$Sprite2D.flip_h = direccion.x > 0
 
 func detener_movimiento():
 	velocidad = 0

@@ -17,7 +17,7 @@ func cargar_datos() -> Dictionary:
 	if not FileAccess.file_exists(FILE_PATH):
 		print("⚠️ Archivo no existe, creando nuevo.")
 		return {
-			"doblones": 0,
+			"doblones": 100,
 			"amuletos": [],
 			"equipados": []
 		}

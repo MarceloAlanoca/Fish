@@ -403,3 +403,15 @@ func _toggle_anzuelo_on():
 		anzuelo.pesca_habilitada = true
 	boton_anzuelo_on.visible = true
 	boton_anzuelo_off.visible = false
+
+func bloquear_tienda():
+	boton_tienda.disabled = true
+	
+func desbloquear_tienda():
+	boton_tienda.disabled = false
+	boton_mochila.disabled = false
+
+func ocultar():
+	boton_mochila.disabled = true
+	panel_cañas.visible = false
+	panel_mochila.visible = false

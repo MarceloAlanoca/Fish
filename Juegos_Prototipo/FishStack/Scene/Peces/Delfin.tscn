@@ -11,6 +11,7 @@ region = Rect2(81.9612, 70.599, 40.0263, 53.8816)
 size = Vector2(212.115, 142)
 
 [node name="Delfin" type="CharacterBody2D"]
+position = Vector2(706, 364)
 collision_layer = 4
 script = ExtResource("1_2bov8")
 

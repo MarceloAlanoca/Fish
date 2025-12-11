@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crkptjhgyci4c"
-path="res://.godot/imported/Idle.png-ab816907dcec9e60c0953722dd3213f9.ctex"
+uid="uid://dfx1een8wtmw4"
+path="res://.godot/imported/Felicidad.png-058f4ed06b2b506bad1699b5c6a5059d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Vendedores/Salesman/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-ab816907dcec9e60c0953722dd3213f9.ctex"]
+source_file="res://Assets/Vendedores/Salesman/Felicidad.png"
+dest_files=["res://.godot/imported/Felicidad.png-058f4ed06b2b506bad1699b5c6a5059d.ctex"]
 
 [params]
 

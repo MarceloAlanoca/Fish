@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 # ===========================================================
 func _mirar() -> void:
 	if $Sprite2D:
-		$Sprite2D.flip_h = direccion.x < 0
+		$Sprite2D.flip_h = direccion.x > 0
 
 
 # ===========================================================
